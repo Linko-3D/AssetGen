@@ -1295,19 +1295,13 @@ class GM_generate_textures(bpy.types.Operator):
         c_ramp.color_ramp.elements[0].color[2] = 0.75
         c_ramp.color_ramp.elements[0].color[3] = 1
 
-        c_ramp.color_ramp.elements[1].position = 0.968
-        c_ramp.color_ramp.elements[1].color[0] = 1
-        c_ramp.color_ramp.elements[1].color[1] = 1
-        c_ramp.color_ramp.elements[1].color[2] = 1
-        c_ramp.color_ramp.elements[1].color[3] = 1
-
 
         c_ramp.color_ramp.elements.new(1)
-        c_ramp.color_ramp.elements[2].position = 1
-        c_ramp.color_ramp.elements[2].color[0] = 0
-        c_ramp.color_ramp.elements[2].color[1] = 0
-        c_ramp.color_ramp.elements[2].color[2] = 0
-        c_ramp.color_ramp.elements[2].color[3] = 1
+        c_ramp.color_ramp.elements[1].position = 1
+        c_ramp.color_ramp.elements[1].color[0] = 0
+        c_ramp.color_ramp.elements[1].color[1] = 0
+        c_ramp.color_ramp.elements[1].color[2] = 0
+        c_ramp.color_ramp.elements[1].color[3] = 1
 
         c_mixGRUNGE1 = scene.node_tree.nodes.new('CompositorNodeMixRGB')
         c_mixGRUNGE1.location = (q_nodepos -200 ,-600)  

@@ -214,7 +214,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
-        default = False
+        default = True
     )
     T_gradient = bpy.props.BoolProperty(
         name = 'Gradient',
