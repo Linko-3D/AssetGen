@@ -500,9 +500,9 @@ class Make_tileable_texture(bpy.types.Operator):
 # Make Generate_Box
 #######################################
 class Make_Generate_Box(bpy.types.Operator):
-    bl_label = 'Make Generate Box'
+    bl_label = 'Generate Box'
     bl_idname = 'ga_tools.make_generate_box'
-    bl_description = 'Make Generate_Box'
+    bl_description = 'Generate Box'
     bl_context = 'objectmode'
 
     def execute(self, context):

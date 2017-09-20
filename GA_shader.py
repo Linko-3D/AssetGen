@@ -13,7 +13,7 @@ def DEF_surface_add(context):
         q_red = 0
         c_mixArray = []
 
-
+        bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
         bpy.context.scene.render.engine = 'CYCLES'
         bpy.context.space_data.viewport_shade = 'MATERIAL'
 
