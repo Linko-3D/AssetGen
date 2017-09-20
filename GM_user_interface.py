@@ -64,17 +64,15 @@ class PANEL_GameMaterial(Panel):
 
         subcolGS = box_GS.column(align=True)
         subrowGS = subcolGS.row(align=True)
-        subrowGS.prop(scene, 'D_effectcolordust',text="")
-        subrowGS = subrowGS.row(align=True)
-        subrowGS.prop(scene, 'D_effectdust')
-
-        #subcolGS = box_GS.column(align=True)
-        subrowGS = subcolGS.row(align=True)
         subrowGS.prop(scene, 'D_effectcolorgrunge',text="")
         subrowGS = subrowGS.row(align=True)
         subrowGS.prop(scene, 'D_effectgrunge')
 
-        #subcolGS = box_GS.column(align=True)
+        subrowGS = subcolGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectcolordust',text="")
+        subrowGS = subrowGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectdust')
+
         subrowGS = subcolGS.row(align=True)
         subrowGS.prop(scene, 'D_effectcolorsnow',text="")
         subrowGS = subrowGS.row(align=True)
@@ -1347,7 +1345,7 @@ class GM_generate_textures(bpy.types.Operator):
         c_ramp = scene.node_tree.nodes.new('CompositorNodeValToRGB')
         c_ramp.location = (q_nodepos - 400 ,-600)  
 
-        c_ramp.color_ramp.elements[0].position = 0.8
+        c_ramp.color_ramp.elements[0].position = 0.5
         c_ramp.color_ramp.elements[0].color[0] = 0
         c_ramp.color_ramp.elements[0].color[1] = 0
         c_ramp.color_ramp.elements[0].color[2] = 0
