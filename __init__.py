@@ -193,7 +193,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_albedo = bpy.props.BoolProperty(
         name = 'Albedo',
-        default = True
+        default = False
     )
     T_normal  = bpy.props.BoolProperty(
         name = 'Normal',
@@ -240,7 +240,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_curvature_shadows = bpy.props.BoolProperty(
         name = 'Shadows',
-        default = True
+        default = False
     )
     T_curvature_blur = bpy.props.FloatProperty(
         name = 'Blur',
