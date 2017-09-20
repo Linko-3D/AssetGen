@@ -1087,7 +1087,7 @@ class GM_generate_textures(bpy.types.Operator):
                c_ramp.color_ramp.elements[0].color[2] = c_idx.use_color1[2]
                c_ramp.color_ramp.elements[0].color[3] = 1
 
-               c_ramp.color_ramp.elements.new(1)
+               #c_ramp.color_ramp.elements.new(1)
                c_ramp.color_ramp.elements[1].position = c_idx.use_point5
                c_ramp.color_ramp.elements[1].color[0] = c_idx.use_color5[0]
                c_ramp.color_ramp.elements[1].color[1] = c_idx.use_color5[1]
