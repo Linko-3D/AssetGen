@@ -1260,8 +1260,8 @@ class GM_generate_textures(bpy.types.Operator):
            #mask
            links.new( c_imgID.outputs['Image'],
                    scene.node_tree.nodes[c_keyArray[i]].inputs['Image'])
-           links.new( c_imgID.outputs['Alpha'],
-                   c_view.inputs['Alpha'])
+           #links.new( c_imgID.outputs['Alpha'],
+           #        c_view.inputs['Alpha'])
 
 
 
@@ -1421,6 +1421,24 @@ class GM_generate_textures(bpy.types.Operator):
                  c_mixSNOW1.inputs[1])
 
 
+        # add FRAME ALPHA
+        c_frameALPHA= scene.node_tree.nodes.new('NodeFrame')
+        c_frameALPHA.label = "Alpha"
+
+        q_nodepos += 300
+        c_mixALPHA = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixALPHA.location = (q_nodepos   ,-250)  
+        c_mixALPHA.parent = c_frameALPHA
+        c_mixALPHA.blend_type = 'MIX'
+
+        links.new( c_imgID.outputs[0],
+                 c_mixALPHA.inputs[1])
+        links.new( c_mixSNOW.outputs[0],
+                 c_mixALPHA.inputs[2])
+
+
+
+
         # add NodeViewer
         ##############################
         q_nodepos += 350
@@ -1431,9 +1449,9 @@ class GM_generate_textures(bpy.types.Operator):
         ##############################
         c_out1.location = (q_nodepos ,-200)  
 
-        links.new( c_mixSNOW.outputs[0],
+        links.new( c_mixALPHA.outputs[0],
                  c_view.inputs['Image'])
-        links.new( c_mixSNOW.outputs[0],
+        links.new( c_mixALPHA.outputs[0],
                  c_out1.inputs['Image'])
 
 
