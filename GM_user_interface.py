@@ -971,6 +971,12 @@ class GM_generate_textures(bpy.types.Operator):
         links.new( c_imgNORMAL.outputs['Image'],
                                c_RGBA.inputs[0])
 
+        # add image Bent
+        ##############################
+        c_imgBENT = scene.node_tree.nodes.new('CompositorNodeImage')
+        c_imgBENT.image = bpy.data.images.get(q_activeobj[:-4]+"bent")
+        c_imgBENT.location = (q_nodepos-1000 ,-1200)  
+        c_imgBENT.label = "Bent"
 
 
         # add image MASK
@@ -1199,8 +1205,11 @@ class GM_generate_textures(bpy.types.Operator):
 
 
 
-
-
+        # add ROUTE
+        ##############################
+        q_nodepos += 350
+        c_endROUTE = scene.node_tree.nodes.new('NodeReroute')
+        c_endROUTE.location = (q_nodepos ,-250)  
 
         # add NodeViewer
         ##############################
@@ -1217,6 +1226,8 @@ class GM_generate_textures(bpy.types.Operator):
         c_out1.format.file_format = 'TARGA'
 
         c_out1.file_slots[0].path = q_activeobj[:-4]+"albedo####"
+  
+
 
 
         # add LINK
@@ -1244,9 +1255,8 @@ class GM_generate_textures(bpy.types.Operator):
                    scene.node_tree.nodes[c_mixArray[i+1]].inputs[1])
            else:
               links.new( scene.node_tree.nodes[c_mixArray[i]].outputs['Image'],
-                   c_view.inputs['Image'])
-              links.new( scene.node_tree.nodes[c_mixArray[i]].outputs['Image'],
-                   c_out1.inputs['Image'])
+                   c_endROUTE.inputs[0])
+
 
 
            #mask
@@ -1261,6 +1271,171 @@ class GM_generate_textures(bpy.types.Operator):
            if c_maskArray[i]:
               links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
                       scene.node_tree.nodes[c_mixArray[i]].inputs['Fac'])
+
+
+        # add EFFECTS
+        ###############################
+
+        # add FRAME GRUNGE
+        c_frameGRUNGE = scene.node_tree.nodes.new('NodeFrame')
+        c_frameGRUNGE.label = "Grunge"
+
+        q_nodepos += 350
+        c_mixGRUNGE = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixGRUNGE.location = (q_nodepos ,-250)  
+        c_mixGRUNGE.parent = c_frameGRUNGE
+        c_mixGRUNGE.blend_type = 'MIX'
+        c_mixGRUNGE.inputs[0].default_value = scene.D_effectgrunge
+
+        # add COLORRAMP
+        c_ramp = scene.node_tree.nodes.new('CompositorNodeValToRGB')
+        c_ramp.location = (q_nodepos - 500 ,-600)  
+
+        c_ramp.color_ramp.elements[0].position = 0.6
+        c_ramp.color_ramp.elements[0].color[0] = 0.75
+        c_ramp.color_ramp.elements[0].color[1] = 0.75
+        c_ramp.color_ramp.elements[0].color[2] = 0.75
+        c_ramp.color_ramp.elements[0].color[3] = 1
+
+        c_ramp.color_ramp.elements.new(1)
+        c_ramp.color_ramp.elements[1].position = 1
+        c_ramp.color_ramp.elements[1].color[0] = 0
+        c_ramp.color_ramp.elements[1].color[1] = 0
+        c_ramp.color_ramp.elements[1].color[2] = 0
+        c_ramp.color_ramp.elements[1].color[3] = 1
+
+        c_mixGRUNGE1 = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixGRUNGE1.location = (q_nodepos -200 ,-600)  
+        c_mixGRUNGE1.blend_type = 'MIX'
+        c_mixGRUNGE1.inputs[2].default_value = scene.D_effectcolorgrunge
+
+
+        links.new( c_endROUTE.outputs[0],
+                   c_mixGRUNGE1.inputs[1])
+        links.new( c_ramp.outputs['Image'],
+                   c_mixGRUNGE1.inputs[0])
+        links.new( c_mixGRUNGE1.outputs['Image'],
+                   c_mixGRUNGE.inputs[2])
+        links.new( c_endROUTE.outputs[0],
+                 c_mixGRUNGE.inputs[1])
+        links.new( c_imgAO.outputs[0],
+                 c_ramp.inputs[0])
+
+
+        # add FRAME DUST
+        c_frameDUST = scene.node_tree.nodes.new('NodeFrame')
+        c_frameDUST.label = "Dust"
+
+        q_nodepos += 650
+        c_mixDUST = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixDUST.location = (q_nodepos   ,-250)  
+        c_mixDUST.parent = c_frameDUST
+        c_mixDUST.blend_type = 'MIX'
+        c_mixDUST.inputs[0].default_value = scene.D_effectdust
+
+
+        c_RGBADUST = scene.node_tree.nodes.new('CompositorNodeSepRGBA')
+        c_RGBADUST.location = (q_nodepos-600 ,-600)  
+
+        c_ramp = scene.node_tree.nodes.new('CompositorNodeValToRGB')
+        c_ramp.location = (q_nodepos - 400 ,-600)  
+
+        c_ramp.color_ramp.elements[0].position = 0.8
+        c_ramp.color_ramp.elements[0].color[0] = 0
+        c_ramp.color_ramp.elements[0].color[1] = 0
+        c_ramp.color_ramp.elements[0].color[2] = 0
+        c_ramp.color_ramp.elements[0].color[3] = 1
+
+        c_ramp.color_ramp.elements.new(1)
+        c_ramp.color_ramp.elements[1].position = 1
+        c_ramp.color_ramp.elements[1].color[0] = 0.75
+        c_ramp.color_ramp.elements[1].color[1] = 0.75
+        c_ramp.color_ramp.elements[1].color[2] = 0.75
+        c_ramp.color_ramp.elements[1].color[3] = 1
+
+        c_mixDUST1 = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixDUST1.location = (q_nodepos -100,-600)  
+        c_mixDUST1.blend_type = 'MIX'
+        c_mixDUST1.inputs[2].default_value = scene.D_effectcolordust
+
+        links.new( c_imgBENT.outputs[0],
+                 c_RGBADUST.inputs[0])
+        links.new( c_RGBADUST.outputs["G"],
+                 c_ramp.inputs[0])
+        links.new( c_ramp.outputs[0],
+                 c_mixDUST1.inputs[0])
+        links.new( c_mixDUST1.outputs[0],
+                 c_mixDUST.inputs[2])
+
+        links.new( c_mixGRUNGE.outputs[0],
+                 c_mixDUST.inputs[1])
+        links.new( c_mixGRUNGE.outputs[0],
+                 c_mixDUST1.inputs[1])
+
+        # add FRAME SNOW
+        c_frameSNOW = scene.node_tree.nodes.new('NodeFrame')
+        c_frameSNOW.label = "Snow"
+
+        q_nodepos += 700
+        c_mixSNOW = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixSNOW.location = (q_nodepos   ,-250)  
+        c_mixSNOW.parent = c_frameSNOW
+        c_mixSNOW.blend_type = 'MIX'
+        c_mixSNOW.inputs[0].default_value = scene.D_effectsnow
+
+        c_RGBASNOW= scene.node_tree.nodes.new('CompositorNodeSepRGBA')
+        c_RGBASNOW.location = (q_nodepos-600 ,-600)  
+
+        c_ramp = scene.node_tree.nodes.new('CompositorNodeValToRGB')
+        c_ramp.location = (q_nodepos - 400 ,-600)  
+
+        c_ramp.color_ramp.elements[0].position = 0.2
+        c_ramp.color_ramp.elements[0].color[0] = 0
+        c_ramp.color_ramp.elements[0].color[1] = 0
+        c_ramp.color_ramp.elements[0].color[2] = 0
+        c_ramp.color_ramp.elements[0].color[3] = 1
+
+        c_ramp.color_ramp.elements.new(1)
+        c_ramp.color_ramp.elements[1].position = 1
+        c_ramp.color_ramp.elements[1].color[0] = 1
+        c_ramp.color_ramp.elements[1].color[1] = 1
+        c_ramp.color_ramp.elements[1].color[2] = 1
+        c_ramp.color_ramp.elements[1].color[3] = 1
+
+        c_mixSNOW1 = scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_mixSNOW1.location = (q_nodepos -100,-600)  
+        c_mixSNOW1.blend_type = 'MIX'
+        c_mixSNOW1.inputs[2].default_value = scene.D_effectcolorsnow
+
+        links.new( c_imgBENT.outputs[0],
+                 c_RGBASNOW.inputs[0])
+        links.new( c_RGBASNOW.outputs["G"],
+                 c_ramp.inputs[0])
+        links.new( c_ramp.outputs[0],
+                 c_mixSNOW1.inputs[0])
+        links.new( c_mixSNOW1.outputs[0],
+                 c_mixSNOW.inputs[2])
+
+        links.new( c_mixDUST.outputs[0],
+                 c_mixSNOW.inputs[1])
+        links.new( c_mixDUST.outputs[0],
+                 c_mixSNOW1.inputs[1])
+
+
+        # add NodeViewer
+        ##############################
+        q_nodepos += 350
+        c_view.location = (q_nodepos ,0)  
+
+
+        # add File Output
+        ##############################
+        c_out1.location = (q_nodepos ,-200)  
+
+        links.new( c_mixSNOW.outputs[0],
+                 c_view.inputs['Image'])
+        links.new( c_mixSNOW.outputs[0],
+                 c_out1.inputs['Image'])
 
 
 

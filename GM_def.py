@@ -546,9 +546,10 @@ def register():
     bpy.types.Scene.D_effectcolordust = FloatVectorProperty(
         name="Dust color",
         subtype="COLOR",
-        default=(1,1,1),
+        default=(0.392,0.332,0.262,1),
         min=0, 
-        max=1
+        max=1,
+        size = 4
     )
 
     bpy.types.Scene.D_effectgrunge = bpy.props.FloatProperty(
@@ -560,10 +561,12 @@ def register():
     bpy.types.Scene.D_effectcolorgrunge = FloatVectorProperty(
         name="Grunge color",
         subtype="COLOR",
-        default=(1,1,1),
+        default=(0.107,0.084,0.080,1),
         min=0, 
-        max=1
+        max=1,
+        size=4
     )
+
 
     bpy.types.Scene.D_effectsnow = bpy.props.FloatProperty(
         name = 'Snow',
@@ -574,9 +577,10 @@ def register():
     bpy.types.Scene.D_effectcolorsnow = FloatVectorProperty(
         name="Snow color",
         subtype="COLOR",
-        default=(1,1,1),
+        default=(0.839,0.831,0.880,1),
         min=0, 
-        max=1
+        max=1,
+        size = 4
     )
 
 
