@@ -49,14 +49,38 @@ class PANEL_GameMaterial(Panel):
         box_GS = col.box()
         rowGS = box_GS.row()
         rowGS.label(text="Greyscale options:")
+        subrowGS = rowGS.column(align=True)
+        subrowGS.prop(scene, 'D_curv')
+        subrowGS.prop(scene, 'D_ao')
+        subrowGS.prop(scene, 'D_shad')
 
-        #BUMP
-        #icon = 'LAYER_ACTIVE' #if layer_idx.use_advanced_layer_Bump_enable else 'LAYER_USED'
-        #subrow = col.row(align=True)
-        #rowGS.scale_y = 1.1
-        #rowGS.label(text="Bump effect", icon=icon )
-        #rowGS.prop(q_mat , 'use_advanced_layer_Bump',emboss=False)
-        #rowGS.prop(q_mat , 'use_advanced_layer_Bump_enable')
+        # Effects options 
+        ######################################
+
+        col = layout.column(align=True)
+        box_GS = col.box()
+        rowGS = box_GS.row()
+        rowGS.label(text="Effects:")
+
+        subcolGS = box_GS.column(align=True)
+        subrowGS = subcolGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectcolordust',text="")
+        subrowGS = subrowGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectdust')
+
+        #subcolGS = box_GS.column(align=True)
+        subrowGS = subcolGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectcolorgrunge',text="")
+        subrowGS = subrowGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectgrunge')
+
+        #subcolGS = box_GS.column(align=True)
+        subrowGS = subcolGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectcolorsnow',text="")
+        subrowGS = subrowGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectsnow')
+
+
 
 
         # Add/Remove button
@@ -926,6 +950,7 @@ class GM_generate_textures(bpy.types.Operator):
         c_img.location = (q_nodepos-1000 ,-200)  
         c_img.label = "Curvature"
 
+
         # add image AO
         ##############################
         c_imgAO = scene.node_tree.nodes.new('CompositorNodeImage')
@@ -965,6 +990,7 @@ class GM_generate_textures(bpy.types.Operator):
         c_mixEC.location = (q_nodepos -800,-230)  
         c_mixEC.parent = c_frameEC
         c_mixEC.inputs[1].default_value = (0.499458, 0.499458, 0.499458, 1)
+        c_mixEC.inputs[0].default_value = scene.D_curv
 
         links.new( c_img.outputs['Image'],
                                c_mixEC.inputs[2])
@@ -979,6 +1005,8 @@ class GM_generate_textures(bpy.types.Operator):
         c_mixAO.location = (q_nodepos -550,-230)  
         c_mixAO.parent = c_frameAO
         c_mixAO.blend_type = 'SOFT_LIGHT'
+        c_mixAO.inputs[0].default_value = scene.D_ao
+
 
         links.new( c_mixEC.outputs['Image'],
                                c_mixAO.inputs[1])
@@ -994,6 +1022,7 @@ class GM_generate_textures(bpy.types.Operator):
         c_mixSHADOWS.location = (q_nodepos -300,-230)  
         c_mixSHADOWS.parent = c_frameSHADOWS
         c_mixSHADOWS.blend_type = 'MULTIPLY'
+        c_mixSHADOWS.inputs[0].default_value = scene.D_shad
 
         links.new( c_mixAO.outputs['Image'],
                                c_mixSHADOWS.inputs[1])
