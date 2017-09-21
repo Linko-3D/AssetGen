@@ -28,7 +28,7 @@ from progress_report import ProgressReport, ProgressReportSubstep
 
 
 class GA_Start(Operator):
-    """Will generate your game asset, open the terminal to follow the progress"""
+    """Will generate your game asset, high poly must be in layer0. Layer1 will be deleted. Open the terminal to follow the progress"""
 
     bl_idname = "scene.ga_start"
     bl_label = "Generate Asset"

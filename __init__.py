@@ -110,28 +110,28 @@ class GA_Property(bpy.types.PropertyGroup):
 
     D_cage_size = bpy.props.FloatProperty(
         name = 'Cage size',
-        description = "",
+        description = "Size (inflate) of the low poly during the baking to avoid intersecting with the high poly",
         default = 0.05,
         min = 0.00,
         max = 1.00
     )
     D_edge_padding = bpy.props.FloatProperty(
         name = 'Edge padding',
-        description = "",
+        description = "Number of pixels that goes above your UV seams",
         default = 16,
         min = 0.00,
         max = 100.00
     )
     D_uv_margin = bpy.props.FloatProperty(
         name = 'UV margin',
-        description = "",
+        description = "Space between UVs islands",
         default = 0.005,
         min = 0.000,
         max = 1.000
     )
     D_uv_angle = bpy.props.FloatProperty(
         name = 'UV angle',
-        description = "",
+        description = "Define at which angle from the world space a seam must be added. Lower value = more chunks and less perfs, higher = potential overlapping and lose in Texel density.",
         default = 45,
         min = 0,
         max = 89
@@ -146,8 +146,8 @@ class GA_Property(bpy.types.PropertyGroup):
 
 
     DT_pathobj = bpy.props.StringProperty(
-        name="File path", 
-        description = "Choose where to save the file",
+        name="FBX path", 
+        description = "Choose where to save your FBX file",
         default='',
         subtype = 'DIR_PATH'
     )
@@ -160,18 +160,18 @@ class GA_Property(bpy.types.PropertyGroup):
 
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
-        description = "Will try to remove every intersections of separated meshes",
+        description = "Will try to remove every intersections of separated meshes. Can bug with smalls meshes or not intersecting enough",
         default = True
     )
     D_groundAO = bpy.props.BoolProperty(
         name = 'Ground AO',
-        description = "Generate ambient occlusion from the grid, ideal from static meshes that stand on the ground",
+        description = "Generate ambient occlusion from the grid, ideal for static meshes that stand on the ground",
         default = False
     )
 
     D_removeunderground = bpy.props.BoolProperty(
         name = 'Remove underground',
-        description = "Remove the invisible part of the mesh that intersect with the ground to avoid waste of polygons and texture space",
+        description = "Remove the invisible part of the mesh that intersect with the ground (grid) to avoid waste of polygons and texture space",
         default = False
     )
 
@@ -188,44 +188,53 @@ class GA_Property(bpy.types.PropertyGroup):
 
     T_mask = bpy.props.BoolProperty(
         name = 'Mask',
-        description = "The mask map will bake the colors of your asset and use it as a mask to apply different material with the Game Asset Material tool ",
+        description = "The mask map will bake the colors of your asset and use it as a mask to apply different gradients with the Game Asset Material tool",
         default = True
     )
     T_albedo = bpy.props.BoolProperty(
         name = 'Albedo',
+        description = "Bakes the diffuse color of the high poly ideal for scanned assets otherwise it iss recommended to do the albedo after the low poly",
         default = False
     )
     T_normal  = bpy.props.BoolProperty(
         name = 'Normal',
+        description = "Will keep every details of your hight poly",
         update=def_normal_Update,
         default = True
     )
     T_ao = bpy.props.BoolProperty(
         name = 'Ambient Occlusion',
+        description = "Generates shadows on parts close to each others, works on any lighting conditions",
         default = True
     )
     T_pointiness = bpy.props.BoolProperty(
         name = 'Pointiness',
+        description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
         default = False
     )
     T_roughness = bpy.props.BoolProperty(
         name = 'Roughness',
+        description = "Generates a map from the curvature that will make the edges more shiny than flat surfaces",
         default = False
     )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
+        description = "Bake the orientation of the faces from the world space. It is used to create effects (dust, snow, etc) and fake top lighting in non-PBR games",
         default = True
     )
     T_gradient = bpy.props.BoolProperty(
         name = 'Gradient',
+        description = "Bake a dark bottom and white top of your object. This method is often used in stylized games especially view from top",
         default = False
     )
     T_opacity = bpy.props.BoolProperty(
         name = 'Opacity',
+        description = "Bake in white non opaque part and black parts that needs to be transparent. Most game engines can read the opacity directly on the Albedo",
         default = False
     )
     T_curvature = bpy.props.BoolProperty(
         name = 'Curvature',
+        description = "This effects will composite the normal map to generate greyscale with convex faces in white and concave in dark",
         update=def_curvature_Update,
         default = True
     )
@@ -233,40 +242,44 @@ class GA_Property(bpy.types.PropertyGroup):
 
     T_curvature_pixelwidth = bpy.props.IntProperty(
         name = 'Pixel width',
-        description = "",
+        description = "The width in pixel of the generates concave white lines and convex black lines. This can be used to create sprites by baking an high poly on a plane",
         default = 1,
         min = 1,
         max = 8
     )
     T_curvature_shadows = bpy.props.BoolProperty(
         name = 'Shadows',
+        description = "",
         default = False
     )
     T_curvature_blur = bpy.props.FloatProperty(
         name = 'Blur',
+        description = "Amount of relative blur to avoid getting aliasing and/or lines too contrasted",
         default = 0,
         min = 0.000,
         max = 1.000
     )
-
-
     T_surface_noise = bpy.props.BoolProperty(
         name = 'Noise',
+        description = "",
         update=def_surface,
         default = False
     )
     T_surface_rock = bpy.props.BoolProperty(
         name = 'Rock',
+        description = "",
         update=def_surface,
         default = False
     )
     T_surface_sand  = bpy.props.BoolProperty(
         name = 'Sand waves',
+        description = "",
         update=def_surface,
         default = False
     )
     T_surface_woodbark  = bpy.props.BoolProperty(
         name = 'Wood bark',
+        description = "",
         update=def_surface,
         default = False
     )

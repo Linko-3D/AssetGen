@@ -30,7 +30,7 @@ class PANEL_GameMaterial(Panel):
         #Provera greske
         #####################################
         if len(bpy.context.selected_objects) != 1:
-           q_err = "Not selected object !!!"
+           q_err = "You must select a mesh"
         else:
            if bpy.context.object.active_material.name[-4:] != "_PBR":
               q_err = "You must generate your asset before editing the Albedo"

@@ -461,7 +461,7 @@ class Mesh_2D(bpy.types.Operator):
 class Make_tileable_texture(bpy.types.Operator):
     bl_label = 'Make tileable texture'
     bl_idname = 'ga_tools.make_tileable_texture'
-    bl_description = 'Make tileable texture'
+    bl_description = 'Add a configured plane to allow you tu sculpt a tielable texture'
     bl_context = 'objectmode'
 
     def execute(self, context):
@@ -502,7 +502,7 @@ class Make_tileable_texture(bpy.types.Operator):
 class Make_Generate_Box(bpy.types.Operator):
     bl_label = 'Generate Box'
     bl_idname = 'ga_tools.make_generate_box'
-    bl_description = 'Generate Box'
+    bl_description = 'Generate a box from a plane. You can then edit one faces to change every sides of the box'
     bl_context = 'objectmode'
 
     def execute(self, context):
