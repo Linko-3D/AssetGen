@@ -134,7 +134,7 @@ class PANEL_GameAsset(Panel):
 
            bcol1_gab.prop(myscene , 'T_curvature_pixelwidth')
            bcol1_gab.prop(myscene , 'T_curvature_blur')
-           bcol1_gab.prop(myscene , 'T_curvature_shadows')  
+           #bcol1_gab.prop(myscene , 'T_curvature_shadows')  
            
            bcol1_gaa.prop(myscene , 'T_pointiness') 
            bcol1_gaa.prop(myscene , 'T_roughness') 

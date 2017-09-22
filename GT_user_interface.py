@@ -59,11 +59,13 @@ class PANEL_GameTools(Panel):
            bcol1_ga.row().separator()
            bcol1_ga.row().separator()
            bcol1_ga.prop(myscene , 'T_ntoc')
-           bcol1_ga.row().separator()
-           bcol1_ga.row().separator()
            bcol1_ga.prop(myscene , 'T_ntocrel')
            bcol1_ga.row().separator()
            bcol1_ga.row().separator()
+           bcol1_ga.prop(myscene , 'T_curvature_shadows') 
+           bcol1_ga.row().separator()
+           bcol1_ga.row().separator()
+ 
            bcol1_ga.operator("ga_tools.ntoc", icon='EXPORT')
            bcol1_ga.row().separator()
 
