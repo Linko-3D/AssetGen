@@ -322,6 +322,11 @@ class GA_Property(bpy.types.PropertyGroup):
         max = 10.000
     )
 
+    T_symmet_clip= bpy.props.BoolProperty(
+        name = 'Clipping',
+        default = False
+    )
+
     T_symmet_X = bpy.props.BoolProperty(
         name = 'X',
         default = True

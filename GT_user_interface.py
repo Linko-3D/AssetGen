@@ -77,6 +77,8 @@ class PANEL_GameTools(Panel):
 
 
            bcol1_ga.label(text="Axis:")
+           bcol1_ga.prop(myscene , 'T_symmet_clip')
+           bcol1_ga.row().separator()
            bcol1_ga.prop(myscene , 'T_symmet_X')
            bcol1_ga.row().separator()
            bcol1_ga.prop(myscene , 'T_symmet_Y')
@@ -134,7 +136,6 @@ class Resimetrize(bpy.types.Operator):
 
        ##################
 
-       clipping = 0
        
        bpy.ops.object.mode_set(mode = 'OBJECT')
        bpy.ops.object.convert(target='MESH')
@@ -224,8 +225,9 @@ class Resimetrize(bpy.types.Operator):
            if myscene.T_symmet_Z == True :
               bpy.context.object.modifiers["Mirror"].use_z = True
             
-           if clipping == 1:
-                bpy.context.object.modifiers["Mirror"].use_clip = True
+
+           if myscene.T_symmet_clip == True:
+              bpy.context.object.modifiers["Mirror"].use_clip = True
 
 
 
