@@ -163,7 +163,7 @@ class GA_Property(bpy.types.PropertyGroup):
         default = True
     )
     DT_exporttexture = bpy.props.BoolProperty(
-        name = 'Texture in subfolder',
+        name = 'Textures in a subfolder',
         description = "Texture in subfolder",
         default = True
     )
