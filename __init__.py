@@ -3,7 +3,7 @@ bl_info = {
     "name": "AssetGen",
     "author": "Developed by Srdan Ignjatovic aka zero025 (kica025@gmail.com) and surpervised by Danyl Bekhoucha aka Linko (dbekhouc@gmaiL.com)",
     "version": (0, 1),
-    "blender": (2, 78),
+    "blender": (2, 79),
     "api": 39347,
     "location": "3D View > Object Mode > Tools > AssetGen",
     "description": "Game development tools",
