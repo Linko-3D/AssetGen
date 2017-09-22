@@ -1,3 +1,8 @@
+== Download AssetGen addon ==
+
+AssetGen: https://github.com/Linko-3D/AssetGen
+(Developed by Srdan Ignjatovic aka zero025 (kica025@gmail.com) and surpervised by Danyl Bekhoucha aka Linko (dbekhouc@gmaiL.com)
+
 Bonus Unity startup scene: https://github.com/Linko-3D/Realistic-Unity-Project
 
 == Installation ==
@@ -9,7 +14,7 @@ Import the whole .zip. In the search bar search AssetGen and enable it. Don't fo
 == Introduction ==
 
 AssetGen is an addon that automates the tasks to get a game assets ready for video games from an High Poly model.
-This tool is very useful to generate all your static meshes. For meshes that have to be deformed like character you should use your own LP.
+This tool is very useful to generate all your static meshes. For meshes that have to be deformed like characters you should use your own LP.
 Also sometimes the addon doesn't work very well on models with a lot of tiny parts, you must adjust your high poly by keeping the decimation in mind to use the addon. Even if you use your own low poly you can still use this addon to bake the maps and generate your textures. AssetGen provide tools to help you generate your albedo map, everything will be explained here.
 
 What AssetGen does for you automatically:
@@ -21,6 +26,7 @@ What AssetGen does for you automatically:
 - it creates a Blender Render shader and nodes for Blender Cycles and create the lighting to see what the low poly looks like directly after it is generated.
 - it helps you to create your albedo texture by providing settings to generate a grayscale texture and to help you create your gradients. Results are shown directly in the viewport.
 - you can add texture effects like dust deposition and grunge very easily and can adjust the amount and color.
+- you have access to a tool called "Export asset", it will export your LODs and reset their locations at the path you have specified and it will export your albedo, normal and AO map in the same folder or in a subfolder (called "Materials" by default to match Unity)
 
 The addon also provides a set of tool like making a tileable texture, creating the silhouette of a weapon and more.
 

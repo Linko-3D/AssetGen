@@ -1,4 +1,4 @@
-import bpy,os
+import bpy,os, shutil
 from bpy.props import IntProperty, BoolProperty, FloatProperty, EnumProperty, PointerProperty
 from bpy.types import Menu, Panel, AddonPreferences, PropertyGroup, UIList
 from rna_prop_ui import PropertyPanel
@@ -36,6 +36,12 @@ class PANEL_GameTools(Panel):
            bcol_ga = box_ga.column(align=True)
 
            bcol_ga.prop(myscene , 'DT_pathobj')
+           bcol_ga.row().separator()
+           bcol_ga.row().separator()
+           bcol_ga.prop(myscene , 'DT_exportcenterpos')
+           bcol_ga.prop(myscene , 'DT_exporttexture')
+           bcol_ga.prop(myscene , 'DT_exportpathtexture')
+
            bcol_ga.row().separator()
            bcol_ga.row().separator()
            bcol_ga.operator("ga_tools.export", icon='EXPORT')
@@ -324,8 +330,9 @@ class NtoC(bpy.types.Operator):
 
        return {'FINISHED'}
 
-
-# - File export ------------------------------------------------
+#######################################
+# File export 
+#######################################
 class ButtonFileExportOff(bpy.types.Operator):
     bl_label = 'Export asset'
     bl_idname = 'ga_button.fileexport_off'
@@ -366,13 +373,39 @@ class ExpObj(bpy.types.Operator):
         objname = name + ".fbx" 
 
         target_file = bpy.path.abspath(context.scene.ga_property.DT_pathobj) + '\\' + objname 
-        print('started export', target_file )
+        target_directory0 = os.path.dirname(target_file )
+        target_directory1 = os.path.dirname( 
+                            context.scene.ga_property.DT_exportpathtexture )
+        target_directory2 = os.path.realpath( 
+                            context.scene.ga_property.DT_exportpathtexture )
+
+
+
+        if context.scene.ga_property.DT_exportcenterpos == True:
+           bpy.ops.object.location_clear(clear_delta=False)
+
+        if context.scene.ga_property.DT_exporttexture == True:
+
+           mypresets = os.path.abspath(target_directory0 + 
+                                    target_directory2)
+
+           if not os.path.exists(mypresets):
+              os.makedirs(mypresets)  
 
 
         bpy.ops.export_scene.fbx(
             filepath=target_file, 
             use_selection = True
-        )  
+        )
+
+
+ 
+        srcfile = bpy.path.abspath(os.path.dirname(bpy.data.filepath ) )
+
+
+        shutil.copy(srcfile + "\\"+ name[:-4] + "albedo.tga" , mypresets )
+        shutil.copy(srcfile + "\\"+ name[:-4] + "normal.tga" , mypresets )
+        shutil.copy(srcfile + "\\"+ name[:-4] + "ambient_occlusion.tga" , mypresets )
 
       
         return {'FINISHED'}

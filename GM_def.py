@@ -227,7 +227,6 @@ def GM_change_engine(self, context):
 
 
 def GM_color_select(self, context):
-    print("right")
 
     if self.use_gra_select == "Cold color":
        self.use_colorselect = self.use_color1

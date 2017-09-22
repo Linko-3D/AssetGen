@@ -1,7 +1,7 @@
 #This states the metadata for the plugin
 bl_info = {
     "name": "AssetGen",
-    "author": "Srđan Ignjatović (kica025@gmail.com) and Danyl Bekhoucha (dbekhouc@gmaiL.com)",
+    "author": "Developed by Srdan Ignjatovic aka zero025 (kica025@gmail.com) and surpervised by Danyl Bekhoucha aka Linko (dbekhouc@gmaiL.com)",
     "version": (0, 1),
     "blender": (2, 78),
     "api": 39347,
@@ -157,6 +157,25 @@ class GA_Property(bpy.types.PropertyGroup):
         default='',
         subtype = 'FILE_PATH'
     )
+    DT_exportcenterpos = bpy.props.BoolProperty(
+        name = 'Center position',
+        description = "Center position",
+        default = True
+    )
+    DT_exporttexture = bpy.props.BoolProperty(
+        name = 'Texture in subfolder',
+        description = "Texture in subfolder",
+        default = True
+    )
+
+    DT_exportpathtexture = bpy.props.StringProperty(
+        name="Textures", 
+        description = "Texture in subfolder.",
+        default='//Materials',
+        subtype = 'DIR_PATH'
+    )
+
+
 
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
