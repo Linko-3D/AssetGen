@@ -364,4 +364,4 @@ def unregister():
 if __name__ == "__main__":
     register()
 
-print(">>>>>>>>>>> Import Finished", __name__, "<<<<<<<<<<<<")
+print("> ", __name__, "imported successfully")
