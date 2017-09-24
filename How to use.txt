@@ -1,9 +1,12 @@
+AssetGen is a free addon that automates the tasks to get a game assetsready for video games from an High Poly model. While it takes several hours to get an asset ready from an high poly, this addon does that in a matter of few clicks. It is ideal for all your static assets.
+
 == Download AssetGen addon ==
 
-AssetGen: https://github.com/Linko-3D/AssetGen
-(Developed by Srdan Ignjatovic aka zero025 (kica025@gmail.com) and surpervised by Danyl Bekhoucha aka Linko (dbekhouc@gmaiL.com)
+AssetGen (for Blender 2.79 only): https://github.com/Linko-3D/AssetGen
+It is developed by Srdan Ignjatovic aka zero025 (kica025@gmail.com) and surpervised by Danyl Bekhoucha aka Linko (dbekhouc@gmaiL.com).
 
-Bonus Unity startup scene: https://github.com/Linko-3D/Realistic-Unity-Project
+Bonus Unity realistic startup scene: https://github.com/Linko-3D/Realistic-Unity-Project
+A version with the best looking scene I was able to create in Unity.
 
 == Installation ==
 
@@ -13,8 +16,7 @@ Import the whole .zip. In the search bar search AssetGen and enable it. Don't fo
 
 == Introduction ==
 
-AssetGen is an addon that automates the tasks to get a game assets ready for video games from an High Poly model.
-This tool is very useful to generate all your static meshes. For meshes that have to be deformed like characters you should use your own LP.
+This addon is very useful to generate all your static meshes. For meshes that have to be deformed like characters you should use your own LP.
 Also sometimes the addon doesn't work very well on models with a lot of tiny parts, you must adjust your high poly by keeping the decimation in mind to use the addon. Even if you use your own low poly you can still use this addon to bake the maps and generate your textures. AssetGen provide tools to help you generate your albedo map, everything will be explained here.
 
 What AssetGen does for you automatically:
@@ -30,6 +32,8 @@ What AssetGen does for you automatically:
 
 The addon also provides a set of tool like making a tileable texture, creating the silhouette of a weapon and more.
 
+Click image for larger version.  Name: assetgen.png  Views: 10  Size: 569.8 KB  ID: 499392
+
 == How to use it ==
 
 Note: overing the mouse on a setting displays a dialog box that explain you how the tool works.
@@ -40,6 +44,9 @@ Important note: your high poly must be in layer 0 when generating the script. Al
 
 Texture resolution:
 The first setting is the texture resolution, they are indicated in square (1K = 1024*1024). To work with it i suggest to use at least a resolution of 2K (2048*2048). Modern games use this resolution too to display their textures.
+
+Selected to active:
+Enable this option to use your own low poly. You must select your high poly then your low poly (active selection) to use it. If your low poly has no UVs the addon will do use the Smart UVs settings in the advanced settings menu. You can generate a LOD1 and LOD2 from your low poly.
 
 LODs polycount:
 The second setting bellow is very important, it is the LODs' polycount in triangles. The LOD0 is the game asset that will be displayed at a close range from the camera. Each new LOD is the model shown further from the camera. You can keep the other LODs at 0 triangle to not generate them.
@@ -53,4 +60,9 @@ The settings are:
 - Cage size: this option increase the size of the low poly during the baking to capture every details. A value too high could generate intersections with concave shapes resulting on black spots.
 - Edge padding: also known as margin is the number of pixel that goes above your UV seams. This allow to not reveal (otherwise lines will appear).
 - UV margin: it is the space between the UV islands. If the UVs are too close the edge padding wont be able to extend enough, this could reveal the seams.
-- UV angle: because the addon uses Smart UVs, it allows to define at which angle of the mesh to add a seam. Lower value = more chunks (bad performances), higher value = potential overlapping and lose in texel space. 
+- UV angle: because the addon uses Smart UVs, it allows to define at which angle of the mesh to add a seam. Lower value = more chunks (bad performances), higher value = potential overlapping and lose in texel space.
+- Samples: this value is only used for the Ambient Occlusion, other maps use 1 sample. More sample will remove the noise but will take longer to bake.
+- Create envelop: with this option enabled the script will perform an Union boolean between each meshes by loosing parts, in other words most of your intersecting parts of your low poly should be removed. This will allow to get more triangle for the visible parts of your asset and also to not waste UV space. Caution however, this options doesn't work on models with a lot of tiny meshes and meshes that doesn't intersect enough to allow the Union boolean to work correctly.
+- Unfold half: use it if you have a symmetrical asset, this will generate the UVs for half of your texture to double the texel of it. It is particularly good on a mobile game with limited texture resolution.
+- Ground AO: this option will generate ambient occlusion for the grid, it is useful for static assets that lays on the ground in your game.
+- Remove undergound: it will remove the parts under the grid before doing the decimation in order to get more details from the visible parts. 
