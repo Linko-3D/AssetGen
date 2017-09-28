@@ -13,7 +13,6 @@ A version with the best looking scene I was able to create in Unity.
 Go in "File > User Preferences..." open the Add-ons tab at the bottom click on "Install Add-on from File...".
 Import the whole .zip. In the search bar search AssetGen and enable it. Don't forget to click on "Save User Settings".
 
-
 == Introduction ==
 
 This addon is very useful to generate all your static meshes. For meshes that have to be deformed like characters you should use your own LP.
@@ -32,15 +31,15 @@ What AssetGen does for you automatically:
 
 The addon also provides a set of tool like making a tileable texture, creating the silhouette of a weapon and more.
 
-Click image for larger version.  Name: assetgen.png  Views: 10  Size: 569.8 KB  ID: 499392
-
 == How to use it ==
 
 Note: overing the mouse on a setting displays a dialog box that explain you how the tool works.
 
-You need an high poly mesh. You can select several high poly they will be joined for the low poly. Don't worry your high polys wont be touched, you will keep them separated with their names and modifiers.
+Requirement:
+You need an high poly mesh.
+The script can convert multiple high poly into one low poly, you just have to select all the meshes you want to include in your low poly. Don't worry your high polys wont be touched, you will keep them separated with their names and modifiers.
 
-Important note: your high poly must be in layer 0 when generating the script. Also the script will delete everything in the layer 1 (this layer is used to display your low poly and to bake).
+Important note: your high polys must be in layer 0 when generating the script. Also the script will delete everything in the layer 1 (this layer is used to display your low poly and to bake the textures).
 
 Texture resolution:
 The first setting is the texture resolution, they are indicated in square (1K = 1024*1024). To work with it i suggest to use at least a resolution of 2K (2048*2048). Modern games use this resolution too to display their textures.
@@ -65,4 +64,15 @@ The settings are:
 - Create envelop: with this option enabled the script will perform an Union boolean between each meshes by loosing parts, in other words most of your intersecting parts of your low poly should be removed. This will allow to get more triangle for the visible parts of your asset and also to not waste UV space. Caution however, this options doesn't work on models with a lot of tiny meshes and meshes that doesn't intersect enough to allow the Union boolean to work correctly.
 - Unfold half: use it if you have a symmetrical asset, this will generate the UVs for half of your texture to double the texel of it. It is particularly good on a mobile game with limited texture resolution.
 - Ground AO: this option will generate ambient occlusion for the grid, it is useful for static assets that lays on the ground in your game.
-- Remove undergound: it will remove the parts under the grid before doing the decimation in order to get more details from the visible parts. 
+- Remove undergound: it will remove the parts under the grid before doing the decimation in order to get more details from the visible parts.
+
+Texture settings:
+- Mask: this option will allow you later to apply the gradient on areas that have the same color baked. You must define the colors with the diffuse color of your model. Use saturated colors and and hue far from one another to make sure that the masks read correctly (two colors close will be interpreted as the same color mask).
+- Albedo: enable this option if you already have a texture on your high poly. It is better to generate it on your low poly, but this can be useful if you had a texture from a 3D scanned object.
+- Normal: the normal is used to capture the details of your high poly. If you don't want to use it for a mobile game with hand painted texture you should still enable it to generate a curvature map from it.
+- Ambient Occlusion: generates shadows on parts close to each other so it will work on any lighting condition. In a PBR game the ambient occlusion is added separatly in an Ambient Occlusion slot in order to make the AO on the parts that doesn't receive lighting in the game scene.
+- Curvature: the curvature is a map generated from the normal map (so you need to bake it). It will highlight in white the convex parts (peeks) and darken in black the concave parts. The rest will use a middle grey color. It will be used as a base for your albedo texture. This effect gives a slight hand painted look to your texture. You have two options: width for the width of the lines and blur to remove aliasing.
+- Pointiness: it is a vertex based curvature map that is generated from the geometry. The details of this map will depend on the amount of vetices on your high poly.
+- Bent: this map will look at your faces orientation compared to the world's scene, this will allow to use effects like dust and snow deposition on your mesh for your albedo.
+- Gradient: this map is used on stylized games and especially on MOBA with characters seen from above. It will generate a ramp with dark values at the bottom and bright at the bottom.
+- Opacity: most game engines can use the alpha of your albedo but if it's not supported you can use this map. It will show in white the visible parts and in black the fully transparent parts of your asset. 
