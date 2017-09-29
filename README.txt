@@ -13,6 +13,7 @@ A version with the best looking scene I was able to create in Unity.
 Go in "File > User Preferences..." open the Add-ons tab at the bottom click on "Install Add-on from File...".
 Import the whole .zip. In the search bar search AssetGen and enable it. Don't forget to click on "Save User Settings".
 
+
 == Introduction ==
 
 This addon is very useful to generate all your static meshes. For meshes that have to be deformed like characters you should use your own LP.
@@ -31,9 +32,13 @@ What AssetGen does for you automatically:
 
 The addon also provides a set of tool like making a tileable texture, creating the silhouette of a weapon and more.
 
+
+
 == How to use it ==
 
-Note: overing the mouse on a setting displays a dialog box that explain you how the tool works.
+Note: overing the mouse on a setting displays a dialog box that explain you how the tools work.
+
+Game Asset Generator panel:
 
 Requirement:
 You need an high poly mesh.
@@ -75,4 +80,10 @@ Texture settings:
 - Pointiness: it is a vertex based curvature map that is generated from the geometry. The details of this map will depend on the amount of vetices on your high poly.
 - Bent: this map will look at your faces orientation compared to the world's scene, this will allow to use effects like dust and snow deposition on your mesh for your albedo.
 - Gradient: this map is used on stylized games and especially on MOBA with characters seen from above. It will generate a ramp with dark values at the bottom and bright at the bottom.
-- Opacity: most game engines can use the alpha of your albedo but if it's not supported you can use this map. It will show in white the visible parts and in black the fully transparent parts of your asset. 
+- Opacity: most game engines can use the alpha of your albedo but if it's not supported you can use this map. It will show in white the visible parts and in black the fully transparent parts of your asset.
+
+Surface details:
+You can apply and combine several effects, those effects are procedural textures used as a displacement shader so they are light in ressources and doesn't depend on the ammount of vertices, they do not change the geometry that is why they are used for micro details. The effects will be visible on the normal map, ambient occlusion map, curvature map and bent map. The pointiness map wont be able to use it the details.
+When enabling an effect the current material selected will be replaced, it means that you will loose your node setup. You should apply an effect first then change the diffuse color for the Mask map.
+
+Game Asset Materials panel:
