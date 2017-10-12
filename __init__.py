@@ -212,7 +212,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_albedo = bpy.props.BoolProperty(
         name = 'Albedo',
-        description = "Bakes the diffuse color of the high poly ideal for scanned assets otherwise it iss recommended to do the albedo after the low poly",
+        description = "Bakes the color of the high poly ideal for scanned assets otherwise it iss recommended to do the albedo after the low poly",
         default = False
     )
     T_normal  = bpy.props.BoolProperty(

@@ -46,20 +46,6 @@ def DEF_image_save( name ):
     bpy.context.scene.render.image_settings.file_format = 'TARGA'
 
 
-    #bump
-    ###########
-    image = bpy.data.images[name+"_"+"bump"]
-    image.file_format = 'TARGA'
-    path = os.path.join(os.path.dirname( bpy.data.filepath  )
-, name+"_"+"bump.tga")
-
-    image.save_render(path , bpy.context.scene)
-    image.colorspace_settings.name = 'Linear'
-    image.filepath = "//"+name+"_"+"bump"+".tga"
-    image.source = 'FILE'
-
-
-
     #curvature
     ###########
     image = bpy.data.images["Viewer Node"]
@@ -149,32 +135,6 @@ def DEF_image_save( name ):
     image.filepath = "//"+name+"_"+"roughness"+".tga"
     image.source = 'FILE'
 
-
-
-    #albedo_details
-    ##################
-    image = bpy.data.images[name+"_"+"albedo_details"]
-    image.file_format = 'TARGA'
-    path = os.path.join(os.path.dirname( bpy.data.filepath  )
-, name+"_"+"albedo_details.tga")
-
-    image.save_render(path , bpy.context.scene)
-    image.colorspace_settings.name = 'sRGB'
-    image.filepath = "//"+name+"_"+"albedo_details"+".tga"
-    image.source = 'FILE'
-
-
-    #diffuse
-    ##################  
-    image = bpy.data.images[name+"_"+"diffuse"]
-    image.file_format = 'TARGA'
-    path = os.path.join(os.path.dirname( bpy.data.filepath  )
-, name+"_"+"diffuse.tga")
-
-    image.save_render(path , bpy.context.scene)
-    image.colorspace_settings.name = 'sRGB'
-    image.filepath = "//"+name+"_"+"diffuse"+".tga"
-    image.source = 'FILE'
 
 
     #mask

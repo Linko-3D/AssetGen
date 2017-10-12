@@ -28,11 +28,9 @@ What AssetGen does for you automatically:
 - it creates a Blender Render shader and nodes for Blender Cycles and create the lighting to see what the low poly looks like directly after it is generated.
 - it helps you to create your albedo texture by providing settings to generate a grayscale texture and to help you create your gradients. Results are shown directly in the viewport.
 - you can add texture effects like dust deposition and grunge very easily and can adjust the amount and color.
-- you have access to a tool called "Export asset", it will export your LODs and reset their locations at the path you have specified and it will export your albedo, normal and AO map in the same folder or in a subfolder (called "Materials" by default to match Unity)
+- you have access to a tool called "Export asset", it will export your LODs and reset their locations at the path you have specified and it will export your albedo, normal and AO map in the same folder or in a subfolder (called "Materials" by default to match Unity).
 
-The addon also provides a set of tool like making a tileable texture, creating the silhouette of a weapon and more.
-
-
+The addon also provides a set of tools like making a tileable texture, creating the silhouette of a weapon and more.
 
 == How to use it ==
 
@@ -53,8 +51,8 @@ Selected to active:
 Enable this option to use your own low poly. You must select your high poly then your low poly (active selection) to use it. If your low poly has no UVs the addon will do use the Smart UVs settings in the advanced settings menu. You can generate a LOD1 and LOD2 from your low poly.
 
 LODs polycount:
-The second setting bellow is very important, it is the LODs' polycount in triangles. The LOD0 is the game asset that will be displayed at a close range from the camera. Each new LOD is the model shown further from the camera. You can keep the other LODs at 0 triangle to not generate them.
-You have to test and see how the asset looks, if it's too deformed you can increase the polycount. If a lot of details are captured you could try to reduce the polycount and see how it looks to optimize your game. Generating a game asset takes in average 10 seconds with an 1K texture (ideal to tests) and 1 minute in 2K.
+Those settings are very important, it is the LODs' polycount in triangles. The LOD0 is the game asset that will be displayed at a close range from the camera. Each new LOD is the model shown further from the camera. You can keep the other LODs at 0 triangle to not generate them.
+You have to test and see how the asset looks with a low texture resolution, if it's too deformed and black spots appears (it could also be the cage size too low or intersecting in concave shapes) you can increase the polycount. If a lot of details are captured you could try to reduce the polycount and see how it looks to optimize your game. Generating a game asset takes in average 10 seconds with an 1K texture (ideal to tests) and 1 minute in 2K.
 
 Bellow you have access to the Advanced settings and Texture settings. Their default settings should work with most assets.
 

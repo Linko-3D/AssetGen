@@ -19,9 +19,9 @@ def DEF_surface_add(context):
 
         ob = bpy.context.active_object
 
-        #if not exist materijal
+        #if not exist materiaal
         if len(ob.data.materials) == 0:
-           q_difcolor = [0,1,1]
+           q_difcolor = [0.8,0.8,0.8]
            mat = bpy.data.materials.new(name="Material")
            ob.data.materials.append(mat) 
         else: 
@@ -279,69 +279,7 @@ def DEF_surface_add(context):
 
 
 
-# - BUMP- ///////////////////////
 
-def DEF_bumpShader_add(context,size,name ):
-
-    bpy.context.scene.render.engine = 'CYCLES'
-
-    tex = MAT_texture_new(name+"_"+"bump",size, 'Raw')
-
-    mat = bpy.data.materials.get(name+"_"+"BUMP")
-
-    if  mat is None:
-       mat = bpy.data.materials.new(name+"_"+"BUMP")
-     
-       # Enable 'Use nodes':
-       mat.use_nodes = True
-       nt = mat.node_tree
-       nodes = nt.nodes
-       links = nt.links
-
-       # clear
-       while(nodes): nodes.remove(nodes[0])
-
-       d_image   = nodes.new("ShaderNodeTexImage")    
-       d_image.location = (150,500)    
-       d_image.image = tex
-
-       d_texcor = nodes.new("ShaderNodeTexCoord")
-       d_texcor.location = (0,0)
-
-       d_noise = nodes.new("ShaderNodeTexNoise")
-       d_noise.location = (200,0)
-       d_noise.inputs[1].default_value = 400  
-       d_noise.inputs[2].default_value = 10
-       d_noise.inputs[3].default_value = 0.1
-
-
-       d_hsv = nodes.new("ShaderNodeSeparateHSV")
-       d_hsv.location = (600,0)
-
-
-       d_colorramp = nodes.new("ShaderNodeValToRGB")
-       d_colorramp.location = (800,0)
-       d_colorramp.color_ramp.elements[0].color = (0.25, 0.25, 0.25, 1)
-       d_colorramp.color_ramp.elements[1].color = (0.5, 0.5, 0.5, 1)
-
-
-       d_emission = nodes.new("ShaderNodeEmission")
-       d_emission.location = (1000,0)
-
-       d_output   = nodes.new("ShaderNodeOutputMaterial")
-       d_output.location = (1200,0)
-    
-       links.new( d_output.inputs['Surface'], d_emission.outputs['Emission'])
-       links.new( d_emission.inputs['Color'], d_colorramp.outputs['Color'])
-       links.new( d_colorramp.inputs['Fac'], d_hsv.outputs['S'])
-       links.new( d_hsv.inputs['Color'], d_noise.outputs['Color'])
-       links.new( d_noise.inputs['Vector'], d_texcor.outputs['Object'])
-
-
-    bpy.context.scene.render.engine = 'BLENDER_RENDER'
-
-
-    return True
 
 
 # - GRADIENT- ///////////////////////
@@ -476,124 +414,6 @@ def DEF_bentShader_add(context,size,name ):
 
     bpy.context.scene.render.engine = 'BLENDER_RENDER'
 
-
-    return True
-
-
-# - DIFFUSE - ///////////////////////
-
-def DEF_diffuseShader_add(context,size,name ):
-
-    tex = MAT_texture_new(name+"_"+"diffuse",size, 'sRGB')
-
-    mat = bpy.data.materials.get(name+"_"+"DIFFUSE")
-
-    if mat is None:
-       mat = bpy.data.materials.new(name+"_"+"DIFFUSE")
-     
-       # Enable 'Use nodes':
-       mat.use_nodes = True
-       nt = mat.node_tree
-       nodes = nt.nodes
-       links = nt.links
-       
-       # clear
-       while(nodes): nodes.remove(nodes[0])
-
-       
-       d_colormix = nodes.new("ShaderNodeMixRGB")
-       d_colormix.blend_type = 'MULTIPLY'
-       d_colormix.inputs[0].default_value = 1
-       
-       d_colormix1 = nodes.new("ShaderNodeMixRGB")
-       d_colormix1.blend_type = 'OVERLAY'
-       d_colormix1.inputs[0].default_value = 1
-       
-
-       d_emission = nodes.new("ShaderNodeEmission")
-       d_output   = nodes.new("ShaderNodeOutputMaterial")
-       d_image   = nodes.new("ShaderNodeTexImage")
-       
-       d_imagealbedo   = nodes.new("ShaderNodeTexImage")
-       d_imagepointiness   = nodes.new("ShaderNodeTexImage")
-       d_imageambient   = nodes.new("ShaderNodeTexImage")
-       
-         
-       d_colormix.location = (400,-100)   
-       d_colormix1.location = (200,-100)   
-        
-       d_emission.location = (700,-100)
-       d_output.location = (900,-100)
-       d_image.location = (700,300)
-       
-       d_imagealbedo.location = (-200,0)
-       d_imagepointiness.location = (-200,-300)     
-       d_imageambient.location = (200,-300)  
-
-       d_image.image = tex
-       d_imagealbedo.image = bpy.data.images.get(name+"_"+"albedo")
-       d_imagepointiness.image = bpy.data.images.get(name+"_"+"pointiness")
-       d_imageambient.image = bpy.data.images.get(name+"_"+"ambient_occlusion")
-
-
-       links.new( d_output.inputs['Surface'], d_emission.outputs['Emission'])
-       links.new( d_emission.inputs['Color'], d_colormix.outputs['Color'])
-       links.new( d_colormix.inputs['Color1'], d_colormix1.outputs['Color'])
-       links.new( d_colormix1.inputs['Color1'], d_imagealbedo.outputs['Color'])
-       links.new( d_colormix1.inputs['Color2'], d_imagepointiness.outputs['Color'])
-       links.new( d_colormix.inputs['Color2'], d_imageambient.outputs['Color'])
-
-    return True
-
-
-
-# - ALBEDO_DETAILS- ///////////////////////
-
-def DEF_albedodetailsShader_add(context,size,name ):
-
-    tex = MAT_texture_new(name+"_"+"albedo_details",size, 'sRGB')
-    
-    mat = bpy.data.materials.get(name+"_"+"ALBEDO_DETAILS")
-
-    if mat is None:
-       mat = bpy.data.materials.new(name+"_"+"ALBEDO_DETAILS")
-     
-       # Enable 'Use nodes':
-       mat.use_nodes = True
-       nt = mat.node_tree
-       nodes = nt.nodes
-       links = nt.links
-       
-       # clear
-       while(nodes): nodes.remove(nodes[0])
-       
-       d_colormix = nodes.new("ShaderNodeMixRGB")
-       d_colormix.blend_type = 'OVERLAY'
-       d_colormix.inputs[0].default_value = 1
-       d_emission = nodes.new("ShaderNodeEmission")
-       d_output   = nodes.new("ShaderNodeOutputMaterial")
-       d_image   = nodes.new("ShaderNodeTexImage")
-       
-       d_imagealbedo   = nodes.new("ShaderNodeTexImage")
-       d_imagepointiness   = nodes.new("ShaderNodeTexImage")
-       
-        
-       d_colormix.location = (400,-100)          
-       d_emission.location = (700,-100)
-       d_output.location = (900,-100)
-       d_image.location = (700,300)
-       d_imagealbedo.location = (100,0)
-       d_imagepointiness.location = (100,-300)      
-
-       d_image.image = tex
-       d_imagealbedo.image = bpy.data.images.get(name+"_"+"albedo")
-       d_imagepointiness.image = bpy.data.images.get(name+"_"+"pointiness")
-
-
-       links.new( d_output.inputs['Surface'], d_emission.outputs['Emission'])
-       links.new( d_emission.inputs['Color'], d_colormix.outputs['Color'])
-       links.new( d_colormix.inputs['Color1'], d_imagealbedo.outputs['Color'])
-       links.new( d_colormix.inputs['Color2'], d_imagepointiness.outputs['Color'])
 
     return True
 

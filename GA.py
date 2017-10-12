@@ -7,13 +7,10 @@ from .GA_shader import DEF_albedoShader_add
 from .GA_shader import DEF_normalShader_add 
 from .GA_shader import DEF_pbrShader_add 
 from .GA_shader import DEF_roughnessShader_add 
-from .GA_shader import DEF_albedodetailsShader_add 
-from .GA_shader import DEF_diffuseShader_add
 from .GA_shader import DEF_maskShader_add
 from .GA_shader import DEF_bentShader_add
 from .GA_shader import DEF_opacityShader_add
 from .GA_shader import DEF_gradientShader_add
-from .GA_shader import DEF_bumpShader_add
 
 
 from .GA_material import DEF_image_save 
@@ -116,14 +113,11 @@ class GA_Start(Operator):
         DEF_ambientocclusionShader_add(context,size,name)
         DEF_albedoShader_add(context,size,name)
         DEF_normalShader_add(context,size,name)
-        DEF_albedodetailsShader_add(context,size,name)
-        DEF_diffuseShader_add(context,size,name)
         DEF_roughnessShader_add(context,size,name)
         DEF_maskShader_add(context,size,name)
         DEF_bentShader_add(context,size,name)
         DEF_opacityShader_add(context,size,name)
         DEF_gradientShader_add(context,size,name)
-        DEF_bumpShader_add(context,size,name)
 
 
 
@@ -556,41 +550,6 @@ class GA_Start(Operator):
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
 
-
-        #Albedo detailled map
-        
-        if T_enabled == 1:
-                
-            print("\n> Baking: albedo details map\n")
-            
-            
-            bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'ALBEDO_DETAILS']
-            bpy.ops.object.bake(type="EMIT", use_selected_to_active = False, use_cage = False, margin = edge_padding, use_clear = True)
-
-        
-        #Diffuse map
-        
-        if T_enabled == 1:
-        
-            bpy.context.scene.cycles.samples = 1
-            
-            print("\n> Baking: diffuse map\n")
-            
-            bpy.ops.object.select_all(action = 'DESELECT')
-
-            bpy.ops.object.select_pattern(pattern="tmpLP")
-            bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
-            
-            bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'DIFFUSE']
-            bpy.ops.object.bake(type="EMIT", use_selected_to_active = False, use_cage = False, margin = edge_padding, use_clear = True)
-
-            bpy.context.scene.render.engine = 'BLENDER_RENDER'
-
-            for area in bpy.context.screen.areas:
-                if area.type == 'VIEW_3D':
-                    for space in area.spaces:
-                        if space.type == 'VIEW_3D':
-                            space.viewport_shade = 'MATERIAL'
 
 
         #Curvature map
