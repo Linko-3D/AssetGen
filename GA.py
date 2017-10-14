@@ -83,15 +83,18 @@ class GA_Start(Operator):
         
         greyscale = 0   #Will apply a diffuse grey 0.735 on the high poly (and remove every other material
 
+        #to remove later
         make_stylized = 0 
+        sprite = 0
+        
         AO_samples = myscene.D_samples
         unfold_half = myscene.D_unfoldhalf #Unfold half for symmetrical assets
         cage_size = myscene.D_cage_size
         
-        calculate_edge_padding = 0
+        smart_edge_padding = 0
         edge_padding = myscene.D_edge_padding
         
-        calculate_LODs = 0
+        smart_LODs = 0
 
         uv_margin = myscene.D_uv_margin
         uv_angle = myscene.D_uv_angle
@@ -125,17 +128,20 @@ class GA_Start(Operator):
 
 
         ###########################################################
-        #Game Asset start  YOURrrrrrrrrrrrrrrrrrrrrrrrrrrr
+        #Game Asset Generation
         ###########################################################
 
+        if sprite == 1:
+            bpy.context.scene.frame_set(1)
 
-        if calculate_edge_padding == 1:
+
+        if smart_edge_padding == 1:
             if size[0] <= size[1]:
                 edge_padding = size[0] / 128
             else:
                 edge_padding = size[1] / 128
                 
-        if calculate_LODs == 1:
+        if smart_LODs == 1:
 
             LOD1 = 0.6 * LOD0
             LOD2 = 0.3 * LOD0
@@ -222,7 +228,7 @@ class GA_Start(Operator):
 
             #creating the low poly
             ######################
-            print("\n----- GENERATING LOW POLY -----\n")
+            print("\n----- GENERATING THE LOW POLY (LOD0)-----\n")
             
             bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
@@ -442,7 +448,8 @@ class GA_Start(Operator):
         bpy.context.scene.render.engine = 'CYCLES'
         bpy.context.scene.cycles.samples = 1
 
-        print("\n----- GENERATING TEXTURES -----\n")
+        print("\n----- GENERATING TEXTURES IN", size[0], "*", size[0], "-----\n")    
+        
         
         #Mask map
         
