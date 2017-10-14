@@ -359,8 +359,23 @@ class GA_Property(bpy.types.PropertyGroup):
         subtype = 'FILE_PATH'
     )
 
+    T_decimate_qratio = bpy.props.BoolProperty(
+        name = 'Use ratio',
+        default = True
+    )
+    T_decimate_ratio = bpy.props.FloatProperty(
+        name = 'Ratio',
+        default = 0.8,
+        min = 0.000,
+        max = 1.000
+    )
+    T_decimate_polycount = bpy.props.IntProperty(
+        name = 'Polycount',
+        default = 1000,
+        min = 0,
+        max = 10000
+    )
 
- 
 
 
 def register():

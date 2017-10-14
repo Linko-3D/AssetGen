@@ -117,6 +117,28 @@ class PANEL_GameTools(Panel):
            bcol1_ga.operator("ga_tools.normalize", icon='EXPORT')
            bcol1_ga.row().separator()
 
+        #Quick decimation
+        if myscene.gui_active_panel != "Decimation":
+           self.layout.operator('ga_button.decimation_on', icon=icon_expand)
+        else:
+           self.layout.operator('ga_button.decimation_off', icon=icon_collapse)
+           box1_ga = layout.box()
+           bcol1_ga = box1_ga.column(align=True)
+
+
+           bcol1_ga.prop(myscene , 'T_decimate_qratio')
+           bcol1_ga.row().separator()
+           bcol1_ga.row().separator()
+           bcol1_ga.prop(myscene , 'T_decimate_ratio')
+           bcol1_ga.prop(myscene , 'T_decimate_polycount')
+           bcol1_ga.row().separator()
+           bcol1_ga.row().separator()
+
+
+           bcol1_ga.operator("ga_tools.qdecimation", icon='EXPORT')
+           bcol1_ga.row().separator()
+
+
 
 
 
@@ -130,6 +152,60 @@ class PANEL_GameTools(Panel):
         layout.row().separator()
         #col_gt.operator("ga_tools.ga_import_material")
         layout.row().separator()
+
+
+# - Decimation ------------------------------------------------
+class ButtonDecimationOff(bpy.types.Operator):
+    bl_label = 'Quick decimation'
+    bl_idname = 'ga_button.decimation_off'
+    bl_context = 'objectmode'
+    bl_options = {'REGISTER', 'INTERNAL'}
+
+    def execute(self, context):
+        context.scene.ga_property.gui_active_panel = "None"
+        return {'FINISHED'}
+
+class ButtonDecimationOn(bpy.types.Operator):
+    bl_label = 'Quick decimation'
+    bl_idname = 'ga_button.decimation_on'
+    bl_context = 'objectmode'
+    bl_options = {'REGISTER', 'INTERNAL'}
+
+    def execute(self, context):
+        context.scene.ga_property.gui_active_panel = 'Decimation'
+        return {'FINISHED'}
+
+
+class QDecimation(bpy.types.Operator):
+    bl_idname = "ga_tools.qdecimation"
+    bl_label = "Quick decimation"
+
+    def execute(self, context):
+
+       myscene = context.scene.ga_property
+
+       bpy.ops.object.modifier_add(type='TRIANGULATE')
+       bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
+
+       obj = bpy.context.active_object
+       HP_polycount = len(obj.data.polygons)
+
+       decimation = (myscene.T_decimate_polycount / HP_polycount)
+
+       bpy.ops.object.modifier_add(type='DECIMATE')
+
+       if myscene.T_decimate_qratio == True:
+         bpy.context.object.modifiers["Decimate"].ratio = myscene.T_decimate_ratio
+       else:
+         bpy.context.object.modifiers["Decimate"].ratio = decimation
+
+       bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
+       bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+
+
+       return {'FINISHED'}
+
+
 
 # - Normalize ------------------------------------------------
 class ButtonNormalizeOff(bpy.types.Operator):
