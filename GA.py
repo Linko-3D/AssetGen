@@ -448,7 +448,7 @@ class GA_Start(Operator):
         bpy.context.scene.render.engine = 'CYCLES'
         bpy.context.scene.cycles.samples = 1
 
-        print("\n----- GENERATING TEXTURES IN", size[0], "*", size[0], "-----\n")    
+        print("\n----- BAKING TEXTURES IN", size[0], "*", size[0], "-----\n")    
         
         
         #Mask map
@@ -496,7 +496,7 @@ class GA_Start(Operator):
             bpy.context.scene.cycles.samples = AO_samples
             bpy.context.scene.world.light_settings.distance = 10
 
-            print("\n> Baking: ambient occlusion map\n")
+            print("\n> Baking: ambient occlusion map at", AO_samples, "samples\n")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'AMBIENT OCCLUSION']
             bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
