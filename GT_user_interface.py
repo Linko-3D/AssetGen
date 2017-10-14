@@ -93,6 +93,32 @@ class PANEL_GameTools(Panel):
            bcol1_ga.row().separator()
 
 
+        #Normalize
+        if myscene.gui_active_panel != "Normalize":
+           self.layout.operator('ga_button.normalize_on', icon=icon_expand)
+        else:
+           self.layout.operator('ga_button.normalize_off', icon=icon_collapse)
+           box1_ga = layout.box()
+           bcol1_ga = box1_ga.column(align=True)
+
+           bcol1_ga.prop(myscene , 'T_pathnormalize')
+           bcol1_ga.row().separator()
+           bcol1_ga.row().separator()
+
+           bcol1_ga.label(text="Shannels:")
+           bcol1_ga.prop(myscene , 'T_normalize_R')
+           bcol1_ga.row().separator()
+           bcol1_ga.prop(myscene , 'T_normalize_G')
+           bcol1_ga.row().separator()
+           bcol1_ga.prop(myscene , 'T_normalize_B')
+           bcol1_ga.row().separator()
+           bcol1_ga.row().separator()
+
+           bcol1_ga.operator("ga_tools.normalize", icon='EXPORT')
+           bcol1_ga.row().separator()
+
+
+
 
 
         layout.row().separator()
@@ -104,6 +130,166 @@ class PANEL_GameTools(Panel):
         layout.row().separator()
         #col_gt.operator("ga_tools.ga_import_material")
         layout.row().separator()
+
+# - Normalize ------------------------------------------------
+class ButtonNormalizeOff(bpy.types.Operator):
+    bl_label = 'Normalize'
+    bl_idname = 'ga_button.normalize_off'
+    bl_context = 'objectmode'
+    bl_options = {'REGISTER', 'INTERNAL'}
+
+    def execute(self, context):
+        context.scene.ga_property.gui_active_panel = "None"
+        return {'FINISHED'}
+
+class ButtonNormalizeOn(bpy.types.Operator):
+    bl_label = 'Normalize'
+    bl_idname = 'ga_button.normalize_on'
+    bl_context = 'objectmode'
+    bl_options = {'REGISTER', 'INTERNAL'}
+
+    def execute(self, context):
+        context.scene.ga_property.gui_active_panel = 'Normalize'
+        return {'FINISHED'}
+
+
+class Normalize(bpy.types.Operator):
+    bl_idname = "ga_tools.normalize"
+    bl_label = "Normalize"
+
+    def execute(self, context):
+
+       # ucitaj scenu
+       scene = bpy.context.scene
+       scene.use_nodes = True
+
+       nodes = scene.node_tree.nodes
+       links = scene.node_tree.links
+
+       myscene = context.scene.ga_property
+
+
+       # clear
+       ##############################
+       while(nodes): nodes.remove(nodes[0])
+
+
+       # add image 
+       ##############################
+       q_i = bpy.data.images.load(myscene.T_pathnormalize, check_existing=False)
+       #q_i.colorspace_settings.name = 'Linear'
+
+
+       c_imgNORMAL = scene.node_tree.nodes.new('CompositorNodeImage')
+       c_imgNORMAL.image = q_i
+       c_imgNORMAL.location = (-300 ,0)
+
+
+       # add rgba
+       #################################
+       c_rgb = scene.node_tree.nodes.new('CompositorNodeSepRGBA')
+       c_rgb.location = (0 ,0)
+
+       # add normalize
+       #################################
+       c_norm1 = scene.node_tree.nodes.new('CompositorNodeNormalize')
+       c_norm1.location = (300 ,100)
+
+       c_norm2 = scene.node_tree.nodes.new('CompositorNodeNormalize')
+       c_norm2.location = (300 ,0)
+
+       c_norm3 = scene.node_tree.nodes.new('CompositorNodeNormalize')
+       c_norm3.location = (300 ,-100)
+
+
+       # add rgbacombine
+       #################################
+       c_combrgb = scene.node_tree.nodes.new('CompositorNodeCombRGBA')
+       c_combrgb.location = (500 ,0)
+
+
+
+       # add NodeViewer
+       ##############################
+       c_view = scene.node_tree.nodes.new('CompositorNodeViewer')
+       c_view.location = (700,0)  
+
+
+       if myscene.T_normalize_R == True:
+          c_norm1.mute = False
+       else:
+          c_norm1.mute = True
+
+       if myscene.T_normalize_G == True:
+          c_norm2.mute = False
+       else:
+          c_norm2.mute = True
+
+       if myscene.T_normalize_B == True:
+          c_norm3.mute = False
+       else:
+          c_norm3.mute = True
+
+
+
+       links.new( c_imgNORMAL.outputs['Image'],
+                  c_rgb.inputs['Image'])
+
+       links.new( c_rgb.outputs['R'],
+                  c_norm1.inputs['Value'])
+       links.new( c_rgb.outputs['G'],
+                  c_norm2.inputs['Value'])
+       links.new( c_rgb.outputs['B'],
+                  c_norm3.inputs['Value'])
+   
+
+       links.new( c_norm1.outputs['Value'],
+                  c_combrgb.inputs[0])
+       links.new( c_norm2.outputs['Value'],
+                  c_combrgb.inputs[1])
+       links.new( c_norm3.outputs['Value'],
+                  c_combrgb.inputs[2])
+
+
+       links.new( c_combrgb.outputs['Image'],
+                  c_view.inputs['Image'])
+
+
+       # Ako je otvoren NODE_EDITOT
+       #  prebaci ga u composite
+       ############################
+       editorcheck = False
+       for area in bpy.context.screen.areas :
+           if area.type == 'NODE_EDITOR' :
+               if area.spaces.active.tree_type != 'CompositorNodeTree':
+                   area.spaces.active.tree_type = 'CompositorNodeTree'
+               editorcheck = True
+
+       # Ako nije otvoren NODE_EDITOT
+       #  u postojecem prvo NODE EDITOR
+       #  pa split
+       #  pa VIEW 3D
+       # prebaci u composite
+       ############################
+       if editorcheck == False:
+          try:
+           bpy.context.area.type='NODE_EDITOR'
+           bpy.ops.screen.area_split(factor=0.5)
+           bpy.context.area.type='VIEW_3D'
+
+           for area in bpy.context.screen.areas :
+               if area.type == 'NODE_EDITOR' :
+                   if area.spaces.active.tree_type != 'CompositorNodeTree':
+                       area.spaces.active.tree_type = 'CompositorNodeTree'
+          except:
+           pass
+
+
+
+
+
+       return {'FINISHED'}
+
 
 
 # - Resimetrize ------------------------------------------------

@@ -340,6 +340,24 @@ class GA_Property(bpy.types.PropertyGroup):
         default = False
     )
 
+    T_normalize_R = bpy.props.BoolProperty(
+        name = 'R',
+        default = True
+    )
+    T_normalize_G = bpy.props.BoolProperty(
+        name = 'G',
+        default = True
+    )
+    T_normalize_B = bpy.props.BoolProperty(
+        name = 'B',
+        default = True
+    )
+    T_pathnormalize = bpy.props.StringProperty(
+        name="Image", 
+        description = "Open image",
+        default='',
+        subtype = 'FILE_PATH'
+    )
 
 
  
