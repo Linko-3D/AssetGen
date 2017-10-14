@@ -110,7 +110,7 @@ class PANEL_GameTools(Panel):
            bcol1_ga.row().separator()
            bcol1_ga.row().separator()
 
-           bcol1_ga.label(text="Shannels:")
+           bcol1_ga.label(text="Channels:")
            bcol1_ga.prop(myscene , 'T_normalize_R')
            bcol1_ga.row().separator()
            bcol1_ga.prop(myscene , 'T_normalize_G')
@@ -214,7 +214,7 @@ class QDecimation(bpy.types.Operator):
 
 # - Normalize ------------------------------------------------
 class ButtonNormalizeOff(bpy.types.Operator):
-    bl_label = 'Normalize'
+    bl_label = 'Normalize image'
     bl_idname = 'ga_button.normalize_off'
     bl_context = 'objectmode'
     bl_options = {'REGISTER', 'INTERNAL'}
@@ -224,7 +224,7 @@ class ButtonNormalizeOff(bpy.types.Operator):
         return {'FINISHED'}
 
 class ButtonNormalizeOn(bpy.types.Operator):
-    bl_label = 'Normalize'
+    bl_label = 'Normalize image'
     bl_idname = 'ga_button.normalize_on'
     bl_context = 'objectmode'
     bl_options = {'REGISTER', 'INTERNAL'}
