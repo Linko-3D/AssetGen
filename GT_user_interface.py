@@ -35,6 +35,11 @@ class PANEL_GameTools(Panel):
            box_ga = layout.box()
            bcol_ga = box_ga.column(align=True)
 
+           row1 = bcol_ga.row()
+           row1.prop(myscene , 'DT_exp', expand=True)
+           bcol_ga.row().separator()
+           bcol_ga.row().separator()
+
            bcol_ga.prop(myscene , 'DT_pathobj')
            bcol_ga.row().separator()
            bcol_ga.row().separator()

@@ -145,9 +145,17 @@ class GA_Property(bpy.types.PropertyGroup):
     )
 
 
+    DT_exp = bpy.props.EnumProperty(
+        items=[('FBX', 'FBX', 'FBX'),
+               ('OBJ', 'OBJ', 'OBJ')],
+        description="Choose export file",
+        default='OBJ'
+    )
+
+
     DT_pathobj = bpy.props.StringProperty(
-        name="FBX path", 
-        description = "Choose where to save your FBX file",
+        name="Mesh path", 
+        description = "Choose where to save your file",
         default='',
         subtype = 'DIR_PATH'
     )
