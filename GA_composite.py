@@ -54,12 +54,8 @@ def DEF_NormalToCurvature(context,size,name ):
        c_imgCURVshadow.name = "Shadows"
        c_imgCURVshadow.label = "Shadows"
 
-       if myscene.T_curvature_shadows == True:
-          c_imgCURVshadow.outputs[0].default_value = 1
-       else:
-          c_imgCURVshadow.outputs[0].default_value = 0
 
-
+       c_imgCURVshadow.outputs[0].default_value = 0
 
 
        # add NodeViewer

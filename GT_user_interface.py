@@ -296,12 +296,29 @@ class NtoC(bpy.types.Operator):
        c_imgNORMAL.image = q_i
        c_imgNORMAL.location = (-300 ,0)
 
-       # add image CURVATURE Value
-       ##############################
-       c_imgCURVvalue = scene.node_tree.nodes.new('CompositorNodeValue')
-       c_imgCURVvalue.location = (-300 ,-400)
-       c_imgCURVvalue.outputs[0].default_value = myscene.T_ntoc
 
+       # add image CURVATURE pixelwidth
+       #################################
+       c_imgCURVpixelwidth = scene.node_tree.nodes.new('CompositorNodeValue')
+       c_imgCURVpixelwidth.location = (-300 ,-300)
+       c_imgCURVpixelwidth.outputs[0].default_value = myscene.T_ntoc
+       c_imgCURVpixelwidth.name = "Pixel width"
+       c_imgCURVpixelwidth.label = "Pixel width"
+
+
+       # add image CURVATURE shadow
+       #################################
+       c_imgCURVshadow = scene.node_tree.nodes.new('CompositorNodeValue')
+       c_imgCURVshadow.location = (-300 ,-500)
+       c_imgCURVshadow.name = "Shadows"
+       c_imgCURVshadow.label = "Shadows"
+
+       if myscene.T_curvature_shadows == True:
+          c_imgCURVshadow.outputs[0].default_value = 1
+       else:
+          c_imgCURVshadow.outputs[0].default_value = 0
+
+       
 
 
        # add NodeViewer
@@ -325,12 +342,13 @@ class NtoC(bpy.types.Operator):
 
        links.new( c_imgNORMAL.outputs['Image'],
                   c_curvgroup.inputs['Image'])
-       links.new( c_imgCURVvalue.outputs['Value'],
+       links.new( c_imgCURVpixelwidth.outputs['Value'],
                   c_curvgroup.inputs[1])
+       links.new( c_imgCURVshadow.outputs['Value'],
+                  c_curvgroup.inputs[2])
 
        links.new( c_curvgroup.outputs['Image'],
                   c_view.inputs['Image'])
-
 
        return {'FINISHED'}
 
@@ -684,15 +702,17 @@ def GM_generate_previews(metals):
 
 def GM_create_curvature_group(q_name,T_ntocrel):
 
-
    test_group = bpy.data.node_groups.new(q_name, 'CompositorNodeTree')
 
    # create group inputs
    group_inputs = test_group.nodes.new('NodeGroupInput')
    group_inputs.location = (-350,0)
    test_group.inputs.new('NodeSocketColor','Image')
-   test_group.inputs.new('NodeSocketFloat','Value')
-
+   #test_group.inputs.new('NodeSocketFloat','Value')
+   test_group.inputs.new('NodeSocketFloat','Pixel width')
+   test_group.inputs.new('NodeSocketFloat','Shadows')
+   test_group.inputs[1].default_value = 1
+   test_group.inputs[2].default_value = 1
 
 
    # create group outputs
@@ -704,6 +724,9 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
    a3 = test_group.nodes.new('CompositorNodeSepRGBA')
    a3.location = (500 ,200)
+   a3.name = "a3"
+   a3.label = "a3"
+
 
    test_group.links.new( group_inputs.outputs['Image'],a3.inputs['Image'])
 
@@ -720,11 +743,11 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    t4 = test_group.nodes.new('CompositorNodeTranslate')
    t4.location = (800 ,-100)
 
-   t5 = test_group.nodes.new('CompositorNodeTranslate')
-   t5.location = (800 ,-300)
+   #t5 = test_group.nodes.new('CompositorNodeTranslate')
+   #t5.location = (800 ,-300)
 
-   t6 = test_group.nodes.new('CompositorNodeTranslate')
-   t6.location = (800 ,-500)
+   #t6 = test_group.nodes.new('CompositorNodeTranslate')
+   #t6.location = (800 ,-500)
 
 
 
@@ -734,28 +757,23 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    test_group.links.new( a3.outputs['G'],t3.inputs['Image'])
    test_group.links.new( a3.outputs['G'],t4.inputs['Image'])
 
-   test_group.links.new( a3.outputs['G'],t5.inputs['Image'])
+   #test_group.links.new( a3.outputs['G'],t5.inputs['Image'])
 
-   test_group.links.new( a3.outputs['G'],t6.inputs['Image'])
-
-   a01 = test_group.nodes.new('CompositorNodeMixRGB')
-   a01.location = (1100 ,-200)
-   a01.blend_type = 'SUBTRACT'
-
-
-   test_group.links.new( t5.outputs['Image'],a01.inputs[1])
-   test_group.links.new( t6.outputs['Image'],a01.inputs[2])
 
    a02 = test_group.nodes.new('CompositorNodeMixRGB')
-   a02.location = (1300 ,-200)
+   a02.name = "a02"
+   a02.label = "a02"
+   a02.location = (1300 ,200)
    a02.blend_type = 'MIX'
 
-   test_group.links.new( a01.outputs['Image'],a02.inputs[2])
+
 
 
 
    a4 = test_group.nodes.new('CompositorNodeMixRGB')
    a4.location = (1100 ,500)
+   a4.name = "a4"
+   a4.label = "a4"
    a4.blend_type = 'SUBTRACT'
 
 
@@ -765,6 +783,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
    a5 = test_group.nodes.new('CompositorNodeMath')
    a5.location = (1400 ,500)
+   a5.name = "a5"
+   a5.label = "a5"
    a5.operation = 'ADD'
    a5.inputs[0].default_value = 1
    a5.inputs[1].default_value = 0.5
@@ -773,6 +793,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
    a6 = test_group.nodes.new('CompositorNodeMixRGB')
+   a6.name = "a6"
+   a6.label = "a6"
    a6.location = (1100 ,200)
    a6.blend_type = 'SUBTRACT'
 
@@ -780,47 +802,63 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    test_group.links.new( t4.outputs['Image'],a6.inputs[1])
 
    a7 = test_group.nodes.new('CompositorNodeMath')
-   a7.location = (1400 ,200)
+   a7.location = (1500 ,200)
+   a7.name = "a7"
+   a7.label = "a7"
    a7.operation = 'ADD'
    a7.inputs[0].default_value = 1
    a7.inputs[1].default_value = 0.5
 
-   test_group.links.new( a6.outputs['Image'],a02.inputs[1])
+   test_group.links.new( a6.outputs['Image'],a02.inputs[2])
    test_group.links.new( a02.outputs['Image'],a7.inputs[0])
 
 
 
-   a8 = test_group.nodes.new('CompositorNodeInvert')
-   a8.location = (1600 ,200)
+   #a8 = test_group.nodes.new('CompositorNodeInvert')
+   #a8.location = (1600 ,200)
 
-   test_group.links.new( a7.outputs['Value'],a8.inputs['Color'])
+   
 
 
    a9 = test_group.nodes.new('CompositorNodeMixRGB')
    a9.location = (1900 ,300)
+   a9.name = "a9"
+   a9.label = "a9"
    a9.blend_type = 'OVERLAY'
 
 
    test_group.links.new( a5.outputs['Value'],a9.inputs[1])
-   test_group.links.new( a8.outputs['Color'],a9.inputs[2])
-
+   test_group.links.new( a7.outputs['Value'],a9.inputs[2])
 
    a10 = test_group.nodes.new('CompositorNodeGamma')
-   a10.location = (2200 ,300)
+   a10.location = (2600 ,300)
+   a10.name = "a10"
+   a10.label = "a10"
    a10.inputs[1].default_value = 2.2
-
-   test_group.links.new( a9.outputs['Image'],a10.inputs['Image'])
 
 
    a11 = test_group.nodes.new('CompositorNodeBlur')
-   a11.location = (2500 ,300)
+   a11.location = (2200 ,300)
+   a11.name = "a11"
+   a11.label = "a11"
    a11.use_relative = True
    a11.factor_x = T_ntocrel
    a11.factor_y = T_ntocrel
 
+   a12 = test_group.nodes.new('CompositorNodeMixRGB')
+   a12.location = (2400 ,300)
+   a12.name = "a12"
+   a12.label = "a12"
+   a12.blend_type = 'MULTIPLY'
 
-   test_group.links.new( a10.outputs['Image'],a11.inputs['Image'])
-   test_group.links.new( a11.outputs['Image'],group_outputs.inputs['Image'])
+
+
+   test_group.links.new( a9.outputs['Image'],a11.inputs['Image'])
+   test_group.links.new( a11.outputs['Image'],a12.inputs[1])
+   test_group.links.new( a12.outputs['Image'],a10.inputs['Image'])
+   test_group.links.new( a10.outputs['Image'],group_outputs.inputs['Image'])
+   test_group.links.new( a3.outputs['B'],a12.inputs[2])
+
 
 
 
@@ -837,7 +875,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    b2.inputs[0].default_value = 1
    b2.inputs[1].default_value = -1.0
 
-   test_group.links.new( group_inputs.outputs['Value'],b1.inputs[0])
+   test_group.links.new( group_inputs.outputs['Pixel width'],b1.inputs[0])
+   test_group.links.new( group_inputs.outputs['Shadows'],a12.inputs["Fac"])
 
    test_group.links.new( b1.outputs['Value'],b2.inputs[0])
 
@@ -846,9 +885,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    test_group.links.new( b1.outputs['Value'],t2.inputs['X'])
    test_group.links.new( b1.outputs['Value'],t3.inputs['Y'])
 
-   test_group.links.new( b2.outputs['Value'],t6.inputs['Y'])
-   test_group.links.new( b1.outputs['Value'],t5.inputs['Y'])
-
+   #test_group.links.new( b2.outputs['Value'],t6.inputs['Y'])
+   #test_group.links.new( b1.outputs['Value'],t5.inputs['Y'])
 
 
    # Ako je otvoren NODE_EDITOT
