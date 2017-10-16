@@ -380,8 +380,8 @@ class GA_Property(bpy.types.PropertyGroup):
     T_decimate_polycount = bpy.props.IntProperty(
         name = 'Polycount',
         default = 1000,
-        min = 0,
-        max = 10000
+        min = 1,
+        max = 100000
     )
 
 
