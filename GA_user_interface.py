@@ -162,8 +162,8 @@ class PANEL_GameAsset(Panel):
            bcol1_gaa = box1_gaa.column(align=True)
            bcol1_gaa.prop(myscene , 'T_surface_noise') 
            bcol1_gaa.prop(myscene , 'T_surface_rock') 
-           bcol1_gaa.prop(myscene , 'T_surface_sand') 
-           bcol1_gaa.prop(myscene , 'T_surface_woodbark') 
+           bcol1_gaa.prop(myscene , 'T_surface_sand_waves') 
+           bcol1_gaa.prop(myscene , 'T_surface_wood_bark') 
 
 
 

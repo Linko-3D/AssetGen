@@ -298,13 +298,13 @@ class GA_Property(bpy.types.PropertyGroup):
         update=def_surface,
         default = False
     )
-    T_surface_sand  = bpy.props.BoolProperty(
+    T_surface_sand_waves  = bpy.props.BoolProperty(
         name = 'Sand waves',
         description = "",
         update=def_surface,
         default = False
     )
-    T_surface_woodbark  = bpy.props.BoolProperty(
+    T_surface_wood_bark  = bpy.props.BoolProperty(
         name = 'Wood bark',
         description = "",
         update=def_surface,

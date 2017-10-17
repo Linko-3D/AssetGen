@@ -1,4 +1,4 @@
-AssetGen is a free addon that automates the tasks to get a game assetsready for video games from an High Poly model. While it takes several hours to get an asset ready from an high poly, this addon does that in a matter of few clicks. It is ideal for all your static assets.
+AssetGen is a free addon that automates the tasks to get a game assets ready for video games from an High Poly model. While it takes several hours to get an asset ready from an high poly, this addon does that in a matter of few clicks. It is ideal for all your static assets.
 
 == Download AssetGen addon ==
 

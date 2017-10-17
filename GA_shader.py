@@ -108,7 +108,7 @@ def DEF_surface_add(context):
 
            c_mixArray.append(d1_5.name)
 
-        if myscene.T_surface_sand == True:
+        if myscene.T_surface_sand_waves == True:
            q_surface = q_surface + 1
            q_red = q_red - 300
 
@@ -166,7 +166,7 @@ def DEF_surface_add(context):
 
            c_mixArray.append(d2_8.name)
 
-        if myscene.T_surface_woodbark == True:
+        if myscene.T_surface_wood_bark == True:
            q_surface = q_surface + 1
            q_red = q_red - 500
            q_col = -400
