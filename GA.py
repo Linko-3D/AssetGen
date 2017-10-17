@@ -336,7 +336,6 @@ class GA_Start(Operator):
             bpy.ops.object.mode_set(mode = 'EDIT')
             bpy.ops.mesh.select_all(action = 'SELECT')
             bpy.ops.mesh.remove_doubles()
-            bpy.ops.mesh.normals_make_consistent(inside=False)
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
