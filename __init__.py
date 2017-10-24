@@ -269,7 +269,7 @@ class GA_Property(bpy.types.PropertyGroup):
 
     T_curvature_pixelwidth = bpy.props.IntProperty(
         name = 'Pixel width',
-        description = "The width in pixel of the generates concave white lines and convex black lines. This can be used to create sprites by baking an high poly on a plane",
+        description = "The width in pixel of the white lines generated from concave shapes and black from convex shapes. Increasing this value can be useful to bake a sprite from an high poly to a plane",
         default = 1,
         min = 1,
         max = 8
@@ -298,13 +298,13 @@ class GA_Property(bpy.types.PropertyGroup):
         update=def_surface,
         default = False
     )
-    T_surface_sand  = bpy.props.BoolProperty(
+    T_surface_sand_waves  = bpy.props.BoolProperty(
         name = 'Sand waves',
         description = "",
         update=def_surface,
         default = False
     )
-    T_surface_woodbark  = bpy.props.BoolProperty(
+    T_surface_wood_bark  = bpy.props.BoolProperty(
         name = 'Wood bark',
         description = "",
         update=def_surface,
@@ -380,8 +380,8 @@ class GA_Property(bpy.types.PropertyGroup):
     T_decimate_polycount = bpy.props.IntProperty(
         name = 'Polycount',
         default = 1000,
-        min = 0,
-        max = 10000
+        min = 1,
+        max = 100000
     )
 
 
