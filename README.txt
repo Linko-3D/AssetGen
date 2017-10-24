@@ -34,7 +34,7 @@ The addon also provides a set of tools allowing you to make a tileable texture, 
 
 == How to use it ==
 
-Note: Hovering the mouse on a setting displays a dialog box with an explanationon.
+Note: Hovering the mouse on a setting displays a dialog box with an explanation.
 
 Game Asset Generator panel:
 
