@@ -177,6 +177,38 @@ NAME=Dota Gold
    colorA=1.0
    fac=0.5
 
+
+NAME=Dota Lava
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.0
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.119538
+   colorG=0.002732
+   colorB=0.002732
+   colorA=1.0
+   position=0.5
+   colorR=0.745404
+   colorG=0.040915
+   colorB=0.002732
+   colorA=1.0
+   position=0.75
+   colorR=0.930111
+   colorG=0.215861
+   colorB=0.002732
+   colorA=1.0
+   position=1.0
+   colorR=0.982251
+   colorG=0.514918
+   colorB=0.035601
+   colorA=1.0
+   fac=0.5
+
+
+
 NAME=Dota Leaf
  VALTORGB=ColorRamp
    position=0.0
