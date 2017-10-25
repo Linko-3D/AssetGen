@@ -226,6 +226,35 @@ NAME=Dota Fur brown
    fac=0.5
 
 
+NAME=Dota Gem
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.015996
+   colorG=0.001214
+   colorB=0.002125
+   colorA=1.0
+   position=0.25
+   colorR=0.111932
+   colorG=0.005182
+   colorB=0.007499
+   colorA=1.0
+   position=0.5
+   colorR=0.552011
+   colorG=0.040915
+   colorB=0.061246
+   colorA=1.0
+   position=0.75
+   colorR=0.938686
+   colorG=0.187821
+   colorB=0.274677
+   colorA=1.0
+   position=1.0
+   colorR=0.947307
+   colorG=0.53948
+   colorB=0.752943
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Gold
  VALTORGB=ColorRamp
