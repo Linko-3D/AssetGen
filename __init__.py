@@ -71,7 +71,7 @@ class GA_Property(bpy.types.PropertyGroup):
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
         description="Choose texture resolution",
-        default='2K'
+        default='1K'
     )
 
     D_selected_to_active= bpy.props.BoolProperty(
@@ -139,7 +139,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_samples = bpy.props.IntProperty(
         name = 'Samples',
         description = "Quality of the Ambient Occlusion, other textures use 1 sample",
-        default = 32,
+        default = 16,
         min = 0,
         max = 100000
     )
