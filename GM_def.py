@@ -519,7 +519,7 @@ def register():
 
     bpy.types.Scene.D_curv = bpy.props.FloatProperty(
         name = 'Curvature',
-        default = 1,
+        default = 0.5,
         min = 0,
         max = 1
     )
