@@ -1,4 +1,4 @@
-NAME=Base Greyscale sRGB
+NAME=Base sRGB
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -27,7 +27,7 @@ NAME=Base Greyscale sRGB
    colorA=1.0
    fac=0.5
 
-NAME=Base Greyscale linear
+NAME=Base linear
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -84,6 +84,37 @@ NAME=Dota Fur brown
    colorR=0.14996
    colorG=0.08022
    colorB=0.057805
+   colorA=1.0
+   fac=0.5
+
+
+
+NAME=Dota Gold
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.027321
+   colorG=0.006049
+   colorB=0.000304
+   colorA=1.0
+   position=0.25
+   colorR=0.545725
+   colorG=0.147027
+   colorB=0.0
+   colorA=1.0
+   position=0.5
+   colorR=1.0
+   colorG=0.473532
+   colorB=0.028426
+   colorA=1.0
+   position=0.75
+   colorR=1.0
+   colorG=0.617207
+   colorB=0.135633
+   colorA=1.0
+   position=1.0
+   colorR=1.0
+   colorG=0.752943
+   colorB=0.300544
    colorA=1.0
    fac=0.5
 

@@ -494,7 +494,7 @@ def register():
         items=GM_generate_previews(True),
         description="Choose the material you want to use",
         update=GM_append_material,
-        default='Base Greyscale sRGB'
+        default='Base sRGB'
     )
 
     bpy.types.Scene.gmmateriali = CollectionProperty(type=gmMateriali)
