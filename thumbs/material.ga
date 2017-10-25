@@ -1,4 +1,4 @@
-NAME=Asteroid
+NAME=AG Asteroid
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -27,36 +27,36 @@ NAME=Asteroid
    colorA=1.0
    fac=0.5
 
-NAME=Blood
+NAME=AG Blood
  VALTORGB=ColorRamp
-   position=0.0
-   colorR=0.0
-   colorG=0.0
-   colorB=0.0
-   colorA=1.0
-   position=0.25
-   colorR=0.048501
-   colorG=0.00199
-   colorB=0.0
-   colorA=1.0
-   position=0.5
-   colorR=0.254152
-   colorG=0.000911
-   colorB=0.000911
-   colorA=1.0
-   position=0.75
-   colorR=0.458778
-   colorG=0.030176
-   colorB=0.030176
-   colorA=1.0
-   position=1.0
-   colorR=1.0
-   colorG=0.086216
-   colorB=0.086216
-   colorA=1.0
-   fac=0.5
+ position=0.0
+ colorR=0.0
+ colorG=0.0
+ colorB=0.0
+ colorA=1.0
+ position=0.25
+ colorR=0.048501
+ colorG=0.00199
+ colorB=0.0
+ colorA=1.0
+ position=0.5
+ colorR=0.254152
+ colorG=0.000911
+ colorB=0.000911
+ colorA=1.0
+ position=0.75
+ colorR=0.458778
+ colorG=0.030176
+ colorB=0.030176
+ colorA=1.0
+ position=1.0
+ colorR=1.0
+ colorG=0.086216
+ colorB=0.086216
+ colorA=1.0
+ fac=0.5
 
-NAME=Brick mud
+NAME=AG Brick mud
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -85,7 +85,7 @@ NAME=Brick mud
    colorA=1.0
    fac=0.5
 
-NAME=Bronze
+NAME=AG Bronze
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -114,7 +114,7 @@ NAME=Bronze
    colorA=1.0
    fac=0.5
 
-NAME=Cactus
+NAME=AG Cactus
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -143,7 +143,7 @@ NAME=Cactus
    colorA=1.0
    fac=0.5
 
-NAME=Clay
+NAME=AG Clay
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -173,7 +173,7 @@ NAME=Clay
    fac=0.5
 
 
-NAME=Coal
+NAME=AG Coal
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -202,7 +202,7 @@ NAME=Coal
    colorA=1.0
    fac=0.5
 
-NAME=Concrete bare
+NAME=AG Concrete bare
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -231,7 +231,7 @@ NAME=Concrete bare
    colorA=1.0
    fac=0.5
 
-NAME=Concrete base
+NAME=AG Concrete base
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -260,7 +260,7 @@ NAME=Concrete base
    colorA=1.0
    fac=0.5
 
-NAME=Concrete base dark
+NAME=AG Concrete base dark
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -289,7 +289,7 @@ NAME=Concrete base dark
    colorA=1.0
    fac=0.5
 
-NAME=Diamond
+NAME=AG Diamond
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -318,7 +318,39 @@ NAME=Diamond
    colorA=1.0
    fac=0.5
 
-NAME=Gold
+
+
+NAME=Dota rock
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.0
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.097587
+   colorG=0.076185
+   colorB=0.056129
+   colorA=1.0
+   position=0.5
+   colorR=0.223228
+   colorG=0.184475
+   colorB=0.135633
+   colorA=1.0
+   position=0.75
+   colorR=0.514918
+   colorG=0.445201
+   colorB=0.366253
+   colorA=1.0
+   position=1.0
+   colorR=0.686685
+   colorG=0.637597
+   colorB=0.564712
+   colorA=1.0
+   fac=0.5
+
+
+NAME=AG Gold
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -348,7 +380,7 @@ NAME=Gold
    fac=0.5
 
 
-NAME=Grass
+NAME=AG Grass
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -378,7 +410,7 @@ NAME=Grass
    fac=0.5
 
 
-NAME=Grass dried
+NAME=AG Grass dried
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -407,7 +439,7 @@ NAME=Grass dried
    colorA=1.0
    fac=0.5
 
-NAME=Gravel
+NAME=AG Gravel
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -494,7 +526,7 @@ NAME=Greyscale linear
    colorA=1.0
    fac=0.5
 
-NAME=Hairs blond
+NAME=AG Hairs blond
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -523,7 +555,7 @@ NAME=Hairs blond
    colorA=1.0
    fac=0.5
 
-NAME=Hairs dark
+NAME=AG Hairs dark
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -552,7 +584,7 @@ NAME=Hairs dark
    colorA=1.0
    fac=0.5
 
-NAME=Hairs red
+NAME=AG Hairs red
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -581,7 +613,7 @@ NAME=Hairs red
    colorA=1.0
    fac=0.5
 
-NAME=Lava
+NAME=AG Lava
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -610,7 +642,7 @@ NAME=Lava
    colorA=1.0
    fac=0.5
 
-NAME=Leather
+NAME=AG Leather
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -639,7 +671,7 @@ NAME=Leather
    colorA=1.0
    fac=0.5
 
-NAME=Leather dark
+NAME=AG Leather dark
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -652,24 +684,25 @@ NAME=Leather dark
    colorB=0.031896
    colorA=1.0
    position=0.5
+  
    colorR=0.162029
 
    colorG=0.06301
- colorB=0.033105
- colorA=1.0
- position=0.75
- colorR=0.296138
- colorG=0.138432
- colorB=0.07036
- colorA=1.0
- position=1.0
- colorR=0.401978
- colorG=0.296138
- colorB=0.201556
- colorA=1.0
- fac=0.5
+   colorB=0.033105
+   colorA=1.0
+   position=0.75
+   colorR=0.296138
+   colorG=0.138432
+   colorB=0.07036
+   colorA=1.0
+   position=1.0
+   colorR=0.401978
+   colorG=0.296138
+   colorB=0.201556
+   colorA=1.0
+   fac=0.5
 
-NAME=Metal
+NAME=AG Metal
  VALTORGB=ColorRamp
  position=0.0
  colorR=0.0
@@ -698,7 +731,7 @@ NAME=Metal
  colorA=1.0
  fac=0.5
 
-NAME=Plant foliage
+NAME=AG Plant foliage
  VALTORGB=ColorRamp
  position=0.0
  colorR=0.0
@@ -727,7 +760,7 @@ NAME=Plant foliage
    colorA=1.0
    fac=0.5
 
-NAME=Plaster
+NAME=AG Plaster
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -756,7 +789,7 @@ NAME=Plaster
    colorA=1.0
    fac=0.5
 
-NAME=Rock
+NAME=AG Rock
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -785,7 +818,7 @@ NAME=Rock
    colorA=1.0
    fac=0.5
 
-NAME=Rock cliff
+NAME=AG Rock cliff
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -814,7 +847,7 @@ NAME=Rock cliff
    colorA=1.0
    fac=0.5
 
-NAME=Rock cobblestone
+NAME=AG Rock cobblestone
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -843,7 +876,7 @@ NAME=Rock cobblestone
    colorA=1.0
    fac=0.5
 
-NAME=Rock sediment
+NAME=AG Rock sediment
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -872,7 +905,7 @@ NAME=Rock sediment
    colorA=1.0
    fac=0.5
 
-NAME=Sand
+NAME=AG Sand
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -903,7 +936,7 @@ NAME=Sand
 
 
 
-NAME=Sand brick
+NAME=AG Sand brick
  VALTORGB=ColorRamp
  position=0.0
  colorR=0.135633
@@ -933,7 +966,7 @@ NAME=Sand brick
  fac=0.5
 
 
-NAME=Skin white
+NAME=AG Skin white
  VALTORGB=ColorRamp
  position=0.0
  colorR=0.0
@@ -962,7 +995,7 @@ NAME=Skin white
    colorA=1.0
    fac=0.5
 
-NAME=Skin black
+NAME=AG Skin black
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -991,7 +1024,7 @@ NAME=Skin black
    colorA=1.0
    fac=0.5
 
-NAME=Snow
+NAME=AG Snow
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1021,7 +1054,7 @@ NAME=Snow
    fac=0.5
 
 
-NAME=Soil clay
+NAME=AG Soil clay
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1050,7 +1083,7 @@ NAME=Soil clay
    colorA=1.0
    fac=0.5
 
-NAME=Soil dark
+NAME=AG Soil dark
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1079,7 +1112,7 @@ NAME=Soil dark
    colorA=1.0
    fac=0.5
 
-NAME=Soil dirt
+NAME=AG Soil dirt
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1108,7 +1141,7 @@ NAME=Soil dirt
    colorA=1.0
    fac=0.5
 
-NAME=Soil dirt grass
+NAME=AG Soil dirt grass
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1137,7 +1170,7 @@ NAME=Soil dirt grass
    colorA=1.0
    fac=0.5
 
-NAME=Soil mud
+NAME=AG Soil mud
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1166,7 +1199,7 @@ NAME=Soil mud
    colorA=1.0
    fac=0.5
 
-NAME=Strap black
+NAME=AG Strap black
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1195,7 +1228,7 @@ NAME=Strap black
    colorA=1.0
    fac=0.5
 
-NAME=Strap red
+NAME=AG Strap red
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1224,7 +1257,7 @@ NAME=Strap red
    colorA=1.0
    fac=0.5
 
-NAME=Wax
+NAME=AG Wax
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1253,7 +1286,7 @@ NAME=Wax
    colorA=1.0
    fac=0.5
 
-NAME=Wood bark
+NAME=AG Wood bark
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1282,7 +1315,7 @@ NAME=Wood bark
    colorA=1.0
    fac=0.5
 
-NAME=Wood barn
+NAME=AG Wood barn
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.102242
@@ -1311,7 +1344,7 @@ NAME=Wood barn
    colorA=1.0
    fac=0.5
 
-NAME=Wood brown
+NAME=AG Wood brown
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1341,7 +1374,7 @@ NAME=Wood brown
    colorA=1.0
    fac=0.5
 
-NAME=Wood oak
+NAME=AG Wood oak
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1369,7 +1402,7 @@ NAME=Wood oak
    colorB=0.341914
    colorA=1.0
 
-NAME=Wood white
+NAME=AG Wood white
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
