@@ -86,6 +86,37 @@ NAME=Dota Belt
    fac=0.5
 
 
+NAME=Dota Bag
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.0
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.116971
+   colorG=0.057805
+   colorB=0.015996
+   colorA=1.0
+   position=0.5
+   colorR=0.423268
+   colorG=0.184475
+   colorB=0.036889
+   colorA=1.0
+   position=0.75
+   colorR=0.637597
+   colorG=0.351533
+   colorB=0.088656
+   colorA=1.0
+   position=1.0
+   colorR=0.610496
+   colorG=0.423268
+   colorB=0.147027
+   colorA=1.0
+   fac=0.5
+
+
+
 NAME=Dota Bone
  VALTORGB=ColorRamp
    position=0.0
