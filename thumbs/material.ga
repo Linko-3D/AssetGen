@@ -146,8 +146,6 @@ NAME=Dota Bone
    colorA=1.0
    fac=0.5
 
-
-
 NAME=Dota Crystal
  VALTORGB=ColorRamp
    position=0.0
@@ -167,6 +165,35 @@ NAME=Dota Crystal
    colorA=1.0
    fac=0.5
 
+
+NAME=Dota Diamond
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.006049
+   colorB=0.009721
+   colorA=1.0
+   position=0.25
+   colorR=0.043735
+   colorG=0.212231
+   colorB=0.205079
+   colorA=1.0
+   position=0.5
+   colorR=0.097587
+   colorG=0.439657
+   colorB=0.318547
+   colorA=1.0
+   position=0.75
+   colorR=0.215861
+   colorG=0.701102
+   colorB=0.514918
+   colorA=1.0
+   position=1.0
+   colorR=0.439657
+   colorG=0.822786
+   colorB=0.514918
+   colorA=1.0
+   fac=0.5
 
 
 NAME=Dota Fur brown

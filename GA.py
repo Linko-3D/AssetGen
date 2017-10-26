@@ -62,6 +62,7 @@ class GA_Start(Operator):
         LOD0 = myscene.D_LOD0
         LOD1 = myscene.D_LOD1
         LOD2 = myscene.D_LOD2
+        LOD3 = 0
         name = myscene.D_name
 
         size = 1024, 1024
@@ -111,7 +112,6 @@ class GA_Start(Operator):
         ######################################
 
         
-
         DEF_pointinessShader_add(context,size,name)
         DEF_ambientocclusionShader_add(context,size,name)
         DEF_albedoShader_add(context,size,name)
@@ -121,9 +121,6 @@ class GA_Start(Operator):
         DEF_bentShader_add(context,size,name)
         DEF_opacityShader_add(context,size,name)
         DEF_gradientShader_add(context,size,name)
-
-
-
 
 
 
@@ -143,8 +140,9 @@ class GA_Start(Operator):
                 
         if smart_LODs == 1:
 
-            LOD1 = 0.6 * LOD0
-            LOD2 = 0.3 * LOD0
+            LOD1 = LOD0 * 0.5
+            LOD2 = LOD0 * 0.25
+            LOD3 = LOD0 * 0.125
 
 
 
@@ -666,10 +664,35 @@ class GA_Start(Operator):
             bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
         
-            #TODO: Export LOD2 in OBJ
-        
+
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD2 generated with", HP_polycount, "tris\n")
+            
+        if LOD3 > 0:
+            bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 3, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+            bpy.context.object.name = name + "_LOD3"
+            bpy.context.object.data.name = name + "_LOD3"
+        
+            #decimation of the LOD3
+            #######################
+            bpy.ops.object.modifier_add(type='TRIANGULATE')
+            bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
+
+            obj = bpy.context.active_object
+            HP_polycount = len(obj.data.polygons)
+
+            HP_polycount = len(obj.data.polygons)
+            decimation = (LOD3 / HP_polycount)
+
+
+            bpy.ops.object.modifier_add(type='DECIMATE')
+            bpy.context.object.modifiers["Decimate"].ratio = decimation
+            bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
+            bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+        
+
+            HP_polycount = len(obj.data.polygons)
+            print("\n> LOD3 generated with", HP_polycount, "tris\n")
         
             bpy.ops.object.select_all(action = 'DESELECT')
             bpy.ops.object.select_pattern(pattern="tmpLP")
