@@ -319,6 +319,36 @@ NAME=Dota Gold
    fac=0.5
 
 
+NAME=Dota Ice
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.016807
+   colorG=0.017642
+   colorB=0.022174
+   colorA=1.0
+   position=0.25
+   colorR=0.06301
+   colorG=0.181164
+   colorB=0.238398
+   colorA=1.0
+   position=0.5
+   colorR=0.238398
+   colorG=0.40724
+   colorB=0.473532
+   colorA=1.0
+   position=0.75
+   colorR=0.533277
+   colorG=0.665388
+   colorB=0.701102
+   colorA=1.0
+   position=1.0
+   colorR=0.686685
+   colorG=0.806952
+   colorB=0.854993
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Lava
  VALTORGB=ColorRamp
    position=0.0
