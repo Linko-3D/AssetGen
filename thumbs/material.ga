@@ -407,6 +407,37 @@ NAME=Dota Rock
    fac=0.5
 
 
+
+NAME=Dota Skin white
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.027321
+   colorG=0.011612
+   colorB=0.007499
+   colorA=1.0
+   position=0.25
+   colorR=0.304987
+   colorG=0.084376
+   colorB=0.049707
+   colorA=1.0
+   position=0.5
+   colorR=0.590619
+   colorG=0.287441
+   colorB=0.191202
+   colorA=1.0
+   position=0.75
+   colorR=0.715694
+   colorG=0.412543
+   colorB=0.283149
+   colorA=1.0
+   position=1.0
+   colorR=0.863157
+   colorG=0.590619
+   colorB=0.450786
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Strap black
  VALTORGB=ColorRamp
    position=0.0
