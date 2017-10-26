@@ -229,6 +229,36 @@ NAME=Dota Diamond
    fac=0.5
 
 
+NAME=Dota Fire
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.520996
+   colorG=0.038204
+   colorB=0.001518
+   colorA=1.0
+   position=0.25
+   colorR=0.708376
+   colorG=0.187821
+   colorB=0.003035
+   colorA=1.0
+   position=0.5
+   colorR=0.947307
+   colorG=0.672443
+   colorB=0.013702
+   colorA=1.0
+   position=0.75
+   colorR=0.982251
+   colorG=0.947307
+   colorB=0.198069
+   colorA=1.0
+   position=1.0
+   colorR=1.0
+   colorG=0.991102
+   colorB=0.665388
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Fur brown
  VALTORGB=ColorRamp
    position=0.0
