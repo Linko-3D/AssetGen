@@ -70,7 +70,7 @@ def DEF_surface_add(context):
            d_4 = nodes.new("ShaderNodeMath")
            d_4.location = (400,q_red )
            d_4.operation = 'MULTIPLY'
-           d_4.inputs[1].default_value = 0.250
+           d_4.inputs[1].default_value = 0.1
 
            links.new( d_2.outputs["Object"], d_3.inputs[0])
            links.new( d_3.outputs["Color"], d_4.inputs[0])
