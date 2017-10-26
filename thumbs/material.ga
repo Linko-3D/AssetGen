@@ -146,6 +146,39 @@ NAME=Dota Bone
    colorA=1.0
    fac=0.5
 
+
+NAME=Dota Ceramic
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.004025
+   colorG=0.002125
+   colorB=0.001518
+   colorA=1.0
+   position=0.25
+   colorR=0.031896
+   colorG=0.014444
+   colorB=0.009721
+   colorA=1.0
+   position=0.5
+   colorR=0.165132
+   colorG=0.090842
+   colorB=0.042311
+   colorA=1.0
+   position=0.75
+   colorR=0.23074
+   colorG=0.141263
+   colorB=0.078187
+   colorA=1.0
+   position=1.0
+   colorR=0.296138
+   colorG=0.198069
+   colorB=0.114435
+   colorA=1.0
+   fac=0.5
+
+
+
+
 NAME=Dota Crystal
  VALTORGB=ColorRamp
    position=0.0
