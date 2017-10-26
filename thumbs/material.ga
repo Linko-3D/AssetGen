@@ -625,6 +625,66 @@ NAME=Dota Strap red
    fac=0.5
 
 
+NAME=Dota Teeth
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.064803
+   colorG=0.023153
+   colorB=0.020289
+   colorA=1.0
+   position=0.25
+   colorR=0.351533
+   colorG=0.181164
+   colorB=0.158961
+   colorA=1.0
+   position=0.5
+   colorR=0.502887
+   colorG=0.351533
+   colorB=0.250158
+   colorA=1.0
+   position=0.75
+   colorR=0.552011
+   colorG=0.423268
+   colorB=0.341914
+   colorA=1.0
+   position=1.0
+   colorR=0.637597
+   colorG=0.496933
+   colorB=0.412543
+   colorA=1.0
+   fac=0.5
+
+
+NAME=Dota Water
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.001518
+   colorG=0.020289
+   colorB=0.056129
+   colorA=1.0
+   position=0.25
+   colorR=0.0
+   colorG=0.122139
+   colorB=0.520996
+   colorA=1.0
+   position=0.5
+   colorR=0.004777
+   colorG=0.597202
+   colorB=0.814847
+   colorA=1.0
+   position=0.75
+   colorR=0.093059
+   colorG=0.799103
+   colorB=0.686685
+   colorA=1.0
+   position=1.0
+   colorR=0.401978
+   colorG=0.775822
+   colorB=0.791298
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Wood
  VALTORGB=ColorRamp
    position=0.0
