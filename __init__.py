@@ -95,14 +95,21 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     D_LOD1 = bpy.props.IntProperty(
         name = 'LOD1',
-        description = "Polycount of the LOD1 (in average 60% of the LOD0)",
+        description = "Polycount of the LOD1 (in average 50% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
     )
     D_LOD2 = bpy.props.IntProperty(
         name = 'LOD2',
-        description = "Polycount of the LOD1 (in average 30% of the LOD0)",
+        description = "Polycount of the LOD2 (in average 25% of the LOD0)",
+        default = 0,
+        min = 0,
+        max = 100000
+    )
+    D_LOD3 = bpy.props.IntProperty(
+        name = 'LOD3',
+        description = "Polycount of the LOD3 (in average 12.5% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000

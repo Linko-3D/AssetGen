@@ -62,7 +62,7 @@ class GA_Start(Operator):
         LOD0 = myscene.D_LOD0
         LOD1 = myscene.D_LOD1
         LOD2 = myscene.D_LOD2
-        LOD3 = 0
+        LOD3 = myscene.D_LOD3
         name = myscene.D_name
 
         size = 1024, 1024

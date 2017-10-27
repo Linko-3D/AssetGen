@@ -80,11 +80,13 @@ class PANEL_GameAsset(Panel):
            bcol_ga = box_ga.column(align=True)
            bcol_ga.prop(myscene , "D_LOD1")
            bcol_ga.prop(myscene , "D_LOD2")
+           bcol_ga.prop(myscene , "D_LOD3")
         else:
            bcol_ga = box_ga.column(align=True)
            bcol_ga.prop(myscene , "D_LOD0")
            bcol_ga.prop(myscene , "D_LOD1")
            bcol_ga.prop(myscene , 'D_LOD2')
+           bcol_ga.prop(myscene , 'D_LOD3')
         bcol_ga.row().separator()
         bcol_ga.row().separator()
 
