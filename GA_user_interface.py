@@ -32,7 +32,7 @@ class PANEL_GameAsset(Panel):
            q_err = "At least one mesh must be selected"
 
         if myscene.D_selected_to_active == True and len(bpy.context.selected_objects) != 2: 
-           q_err = "Two meshes must be selected"
+           q_err = "Select at least two meshes, the active selection must be the low poly"
 
         for ob in bpy.context.selected_objects:
            if ob.type != 'MESH':
