@@ -117,6 +117,36 @@ NAME=Dota Bag
    colorA=1.0
    fac=0.5
 
+NAME=Dota Blood
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.019382
+   colorG=0.000911
+   colorB=0.000607
+   colorA=1.0
+   position=0.25
+   colorR=0.093059
+   colorG=0.002732
+   colorB=0.002428
+   colorA=1.0
+   position=0.5
+   colorR=0.242281
+   colorG=0.012983
+   colorB=0.01033
+   colorA=1.0
+   position=0.75
+   colorR=0.258183
+   colorG=0.040915
+   colorB=0.03434
+   colorA=1.0
+   position=1.0
+   colorR=0.300544
+   colorG=0.090842
+   colorB=0.078187
+   colorA=1.0
+   fac=0.5
+
+
 
 
 NAME=Dota Bone
