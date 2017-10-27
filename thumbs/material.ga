@@ -208,6 +208,36 @@ NAME=Dota Ceramic
    fac=0.5
 
 
+NAME=Dota Cloth Red
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.027321
+   colorG=0.004025
+   colorB=0.003677
+   colorA=1.0
+   position=0.25
+   colorR=0.144129
+   colorG=0.012983
+   colorB=0.011612
+   colorA=1.0
+   position=0.5
+   colorR=0.48515
+   colorG=0.028426
+   colorB=0.024158
+   colorA=1.0
+   position=0.75
+   colorR=0.577581
+   colorG=0.045186
+   colorB=0.040915
+   colorA=1.0
+   position=1.0
+   colorR=0.730461
+   colorG=0.076185
+   colorB=0.066626
+   colorA=1.0
+   fac=0.5
+
+
 
 
 NAME=Dota Crystal
