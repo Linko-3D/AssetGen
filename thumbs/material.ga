@@ -208,6 +208,36 @@ NAME=Dota Ceramic
    fac=0.5
 
 
+NAME=Dota Claw
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.016807
+   colorG=0.003035
+   colorB=0.001518
+   colorA=1.0
+   position=0.25
+   colorR=0.226966
+   colorG=0.048172
+   colorB=0.01096
+   colorA=1.0
+   position=0.5
+   colorR=0.533277
+   colorG=0.187821
+   colorB=0.049707
+   colorA=1.0
+   position=0.75
+   colorR=0.701102
+   colorG=0.309469
+   colorB=0.104617
+   colorA=1.0
+   position=1.0
+   colorR=0.913099
+   colorG=0.590619
+   colorB=0.270498
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Cloth Red
  VALTORGB=ColorRamp
    position=0.0
