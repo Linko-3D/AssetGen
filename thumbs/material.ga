@@ -178,6 +178,36 @@ NAME=Dota Bone
    colorA=1.0
    fac=0.5
 
+NAME=Dota Boot
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.004391
+   colorG=0.001821
+   colorB=0.001821
+   colorA=1.0
+   position=0.25
+   colorR=0.021219
+   colorG=0.006049
+   colorB=0.005605
+   colorA=1.0
+   position=0.5
+   colorR=0.028426
+   colorG=0.007499
+   colorB=0.006995
+   colorA=1.0
+   position=0.75
+   colorR=0.039546
+   colorG=0.009721
+   colorB=0.009134
+   colorA=1.0
+   position=1.0
+   colorR=0.074214
+   colorG=0.016807
+   colorB=0.014444
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Bronze
  VALTORGB=ColorRamp
    position=0.0
