@@ -194,7 +194,7 @@ class PANEL_GameMaterial(Panel):
                 icon = 'LAYER_ACTIVE' if layer_idx.use_advanced_layer_Bump_enable else 'LAYER_USED'
                 subrow = col.row(align=True)
                 subrow.scale_y = 1.1
-                subrow.label(text="Mettallic", icon=icon )
+                subrow.label(text="Metallic", icon=icon )
                 subrow.prop(layer_idx, 'use_advanced_layer_Bump',emboss=False)
                 subrow.prop(layer_idx, 'use_advanced_layer_Bump_enable')
 
