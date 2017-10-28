@@ -621,6 +621,36 @@ NAME=Dota Leaf
    fac=0.5
 
 
+NAME=Dota Leather
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.002125
+   colorG=0.0
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.078187
+   colorG=0.036889
+   colorB=0.019382
+   colorA=1.0
+   position=0.5
+   colorR=0.187821
+   colorG=0.064803
+   colorB=0.025187
+   colorA=1.0
+   position=0.75
+   colorR=0.462077
+   colorG=0.147027
+   colorB=0.042311
+   colorA=1.0
+   position=1.0
+   colorR=0.597202
+   colorG=0.262251
+   colorB=0.127438
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Metal
  VALTORGB=ColorRamp
    position=0.0
