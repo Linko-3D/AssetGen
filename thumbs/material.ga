@@ -380,6 +380,36 @@ NAME=Dota Diamond
    fac=0.5
 
 
+NAME=Dota Feather
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.015996
+   colorG=0.009721
+   colorB=0.003347
+   colorA=1.0
+   position=0.25
+   colorR=0.068478
+   colorG=0.035601
+   colorB=0.006995
+   colorA=1.0
+   position=0.5
+   colorR=0.226966
+   colorG=0.135633
+   colorB=0.026241
+   colorA=1.0
+   position=0.75
+   colorR=0.53948
+   colorG=0.381326
+   colorB=0.066626
+   colorA=1.0
+   position=1.0
+   colorR=0.701102
+   colorG=0.558341
+   colorB=0.127438
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Fire
  VALTORGB=ColorRamp
    position=0.0
