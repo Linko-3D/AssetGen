@@ -492,7 +492,7 @@ def register():
     
     bpy.types.Scene.dandy_thumbs_mats_metals = bpy.props.EnumProperty(
         items=GM_generate_previews(True),
-        description="Choose the material you want to use",
+        description="Select the material you want to use",
         update=GM_append_material,
         default='Base sRGB'
     )
