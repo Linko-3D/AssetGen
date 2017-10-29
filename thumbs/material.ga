@@ -328,8 +328,6 @@ NAME=Dota Cloth Red
    fac=0.5
 
 
-
-
 NAME=Dota Crystal
  VALTORGB=ColorRamp
    position=0.0
@@ -526,6 +524,37 @@ NAME=Dota Gold
    colorR=1.0
    colorG=0.752943
    colorB=0.300544
+   colorA=1.0
+   fac=0.5
+
+
+
+NAME=Dota Hair brown
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.004777
+   colorG=0.002732
+   colorB=0.001214
+   colorA=1.0
+   position=0.25
+   colorR=0.039546
+   colorG=0.015996
+   colorB=0.006995
+   colorA=1.0
+   position=0.5
+   colorR=0.102242
+   colorG=0.042311
+   colorB=0.0185
+   colorA=1.0
+   position=0.75
+   colorR=0.198069
+   colorG=0.099899
+   colorB=0.045186
+   colorA=1.0
+   position=1.0
+   colorR=0.309469
+   colorG=0.162029
+   colorB=0.0865
    colorA=1.0
    fac=0.5
 
