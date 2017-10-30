@@ -558,6 +558,36 @@ NAME=Dota Gold
    fac=0.5
 
 
+NAME=Dota Hair blond
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.051269
+   colorG=0.016807
+   colorB=0.005182
+   colorA=1.0
+   position=0.25
+   colorR=0.191202
+   colorG=0.093059
+   colorB=0.036889
+   colorA=1.0
+   position=0.5
+   colorR=0.508881
+   colorG=0.287441
+   colorB=0.114435
+   colorA=1.0
+   position=0.75
+   colorR=0.799103
+   colorG=0.48515
+   colorB=0.238398
+   colorA=1.0
+   position=1.0
+   colorR=0.854993
+   colorG=0.53948
+   colorB=0.300544
+   colorA=1.0
+   fac=0.5
+
+
 
 NAME=Dota Hair brown
  VALTORGB=ColorRamp
