@@ -198,18 +198,6 @@ class PANEL_GameMaterial(Panel):
                 subrow.prop(layer_idx, 'use_advanced_layer_Bump',emboss=False)
                 subrow.prop(layer_idx, 'use_advanced_layer_Bump_enable')
 
-                #Roughness
-                icon = 'LAYER_ACTIVE' if layer_idx.use_advanced_layer_Curvature_enable else 'LAYER_USED'
-                subrow = col.row(align=True)
-                subrow.scale_y = 1.1
-                subrow.label(text="Roughness", icon=icon )
-                subrow.prop(layer_idx, 'use_advanced_layer_Curvature',emboss=False)
-                subrow.prop(layer_idx, 'use_advanced_layer_Curvature_enable')
-
-
-
-
-
             # REMOVE
             icon = 'PANEL_CLOSE' 
             row.operator("gm.material_remove", text="", emboss=True, icon=icon).layer_idx = i

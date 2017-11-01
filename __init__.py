@@ -246,11 +246,6 @@ class GA_Property(bpy.types.PropertyGroup):
         description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
         default = False
     )
-    T_roughness = bpy.props.BoolProperty(
-        name = 'Roughness',
-        description = "Generates a map from the curvature that will make the edges more shiny than flat surfaces",
-        default = False
-    )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
         description = "Bake the orientation of the faces from the world space. It is used to create effects (dust, snow, etc) and fake top lighting in non-PBR games",

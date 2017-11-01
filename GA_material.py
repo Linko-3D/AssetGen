@@ -123,20 +123,6 @@ def DEF_image_save( name ):
 
 
 
-    #roughness
-    ##################
-    image = bpy.data.images[name+"_"+"roughness"]
-    image.file_format = 'TARGA'
-    path = os.path.join(os.path.dirname( bpy.data.filepath  )
-, name+"_"+"roughness.tga")
-
-    image.save_render(path , bpy.context.scene)
-    image.colorspace_settings.name = 'Linear'
-    image.filepath = "//"+name+"_"+"roughness"+".tga"
-    image.source = 'FILE'
-
-
-
     #mask
     ##################   
     image = bpy.data.images[name+"_"+"mask"]

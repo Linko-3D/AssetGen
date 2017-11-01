@@ -5,8 +5,7 @@ from .GA_shader import DEF_pointinessShader_add
 from .GA_shader import DEF_ambientocclusionShader_add
 from .GA_shader import DEF_albedoShader_add
 from .GA_shader import DEF_normalShader_add 
-from .GA_shader import DEF_pbrShader_add 
-from .GA_shader import DEF_roughnessShader_add 
+from .GA_shader import DEF_pbrShader_add
 from .GA_shader import DEF_maskShader_add
 from .GA_shader import DEF_bentShader_add
 from .GA_shader import DEF_opacityShader_add
@@ -116,7 +115,6 @@ class GA_Start(Operator):
         DEF_ambientocclusionShader_add(context,size,name)
         DEF_albedoShader_add(context,size,name)
         DEF_normalShader_add(context,size,name)
-        DEF_roughnessShader_add(context,size,name)
         DEF_maskShader_add(context,size,name)
         DEF_bentShader_add(context,size,name)
         DEF_opacityShader_add(context,size,name)
@@ -522,15 +520,6 @@ class GA_Start(Operator):
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']        
-            bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
-
-        #Roughness map
-        
-        if myscene.T_roughness == 1:
-            print("\n> Baking: roughness map\n")
-            
-            bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'ROUGHNESS']
-            bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'ROUGHNESS']
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 

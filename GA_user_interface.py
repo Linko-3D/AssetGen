@@ -139,7 +139,6 @@ class PANEL_GameAsset(Panel):
            #bcol1_gab.prop(myscene , 'T_curvature_shadows')  
            
            bcol1_gaa.prop(myscene , 'T_pointiness') 
-           bcol1_gaa.prop(myscene , 'T_roughness') 
            bcol1_gaa.prop(myscene , 'T_bent') 
            bcol1_gaa.prop(myscene , 'T_gradient') 
            bcol1_gaa.prop(myscene , 'T_opacity')

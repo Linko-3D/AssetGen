@@ -418,55 +418,6 @@ def DEF_bentShader_add(context,size,name ):
     return True
 
 
-# - ROUGHNESS - ///////////////////////
-
-def DEF_roughnessShader_add(context,size,name ):
-
-    tex = MAT_texture_new(name+"_"+"roughness",size, 'Raw')
-
-    mat = bpy.data.materials.get(name+"_"+"ROUGHNESS")
-
-    if mat is None:
-       mat = bpy.data.materials.new(name+"_"+"ROUGHNESS")
-     
-       # Enable 'Use nodes':
-       mat.use_nodes = True
-       nt = mat.node_tree
-       nodes = nt.nodes
-       links = nt.links
-       
-       # clear
-       while(nodes): nodes.remove(nodes[0])
-
-       d_geometry  = nodes.new("ShaderNodeNewGeometry")
-       d_colorramp = nodes.new("ShaderNodeValToRGB")
-       d_colorramp1 = nodes.new("ShaderNodeValToRGB")
-       d_emission = nodes.new("ShaderNodeEmission")
-       d_output   = nodes.new("ShaderNodeOutputMaterial")
-       d_image   = nodes.new("ShaderNodeTexImage")
-       
-       d_geometry.location = (-100,-100)
-       d_colorramp.location = (100,-100)   
-       d_colorramp1.location = (400,-100)    
-       d_emission.location = (700,-100)
-       d_output.location = (900,-100)
-       d_image.location = (300,300)
-
-       d_image.image = tex
-       d_colorramp.color_ramp.elements[0].position = 0.4
-       d_colorramp.color_ramp.elements[1].position = 0.6
-
-       d_colorramp1.color_ramp.elements[0].color = (1, 1, 1, 1)
-       d_colorramp1.color_ramp.elements[1].color = (0.750, 0.750, 0.750, 1)
-
-       links.new( d_output.inputs['Surface'], d_emission.outputs['Emission'])
-       links.new( d_emission.inputs['Color'], d_colorramp1.outputs['Color'])
-       links.new( d_colorramp1.inputs['Fac'], d_colorramp.outputs['Color'])
-       links.new( d_colorramp.inputs['Fac'], d_geometry.outputs['Pointiness'])
-
-    return True
-
-
 #//////////////////// - POINTINESS - ///////////////////////
 
 def DEF_pointinessShader_add(context,size,name ):
@@ -682,16 +633,6 @@ def DEF_pbrShader_add(context,size,name ):
         A_tex.image = I_Curvature
 
 
-        #Add Roughness
-        ############
-
-        I_Roughness = bpy.data.images.get(name+"_"+"roughness")
-
-        A_tex = bpy.data.textures.new(name+"_"+"Roughness", 'IMAGE')
-        A_tex.image = I_Roughness
-
-    
-
         #Add Ambient Occlusion
         ############
 
@@ -778,7 +719,6 @@ def DEF_pbrShader_add(context,size,name ):
 
         #d_image   = nodes.new("ShaderNodeTexImage")
         #d_image.location = (0,300)
-        #d_image.image = I_Roughness 
         #d_image.color_space = 'NONE'
 
         #links.new( d_1.inputs[7], d_image.outputs['Color'])
