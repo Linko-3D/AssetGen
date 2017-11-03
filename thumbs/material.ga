@@ -1015,6 +1015,36 @@ NAME=Dota Strap black
    fac=0.5
 
 
+NAME=Dota Strap orange
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.001821
+   colorG=0.001214
+   colorB=0.000304
+   colorA=1.0
+   position=0.25
+   colorR=0.05448
+   colorG=0.016807
+   colorB=0.002125
+   colorA=1.0
+   position=0.5
+   colorR=0.168269
+   colorG=0.043735
+   colorB=0.003677
+   colorA=1.0
+   position=0.75
+   colorR=0.296138
+   colorG=0.06301
+   colorB=0.002428
+   colorA=1.0
+   position=1.0
+   colorR=0.361307
+   colorG=0.0865
+   colorB=0.003347
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Strap red
  VALTORGB=ColorRamp
    position=0.0
