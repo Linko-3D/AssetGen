@@ -22,7 +22,7 @@ def GM_generate_previews(metals):
 
     #path DB
     filepathdb = os.path.join(os.path.dirname(__file__), 
-               "thumbs" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "material.ga"
 
     gaDB = open(filepathdb, "r")
     lines = gaDB.readlines()
@@ -53,10 +53,10 @@ def GM_append_material(self, context):
     q_mat_select = context.scene.gmselect
 
     
-    node_name = context.scene.dandy_thumbs_mats_metals
+    node_name = context.scene.dandy_materials_mats_metals
 
     filepath = os.path.join(os.path.dirname(__file__), 
-               "thumbs" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "material.ga"
 
     gpl = open(filepath, "r")
     lines = gpl.readlines()
@@ -485,12 +485,12 @@ class gmMateriali(PropertyGroup):
 def register():
 
     GM_previews_mat_metals = bpy.utils.previews.new()
-    GM_previews_mat_metals.images_location = os.path.join(os.path.dirname(__file__), "thumbs" + os.sep + 'm')
+    GM_previews_mat_metals.images_location = os.path.join(os.path.dirname(__file__), "materials" + os.sep + 'm')
 
 
     GM_preview_collections['tmp_material_all'] = GM_previews_mat_metals
     
-    bpy.types.Scene.dandy_thumbs_mats_metals = bpy.props.EnumProperty(
+    bpy.types.Scene.dandy_materials_mats_metals = bpy.props.EnumProperty(
         items=GM_generate_previews(True),
         description="Select the material you want to use",
         update=GM_append_material,
@@ -591,7 +591,7 @@ def unregister():
         bpy.utils.previews.remove(preview)
     GM_preview_collections.clear()
 
-    del bpy.types.Scene.dandy_thumbs_mats_metals
+    del bpy.types.Scene.dandy_materials_mats_metals
     del bpy.types.Scene.gmmateriali 
     del bpy.types.Scene.gmselect 
 

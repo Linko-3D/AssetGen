@@ -37,7 +37,7 @@ class PANEL_GameMaterial(Panel):
 
 
         if scene.D_gradientcolor== 'Presets':
-           q_material_name = context.scene.dandy_thumbs_mats_metals
+           q_material_name = context.scene.dandy_materials_mats_metals
         else:
            q_material_name = "Custom gradient"
 
@@ -103,9 +103,9 @@ class PANEL_GameMaterial(Panel):
            row = col.row()
            row.scale_y = 1.32
 
-           row.template_icon_view(scene, "dandy_thumbs_mats_metals", show_labels=True)
+           row.template_icon_view(scene, "dandy_materials_mats_metals", show_labels=True)
 
-           q_material_name = context.scene.dandy_thumbs_mats_metals
+           q_material_name = context.scene.dandy_materials_mats_metals
 
         else:
 
@@ -307,7 +307,7 @@ class GM_material_select(bpy.types.Operator):
            q_mat_select.use_colorselect = q_mat[layer_idx].use_color3
            context.scene.D_gradientcolor = 'Custom gradient'
         else:
-           context.scene.dandy_thumbs_mats_metals = q_mat[layer_idx].name
+           context.scene.dandy_materials_mats_metals = q_mat[layer_idx].name
            context.scene.D_gradientcolor = 'Presets'
 
         return {'FINISHED'}
@@ -503,7 +503,7 @@ class GM_generate_textures1(bpy.types.Operator):
         # DO WHILE
         ##############################
         filepath = os.path.join(os.path.dirname(__file__), 
-               "thumbs" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "material.ga"
 
         c_mat = context.scene.gmmateriali 
         c_name = ""
