@@ -926,7 +926,7 @@ class GT_Import_Material(bpy.types.Operator):
               
                    ga.close() 
 
-        q_mat = bpy.types.Scene.dandy_thumbs_mats_metals
+        q_mat = bpy.types.Scene.thumbs_mats_metals
         #q_mat.items = GM_generate_previews(True)
 
         #bpy.types.Scene.reload()
