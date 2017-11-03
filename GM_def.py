@@ -22,7 +22,7 @@ def GM_generate_previews(metals):
 
     #path DB
     filepathdb = os.path.join(os.path.dirname(__file__), 
-               "materials" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "materials.ga"
 
     gaDB = open(filepathdb, "r")
     lines = gaDB.readlines()
@@ -56,7 +56,7 @@ def GM_append_material(self, context):
     node_name = context.scene.materials_mats_metals
 
     filepath = os.path.join(os.path.dirname(__file__), 
-               "materials" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "materials.ga"
 
     gpl = open(filepath, "r")
     lines = gpl.readlines()
@@ -485,7 +485,7 @@ class gmMateriali(PropertyGroup):
 def register():
 
     GM_previews_mat_metals = bpy.utils.previews.new()
-    GM_previews_mat_metals.images_location = os.path.join(os.path.dirname(__file__), "materials" + os.sep + 'm')
+    GM_previews_mat_metals.images_location = os.path.join(os.path.dirname(__file__), "materials" + os.sep + 'presets')
 
 
     GM_preview_collections['tmp_material_all'] = GM_previews_mat_metals

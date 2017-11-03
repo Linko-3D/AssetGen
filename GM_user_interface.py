@@ -503,7 +503,7 @@ class GM_generate_textures1(bpy.types.Operator):
         # DO WHILE
         ##############################
         filepath = os.path.join(os.path.dirname(__file__), 
-               "materials" + os.sep ) + "material.ga"
+               "materials" + os.sep ) + "materials.ga"
 
         c_mat = context.scene.gmmateriali 
         c_name = ""

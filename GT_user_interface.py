@@ -875,7 +875,7 @@ class GT_Import_Material(bpy.types.Operator):
     def execute(self, context):
 
         filepathdb = os.path.join(os.path.dirname(__file__), 
-               "thumbs" + os.sep ) + "material.ga"
+               "thumbs" + os.sep ) + "materials.ga"
 
         nodesField = bpy.context.scene.node_tree
         framenodes = nodesField.nodes.active
@@ -943,7 +943,7 @@ def GM_generate_previews(metals):
 
     #path DB
     filepathdb = os.path.join(os.path.dirname(__file__), 
-               "thumbs" + os.sep ) + "material.ga"
+               "thumbs" + os.sep ) + "materials.ga"
 
     gaDB = open(filepathdb, "r")
     lines = gaDB.readlines()
