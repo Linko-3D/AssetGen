@@ -95,21 +95,14 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     D_LOD1 = bpy.props.IntProperty(
         name = 'LOD1',
-        description = "Polycount of the LOD1 (in average 50% of the LOD0)",
+        description = "Polycount of the LOD1 (in average 60% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
     )
     D_LOD2 = bpy.props.IntProperty(
         name = 'LOD2',
-        description = "Polycount of the LOD2 (in average 25% of the LOD0)",
-        default = 0,
-        min = 0,
-        max = 100000
-    )
-    D_LOD3 = bpy.props.IntProperty(
-        name = 'LOD3',
-        description = "Polycount of the LOD3 (in average 12.5% of the LOD0)",
+        description = "Polycount of the LOD1 (in average 30% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
@@ -118,7 +111,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_cage_size = bpy.props.FloatProperty(
         name = 'Cage size',
         description = "Size (inflate) of the low poly during the baking to avoid intersecting with the high poly",
-        default = 0.05,
+        default = 0.03,
         min = 0.00,
         max = 1.00
     )
@@ -246,6 +239,11 @@ class GA_Property(bpy.types.PropertyGroup):
         description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
         default = False
     )
+    T_roughness = bpy.props.BoolProperty(
+        name = 'Roughness',
+        description = "Generates a map from the curvature that will make the edges more shiny than flat surfaces",
+        default = False
+    )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
         description = "Bake the orientation of the faces from the world space. It is used to create effects (dust, snow, etc) and fake top lighting in non-PBR games",
@@ -263,7 +261,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_curvature = bpy.props.BoolProperty(
         name = 'Curvature',
-        description = "This effects will composite the normal map to generate greyscale with convex faces in white and concave in dark",
+        description = "This effect will composite the normal map to generate a greyscale with convex shapes in white and concave in dark",
         update=def_curvature_Update,
         default = True
     )
