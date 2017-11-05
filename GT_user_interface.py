@@ -150,6 +150,11 @@ class PANEL_GameTools(Panel):
 
         layout.row().separator()
         col_gt = layout.column(align=True)
+
+        col_gt1 = col_gt.row(align=True)
+        col_gt1.operator("ga_tools.draw_mesh")
+        col_gt1.operator("ga_tools.mesh_from_drawing")
+
         col_gt.operator("ga_tools.polish_sculpt")
         col_gt.operator("ga_tools.2d_mesh")
         col_gt.operator("ga_tools.make_tileable_texture")
@@ -1184,5 +1189,164 @@ def GM_create_curvature_group(q_name,T_ntocrel):
                        area.spaces.active.tree_type = 'CompositorNodeTree'
       except:
            pass
+
+#######################################
+# Draw mesh
+#######################################
+class Draw_mesh(bpy.types.Operator):
+    bl_label = 'Draw mesh'
+    bl_idname = 'ga_tools.draw_mesh'
+    bl_description = ''
+    bl_context = 'objectmode'
+
+    def execute(self, context):
+
+      ################################################
+      name = "DISP"
+      size = 2048,2048
+      q_alpha = True
+
+      #create image
+      ##############
+      tex = bpy.data.images.get(name)
+
+      if  tex is None:
+         tex = bpy.data.images.new(name, width=size[0], height=size[1], alpha = q_alpha)
+         tex.colorspace_settings.name = 'sRGB'
+
+      #create materijal
+      #########################
+
+      M_pbr = bpy.data.materials.get(name)
+
+      if  M_pbr is None:
+
+        # Add PBR Material
+        mat = bpy.data.materials.new(name=name)
+    
+        mat.use_transparency = True
+        mat.alpha = 0
+        mat.specular_alpha = 0
+        mat.diffuse_intensity = 1
+
+
+        #Add Slot
+        ############
+
+        I_Disp = bpy.data.images.get(name)
+
+        A_tex = bpy.data.textures.new("disp", 'IMAGE')
+        A_tex.image = I_Disp
+
+    
+
+        slot = mat.texture_slots.add()
+        slot.texture = A_tex
+        slot.use_map_specular = True
+        slot.use_map_color_spec = True
+        slot.use_map_hardness = True
+    
+        slot.blend_type = 'MULTIPLY'
+
+      ##################################################
+
+      bpy.context.scene.render.engine = 'BLENDER_GAME'
+
+      bpy.ops.mesh.primitive_plane_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+
+      bpy.ops.transform.rotate(value=1.5708, axis=(-0, 1, 1.34359e-007), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=0.522654)
+      bpy.ops.transform.translate(value=(0, 0, 1), constraint_axis=(False, False, True), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=0.522654)
+
+      bpy.context.object.name = "2D"
+
+      bpy.ops.object.mode_set(mode = 'EDIT')
+      bpy.ops.uv.unwrap(method='ANGLE_BASED', margin=0)
+
+      bpy.ops.object.mode_set(mode = 'OBJECT')
+
+      bpy.data.objects['2D'].active_material = bpy.data.materials['DISP']
+
+      for area in bpy.context.screen.areas:
+          if area.type == 'VIEW_3D':
+              for space in area.spaces:
+                  if space.type == 'VIEW_3D':
+                      space.viewport_shade = 'SOLID'
+
+      bpy.context.object.lock_location[0] = True
+      bpy.context.object.lock_rotation[0] = True
+      bpy.context.object.lock_rotation[2] = True
+
+      bpy.ops.object.modifier_add(type='SUBSURF')
+      bpy.context.object.modifiers["Subsurf"].subdivision_type = 'SIMPLE'
+
+      bpy.context.object.modifiers["Subsurf"].levels = 0
+
+      bpy.ops.object.modifier_add(type='DISPLACE')
+      bpy.context.object.modifiers["Displace"].mid_level = 0.2
+
+      bpy.context.object.modifiers["Displace"].strength = 0.3
+
+      bpy.data.objects['2D'].modifiers['Displace'].texture = bpy.data.textures['disp']
+
+      bpy.ops.object.mode_set(mode = 'TEXTURE_PAINT')
+      bpy.context.object.active_material.paint_active_slot = 0
+      bpy.context.object.active_material.active_texture_index = 0
+      
+
+      return {'FINISHED'}
+
+
+#######################################
+# Mesh from drawing
+#######################################
+class Mesh_from_drawing(bpy.types.Operator):
+    bl_label = 'Mesh from drawing'
+    bl_idname = 'ga_tools.mesh_from_drawing'
+    bl_description = ''
+    bl_context = 'objectmode'
+
+    def execute(self, context):
+
+      bpy.context.object.modifiers["Subsurf"].levels = 7
+
+      bpy.ops.object.convert(target='MESH')
+
+      bpy.ops.object.mode_set(mode = 'EDIT')
+      bpy.ops.mesh.select_all(action = 'SELECT')
+      bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(1, 0, 0), clear_inner=True, clear_outer=False, xstart=376, xend=381, ystart=133, yend=62)
+    
+      bpy.ops.object.mode_set(mode = 'OBJECT')
+
+      bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+
+      bpy.ops.object.modifier_add(type='MIRROR')
+      bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+      bpy.context.object.lock_location[0] = False
+      bpy.context.object.lock_rotation[0] = False
+      bpy.context.object.lock_rotation[2] = False
+
+      bpy.ops.object.mode_set(mode = 'EDIT')
+      bpy.ops.mesh.select_all(action = 'SELECT')
+      bpy.ops.mesh.separate(type='LOOSE')
+      bpy.ops.object.mode_set(mode = 'OBJECT')
+
+      for obj in bpy.context.selected_objects:
+        bpy.context.scene.objects.active = obj
+    
+        bpy.ops.object.modifier_add(type='REMESH')
+        bpy.context.object.modifiers["Remesh"].mode = 'SMOOTH'
+        bpy.context.object.modifiers["Remesh"].octree_depth = 7
+        bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Remesh")
+
+      bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
+
+      for area in bpy.context.screen.areas:
+         if area.type == 'VIEW_3D':
+             for space in area.spaces:
+                 if space.type == 'VIEW_3D':
+                     space.viewport_shade = 'SOLID'      
+
+      return {'FINISHED'}
 
 
