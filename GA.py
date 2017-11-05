@@ -162,10 +162,21 @@ class GA_Start(Operator):
         if selected_to_active == 1:
             print("\n> Selected to Active mode enabled\n")
             
-            if len(bpy.context.selected_objects) == 2: 
+            if len(bpy.context.selected_objects) > 1: 
                
                target_object = bpy.context.active_object.name
-                         
+               bpy.context.active_object.select = False
+
+
+               bpy.context.scene.objects.active = bpy.context.selected_objects[0]
+               bpy.ops.object.join()
+
+               bpy.data.objects[target_object].select = True
+               bpy.context.scene.objects.active = bpy.data.objects[target_object ]
+
+
+               for i in range(len(bpy.context.selected_objects) ):
+                  print(i,bpy.context.selected_objects[i].name )
                
                if bpy.context.selected_objects[0].name  == target_object:              
                   bpy.context.selected_objects[0].name = "old1" 
