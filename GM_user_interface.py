@@ -33,7 +33,7 @@ class PANEL_GameMaterial(Panel):
            q_err = "You must select a mesh"
         else:
            if bpy.context.object.active_material.name[-4:] != "_PBR":
-              q_err = "You must generate your asset before editing the Albedo"
+              q_err = "You must generate your asset before generating the textures"
 
 
         if scene.D_gradientcolor== 'Presets':
@@ -877,7 +877,7 @@ def GM_create_curvature_group(q_name):
 
 class GM_generate_textures(bpy.types.Operator):
     bl_idname = "gm.generate_textures"
-    bl_label = " Generate Albedo"
+    bl_label = " Generate textures"
 
     def execute(self, context):
 
