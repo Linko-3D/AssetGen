@@ -798,10 +798,14 @@ class Make_tileable_texture(bpy.types.Operator):
         bpy.ops.object.mode_set(mode = 'EDIT')
         bpy.ops.mesh.delete(type='ONLY_FACE')
         bpy.ops.object.mode_set(mode = 'OBJECT')
+        
+        bpy.context.object.name = "bake plane"
 
         bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
         bpy.ops.transform.resize(value=(2, 2, 2), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
         bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+        bpy.context.object.name = "tileable sculpt"
 
         #should go to top orthographic view and zoom on the selection
 
