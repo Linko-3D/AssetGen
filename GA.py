@@ -174,9 +174,6 @@ class GA_Start(Operator):
                bpy.data.objects[target_object].select = True
                bpy.context.scene.objects.active = bpy.data.objects[target_object ]
 
-
-               for i in range(len(bpy.context.selected_objects) ):
-                  print(i,bpy.context.selected_objects[i].name )
                
                if bpy.context.selected_objects[0].name  == target_object:              
                   bpy.context.selected_objects[0].name = "old1" 
