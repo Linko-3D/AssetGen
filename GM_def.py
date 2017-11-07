@@ -447,25 +447,25 @@ class gmMateriali(PropertyGroup):
     )
 
 
-    use_advanced_layer_Bump_enable = bpy.props.BoolProperty(
+    use_advanced_layer_Metalic_enable = bpy.props.BoolProperty(
         name = '',
-        default = False
+        default = True
     )
 
-    use_advanced_layer_Bump = bpy.props.FloatProperty(
+    use_advanced_layer_Metalic = bpy.props.FloatProperty(
         name = 'Val',
         description = "",
-        default = 0.500,
+        default = 0.000,
         min = 0.000,
         max = 1.000
     )
 
-    use_advanced_layer_Curvature_enable = bpy.props.BoolProperty(
+    use_advanced_layer_Roughness_enable = bpy.props.BoolProperty(
         name = '',
-        default = False
+        default = True
     )
 
-    use_advanced_layer_Curvature = bpy.props.FloatProperty(
+    use_advanced_layer_Roughness = bpy.props.FloatProperty(
         name = 'Val',
         description = "",
         default = 0.500,

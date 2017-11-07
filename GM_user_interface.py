@@ -191,12 +191,21 @@ class PANEL_GameMaterial(Panel):
             if layer_idx.use_advanced_enable:
 
                 #Metallic
-                icon = 'LAYER_ACTIVE' if layer_idx.use_advanced_layer_Bump_enable else 'LAYER_USED'
+                icon = 'LAYER_ACTIVE' 
                 subrow = col.row(align=True)
                 subrow.scale_y = 1.1
                 subrow.label(text="Metallic", icon=icon )
-                subrow.prop(layer_idx, 'use_advanced_layer_Bump',emboss=False)
-                subrow.prop(layer_idx, 'use_advanced_layer_Bump_enable')
+                subrow.prop(layer_idx, 'use_advanced_layer_Metalic',emboss=False)
+                #subrow.prop(layer_idx, 'use_advanced_layer_Metalic_enable')
+
+                #Roughness
+                icon = 'LAYER_ACTIVE' 
+                subrow = col.row(align=True)
+                subrow.scale_y = 1.1
+                subrow.label(text="Roughness", icon=icon )
+                subrow.prop(layer_idx, 'use_advanced_layer_Roughness',emboss=False)
+                #subrow.prop(layer_idx, 'use_advanced_layer_Roughness_enable')
+
 
             # REMOVE
             icon = 'PANEL_CLOSE' 
@@ -1049,6 +1058,9 @@ class GM_generate_textures(bpy.types.Operator):
         c_invArray = []
         c_maskArray = []
 
+        c_mixArrayMetal = []
+        c_mixArrayRoughness = []
+
 
         for c_idx in c_mat :
             c_name= c_idx.name
@@ -1187,6 +1199,44 @@ class GM_generate_textures(bpy.types.Operator):
             links.new( c_chrma.outputs['Matte'],
                                c_inv.inputs['Color'])
 
+            
+
+            # add FRAME METAL
+            c_framemaskMETAL = scene.node_tree.nodes.new('NodeFrame')
+            c_framemaskMETAL.label = "METAL" 
+
+            # add METAL
+            q_nodepos += 50
+            c_metal= scene.node_tree.nodes.new('CompositorNodeMixRGB')
+            c_metal.location = (q_nodepos ,-1200)
+              
+            c_c = c_idx.use_advanced_layer_Metalic
+            c_metal.inputs[2].default_value = (c_c, c_c, c_c, 1)
+
+            c_metal.inputs[1].default_value = (0, 0, 0, 1)
+            c_metal.parent = c_framemaskMETAL
+            c_mixArrayMetal.append(c_metal.name)
+
+            
+
+            # add FRAME Roughness
+            c_framemaskRoughness = scene.node_tree.nodes.new('NodeFrame')
+            c_framemaskRoughness.label = "Roughness" 
+
+            # add Roughness
+            #q_nodepos += 50
+            c_Roughness= scene.node_tree.nodes.new('CompositorNodeMixRGB')
+            c_Roughness.location = (q_nodepos ,-1600)
+              
+            c_c = c_idx.use_advanced_layer_Roughness
+            c_Roughness.inputs[2].default_value = (c_c, c_c, c_c, 1)
+
+            c_Roughness.inputs[1].default_value = (0, 0, 0, 1)
+            c_Roughness.parent = c_framemaskRoughness
+            c_mixArrayRoughness.append(c_Roughness.name)
+            
+
+
 
 
 
@@ -1207,12 +1257,13 @@ class GM_generate_textures(bpy.types.Operator):
         # add File Output
         ##############################
         c_out1 = scene.node_tree.nodes.new('CompositorNodeOutputFile')
-        c_out1.location = (q_nodepos ,-200)  
+        c_out1.location = (q_nodepos ,-900)  
         c_out1.base_path = "//"
         c_out1.format.file_format = 'TARGA'
 
         c_out1.file_slots[0].path = q_activeobj[:-4]+"albedo####"
-  
+        c_out1.file_slots.new(q_activeobj[:-4]+"metallic####" )
+        c_out1.file_slots.new(q_activeobj[:-4]+"roughness####" )
 
 
 
@@ -1221,7 +1272,8 @@ class GM_generate_textures(bpy.types.Operator):
         links.new( c_mixROUTE.outputs[0],
                    scene.node_tree.nodes[c_mixArray[0]].inputs[1])
 
-
+        c_lastMETAL = ""
+        c_lastRoughness = ""
 
         for i in range(0,len(c_mixArray )):
            links.new( c_mixROUTE.outputs[0],
@@ -1257,6 +1309,35 @@ class GM_generate_textures(bpy.types.Operator):
            if c_maskArray[i]:
               links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
                       scene.node_tree.nodes[c_mixArray[i]].inputs['Fac'])
+
+
+
+           #METAL
+           if c_mixArrayMetal[i] != "none":
+              links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
+                   scene.node_tree.nodes[c_mixArrayMetal[i]].inputs['Fac'])
+              c_lastMETAL = c_mixArrayMetal[i]
+
+              j = i
+              for j in range(i+1,len(c_mixArrayMetal)):
+                if c_mixArrayMetal[j] != "none":
+                 links.new(scene.node_tree.nodes[c_mixArrayMetal[i]].outputs['Image'],
+                   scene.node_tree.nodes[c_mixArrayMetal[j]].inputs[1])
+
+           #Roughness
+           if c_mixArrayRoughness[i] != "none":
+              links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
+                   scene.node_tree.nodes[c_mixArrayRoughness[i]].inputs['Fac'])
+              c_lastRoughness = c_mixArrayRoughness[i]
+
+              j = i
+              for j in range(i+1,len(c_mixArrayRoughness)):
+                if c_mixArrayRoughness[j] != "none":
+                 links.new(scene.node_tree.nodes[c_mixArrayRoughness[i]].outputs['Image'],
+                   scene.node_tree.nodes[c_mixArrayRoughness[j]].inputs[1])
+
+
+
 
 
         # add EFFECTS
@@ -1435,13 +1516,20 @@ class GM_generate_textures(bpy.types.Operator):
 
         # add File Output
         ##############################
-        c_out1.location = (q_nodepos ,-200)  
+        c_out1.location = (q_nodepos ,-1200)  
 
         links.new( c_mixALPHA.outputs[0],
                  c_view.inputs['Image'])
         links.new( c_mixALPHA.outputs[0],
                  c_out1.inputs['Image'])
 
+        if c_lastMETAL != "":
+           links.new( scene.node_tree.nodes[c_lastMETAL].outputs['Image'],
+                      c_out1.inputs[1])
+
+        if c_lastRoughness != "":
+           links.new( scene.node_tree.nodes[c_lastRoughness].outputs['Image'],
+                      c_out1.inputs[2])
 
 
         #Save the maps by doing a render
@@ -1459,7 +1547,7 @@ class GM_generate_textures(bpy.types.Operator):
         bpy.context.scene.render.engine = 'BLENDER_RENDER'
 
 
-        #rename file
+        #rename file albedo
         ################################
 
         q_filepath = os.path.join(os.path.dirname( bpy.data.filepath  )
@@ -1476,6 +1564,46 @@ class GM_generate_textures(bpy.types.Operator):
         os.rename(q_filepathnew , q_filepath)
 
         bpy.data.images[q_activeobj[:-4]+"albedo"].reload()
+
+
+        #rename file metallic
+        ################################
+
+        q_filepath = os.path.join(os.path.dirname( bpy.data.filepath  )
+, q_activeobj[:-4]+"metallic.tga")
+
+        q_filepathnew = os.path.join(os.path.dirname( bpy.data.filepath  )
+, q_activeobj[:-4]+"metallic0001.tga")
+
+
+
+        if os.path.exists(q_filepath):
+           os.remove(q_filepath)
+
+        os.rename(q_filepathnew , q_filepath)
+
+        #bpy.data.images[q_activeobj[:-4]+"metallic"].reload()
+
+        #rename file roughness
+        ################################
+
+        q_filepath = os.path.join(os.path.dirname( bpy.data.filepath  )
+, q_activeobj[:-4]+"roughness.tga")
+
+        q_filepathnew = os.path.join(os.path.dirname( bpy.data.filepath  )
+, q_activeobj[:-4]+"roughness0001.tga")
+
+
+
+        if os.path.exists(q_filepath):
+           os.remove(q_filepath)
+
+        os.rename(q_filepathnew , q_filepath)
+
+        #bpy.data.images[q_activeobj[:-4]+"roughness"].reload()
+
+
+
 
 
         # disable 4 slot mask 
