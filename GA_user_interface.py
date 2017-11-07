@@ -130,13 +130,16 @@ class PANEL_GameAsset(Panel):
 
            bcol1_gaa.prop(myscene , 'T_ao')
            box12_gab = bcol1_gaa.box()
+
+           bcol11_gab = box12_gab.column(align=True)
+           bcol11_gab.prop(myscene , 'T_ao_denoising')
+
            bcol12_gab = box12_gab.column(align=True)
-           bcol12_gab.prop(myscene , 'T_ao_denoising')
            bcol12_gab.prop(myscene , 'T_ao_colorsigma')
            bcol12_gab.prop(myscene , 'T_ao_spacesigma')
 
            # denoising enabled
-           if myscene.T_ao_denoising== True:
+           if myscene.T_ao_denoising == True:
               bcol12_gab.enabled = True
            else:
               bcol12_gab.enabled = False
@@ -146,7 +149,6 @@ class PANEL_GameAsset(Panel):
            bcol1_gaa.prop(myscene , 'T_curvature') 
            box1_gab = bcol1_gaa.box()
            bcol1_gab = box1_gab.column(align=True)
-
            bcol1_gab.prop(myscene , 'T_curvature_pixelwidth')
            bcol1_gab.prop(myscene , 'T_curvature_blur')
            
