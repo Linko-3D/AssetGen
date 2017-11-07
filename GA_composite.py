@@ -50,12 +50,17 @@ def DEF_denoising(context,size,name ):
        c_blur.sigma_color  = myscene.T_ao_colorsigma
        c_blur.sigma_space  = myscene.T_ao_spacesigma
 
+       # add Gama
+       ##############################
+       c_gama = scene.node_tree.nodes.new('CompositorNodeGamma')
+       c_gama.location = (400,0)  
+       c_gama.inputs[1].default_value = 2.2
 
 
        # add NodeViewer
        ##############################
        c_view = scene.node_tree.nodes.new('CompositorNodeViewer')
-       c_view.location = (400,0)  
+       c_view.location = (600,0)  
 
 
        
@@ -64,8 +69,11 @@ def DEF_denoising(context,size,name ):
                   c_blur.inputs['Image'])
        links.new( c_imgNORMAL.outputs['Image'],
                   c_blur.inputs['Determinator'])
-
        links.new( c_blur.outputs['Image'],
+                  c_gama.inputs['Image'])
+
+
+       links.new( c_gama.outputs['Image'],
                   c_view.inputs['Image'])
 
 

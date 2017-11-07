@@ -59,13 +59,17 @@ def DEF_image_save_Curvature( name ):
     image1.source = 'FILE'
 
 
-def DEF_image_save_Denoising( name ):
+def DEF_image_save_Denoising( name , x ):
 
     bpy.context.scene.render.image_settings.file_format = 'TARGA'
 
     #ambient_occlusion
     ##################
-    image = bpy.data.images["Viewer Node"]
+    if x == 1:
+       image = bpy.data.images["Viewer Node"]
+    else:
+       image = bpy.data.images[name+"_"+"ambient_occlusion"]
+
     image.file_format = 'TARGA'
     path = os.path.join(os.path.dirname( bpy.data.filepath  )
 , name+"_"+"ambient_occlusion.tga")

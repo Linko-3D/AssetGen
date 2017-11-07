@@ -570,10 +570,12 @@ class GA_Start(Operator):
         
         if myscene.T_ao_denoising == 1:
         
-            print("\n> Compositing: denoising ambient occlusion\n")
+            print("\n> Compositing: denoising the ambient occlusion map\n")
 
             DEF_denoising(context,size,name)
-            DEF_image_save_Denoising ( name )
+            DEF_image_save_Denoising ( name,1 )
+        else:
+            DEF_image_save_Denoising ( name,0 )
 
 
         
