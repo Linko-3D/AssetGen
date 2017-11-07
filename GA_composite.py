@@ -4,6 +4,77 @@ from .GA_material import MAT_texture_new
 
 
 
+# - denoising - ///////////////////////
+
+def DEF_denoising(context,size,name ):
+
+
+       #tex = MAT_texture_new(name+"_"+"curvature",size, 'Raw')
+   
+
+       # ucitaj scenu
+       scene = bpy.context.scene
+
+       scene.use_nodes = True
+
+       nodes = scene.node_tree.nodes
+       links = scene.node_tree.links
+
+       myscene = context.scene.ga_property
+
+
+       # clear
+       ##############################
+       while(nodes): nodes.remove(nodes[0])
+
+
+       # get image NORMAL
+       ##############################
+       q_i = bpy.data.images.get(name+"_"+"normal")       
+       c_imgNORMAL = scene.node_tree.nodes.new('CompositorNodeImage')
+       c_imgNORMAL.image = q_i
+       c_imgNORMAL.location = (-300 ,0)
+
+       # get image AO
+       ##############################
+       q_a = bpy.data.images.get(name+"_"+"ambient_occlusion")       
+       c_imgAO = scene.node_tree.nodes.new('CompositorNodeImage')
+       c_imgAO.image = q_a
+       c_imgAO.location = (0 ,0)
+
+
+       # add Blur
+       ##############################
+       c_blur = scene.node_tree.nodes.new('CompositorNodeBilateralblur')
+       c_blur.location = (200,0)  
+       c_blur.sigma_color  = myscene.T_ao_colorsigma
+       c_blur.sigma_space  = myscene.T_ao_spacesigma
+
+
+
+       # add NodeViewer
+       ##############################
+       c_view = scene.node_tree.nodes.new('CompositorNodeViewer')
+       c_view.location = (400,0)  
+
+
+       
+
+       links.new( c_imgAO.outputs['Image'],
+                  c_blur.inputs['Image'])
+       links.new( c_imgNORMAL.outputs['Image'],
+                  c_blur.inputs['Determinator'])
+
+       links.new( c_blur.outputs['Image'],
+                  c_view.inputs['Image'])
+
+
+       bpy.ops.render.render()
+
+
+       return True
+
+
 # - NORMAL TO CURVATURE- ///////////////////////
 
 def DEF_NormalToCurvature(context,size,name ):

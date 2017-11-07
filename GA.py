@@ -11,11 +11,14 @@ from .GA_shader import DEF_bentShader_add
 from .GA_shader import DEF_opacityShader_add
 from .GA_shader import DEF_gradientShader_add
 
-
+            
+from .GA_material import DEF_image_save_Curvature          
+from .GA_material import DEF_image_save_Denoising
 from .GA_material import DEF_image_save 
 from .GA_material import DEF_remove_all
 
 from .GA_composite import DEF_NormalToCurvature
+from .GA_composite import DEF_denoising
 
 
 
@@ -560,6 +563,19 @@ class GA_Start(Operator):
             print("\n> Compositing: curvature map from normal map\n")
 
             DEF_NormalToCurvature(context,size,name)
+            DEF_image_save_Curvature( name )
+
+
+        #DENOISING
+        
+        if myscene.T_ao_denoising == 1:
+        
+            print("\n> Compositing: curvature map from normal map\n")
+
+            DEF_denoising(context,size,name)
+            DEF_image_save_Denoising ( name )
+
+
         
 
 

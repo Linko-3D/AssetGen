@@ -127,16 +127,28 @@ class PANEL_GameAsset(Panel):
            bcol1_gaa.prop(myscene , 'T_mask') 
            bcol1_gaa.prop(myscene , 'T_albedo') 
            bcol1_gaa.prop(myscene , 'T_normal') 
+
            bcol1_gaa.prop(myscene , 'T_ao')
+           box12_gab = bcol1_gaa.box()
+           bcol12_gab = box12_gab.column(align=True)
+           bcol12_gab.prop(myscene , 'T_ao_denoising')
+           bcol12_gab.prop(myscene , 'T_ao_colorsigma')
+           bcol12_gab.prop(myscene , 'T_ao_spacesigma')
+
+           # denoising enabled
+           if myscene.T_ao_denoising== True:
+              bcol12_gab.enabled = True
+           else:
+              bcol12_gab.enabled = False
+
+
            
            bcol1_gaa.prop(myscene , 'T_curvature') 
-
            box1_gab = bcol1_gaa.box()
            bcol1_gab = box1_gab.column(align=True)
 
            bcol1_gab.prop(myscene , 'T_curvature_pixelwidth')
            bcol1_gab.prop(myscene , 'T_curvature_blur')
-           #bcol1_gab.prop(myscene , 'T_curvature_shadows')  
            
            bcol1_gaa.prop(myscene , 'T_pointiness') 
            bcol1_gaa.prop(myscene , 'T_bent') 

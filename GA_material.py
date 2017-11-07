@@ -40,11 +40,9 @@ def DEF_remove_all():
 
 # - Save image- ///////////////////////
 
-
-def DEF_image_save( name ):
+def DEF_image_save_Curvature( name ):
 
     bpy.context.scene.render.image_settings.file_format = 'TARGA'
-
 
     #curvature
     ###########
@@ -60,6 +58,30 @@ def DEF_image_save( name ):
     image1.filepath = "//"+name+"_"+"curvature"+".tga"
     image1.source = 'FILE'
 
+
+def DEF_image_save_Denoising( name ):
+
+    bpy.context.scene.render.image_settings.file_format = 'TARGA'
+
+    #ambient_occlusion
+    ##################
+    image = bpy.data.images["Viewer Node"]
+    image.file_format = 'TARGA'
+    path = os.path.join(os.path.dirname( bpy.data.filepath  )
+, name+"_"+"ambient_occlusion.tga")
+
+    image.save_render(path , bpy.context.scene)
+
+    image1 = bpy.data.images[name+"_"+"ambient_occlusion"]
+    image1.colorspace_settings.name = 'Linear'
+    image1.filepath = "//"+name+"_"+"ambient_occlusion"+".tga"
+    image1.source = 'FILE'
+
+
+
+def DEF_image_save( name ):
+
+    bpy.context.scene.render.image_settings.file_format = 'TARGA'
 
 
     #pointiness
@@ -91,21 +113,6 @@ def DEF_image_save( name ):
 
 
     bpy.context.scene.render.image_settings.file_format = 'TARGA'
-
-
-
-    #ambient_occlusion
-    ##################
-    image = bpy.data.images[name+"_"+"ambient_occlusion"]
-    image.file_format = 'TARGA'
-    path = os.path.join(os.path.dirname( bpy.data.filepath  )
-, name+"_"+"ambient_occlusion.tga")
-
-    image.save_render(path , bpy.context.scene)
-    image.colorspace_settings.name = 'Linear'
-    image.filepath = "//"+name+"_"+"ambient_occlusion"+".tga"
-    image.source = 'FILE'
-
 
 
 

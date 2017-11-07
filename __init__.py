@@ -236,11 +236,35 @@ class GA_Property(bpy.types.PropertyGroup):
         update=def_normal_Update,
         default = True
     )
+
     T_ao = bpy.props.BoolProperty(
         name = 'Ambient Occlusion',
         description = "Generates shadows on parts close to each others, works on any lighting conditions",
         default = True
     )
+    T_ao_denoising = bpy.props.BoolProperty(
+        name = 'Activate denoising',
+        description = "",
+        default = True
+    )
+    T_ao_colorsigma = bpy.props.FloatProperty(
+        name = 'Color Sigma',
+        description = "",
+        default = 0.1,
+        min = 0,
+        max = 3
+    )
+    T_ao_spacesigma = bpy.props.FloatProperty(
+        name = 'Space Sigma',
+        description = "",
+        default = 3,
+        min = 0,
+        max = 30
+    )
+
+
+
+
     T_pointiness = bpy.props.BoolProperty(
         name = 'Pointiness',
         description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
