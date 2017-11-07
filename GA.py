@@ -570,7 +570,7 @@ class GA_Start(Operator):
         
         if myscene.T_ao_denoising == 1:
         
-            print("\n> Compositing: curvature map from normal map\n")
+            print("\n> Compositing: denoising ambient occlusion map\n")
 
             DEF_denoising(context,size,name)
             DEF_image_save_Denoising ( name )
