@@ -1201,11 +1201,11 @@ class GM_generate_textures(bpy.types.Operator):
 
             
 
-            # add FRAME METAL
-            c_framemaskMETAL = scene.node_tree.nodes.new('NodeFrame')
-            c_framemaskMETAL.label = "METAL" 
+            # add FRAME Metallic
+            c_framemaskMetallic = scene.node_tree.nodes.new('NodeFrame')
+            c_framemaskMetallic.label = "Metallic" 
 
-            # add METAL
+            # add Metallic
             q_nodepos += 50
             c_metal= scene.node_tree.nodes.new('CompositorNodeMixRGB')
             c_metal.location = (q_nodepos ,-1200)
@@ -1214,7 +1214,7 @@ class GM_generate_textures(bpy.types.Operator):
             c_metal.inputs[2].default_value = (c_c, c_c, c_c, 1)
 
             c_metal.inputs[1].default_value = (0, 0, 0, 1)
-            c_metal.parent = c_framemaskMETAL
+            c_metal.parent = c_framemaskMetallic
             c_mixArrayMetal.append(c_metal.name)
 
             
@@ -1272,7 +1272,7 @@ class GM_generate_textures(bpy.types.Operator):
         links.new( c_mixROUTE.outputs[0],
                    scene.node_tree.nodes[c_mixArray[0]].inputs[1])
 
-        c_lastMETAL = ""
+        c_lastMetallic = ""
         c_lastRoughness = ""
 
         for i in range(0,len(c_mixArray )):
@@ -1312,11 +1312,11 @@ class GM_generate_textures(bpy.types.Operator):
 
 
 
-           #METAL
+           #Metallic
            if c_mixArrayMetal[i] != "none":
               links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
                    scene.node_tree.nodes[c_mixArrayMetal[i]].inputs['Fac'])
-              c_lastMETAL = c_mixArrayMetal[i]
+              c_lastMetallic = c_mixArrayMetal[i]
 
               j = i
               for j in range(i+1,len(c_mixArrayMetal)):
@@ -1523,8 +1523,8 @@ class GM_generate_textures(bpy.types.Operator):
         links.new( c_mixALPHA.outputs[0],
                  c_out1.inputs['Image'])
 
-        if c_lastMETAL != "":
-           links.new( scene.node_tree.nodes[c_lastMETAL].outputs['Image'],
+        if c_lastMetallic != "":
+           links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
                       c_out1.inputs[1])
 
         if c_lastRoughness != "":
