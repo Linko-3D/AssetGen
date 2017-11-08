@@ -414,8 +414,7 @@ class GA_Start(Operator):
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
             HP_polycount = len(obj.data.polygons)
-            print("\n> LOD0 generated with", HP_polycount, "tris\n")
-
+            print("\n> LOD0 generated with", HP_polycount, "tris")
 
 
         #BAKING
