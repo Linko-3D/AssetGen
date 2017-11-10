@@ -1556,7 +1556,7 @@ class GM_generate_textures(bpy.types.Operator):
         bpy.context.scene.render.resolution_y = 1080
 
 
-        bpy.context.scene.render.engine = 'BLENDER_RENDER'
+        #bpy.context.scene.render.engine = 'BLENDER_RENDER'
 
 
         #rename file albedo
@@ -1594,7 +1594,7 @@ class GM_generate_textures(bpy.types.Operator):
 
         os.rename(q_filepathnew , q_filepath)
 
-        #bpy.data.images[q_activeobj[:-4]+"metallic"].reload()
+        bpy.data.images[q_activeobj[:-4]+"metallic"].reload()
 
         #rename file roughness
         ################################
@@ -1612,7 +1612,7 @@ class GM_generate_textures(bpy.types.Operator):
 
         os.rename(q_filepathnew , q_filepath)
 
-        #bpy.data.images[q_activeobj[:-4]+"roughness"].reload()
+        bpy.data.images[q_activeobj[:-4]+"roughness"].reload()
 
 
 

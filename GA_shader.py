@@ -541,6 +541,71 @@ def DEF_normalShader_add(context,size,name ):
 
     return True
 
+#//////////////////// - METALLIC- ///////////////////////
+
+def DEF_metallicShader_add(context,size,name ):
+
+    tex = MAT_texture_new(name+"_"+"metallic",size, 'Raw')
+
+    tex.colorspace_settings.name = 'Linear'
+    tex.filepath = "//"+name+"_"+"metallic"+".tga"
+    tex.source = 'FILE'
+
+
+
+    mat = bpy.data.materials.get(name+"_"+"METALLIC")
+
+    if  mat is None:
+       mat = bpy.data.materials.new(name+"_"+"METALLIC")
+     
+       # Enable 'Use nodes':
+       mat.use_nodes = True
+       nt = mat.node_tree
+       nodes = nt.nodes
+       links = nt.links
+       
+       d_image   = nodes.new("ShaderNodeTexImage")
+       
+       d_image.location = (150,600)
+       
+       d_image.image = tex
+
+
+
+    return True
+
+#//////////////////// - ROUGHNESS- ///////////////////////
+
+def DEF_roughnessShader_add(context,size,name ):
+
+    tex = MAT_texture_new(name+"_"+"roughness",size, 'Raw')
+
+    tex.colorspace_settings.name = 'Linear'
+    tex.filepath = "//"+name+"_"+"roughness"+".tga"
+    tex.source = 'FILE'
+
+
+    mat = bpy.data.materials.get(name+"_"+"ROUGHNESS")
+
+    if  mat is None:
+       mat = bpy.data.materials.new(name+"_"+"ROUGHNESS")
+     
+       # Enable 'Use nodes':
+       mat.use_nodes = True
+       nt = mat.node_tree
+       nodes = nt.nodes
+       links = nt.links
+       
+       d_image   = nodes.new("ShaderNodeTexImage")
+       
+       d_image.location = (150,600)
+       
+       d_image.image = tex
+
+    return True
+
+
+
 #//////////////////// - MASK- ///////////////////////
 
 def DEF_maskShader_add(context,size,name ):
@@ -603,6 +668,17 @@ def DEF_pbrShader_add(context,size,name ):
         mat.alpha = 0
         mat.specular_alpha = 0
         mat.diffuse_intensity = 1
+
+
+        #Add METALLIC
+        ############
+
+        I_metallic = bpy.data.images.get(name+"_"+"metallic")
+
+        #Add ROUGHNESS
+        ############
+
+        I_roughness = bpy.data.images.get(name+"_"+"roughness")
 
 
 
@@ -711,10 +787,24 @@ def DEF_pbrShader_add(context,size,name ):
 
 
         d_imagea   = nodes.new("ShaderNodeTexImage")
-        d_imagea.location = (0,600)
+        d_imagea.location = (0,1200)
         d_imagea.image = I_albedo 
 
         links.new( d_1.inputs[0], d_imagea.outputs['Color'])
+
+        d_imagem   = nodes.new("ShaderNodeTexImage")
+        d_imagem.location = (0,900)
+        d_imagem.image = I_metallic 
+
+        links.new( d_1.inputs[4], d_imagem.outputs['Color'])
+
+        d_imager   = nodes.new("ShaderNodeTexImage")
+        d_imager.location = (0,600)
+        d_imager.image = I_roughness 
+
+        links.new( d_1.inputs[7], d_imager.outputs['Color'])
+
+
 
 
         #d_image   = nodes.new("ShaderNodeTexImage")
