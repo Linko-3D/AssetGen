@@ -700,7 +700,8 @@ class ExpObj(bpy.types.Operator):
         shutil.copy(srcfile + "\\"+ name[:-4] + "albedo.tga" , mypresets )
         shutil.copy(srcfile + "\\"+ name[:-4] + "normal.tga" , mypresets )
         shutil.copy(srcfile + "\\"+ name[:-4] + "ambient_occlusion.tga" , mypresets )
-
+        shutil.copy(srcfile + "\\"+ name[:-4] + "metallic.tga" , mypresets )
+        shutil.copy(srcfile + "\\"+ name[:-4] + "roughness.tga" , mypresets )
       
         return {'FINISHED'}
 
