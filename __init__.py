@@ -186,7 +186,7 @@ class GA_Property(bpy.types.PropertyGroup):
     DT_exportpathtexture = bpy.props.StringProperty(
         name="Textures", 
         description = "Texture in subfolder.",
-        default='//Textures',
+        default='//Materials',
         subtype = 'DIR_PATH'
     )
 
