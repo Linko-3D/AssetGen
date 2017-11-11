@@ -60,7 +60,7 @@ class PANEL_GameMaterial(Panel):
         col = layout.column(align=True)
         box_GS = col.box()
         rowGS = box_GS.row()
-        rowGS.label(text="Effects:")
+        rowGS.label(text="Albedo effects:")
 
         subcolGS = box_GS.column(align=True)
         subrowGS = subcolGS.row(align=True)
