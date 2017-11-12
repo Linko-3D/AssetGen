@@ -168,7 +168,7 @@ class GA_Start(Operator):
         bpy.context.scene.layers[0] = False
         
         if selected_to_active == 1:
-            print("\n> Selected to Active mode enabled\n")
+            print("> Selected to Active mode enabled\n")
             
             if len(bpy.context.selected_objects) > 1: 
                
@@ -253,6 +253,7 @@ class GA_Start(Operator):
                     
             #Remove parts of the mesh bellow the grid if enabled
             if rmv_underground == 1:
+                print("\n> Removing parts of the low poly bellow the grid")
                 bpy.ops.object.mode_set(mode = 'EDIT') 
                         
                 bpy.ops.mesh.select_all(action = 'SELECT')
@@ -398,9 +399,9 @@ class GA_Start(Operator):
             bpy.ops.mesh.remove_doubles()
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
-            #Unfold UVs
+            #Unfold UVs 
             ###########
-    
+            print("\n> Unfolding the UVs") 
             bpy.ops.object.modifier_add(type='EDGE_SPLIT')
             bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="EdgeSplit")
@@ -408,6 +409,7 @@ class GA_Start(Operator):
             bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
     
             if unfold_half == 1:
+                print("-> Half of the low poly has been unfolded\n") 
                 bpy.ops.object.modifier_add(type='MIRROR')
                 bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
@@ -419,7 +421,7 @@ class GA_Start(Operator):
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
             HP_polycount = len(obj.data.polygons)
-            print("\n> LOD0 generated with", HP_polycount, "tris\n")
+            print("\n> LOD0 generated with", HP_polycount, "tris")
 
 
 
@@ -439,7 +441,10 @@ class GA_Start(Operator):
                 
                 bpy.ops.object.mode_set(mode = 'OBJECT')
         
+        print("\n----- BAKING TEXTURES IN", size[0], "*", size[0], "-----")   
+        
         if ground_AO == 1:
+            print("\n> Adding ground plane") 
             bpy.ops.mesh.primitive_plane_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0), layers=(False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
             bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
             bpy.context.object.name = "ground_AO"
@@ -450,7 +455,7 @@ class GA_Start(Operator):
 
         #Check if the low poly has UVs
         if not len( bpy.context.object.data.uv_layers ):
-            print("\n> Infos: the low poly has no UV, performing a Smart UV Project\n")
+            print("\n> Unwrapping: the low poly has no UV map, performing a Smart UV Project\n")
             bpy.ops.uv.smart_project() # Perform smart UV projection
         
         bpy.ops.object.select_pattern(pattern="tmpHP")
@@ -459,13 +464,11 @@ class GA_Start(Operator):
         bpy.context.scene.render.engine = 'CYCLES'
         bpy.context.scene.cycles.samples = 1
 
-        print("\n----- BAKING TEXTURES IN", size[0], "*", size[0], "-----\n")    
-        
-        
+
         #Mask map
         
         if myscene.T_mask == 1:
-            print("\n> Baking: mask map\n")
+            print("\n> Baking: mask map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'MASK']
             bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
@@ -474,7 +477,7 @@ class GA_Start(Operator):
         #Albedo map
         
         if myscene.T_albedo == 1:
-            print("\n> Baking: albedo map\n")
+            print("\n> Baking: albedo map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'ALBEDO']
             bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
@@ -485,16 +488,23 @@ class GA_Start(Operator):
         #Normal map
         
         if myscene.T_normal == 1:
-            print("\n> Baking: normal map\n")
+            print("\n> Baking: normal map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'NORMAL']
             bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
             
-            
+        #Curvature map
+        
+        if myscene.T_curvature == 1:
+        
+            print("-> Compositing: curvature map from normal map")
+
+            DEF_NormalToCurvature(context,size,name)
+            DEF_image_save_Curvature( name )
             
         #Bent map
         if myscene.T_bent == 1:
-            print("\n> Baking: bent map\n")
+            print("\n> Baking: bent map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'BENT']
             bpy.ops.object.bake(type="NORMAL", normal_space ='OBJECT', use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, normal_r = 'POS_X', normal_g = 'POS_Z', normal_b = 'NEG_Y', use_clear = True)
@@ -507,14 +517,28 @@ class GA_Start(Operator):
             bpy.context.scene.cycles.samples = AO_samples
             bpy.context.scene.world.light_settings.distance = 10
 
-            print("\n> Baking: ambient occlusion map at", AO_samples, "samples\n")
+            print("\n> Baking: ambient occlusion map at", AO_samples, "samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'AMBIENT OCCLUSION']
             bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
             
             bpy.context.scene.cycles.samples = 1
             
-        #remove every material slot of the high poly
+        #DENOISING
+        
+        if myscene.T_ao_denoising == 1:
+        
+            print("-> Compositing: denoising the ambient occlusion map\n")
+
+            DEF_denoising(context,size,name)
+            DEF_image_save_Denoising ( name,1 )
+        else:
+            DEF_image_save_Denoising ( name,0 )
+            
+            
+            
+        #remove every materials of the high poly
+        print("> Removing every materials on the high poly")
         bpy.ops.object.select_all(action = 'DESELECT')
 
         bpy.ops.object.select_pattern(pattern="tmpHP")
@@ -532,7 +556,7 @@ class GA_Start(Operator):
         #Pointiness map
 
         if myscene.T_pointiness == 1:
-            print("\n> Baking: pointiness map\n")
+            print("\n> Baking: pointiness map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']        
@@ -542,7 +566,7 @@ class GA_Start(Operator):
 
         #Gradient map
         if myscene.T_gradient == 1:
-            print("\n> Baking: gradient map\n")
+            print("\n> Baking: gradient map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'GRADIENT']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'GRADIENT']
@@ -551,39 +575,13 @@ class GA_Start(Operator):
 
         #Opacity map
         if myscene.T_opacity == 1:
-            print("\n> Baking: opacity map\n")
+            print("\n> Baking: opacity map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'OPACITY']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'OPACITY']
             
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
-
-
-
-        #Curvature map
-        
-        if myscene.T_curvature == 1:
-        
-            print("\n> Compositing: curvature map from normal map\n")
-
-            DEF_NormalToCurvature(context,size,name)
-            DEF_image_save_Curvature( name )
-
-
-        #DENOISING
-        
-        if myscene.T_ao_denoising == 1:
-        
-            print("\n> Compositing: denoising the ambient occlusion map\n")
-
-            DEF_denoising(context,size,name)
-            DEF_image_save_Denoising ( name,1 )
-        else:
-            DEF_image_save_Denoising ( name,0 )
-
-
-        
 
 
 
@@ -722,7 +720,7 @@ class GA_Start(Operator):
         bpy.context.object.name = name + "_LOD0"
         bpy.context.object.data.name = name + "_LOD0"
         
-        print("\n> Saving maps\n") 
+        print("\n> Saving maps") 
         
 
 
@@ -740,7 +738,7 @@ class GA_Start(Operator):
         now = time.time() #Time after it finished
 
         print("\n----- GAME ASSET READY -----") 
-        print("\n(Execution time:", now-then, "seconds)\n\n")
+        print("\nAsset generated in", now-then, "seconds\n\n")
 
 
 
