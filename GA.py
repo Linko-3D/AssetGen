@@ -420,6 +420,8 @@ class GA_Start(Operator):
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
+            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD0 generated with", HP_polycount, "tris")
 
@@ -427,20 +429,7 @@ class GA_Start(Operator):
 
         #BAKING
         ##############################################################################################################################################################################################################
-        
-        bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)        
-        
-        #Remove parts of the mesh bellow the grid if enabled
-        if selected_to_active == 1:
-            if rmv_underground == 1:
-                bpy.ops.object.mode_set(mode = 'EDIT') 
-                            
-                bpy.ops.mesh.select_all(action = 'SELECT')
                 
-                bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(0, 0, 1), use_fill=False, clear_inner=True, clear_outer=False, xstart=424, xend=553, ystart=340, yend=333)
-                
-                bpy.ops.object.mode_set(mode = 'OBJECT')
-        
         print("\n----- BAKING TEXTURES IN", size[0], "*", size[0], "-----")   
         
         if ground_AO == 1:
