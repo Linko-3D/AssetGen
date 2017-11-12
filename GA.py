@@ -99,6 +99,8 @@ class GA_Start(Operator):
         smart_edge_padding = 0
         edge_padding = myscene.D_edge_padding
         
+        edge_split = 0
+        
         smart_LODs = 0
 
         uv_margin = myscene.D_uv_margin
@@ -415,10 +417,13 @@ class GA_Start(Operator):
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+            
+            if edge_split == 1:
+                bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+
 
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD0 generated with", HP_polycount, "tris")
-
 
 
         #BAKING
