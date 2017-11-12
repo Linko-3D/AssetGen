@@ -447,12 +447,12 @@ class gmMateriali(PropertyGroup):
     )
 
 
-    use_advanced_layer_Metalic_enable = bpy.props.BoolProperty(
+    use_advanced_layer_Metallic_enable = bpy.props.BoolProperty(
         name = '',
         default = True
     )
 
-    use_advanced_layer_Metalic = bpy.props.FloatProperty(
+    use_advanced_layer_Metallic = bpy.props.FloatProperty(
         name = 'Val',
         description = "",
         default = 0.000,
