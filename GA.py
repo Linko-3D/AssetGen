@@ -263,6 +263,14 @@ class GA_Start(Operator):
                 bpy.ops.mesh.edge_face_add()
 
                 bpy.ops.object.mode_set(mode = 'OBJECT')
+                
+            #Cleaning the doubles
+            #####################
+            bpy.ops.object.mode_set(mode = 'EDIT')
+            bpy.ops.mesh.select_all(action = 'SELECT')
+            bpy.ops.mesh.mark_sharp(clear=True)
+            bpy.ops.mesh.remove_doubles()
+            bpy.ops.object.mode_set(mode = 'OBJECT')
 
             #Decimation 1
             #############
@@ -346,12 +354,6 @@ class GA_Start(Operator):
                     bpy.ops.mesh.select_all(action = 'SELECT')
                     bpy.ops.object.mode_set(mode = 'OBJECT')
 
-            bpy.ops.object.mode_set(mode = 'EDIT')
-            bpy.ops.mesh.select_all(action = 'SELECT')
-            bpy.ops.mesh.remove_doubles()
-
-            bpy.ops.object.mode_set(mode = 'OBJECT')
-
             bpy.context.object.name = "tmpLP"
     
             if unfold_half == 1:
@@ -390,14 +392,6 @@ class GA_Start(Operator):
             bpy.context.object.modifiers["Decimate"].ratio = decimation
             bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
-
-            #Cleaning the doubles
-            #####################
-            bpy.ops.object.mode_set(mode = 'EDIT')
-            bpy.ops.mesh.select_all(action = 'SELECT')
-            bpy.ops.mesh.mark_sharp(clear=True)
-            bpy.ops.mesh.remove_doubles()
-            bpy.ops.object.mode_set(mode = 'OBJECT')
 
             #Unfold UVs 
             ###########
