@@ -582,6 +582,12 @@ def register():
         size = 4
     )
 
+    bpy.types.Scene.D_effectroughness = bpy.props.FloatProperty(
+        name = 'Curvature',
+        default = 0.250,
+        min = 0,
+        max = 1
+    )
 
 
 

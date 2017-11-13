@@ -78,6 +78,20 @@ class PANEL_GameMaterial(Panel):
         subrowGS = subrowGS.row(align=True)
         subrowGS.prop(scene, 'D_effectsnow')
 
+        # Roughness options 
+        ######################################
+
+        col = layout.column(align=True)
+        box_GS = col.box()
+        rowGS = box_GS.row()
+        rowGS.label(text="Roughness effects:")
+
+        subcolGS = box_GS.column(align=True)
+        subrowGS = subcolGS.row(align=True)
+        subrowGS.prop(scene, 'D_effectroughness')
+
+
+
 
 
 
@@ -1217,6 +1231,9 @@ class GM_generate_textures(bpy.types.Operator):
             c_metal.parent = c_framemaskMetallic
             c_mixArrayMetal.append(c_metal.name)
 
+
+
+
             
 
             # add FRAME Roughness
@@ -1237,8 +1254,32 @@ class GM_generate_textures(bpy.types.Operator):
             
 
 
+        c_Metalgama = scene.node_tree.nodes.new('CompositorNodeGamma')
+        c_Metalgama.location = (q_nodepos+700 ,-1200)  
+        c_Metalgama.inputs[1].default_value = 2.2 
 
 
+        c_Roughnessegama = scene.node_tree.nodes.new('CompositorNodeGamma')
+        c_Roughnessegama.location = (q_nodepos+700 ,-1600)  
+        c_Roughnessegama.inputs[1].default_value = 2.2 
+
+        c_Roughnesseffinv = scene.node_tree.nodes.new('CompositorNodeInvert')
+        c_Roughnesseffinv.location = (q_nodepos+300 ,-1600-200)  
+
+        c_Roughnesseff= scene.node_tree.nodes.new('CompositorNodeMixRGB')
+        c_Roughnesseff.location = (q_nodepos+500 ,-1600)
+        c_Roughnesseff.blend_type = 'OVERLAY'
+        c_Roughnesseff.inputs[0].default_value = scene.D_effectroughness
+
+
+        links.new( c_Roughnesseffinv.outputs['Color'],
+                               c_Roughnesseff.inputs[2])
+        links.new( c_Roughnesseff.outputs['Image'],
+                               c_Roughnessegama.inputs['Image'])
+
+
+        links.new( c_img.outputs['Image'],
+                c_Roughnesseffinv.inputs['Color'])
 
 
         # add ROUTE
@@ -1300,9 +1341,6 @@ class GM_generate_textures(bpy.types.Operator):
            #mask
            links.new( c_imgID.outputs['Image'],
                    scene.node_tree.nodes[c_keyArray[i]].inputs['Image'])
-           #links.new( c_imgID.outputs['Alpha'],
-           #        c_view.inputs['Alpha'])
-
 
            if c_maskArray[i]:
               links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
@@ -1328,6 +1366,7 @@ class GM_generate_textures(bpy.types.Operator):
 
            #Roughness
            if c_mixArrayRoughness[i] != "none":
+
               if c_maskArray[i]:
                links.new( scene.node_tree.nodes[c_invArray[i]].outputs['Color'],
                    scene.node_tree.nodes[c_mixArrayRoughness[i]].inputs['Fac'])
@@ -1343,13 +1382,21 @@ class GM_generate_textures(bpy.types.Operator):
 
 
 
-        #Metallic
+        #Metallic i ROUGHNESS
         if c_mixArrayMetal[0] != "none":
               links.new( c_imgID.outputs['Depth'],
                    scene.node_tree.nodes[c_mixArrayMetal[0]].inputs[1])
         if c_mixArrayRoughness[0] != "none":
               links.new( c_imgID.outputs['Depth'],
                    scene.node_tree.nodes[c_mixArrayRoughness[0]].inputs[1])
+
+
+        links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
+                   c_Metalgama.inputs[0])
+
+        links.new( scene.node_tree.nodes[c_lastRoughness].outputs['Image'],
+                   c_Roughnesseff.inputs[1])
+
 
 
         # add EFFECTS
@@ -1536,11 +1583,11 @@ class GM_generate_textures(bpy.types.Operator):
                  c_out1.inputs['Image'])
 
         if c_lastMetallic != "":
-           links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
+           links.new( c_Metalgama.outputs['Image'],
                       c_out1.inputs[1])
 
         if c_lastRoughness != "":
-           links.new( scene.node_tree.nodes[c_lastRoughness].outputs['Image'],
+           links.new( c_Roughnessegama.outputs['Image'],
                       c_out1.inputs[2])
 
 
