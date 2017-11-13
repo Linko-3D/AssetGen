@@ -704,8 +704,9 @@ class GA_Start(Operator):
             print("\n> LOD3 generated with", HP_polycount, "tris\n")
         
             bpy.ops.object.select_all(action = 'DESELECT')
-            bpy.ops.object.select_pattern(pattern="tmpLP")
-            bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
+            
+            bpy.ops.object.select_pattern(pattern= name + "_LOD0")
+            bpy.context.scene.objects.active = bpy.data.objects[name + "_LOD0"]
 
 
 
