@@ -620,6 +620,9 @@ class GA_Start(Operator):
         bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'PBR']
 
 
+        bpy.context.object.name = name + "_LOD0"
+        bpy.context.object.data.name = name + "_LOD0"
+
         #Generating the LODs
         ####################
         if LOD1 > 0:
@@ -705,9 +708,7 @@ class GA_Start(Operator):
             bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
 
 
-        bpy.context.object.name = name + "_LOD0"
-        bpy.context.object.data.name = name + "_LOD0"
-        
+
         print("\n> Saving maps") 
         
 
