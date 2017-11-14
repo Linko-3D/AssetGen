@@ -54,6 +54,11 @@ class GA_Start(Operator):
         
         myscene = context.scene.ga_property
         
+        wm = bpy.context.window_manager #display progression
+        tot = 1000
+        wm.progress_begin(0, tot)
+        for i in range(tot):
+            wm.progress_update(i)        
         then = time.time() #Calculate time
         
         print("\n- GAME ASSET GENERATOR beta EXECUTED -\n")
@@ -725,6 +730,7 @@ class GA_Start(Operator):
         
         bpy.context.scene.render.engine = 'BLENDER_RENDER'
         
+        wm.progress_end()
         now = time.time() #Time after it finished
 
         print("\n----- GAME ASSET READY -----") 
