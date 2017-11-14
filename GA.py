@@ -97,7 +97,7 @@ class GA_Start(Operator):
         make_stylized = 0 
         sprite = 0
         
-        AO_samples = myscene.D_samples
+        samples = myscene.D_samples
         unfold_half = myscene.D_unfoldhalf #Unfold half for symmetrical assets
         cage_size = myscene.D_cage_size
         
@@ -481,10 +481,14 @@ class GA_Start(Operator):
         #Normal map
         
         if myscene.T_normal == 1:
-            print("\n> Baking: normal map")
+            bpy.context.scene.cycles.samples = samples
+             
+            print("\n> Baking: normal map at", samples, "samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'NORMAL']
             bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+            
+            bpy.context.scene.cycles.samples = 1
             
         #Curvature map
         
@@ -497,20 +501,24 @@ class GA_Start(Operator):
             
         #Bent map
         if myscene.T_bent == 1:
-            print("\n> Baking: bent map")
+            
+            bpy.context.scene.cycles.samples = samples
+            
+            print("\n> Baking: bent map at", samples, "samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'BENT']
             bpy.ops.object.bake(type="NORMAL", normal_space ='OBJECT', use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, normal_r = 'POS_X', normal_g = 'POS_Z', normal_b = 'NEG_Y', use_clear = True)
             
+            bpy.context.scene.cycles.samples = 1
 
         #Ambient Occlusion map
 
         if myscene.T_ao == 1:
 
-            bpy.context.scene.cycles.samples = AO_samples
+            bpy.context.scene.cycles.samples = samples
             bpy.context.scene.world.light_settings.distance = 10
 
-            print("\n> Baking: ambient occlusion map at", AO_samples, "samples")
+            print("\n> Baking: ambient occlusion map at", samples, "samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'AMBIENT OCCLUSION']
             bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
