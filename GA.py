@@ -298,7 +298,7 @@ class GA_Start(Operator):
             ##############################################################
             if myscene.D_create_envelop == 1:
         
-                print("\n> Creating the envelop\n")
+                print("\n> Creating the envelop")
 
                 bpy.ops.object.mode_set(mode = 'EDIT') 
                 
