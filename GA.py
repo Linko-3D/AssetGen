@@ -217,6 +217,8 @@ class GA_Start(Operator):
             bpy.ops.object.convert(target='MESH')
             bpy.ops.object.join()
 
+            bpy.ops.mesh.customdata_custom_splitnormals_clear()
+
             #bpy.ops.object.shade_smooth()
             #bpy.context.object.data.use_auto_smooth = False
 
