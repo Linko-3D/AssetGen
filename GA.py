@@ -243,7 +243,7 @@ class GA_Start(Operator):
 
             #creating the low poly
             ######################
-            print("\n----- GENERATING THE LOW POLY (LOD0)-----\n")
+            print("\n----- GENERATING THE LOW POLY (LOD0) -----\n")
             
             bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
@@ -601,8 +601,9 @@ class GA_Start(Operator):
             
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = True, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
-
-
+        #Finalizing
+        ####################
+        print("\n----- FINALIZING-----\n")
 
         #Create the lighting
         ####################
@@ -740,9 +741,8 @@ class GA_Start(Operator):
             bpy.context.scene.objects.active = bpy.data.objects[name + "_LOD0"]
 
 
-
-        print("\n> Saving maps") 
         
+        print("> Saving every textures")        
 
 
         DEF_image_save( name )
