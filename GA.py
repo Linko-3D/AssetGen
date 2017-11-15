@@ -282,6 +282,17 @@ class GA_Start(Operator):
             bpy.ops.mesh.select_all(action = 'SELECT')
             bpy.ops.mesh.remove_doubles()
             bpy.ops.object.mode_set(mode = 'OBJECT')
+            
+            #Remove unnecessary edges
+            #####################
+            bpy.ops.object.mode_set(mode = 'EDIT')
+                        
+            bpy.ops.mesh.select_all(action = 'SELECT')
+
+            bpy.ops.mesh.dissolve_limited(angle_limit=0.00174533, use_dissolve_boundaries=False)
+            bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+
+            bpy.ops.object.mode_set(mode = 'OBJECT')
 
             #Decimation 1
             #############
