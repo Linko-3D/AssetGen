@@ -220,10 +220,6 @@ class GA_Start(Operator):
             #bpy.ops.object.shade_smooth()
             #bpy.context.object.data.use_auto_smooth = False
 
-            #bpy.ops.object.convert(target='MESH')
-            bpy.ops.object.join()
-
-
             if make_stylized == 1:
 
                 bpy.ops.object.modifier_add(type='BEVEL')
@@ -270,12 +266,20 @@ class GA_Start(Operator):
                 bpy.ops.mesh.edge_face_add()
 
                 bpy.ops.object.mode_set(mode = 'OBJECT')
+            
+            #Restauring sharp edges
+            #####################
+            bpy.ops.object.mode_set(mode = 'EDIT')
+            bpy.ops.mesh.select_all(action = 'SELECT')
+
+            bpy.ops.mesh.region_to_loop()
+            bpy.ops.mesh.mark_sharp()
+            bpy.ops.object.mode_set(mode = 'OBJECT')
                 
             #Cleaning the doubles
             #####################
             bpy.ops.object.mode_set(mode = 'EDIT')
             bpy.ops.mesh.select_all(action = 'SELECT')
-            bpy.ops.mesh.mark_sharp(clear=True)
             bpy.ops.mesh.remove_doubles()
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -357,7 +361,7 @@ class GA_Start(Operator):
                     bpy.ops.object.mode_set(mode = 'EDIT')
 
                     bpy.ops.mesh.intersect_boolean(operation='UNION')
-                    bpy.ops.mesh.mark_sharp()
+                    #bpy.ops.mesh.mark_sharp()
                     bpy.ops.mesh.select_all(action = 'SELECT')
                     bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -417,11 +421,14 @@ class GA_Start(Operator):
             bpy.ops.object.mode_set(mode = 'EDIT')
             bpy.ops.mesh.select_all(action = 'SELECT')
             bpy.ops.mesh.remove_doubles()
-            bpy.ops.mesh.mark_sharp(clear=True)
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
 
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+            
+            bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+            bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
+            
             
             if edge_split == 1:
                 bpy.ops.object.modifier_add(type='EDGE_SPLIT')
