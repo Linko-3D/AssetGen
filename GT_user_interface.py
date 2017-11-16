@@ -409,7 +409,9 @@ class Resimetrize(bpy.types.Operator):
        myscene = context.scene.ga_property
 
        ##################
-
+    
+       #Symmetrize tool
+       ################
        
        bpy.ops.object.mode_set(mode = 'OBJECT')
        bpy.ops.object.convert(target='MESH')
@@ -450,13 +452,13 @@ class Resimetrize(bpy.types.Operator):
               bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
               bpy.ops.object.mode_set(mode = 'EDIT')
               bpy.ops.mesh.select_all(action = 'SELECT')
-              bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(0, 1, 0), clear_inner=True, clear_outer=False, xstart=283, xend=350, ystart=372, yend=372)
+              bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(0, 1, 0), clear_inner=False, clear_outer=True, xstart=283, xend=350, ystart=372, yend=372)
 
               bpy.ops.mesh.select_mode(type="FACE")
               bpy.ops.mesh.delete(type='FACE')
 
               bpy.ops.mesh.select_all(action = 'SELECT')
-              bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(0, 1, 0), clear_inner=True, clear_outer=False, xstart=283, xend=350, ystart=372, yend=372)
+              bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(0, 1, 0), clear_inner=False, clear_outer=True, xstart=283, xend=350, ystart=372, yend=372)
 
 
               bpy.ops.mesh.select_all(action = 'SELECT')
