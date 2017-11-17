@@ -217,8 +217,8 @@ class GA_Start(Operator):
             bpy.ops.object.convert(target='MESH')
             bpy.ops.object.join()
 
-            #bpy.ops.object.shade_smooth()
-            #bpy.context.object.data.use_auto_smooth = False
+            bpy.ops.object.shade_smooth()
+            bpy.context.object.data.use_auto_smooth = False
 
             if make_stylized == 1:
 

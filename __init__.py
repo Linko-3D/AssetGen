@@ -118,7 +118,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_cage_size = bpy.props.FloatProperty(
         name = 'Cage size',
         description = "Size (inflate) of the low poly during the baking to avoid intersecting with the high poly",
-        default = 0.03,
+        default = 0.1,
         min = 0.00,
         max = 1.00
     )
@@ -195,7 +195,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
         description = "Will try to remove every intersections of separated meshes. Can bug with smalls meshes or not intersecting enough",
-        default = True
+        default = False
     )
     D_groundAO = bpy.props.BoolProperty(
         name = 'Ground AO',
