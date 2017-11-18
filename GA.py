@@ -61,7 +61,7 @@ class GA_Start(Operator):
             wm.progress_update(i)        
         then = time.time() #Calculate time
         
-        print("\n- GAME ASSET GENERATOR beta EXECUTED -\n")
+        print("\n- GAME ASSET GENERATOR beta EXECUTED -")
 
         #Init value
         ######################################
@@ -317,9 +317,11 @@ class GA_Start(Operator):
 
                 bpy.ops.object.mode_set(mode = 'EDIT') 
                 
-                bpy.ops.mesh.select_all(action = 'SELECT')
+                bpy.ops.mesh.select_all(action = 'DESELECT')
+                
+                bpy.ops.mesh.select_mode(type="EDGE")
 
-                bpy.ops.mesh.region_to_loop()
+                bpy.ops.mesh.select_non_manifold()
 
                 bpy.ops.mesh.edge_face_add()
 
@@ -328,8 +330,6 @@ class GA_Start(Operator):
                 #Separate meshes
 
                 bpy.ops.mesh.select_all(action = 'DESELECT')
-
-                bpy.ops.mesh.select_mode(type="EDGE")
 
                 bpy.ops.mesh.separate(type='LOOSE')
 
@@ -375,6 +375,7 @@ class GA_Start(Operator):
                     #bpy.ops.mesh.mark_sharp()
                     bpy.ops.mesh.select_all(action = 'SELECT')
                     bpy.ops.object.mode_set(mode = 'OBJECT')
+
 
             bpy.context.object.name = "tmpLP"
     
