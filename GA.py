@@ -219,6 +219,8 @@ class GA_Start(Operator):
 
             bpy.ops.object.shade_smooth()
             bpy.context.object.data.use_auto_smooth = False
+            
+            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
             if make_stylized == 1:
 
@@ -434,8 +436,6 @@ class GA_Start(Operator):
             bpy.ops.mesh.remove_doubles()
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
-
-            bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
             
             bpy.ops.object.modifier_add(type='EDGE_SPLIT')
             bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
