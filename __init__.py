@@ -132,7 +132,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_uv_margin = bpy.props.FloatProperty(
         name = 'UV margin',
         description = "Space between UVs islands",
-        default = 0.005,
+        default = 0.03,
         min = 0.000,
         max = 1.000
     )

@@ -77,7 +77,7 @@ def DEF_image_save_Denoising( name , x ):
     image.save_render(path , bpy.context.scene)
 
     image1 = bpy.data.images[name+"_"+"ambient_occlusion"]
-    image1.colorspace_settings.name = 'Linear'
+    image1.colorspace_settings.name = 'sRGB'
     image1.filepath = "//"+name+"_"+"ambient_occlusion"+".tga"
     image1.source = 'FILE'
 
