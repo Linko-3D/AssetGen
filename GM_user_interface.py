@@ -1673,6 +1673,11 @@ class GM_generate_textures(bpy.types.Operator):
         bpy.context.object.active_material.use_shadeless = False
 
 
+        #refresh viewport
+        q_vport = bpy.context.space_data.viewport_shade 
+        bpy.context.space_data.viewport_shade = 'MATERIAL'
+        bpy.context.space_data.viewport_shade = q_vport 
+
 
         return {'FINISHED'}
 
