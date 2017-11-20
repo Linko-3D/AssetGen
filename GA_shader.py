@@ -795,12 +795,14 @@ def DEF_pbrShader_add(context,size,name ):
         d_imagem   = nodes.new("ShaderNodeTexImage")
         d_imagem.location = (0,900)
         d_imagem.image = I_metallic 
+        d_imagem.color_space = 'NONE'
 
         links.new( d_1.inputs[4], d_imagem.outputs['Color'])
 
         d_imager   = nodes.new("ShaderNodeTexImage")
         d_imager.location = (0,600)
         d_imager.image = I_roughness 
+        d_imager.color_space = 'NONE'
 
         links.new( d_1.inputs[7], d_imager.outputs['Color'])
 
