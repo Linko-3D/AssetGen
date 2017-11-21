@@ -71,7 +71,7 @@ class GA_Property(bpy.types.PropertyGroup):
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
         description="Choose texture resolution",
-        default='1K'
+        default='2K'
     )
 
     D_selected_to_active= bpy.props.BoolProperty(
@@ -89,7 +89,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_LOD0 = bpy.props.IntProperty(
         name = 'LOD0',
         description = "Maximum polycount of the LOD0 (closest to the camera). AssetGen will reduce this polycount if it detects unacessary edges",
-        default = 1000,
+        default = 10000,
         min = 1,
         max = 100000
     )
@@ -244,7 +244,7 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
-        description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched",
+        description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. Can produce artifacts",
         default = False
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
