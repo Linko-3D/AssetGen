@@ -71,7 +71,7 @@ class GA_Property(bpy.types.PropertyGroup):
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
         description="Choose texture resolution",
-        default='2K'
+        default='1K'
     )
 
     D_selected_to_active= bpy.props.BoolProperty(
@@ -89,27 +89,27 @@ class GA_Property(bpy.types.PropertyGroup):
     D_LOD0 = bpy.props.IntProperty(
         name = 'LOD0',
         description = "Maximum polycount of the LOD0 (closest to the camera). AssetGen will reduce this polycount if it detects unacessary edges",
-        default = 10000,
+        default = 1000,
         min = 1,
-        max = 100000
+        max = 1000
     )
     D_LOD1 = bpy.props.IntProperty(
         name = 'LOD1',
-        description = "Maximum polycount  of the LOD1 (in average 50% of the LOD0)",
+        description = "Maximum polycount of the LOD1 (in average 50% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
     )
     D_LOD2 = bpy.props.IntProperty(
         name = 'LOD2',
-        description = "Maximum polycount  of the LOD2 (in average 25% of the LOD0)",
+        description = "Maximum polycount of the LOD2 (in average 25% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
     )
     D_LOD3 = bpy.props.IntProperty(
         name = 'LOD3',
-        description = "Maximum polycount  of the LOD3 (in average 12.5% of the LOD0)",
+        description = "Maximum polycount of the LOD3 (in average 12.5% of the LOD0)",
         default = 0,
         min = 0,
         max = 100000
@@ -146,7 +146,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_samples = bpy.props.IntProperty(
         name = 'Samples',
         description = "Quality of the ambient occlusion, normal map and bent map. Other textures use 1 sample",
-        default = 32,
+        default = 16,
         min = 0,
         max = 100000
     )
@@ -245,7 +245,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
         description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. Can produce artifacts",
-        default = False
+        default = True
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
         name = 'Color Sigma',
