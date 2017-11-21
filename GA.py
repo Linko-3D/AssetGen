@@ -315,49 +315,36 @@ class GA_Start(Operator):
             ##############################################################
             if myscene.D_create_envelop == 1:
         
-                print("\n> Creating the envelop")
-
                 bpy.ops.object.mode_set(mode = 'EDIT') 
-                
                 bpy.ops.mesh.select_all(action = 'SELECT')
+                bpy.ops.mesh.select_mode(type="EDGE")
 
-                bpy.ops.mesh.region_to_loop()
-
+                bpy.ops.mesh.select_non_manifold()
                 bpy.ops.mesh.edge_face_add()
-
-                bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')        
-
-                #Separate meshes
 
                 bpy.ops.mesh.select_all(action = 'DESELECT')
 
-                bpy.ops.mesh.select_mode(type="EDGE")
-
                 bpy.ops.mesh.separate(type='LOOSE')
-
                 bpy.ops.object.mode_set(mode = 'OBJECT')
 
-                for obj in bpy.context.selected_objects:
+                ######
 
-                    bpy.context.scene.objects.active = obj
+                print("\n> Creating the envelop")
 
-                i = 0   #will count the number of mesh, an x letter will be added to each mesh: mx, mxx, then it will countdown to select every mesh
-                m = 'm'
-                x = 'x'
+                i = 0
 
                 for obj in bpy.context.selected_objects:
                     bpy.context.scene.objects.active = obj
-
-                    m = m + x
+                    
                     i = i + 1
-                    bpy.context.object.name = m
-                 
-                 
-                bpy.ops.object.select_all(action= 'DESELECT')
-                bpy.ops.object.select_pattern(pattern="mx")
-                bpy.context.scene.objects.active = bpy.data.objects["mx"]
+                    bpy.context.object.name = "tmpLP" + str(i)
+                    
+                print("Info: Fusionning", i, "meshes")
 
-                m = 'mx'
+
+                bpy.ops.object.select_all(action= 'DESELECT')
+                bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
+                bpy.context.scene.objects.active = bpy.data.objects["tmpLP" + str(i)]
 
                 bpy.ops.object.mode_set(mode = 'EDIT')
                 bpy.ops.mesh.select_all(action = 'SELECT')
@@ -365,18 +352,14 @@ class GA_Start(Operator):
 
                 while i > 1:
                     i = i - 1
-
-                    m = m + x
-                    bpy.ops.object.select_pattern(pattern=m)
-
+                    bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
                     bpy.ops.object.join()
-
                     bpy.ops.object.mode_set(mode = 'EDIT')
 
                     bpy.ops.mesh.intersect_boolean(operation='UNION')
-                    #bpy.ops.mesh.mark_sharp()
                     bpy.ops.mesh.select_all(action = 'SELECT')
                     bpy.ops.object.mode_set(mode = 'OBJECT')
+
 
             bpy.context.object.name = "tmpLP"
     
