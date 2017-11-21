@@ -316,7 +316,7 @@ class GA_Start(Operator):
             if myscene.D_create_envelop == 1:
         
                 bpy.ops.object.mode_set(mode = 'EDIT') 
-                bpy.ops.mesh.select_all(action = 'SELECT')
+                bpy.ops.mesh.select_all(action = 'DESELECT')
                 bpy.ops.mesh.select_mode(type="EDGE")
 
                 bpy.ops.mesh.select_non_manifold()
