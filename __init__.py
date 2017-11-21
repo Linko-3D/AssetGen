@@ -146,7 +146,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_samples = bpy.props.IntProperty(
         name = 'Samples',
         description = "Quality of the ambient occlusion, normal map and bent map. Other textures use 1 sample",
-        default = 16,
+        default = 32,
         min = 0,
         max = 100000
     )
