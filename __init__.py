@@ -91,7 +91,7 @@ class GA_Property(bpy.types.PropertyGroup):
         description = "Maximum polycount of the LOD0 (closest to the camera). AssetGen will reduce this polycount if it detects unacessary edges",
         default = 1000,
         min = 1,
-        max = 1000
+        max = 100000
     )
     D_LOD1 = bpy.props.IntProperty(
         name = 'LOD1',
