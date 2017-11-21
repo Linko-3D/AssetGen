@@ -244,20 +244,20 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
-        description = "",
-        default = True
+        description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched",
+        default = False
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
         name = 'Color Sigma',
         description = "",
-        default = 0.1,
+        default = 3,
         min = 0,
         max = 3
     )
     T_ao_spacesigma = bpy.props.FloatProperty(
         name = 'Space Sigma',
         description = "",
-        default = 3,
+        default = 0.01,
         min = 0,
         max = 30
     )
