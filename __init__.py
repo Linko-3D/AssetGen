@@ -139,7 +139,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_uv_angle = bpy.props.FloatProperty(
         name = 'UV angle',
         description = "Define at which angle from the world space a seam must be added. Lower value = more chunks and less perfs, higher = potential overlapping and lose in Texel density.",
-        default = 45,
+        default = 35,
         min = 0,
         max = 89
     )
