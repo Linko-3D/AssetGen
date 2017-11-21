@@ -118,7 +118,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_cage_size = bpy.props.FloatProperty(
         name = 'Cage size',
         description = "Size (inflate) of the low poly during the baking to avoid intersecting with the high poly",
-        default = 0.1,
+        default = 0.01,
         min = 0.00,
         max = 1.00
     )
