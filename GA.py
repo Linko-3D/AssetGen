@@ -156,7 +156,7 @@ class GA_Start(Operator):
             LOD3 = LOD0 * 0.125
 
         if smart_margin == 1:
-            uv_margin = 1/(size[0])*2
+            uv_margin = 1/size[0]*2
 
 
         if GPU_baking == 0:
