@@ -23,9 +23,7 @@ from .GA_composite import DEF_NormalToCurvature
 from .GA_composite import DEF_denoising
 
 
-
 from progress_report import ProgressReport, ProgressReportSubstep
-
 
 
 class GA_Start(Operator):
@@ -101,12 +99,13 @@ class GA_Start(Operator):
         unfold_half = myscene.D_unfoldhalf #Unfold half for symmetrical assets
         cage_size = myscene.D_cage_size
         
-        smart_edge_padding = 0
         edge_padding = myscene.D_edge_padding
         
         edge_split = 0
         
         smart_LODs = 0
+        smart_edge_padding = 0
+        smart_margin = 0
 
         uv_margin = myscene.D_uv_margin
         uv_angle = myscene.D_uv_angle
@@ -152,11 +151,12 @@ class GA_Start(Operator):
                 edge_padding = size[1] / 128
                 
         if smart_LODs == 1:
-
             LOD1 = LOD0 * 0.5
             LOD2 = LOD0 * 0.25
             LOD3 = LOD0 * 0.125
 
+        if smart_margin == 1:
+            uv_margin = 1/(size[0])*2
 
 
         if GPU_baking == 0:

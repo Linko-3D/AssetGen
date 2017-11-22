@@ -132,14 +132,14 @@ class GA_Property(bpy.types.PropertyGroup):
     D_uv_margin = bpy.props.FloatProperty(
         name = 'UV margin',
         description = "Space between UVs islands",
-        default = 0.03,
+        default = 0.002,
         min = 0.000,
         max = 1.000
     )
     D_uv_angle = bpy.props.FloatProperty(
         name = 'UV angle',
         description = "Define at which angle from the world space a seam must be added. Lower value = more chunks and less perfs, higher = potential overlapping and lose in Texel density.",
-        default = 35,
+        default = 66,
         min = 0,
         max = 89
     )
@@ -245,7 +245,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
         description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. Can produce artifacts",
-        default = True
+        default = False
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
         name = 'Color Sigma',
