@@ -103,9 +103,7 @@ class GA_Start(Operator):
         
         edge_split = 0
         
-        smart_LODs = 0
-        smart_edge_padding = 0
-        smart_margin = 0
+        auto_calculation = 0
 
         uv_margin = myscene.D_uv_margin
         uv_angle = myscene.D_uv_angle
@@ -144,19 +142,27 @@ class GA_Start(Operator):
             bpy.context.scene.frame_set(1)
 
 
-        if smart_edge_padding == 1:
+        if auto_calculation == 1:
+            
+            #Calculate LODs
+            LOD1 = LOD0 * 0.5
+            LOD2 = LOD0 * 0.25
+            LOD3 = LOD0 * 0.125
+            
+            #Calculate edge padding            
             if size[0] <= size[1]:
                 edge_padding = size[0] / 128
             else:
                 edge_padding = size[1] / 128
                 
-        if smart_LODs == 1:
-            LOD1 = LOD0 * 0.5
-            LOD2 = LOD0 * 0.25
-            LOD3 = LOD0 * 0.125
-
-        if smart_margin == 1:
+            #Calculate UV margin
             uv_margin = 1/size[0]*2
+            
+            print("Auto-calculation mode enabled:")
+            print("LOD1", LOD1, "tris max")
+            print("LOD2", LOD2, "tris max")
+            print("LOD3", LOD3, "tris max")
+            print("Texture res:", size[0], "px: UV margin at", uv_margin, "and edge padding at", edge_padding,"px\n")
 
 
         if GPU_baking == 0:
@@ -402,7 +408,7 @@ class GA_Start(Operator):
 
             #Unfold UVs 
             ###########
-            print("\n> Unfolding the UVs") 
+            print("\n> Performing Smart UVs Project at", uv_angle, "degrees with", uv_margin, "of margin")
             bpy.ops.object.modifier_add(type='EDGE_SPLIT')
             bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
             bpy.ops.object.modifier_apply(apply_as='DATA', modifier="EdgeSplit")
@@ -598,7 +604,7 @@ class GA_Start(Operator):
         bpy.ops.transform.rotate(value=-3.14159, axis=(-0, 1, 1.34359e-007), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
         bpy.context.object.data.energy = 0.1
 
-        bpy.ops.object.lamp_add(type='POINT', radius=1, view_align=False, location=(0.5, -1.5, 1), layers=(False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
+        bpy.ops.object.lamp_add(type='POINT', radius=1, view_align=False, location=(0.5, -1.5, 2), layers=(False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 
 
 
