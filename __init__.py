@@ -132,7 +132,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_uv_margin = bpy.props.FloatProperty(
         name = 'UV margin',
         description = "Space between UVs islands",
-        default = 0.002,
+        default = 0.006,
         min = 0.000,
         max = 1.000
     )
@@ -244,8 +244,8 @@ class GA_Property(bpy.types.PropertyGroup):
     )
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
-        description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. Can produce artifacts",
-        default = False
+        description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. You must increase the UV margin to avoid artifacts",
+        default = True
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
         name = 'Color Sigma',

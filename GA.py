@@ -92,7 +92,6 @@ class GA_Start(Operator):
         greyscale = 0   #Will apply a diffuse grey 0.735 on the high poly (and remove every other material
 
         #to remove later
-        make_stylized = 0 
         sprite = 0
         
         samples = myscene.D_samples
@@ -104,6 +103,10 @@ class GA_Start(Operator):
         edge_split = 0
         
         auto_calculation = 0
+        
+        decimate_HP = 0
+        
+        custom_UV = 0
 
         uv_margin = myscene.D_uv_margin
         uv_angle = myscene.D_uv_angle
@@ -228,23 +231,17 @@ class GA_Start(Operator):
             
             bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
-            if make_stylized == 1:
+            if decimate_HP == 1:
+                #Remove unnecessary edges of HP
+                #####################
+                bpy.ops.object.mode_set(mode = 'EDIT')
+                        
+                bpy.ops.mesh.select_all(action = 'SELECT')
 
-                bpy.ops.object.modifier_add(type='BEVEL')
-                bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
-                bpy.context.object.modifiers["Bevel"].width = 0.025
+                bpy.ops.mesh.dissolve_limited(angle_limit=0.00174533, use_dissolve_boundaries=False)
+                bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
 
-                bpy.ops.object.modifier_add(type='BEVEL')
-                bpy.context.object.modifiers["Bevel.001"].width = 0.005
-                bpy.context.object.modifiers["Bevel.001"].segments = 2
-                bpy.context.object.modifiers["Bevel.001"].profile = 1
-                bpy.context.object.modifiers["Bevel.001"].limit_method = 'ANGLE'
-
-                bpy.ops.object.modifier_add(type='SUBSURF')
-                bpy.context.object.modifiers["Subsurf"].levels = 3
-
-                bpy.ops.object.convert(target='MESH')
-
+                bpy.ops.object.mode_set(mode = 'OBJECT')
 
 
             bpy.context.object.name = "tmpHP"
@@ -409,9 +406,9 @@ class GA_Start(Operator):
             #Unfold UVs 
             ###########
             print("\n> Performing Smart UVs Project at", uv_angle, "degrees with", uv_margin, "of margin")
-            bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-            bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
-            bpy.ops.object.modifier_apply(apply_as='DATA', modifier="EdgeSplit")
+            #bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+            #bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
+            #bpy.ops.object.modifier_apply(apply_as='DATA', modifier="EdgeSplit")
 
             bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
     
@@ -420,20 +417,15 @@ class GA_Start(Operator):
                 bpy.ops.object.modifier_add(type='MIRROR')
                 bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
-            bpy.ops.object.mode_set(mode = 'EDIT')
-            bpy.ops.mesh.select_all(action = 'SELECT')
-            bpy.ops.mesh.remove_doubles()
+            #bpy.ops.object.mode_set(mode = 'EDIT')
+            #bpy.ops.mesh.select_all(action = 'SELECT')
+            #bpy.ops.mesh.remove_doubles()
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
             
-            bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-            bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
+            #bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+            #bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
             
-            
-            if edge_split == 1:
-                bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-
-
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD0 generated with", HP_polycount, "tris")
 
