@@ -93,7 +93,7 @@ def DEF_surface_add(context):
 
            d1_4 = nodes.new("ShaderNodeTexVoronoi")
            d1_4.location = (400,q_red )
-           d1_4.inputs["Scale"].default_value = 5
+           d1_4.inputs["Scale"].default_value = 4.5
 
 
            d1_5 = nodes.new("ShaderNodeMath")
