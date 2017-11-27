@@ -36,7 +36,7 @@ class PANEL_GameAsset(Panel):
 
         for ob in bpy.context.selected_objects:
            if ob.type != 'MESH':
-              q_err = "The selected object isn't a mesh"
+              q_err = "The selection contain an object that is not a mesh"
 
 
 
