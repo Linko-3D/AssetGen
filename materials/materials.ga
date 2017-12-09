@@ -622,6 +622,7 @@ NAME=Dota Hair brown
 NAME=Dota Ice
  VALTORGB=ColorRamp
    position=0.0
+
    colorR=0.016807
    colorG=0.017642
    colorB=0.022174
@@ -920,7 +921,34 @@ NAME=Dota Rock
    fac=0.5
 
 
-
+NAME=Dota Shell
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.001821
+   colorG=0.001821
+   colorB=0.001518
+   colorA=1.0
+   position=0.25
+   colorR=0.036889
+   colorG=0.023153
+   colorB=0.008568
+   colorA=1.0
+   position=0.5
+   colorR=0.088656
+   colorG=0.043735
+   colorB=0.012983
+   colorA=1.0
+   position=0.75
+   colorR=0.212231
+   colorG=0.097587
+   colorB=0.033105
+   colorA=1.0
+   position=1.0
+   colorR=0.366253
+   colorG=0.246201
+   colorB=0.095308
+   colorA=1.0
+   fac=0.5
 
 
 
@@ -1192,5 +1220,6 @@ NAME=Dota Wood
    colorB=0.078187
    colorA=1.0
    fac=0.5
+
 
 
