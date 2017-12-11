@@ -1080,7 +1080,7 @@ NAME=Dota Spectre
    colorA=1.0
    fac=0.5
 
-NAME=Dota Spectre Green
+NAME=Dota Spectre green
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.015209
