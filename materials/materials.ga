@@ -955,7 +955,7 @@ NAME=Dota Metal red
    fac=0.5
 
 
-NAME=Dota Metal Rust
+NAME=Dota Metal rust
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -984,6 +984,34 @@ NAME=Dota Metal Rust
    colorA=1.0
    fac=0.5
 
+NAME=Dota Metal rust partial
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.000304
+   colorG=0.000304
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.023153
+   colorG=0.008568
+   colorB=0.001214
+   colorA=1.0
+   position=0.5
+   colorR=0.057805
+   colorG=0.052861
+   colorB=0.026241
+   colorA=1.0
+   position=0.75
+   colorR=0.135633
+   colorG=0.074214
+   colorB=0.05448
+   colorA=1.0
+   position=1.0
+   colorR=0.250158
+   colorG=0.184475
+   colorB=0.107023
+   colorA=1.0
+   fac=0.5
 
 NAME=Dota Metal white
  VALTORGB=ColorRamp
