@@ -716,6 +716,36 @@ NAME=Dota Hair dark grey
    fac=0.5
 
 
+NAME=Dota Hair orange
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.01033
+   colorG=0.000911
+   colorB=0.000304
+   colorA=1.0
+   position=0.25
+   colorR=0.262251
+   colorG=0.011612
+   colorB=0.004391
+   colorA=1.0
+   position=0.5
+   colorR=0.679543
+   colorG=0.068478
+   colorB=0.015209
+   colorA=1.0
+   position=0.75
+   colorR=0.679543
+   colorG=0.102242
+   colorB=0.029557
+   colorA=1.0
+   position=1.0
+   colorR=0.822786
+   colorG=0.250158
+   colorB=0.127438
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Ice
  VALTORGB=ColorRamp
    position=0.0
