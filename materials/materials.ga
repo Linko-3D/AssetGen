@@ -1103,6 +1103,36 @@ NAME=Dota Rock
    fac=0.5
 
 
+NAME=Dota Rock crafted
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.001214
+   colorG=0.000911
+   colorB=0.000911
+   colorA=1.0
+   position=0.25
+   colorR=0.144129
+   colorG=0.095308
+   colorB=0.057805
+   colorA=1.0
+   position=0.5
+   colorR=0.296138
+   colorG=0.242281
+   colorB=0.171441
+   colorA=1.0
+   position=0.75
+   colorR=0.48515
+   colorG=0.467784
+   colorB=0.423268
+   colorA=1.0
+   position=1.0
+   colorR=0.686685
+   colorG=0.679543
+   colorB=0.658375
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Shell
  VALTORGB=ColorRamp
    position=0.0
@@ -1162,7 +1192,6 @@ NAME=Dota Skin black
    colorB=0.097587
    colorA=1.0
    fac=0.5
-
 
 
 NAME=Dota Skin white
