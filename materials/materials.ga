@@ -1489,4 +1489,31 @@ NAME=Dota Wood
    fac=0.5
 
 
-
+NAME=Dota Wood crafted
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.003347
+   colorG=0.001821
+   colorB=0.000911
+   colorA=1.0
+   position=0.25
+   colorR=0.043735
+   colorG=0.017642
+   colorB=0.008023
+   colorA=1.0
+   position=0.5
+   colorR=0.090842
+   colorG=0.035601
+   colorB=0.015996
+   colorA=1.0
+   position=0.75
+   colorR=0.147027
+   colorG=0.061246
+   colorB=0.025187
+   colorA=1.0
+   position=1.0
+   colorR=0.287441
+   colorG=0.119538
+   colorB=0.056129
+   colorA=1.0
+   fac=0.5
