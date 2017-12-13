@@ -145,14 +145,7 @@ class GA_Start(Operator):
             bpy.context.scene.frame_set(1)
 
 
-        if LOD1 == 0:
-            LOD1 = LOD0 * 0.5
-            
-        if LOD2 == 0:
-            LOD2 = LOD0 * 0.25
-        
-        if LOD3 == 0:
-            LOD3 = LOD0 * 0.125
+
 
         if auto_calculation == 1:
                         
@@ -217,9 +210,19 @@ class GA_Start(Operator):
                   
                   bpy.context.selected_objects[1].name = "tmpLP"
                   bpy.context.selected_objects[0].name = "tmpHP"
+                  
+               obj = bpy.context.active_object
+               LOD0 = len(obj.data.polygons)
 
 
-
+        if LOD1 == 0:
+            LOD1 = LOD0 * 0.5
+            
+        if LOD2 == 0:
+            LOD2 = LOD0 * 0.25
+        
+        if LOD3 == 0:
+            LOD3 = LOD0 * 0.125
 
         #If we want to generate the low poly
         ###################################
