@@ -117,6 +117,8 @@ class GA_Start(Operator):
         T_enabled = 0
 
         GPU_baking = 1
+        
+        lightmap_UVs = 0
 
 
         #Create Shader
@@ -436,6 +438,18 @@ class GA_Start(Operator):
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD0 generated with", HP_polycount, "tris")
 
+            #Lightmap UVs
+            if lightmap_UVs == 1:
+                bpy.ops.mesh.uv_texture_add()
+                bpy.ops.object.mode_set(mode = 'EDIT')
+                                    
+                bpy.ops.mesh.select_all(action = 'SELECT')
+                bpy.ops.uv.lightmap_pack()
+
+                bpy.ops.object.mode_set(mode = 'OBJECT')
+
+
+
 
         #BAKING
         ##############################################################################################################################################################################################################
@@ -646,6 +660,7 @@ class GA_Start(Operator):
 
         bpy.context.object.name = name + "_LOD0"
         bpy.context.object.data.name = name + "_LOD0"
+        
 
         #Generating the LODs
         ####################
