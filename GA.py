@@ -451,6 +451,10 @@ class GA_Start(Operator):
         bpy.ops.object.select_all(action = 'DESELECT')
         bpy.ops.object.select_pattern(pattern="tmpLP")
         bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
+        
+        bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+        bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
+
 
         #Check if the low poly has UVs
         if not len( bpy.context.object.data.uv_layers ):
