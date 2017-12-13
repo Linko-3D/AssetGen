@@ -1127,6 +1127,35 @@ NAME=Dota Metal white
    colorA=1.0
    fac=0.5
 
+NAME=Dota Metal yellow
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.002428
+   colorG=0.001518
+   colorB=0.000911
+   colorA=1.0
+   position=0.25
+   colorR=0.47932
+   colorG=0.147027
+   colorB=0.008568
+   colorA=1.0
+   position=0.5
+   colorR=0.846874
+   colorG=0.603827
+   colorB=0.015209
+   colorA=1.0
+   position=0.75
+   colorR=0.846874
+   colorG=0.584079
+   colorB=0.0
+   colorA=1.0
+   position=1.0
+   colorR=0.854993
+   colorG=0.863157
+   colorB=0.038204
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Poison
  VALTORGB=ColorRamp
