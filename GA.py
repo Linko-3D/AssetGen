@@ -145,13 +145,17 @@ class GA_Start(Operator):
             bpy.context.scene.frame_set(1)
 
 
-        if auto_calculation == 1:
-            
-            #Calculate LODs
+        if LOD1 == 0:
             LOD1 = LOD0 * 0.5
-            LOD2 = LOD0 * 0.25
-            LOD3 = LOD0 * 0.125
             
+        if LOD2 == 0:
+            LOD2 = LOD0 * 0.25
+        
+        if LOD3 == 0:
+            LOD3 = LOD0 * 0.125
+
+        if auto_calculation == 1:
+                        
             #Calculate edge padding            
             if size[0] <= size[1]:
                 edge_padding = size[0] / 128
