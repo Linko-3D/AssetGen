@@ -890,6 +890,35 @@ NAME=Dota Lava
    colorA=1.0
    fac=0.5
 
+NAME=Dota Leaf
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.030713
+   colorG=0.064803
+   colorB=0.019382
+   colorA=1.0
+   position=0.25
+   colorR=0.052861
+   colorG=0.045186
+   colorB=0.0
+   colorA=1.0
+   position=0.5
+   colorR=0.119538
+   colorG=0.250158
+   colorB=0.051269
+   colorA=1.0
+   position=0.75
+   colorR=0.191202
+   colorG=0.351533
+   colorB=0.06301
+   colorA=1.0
+   position=1.0
+   colorR=0.38643
+   colorG=0.473532
+   colorB=0.090842
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Leaf 2
  VALTORGB=ColorRamp
