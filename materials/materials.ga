@@ -981,6 +981,35 @@ NAME=Dota Metal
    colorA=1.0
    fac=0.5
 
+NAME=Dota Metal bolt
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.000304
+   colorB=0.000911
+   colorA=1.0
+   position=0.25
+   colorR=0.031896
+   colorG=0.045186
+   colorB=0.040915
+   colorA=1.0
+   position=0.5
+   colorR=0.082283
+   colorG=0.130137
+   colorB=0.107023
+   colorA=1.0
+   position=0.75
+   colorR=0.238398
+   colorG=0.346704
+   colorB=0.296138
+   colorA=1.0
+   position=1.0
+   colorR=0.814847
+   colorG=0.887923
+   colorB=0.879623
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Metal red
  VALTORGB=ColorRamp
