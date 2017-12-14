@@ -981,7 +981,7 @@ NAME=Dota Metal
    colorA=1.0
    fac=0.5
 
-NAME=Dota Metal blue 2
+NAME=Dota Metal green 2
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
