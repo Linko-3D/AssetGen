@@ -1275,6 +1275,35 @@ NAME=Dota Rock crafted
    colorA=1.0
    fac=0.5
 
+NAME=Dota Ruby
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.000911
+   colorG=0.009721
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.028426
+   colorG=0.147027
+   colorB=0.0
+   colorA=1.0
+   position=0.5
+   colorR=0.028426
+   colorG=0.396755
+   colorB=0.0
+   colorA=1.0
+   position=0.75
+   colorR=0.038204
+   colorG=0.658375
+   colorB=0.0
+   colorA=1.0
+   position=1.0
+   colorR=0.012983
+   colorG=1.0
+   colorB=0.000304
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Shell
  VALTORGB=ColorRamp
