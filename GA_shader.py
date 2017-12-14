@@ -467,7 +467,7 @@ def DEF_pointinessShader_add(context,size,name ):
 
 def DEF_ambientocclusionShader_add(context,size,name ):
 
-    tex = MAT_texture_new(name+"_"+"ambient_occlusion",size, 'Raw')
+    tex = MAT_texture_new(name+"_"+"ambient_occlusion",size, 'sRGB')
 
     mat = bpy.data.materials.get(name+"_"+"AMBIENT OCCLUSION")
 
