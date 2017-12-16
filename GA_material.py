@@ -31,6 +31,7 @@ def DEF_remove_all():
     bpy.context.scene.layers[1] = True
     bpy.context.scene.layers[0] = False
 
+    bpy.ops.object.hide_view_clear()
     bpy.ops.object.select_all(action = 'SELECT')
     bpy.ops.object.delete(use_global=False)
 
