@@ -525,13 +525,13 @@ def register():
     )
     bpy.types.Scene.D_ao = bpy.props.FloatProperty(
         name = 'AO',
-        default = 1,
+        default = 0,
         min = 0,
         max = 1
     )
     bpy.types.Scene.D_shad = bpy.props.FloatProperty(
         name = 'Shadows',
-        default = 1,
+        default = 0,
         min = 0,
         max = 1
     )

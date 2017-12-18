@@ -217,13 +217,13 @@ class GA_Start(Operator):
                LOD0 = len(obj.data.polygons)
 
 
-        if LOD1 == 0:
+        #if LOD1 == 0:
             LOD1 = LOD0 * 0.5
             
-        if LOD2 == 0:
+        #if LOD2 == 0:
             LOD2 = LOD0 * 0.25
         
-        if LOD3 == 0:
+        #if LOD3 == 0:
             LOD3 = LOD0 * 0.125
 
         #If we want to generate the low poly
@@ -505,14 +505,10 @@ class GA_Start(Operator):
         #Normal map
         
         if myscene.T_normal == 1:
-            bpy.context.scene.cycles.samples = samples
-             
-            print("\n> Baking: normal map at", samples, "samples")
+            print("\n> Baking: normal map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'NORMAL']
             bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
-            
-            bpy.context.scene.cycles.samples = 1
             
         #Curvature map
         
@@ -526,14 +522,10 @@ class GA_Start(Operator):
         #Bent map
         if myscene.T_bent == 1:
             
-            bpy.context.scene.cycles.samples = samples
-            
-            print("\n> Baking: bent map at", samples, "samples")
+            print("\n> Baking: bent map")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'BENT']
             bpy.ops.object.bake(type="NORMAL", normal_space ='OBJECT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, normal_r = 'POS_X', normal_g = 'POS_Z', normal_b = 'NEG_Y', use_clear = True)
-            
-            bpy.context.scene.cycles.samples = 1
 
         #Ambient Occlusion map
 

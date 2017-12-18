@@ -146,7 +146,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_samples = bpy.props.IntProperty(
         name = 'Samples',
         description = "Quality of the ambient occlusion, normal map and bent map. Other textures use 1 sample",
-        default = 16,
+        default = 32,
         min = 0,
         max = 100000
     )
@@ -245,7 +245,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
         description = "Will blur the AO map and use the normal map to detect the borders that must stay untouched. You must increase the UV margin to avoid artifacts",
-        default = True
+        default = False
     )
     T_ao_colorsigma = bpy.props.FloatProperty(
         name = 'Color Sigma',
