@@ -415,9 +415,6 @@ class GA_Start(Operator):
             #Unfold UVs 
             ###########
             print("\n> Performing Smart UVs Project at", uv_angle, "degrees with", uv_margin, "of margin")
-            #bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-            #bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
-            #bpy.ops.object.modifier_apply(apply_as='DATA', modifier="EdgeSplit")
 
             bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
     
@@ -432,8 +429,6 @@ class GA_Start(Operator):
 
             bpy.ops.object.mode_set(mode = 'OBJECT')
             
-            #bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-            #bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
             
             HP_polycount = len(obj.data.polygons)
             print("\n> LOD0 generated with", HP_polycount, "tris")
@@ -465,6 +460,8 @@ class GA_Start(Operator):
         bpy.ops.object.select_all(action = 'DESELECT')
         bpy.ops.object.select_pattern(pattern="tmpLP")
         bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
+        
+        bpy.ops.object.modifier_add(type='ARMATURE')
         
         bpy.ops.object.modifier_add(type='EDGE_SPLIT')
         bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
