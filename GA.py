@@ -463,6 +463,9 @@ class GA_Start(Operator):
         
         bpy.ops.object.modifier_add(type='ARMATURE')
         
+        if bpy.data.objects.get("Armature") is not None:
+            bpy.context.object.modifiers["Armature"].object = bpy.data.objects["Armature"]
+        
         bpy.ops.object.modifier_add(type='EDGE_SPLIT')
         bpy.context.object.modifiers["EdgeSplit"].use_edge_angle = False
 
