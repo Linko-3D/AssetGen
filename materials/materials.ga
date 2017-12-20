@@ -1717,7 +1717,7 @@ NAME=Dota Teeth
    fac=0.5
 
 
-NAME=Dota Wood
+NAME=Dota Wood 1
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.0
@@ -1747,7 +1747,7 @@ NAME=Dota Wood
    fac=0.5
 
 
-NAME=Dota Wood crafted
+NAME=Dota Wood 2
  VALTORGB=ColorRamp
    position=0.0
    colorR=0.003347
@@ -1773,5 +1773,34 @@ NAME=Dota Wood crafted
    colorR=0.287441
    colorG=0.119538
    colorB=0.056129
+   colorA=1.0
+   fac=0.5
+
+NAME=Dota Wood 3
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.006995
+   colorG=0.004777
+   colorB=0.003677
+   colorA=1.0
+   position=0.25
+   colorR=0.135633
+   colorG=0.061246
+   colorB=0.026241
+   colorA=1.0
+   position=0.5
+   colorR=0.278894
+   colorG=0.124772
+   colorB=0.040915
+   colorA=1.0
+   position=0.75
+   colorR=0.341914
+   colorG=0.174648
+   colorB=0.057805
+   colorA=1.0
+   position=1.0
+   colorR=0.391573
+   colorG=0.238398
+   colorB=0.084376
    colorA=1.0
    fac=0.5
