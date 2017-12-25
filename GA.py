@@ -217,14 +217,6 @@ class GA_Start(Operator):
                LOD0 = len(obj.data.polygons)
 
 
-        #if LOD1 == 0:
-            LOD1 = LOD0 * 0.5
-            
-        #if LOD2 == 0:
-            LOD2 = LOD0 * 0.25
-        
-        #if LOD3 == 0:
-            LOD3 = LOD0 * 0.125
 
         #If we want to generate the low poly
         ###################################
