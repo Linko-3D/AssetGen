@@ -385,6 +385,35 @@ NAME=Dota Cloth red
    colorA=1.0
    fac=0.5
 
+NAME=Dota Cloth violet
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.001214
+   colorG=0.000911
+   colorB=0.001214
+   colorA=1.0
+   position=0.25
+   colorR=0.104617
+   colorG=0.030713
+   colorB=0.127438
+   colorA=1.0
+   position=0.5
+   colorR=0.226966
+   colorG=0.056129
+   colorB=0.242281
+   colorA=1.0
+   position=0.75
+   colorR=0.376262
+   colorG=0.111932
+   colorB=0.38643
+   colorA=1.0
+   position=1.0
+   colorR=0.502887
+   colorG=0.171441
+   colorB=0.508881
+   colorA=1.0
+   fac=0.5
+
 
 NAME=Dota Crystal
  VALTORGB=ColorRamp
