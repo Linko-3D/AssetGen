@@ -288,7 +288,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_gradient = bpy.props.BoolProperty(
         name = 'Gradient',
         description = "Bake a dark bottom and white top of your object. This method is often used in stylized games especially view from top",
-        default = False
+        default = True
     )
     T_opacity = bpy.props.BoolProperty(
         name = 'Opacity',
@@ -298,10 +298,10 @@ class GA_Property(bpy.types.PropertyGroup):
     T_emissive = bpy.props.BoolProperty(
         name = 'Emissive',
         description = "Emissive",
-        default = False
+        default = True
     )	
     T_curvature = bpy.props.BoolProperty(
-        name = 'Curvature',
+        name = 'Generate Curvature',
         description = "This effect will composite the normal map to generate a greyscale with convex shapes in white and concave in dark",
         update=def_curvature_Update,
         default = True

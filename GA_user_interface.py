@@ -130,8 +130,14 @@ class PANEL_GameAsset(Panel):
            box1_gaa = layout.box()
            bcol1_gaa = box1_gaa.column(align=True)
            bcol1_gaa.prop(myscene , 'T_mask') 
-           bcol1_gaa.prop(myscene , 'T_albedo') 
+           #bcol1_gaa.prop(myscene , 'T_albedo') 
            bcol1_gaa.prop(myscene , 'T_normal') 
+		   
+           bcol1_gaa.prop(myscene , 'T_curvature') 
+           box1_gab = bcol1_gaa.box()
+           bcol1_gab = box1_gab.column(align=True)
+           bcol1_gab.prop(myscene , 'T_curvature_pixelwidth')
+           bcol1_gab.prop(myscene , 'T_curvature_blur')		   
 
            bcol1_gaa.prop(myscene , 'T_ao')
            box12_gab = bcol1_gaa.box()
@@ -151,17 +157,13 @@ class PANEL_GameAsset(Panel):
 
 
            
-           bcol1_gaa.prop(myscene , 'T_curvature') 
-           box1_gab = bcol1_gaa.box()
-           bcol1_gab = box1_gab.column(align=True)
-           bcol1_gab.prop(myscene , 'T_curvature_pixelwidth')
-           bcol1_gab.prop(myscene , 'T_curvature_blur')
-           
-           bcol1_gaa.prop(myscene , 'T_pointiness') 
-           bcol1_gaa.prop(myscene , 'T_bent') 
+
+           bcol1_gaa.prop(myscene , 'T_bent')  
            bcol1_gaa.prop(myscene , 'T_gradient') 
+           bcol1_gaa.prop(myscene , 'T_emissive')		   
+           bcol1_gaa.prop(myscene , 'T_pointiness') 
            bcol1_gaa.prop(myscene , 'T_opacity')
-           bcol1_gaa.prop(myscene , 'T_emissive')
+
 
            # Curvature enabled
            if myscene.T_curvature== True:
