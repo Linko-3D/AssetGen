@@ -563,7 +563,16 @@ class GA_Start(Operator):
         else:
             DEF_image_save_Denoising ( name,0 )
             
+        
+        
+        #Emissive map
+        if myscene.T_emissive == 1:
             
+            print("\n> Baking: emissive map")
+
+            bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'EMISSIVE']
+            bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+        
             
         #remove every materials of the high poly
         print("> Removing every materials on the high poly")
