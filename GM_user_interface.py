@@ -720,11 +720,9 @@ class GM_generate_textures1(bpy.types.Operator):
         #rename file
         ################################
 
-        q_filepath = os.path.join(os.path.dirname( bpy.data.filepath  )
-, q_activeobj[:-4]+"albedo.tga")
+        q_filepath = os.path.join(os.path.dirname( bpy.data.filepath  ), q_activeobj[:-4]+"albedo.tga")
 
-        q_filepathnew = os.path.join(os.path.dirname( bpy.data.filepath  )
-, q_activeobj[:-4]+"albedo0001.tga")
+        q_filepathnew = os.path.join(os.path.dirname( bpy.data.filepath  ), q_activeobj[:-4]+"albedo0001.tga")
 
 
 
@@ -1254,14 +1252,14 @@ class GM_generate_textures(bpy.types.Operator):
             
 
 
-        c_Metalgama = scene.node_tree.nodes.new('CompositorNodeGamma')
-        c_Metalgama.location = (q_nodepos+700 ,-1200)  
-        c_Metalgama.inputs[1].default_value = 2.2 
+        #c_Metalgama = scene.node_tree.nodes.new('CompositorNodeGamma')
+        #c_Metalgama.location = (q_nodepos+700 ,-1200)  
+        #c_Metalgama.inputs[1].default_value = 2.2 
 
 
-        c_Roughnessegama = scene.node_tree.nodes.new('CompositorNodeGamma')
-        c_Roughnessegama.location = (q_nodepos+700 ,-1600)  
-        c_Roughnessegama.inputs[1].default_value = 2.2 
+        #c_Roughnessegama = scene.node_tree.nodes.new('CompositorNodeGamma')
+        #c_Roughnessegama.location = (q_nodepos+700 ,-1600)  
+        #c_Roughnessegama.inputs[1].default_value = 2.2 
 
         c_Roughnesseffinv = scene.node_tree.nodes.new('CompositorNodeInvert')
         c_Roughnesseffinv.location = (q_nodepos+300 ,-1600-200)  
@@ -1274,8 +1272,8 @@ class GM_generate_textures(bpy.types.Operator):
 
         links.new( c_Roughnesseffinv.outputs['Color'],
                                c_Roughnesseff.inputs[2])
-        links.new( c_Roughnesseff.outputs['Image'],
-                               c_Roughnessegama.inputs['Image'])
+        #links.new( c_Roughnesseff.outputs['Image'],
+        #                       c_Roughnessegama.inputs['Image'])
 
 
         links.new( c_img.outputs['Image'],
@@ -1391,8 +1389,8 @@ class GM_generate_textures(bpy.types.Operator):
                    scene.node_tree.nodes[c_mixArrayRoughness[0]].inputs[1])
 
 
-        links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
-                   c_Metalgama.inputs[0])
+        #links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
+        #           c_Metalgama.inputs[0])
 
         links.new( scene.node_tree.nodes[c_lastRoughness].outputs['Image'],
                    c_Roughnesseff.inputs[1])
@@ -1583,11 +1581,11 @@ class GM_generate_textures(bpy.types.Operator):
                  c_out1.inputs['Image'])
 
         if c_lastMetallic != "":
-           links.new( c_Metalgama.outputs['Image'],
+           links.new( scene.node_tree.nodes[c_lastMetallic].outputs['Image'],
                       c_out1.inputs[1])
 
         if c_lastRoughness != "":
-           links.new( c_Roughnessegama.outputs['Image'],
+           links.new( c_Roughnesseff.outputs['Image'],
                       c_out1.inputs[2])
 
 
