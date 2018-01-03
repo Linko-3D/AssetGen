@@ -63,14 +63,24 @@ class GA_Property(bpy.types.PropertyGroup):
     #GAME ASSET
     ############
 
-    D_texture = bpy.props.EnumProperty(
+    D_textureX = bpy.props.EnumProperty(
         items=[('256', '256', '256  resolution'),
                ('512', '512', '512 resolution'),
                ('1K', '1K', '1k resolution'),
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
-        description="Choose texture resolution",
+        description="Choose texture resolution X",
+        default='1K'
+    )
+    D_textureY = bpy.props.EnumProperty(
+        items=[('256', '256', '256  resolution'),
+               ('512', '512', '512 resolution'),
+               ('1K', '1K', '1k resolution'),
+               ('2K', '2K', '2k resolution'),
+               ('4K', '4K', '3k resolution')],
+        #update=def_Texture_Update,
+        description="Choose texture resolution Y",
         default='1K'
     )
 

@@ -72,22 +72,39 @@ class GA_Start(Operator):
         LOD3 = myscene.D_LOD3
         name = myscene.D_name
 
-        size = 1024, 1024
+        size = [1024, 1024]
 
-        if myscene.D_texture == '256':
-           size = 256, 256
+        if myscene.D_textureX == '256':
+           size[0] = 256
 
-        if myscene.D_texture == '512':
-           size = 512, 512
+        if myscene.D_textureX == '512':
+           size[0] = 512
 
-        if myscene.D_texture == '1K':
-           size = 1024, 1024
+        if myscene.D_textureX == '1K':
+           size[0] = 1024
 
-        if myscene.D_texture == '2K':
-           size = 2048, 2048
+        if myscene.D_textureX == '2K':
+           size[0] = 2048
 
-        if myscene.D_texture == '4K':
-           size = 4096, 4096
+        if myscene.D_textureX == '4K':
+           size[0] = 4096
+		   
+        if myscene.D_textureY == '256':
+           size[1] = 256
+
+        if myscene.D_textureY == '512':
+           size[1] = 512
+
+        if myscene.D_textureY == '1K':
+           size[1] = 1024
+
+        if myscene.D_textureY == '2K':
+           size[1] = 2048
+
+        if myscene.D_textureY == '4K':
+           size[1] = 4096	
+
+		   
         
         greyscale = 0   #Will apply a diffuse grey 0.735 on the high poly (and remove every other material
 

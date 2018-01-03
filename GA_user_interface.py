@@ -58,9 +58,14 @@ class PANEL_GameAsset(Panel):
 
 
         #Texture Resolutions
-        col_ga.label(text="Standard Texture Resolutions", icon='TEXTURE_DATA')
+        col_ga.label(text="Resolution X (Width)", icon='TEXTURE_DATA')
         row = col_ga.row()
-        row.prop(myscene , 'D_texture', expand=True)
+        row.prop(myscene , 'D_textureX', expand=True)
+        col_ga.row().separator()
+		
+        col_ga.label(text="Resolution Y (Height)", icon='TEXTURE_DATA')
+        row = col_ga.row()
+        row.prop(myscene , 'D_textureY', expand=True)
         col_ga.row().separator()
         col_ga.row().separator()
 
