@@ -298,6 +298,36 @@ NAME=Dota Ceramic
    fac=0.5
 
 
+NAME=Dota Ceramic pink
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.0
+   colorG=0.0
+   colorB=0.0
+   colorA=1.0
+   position=0.25
+   colorR=0.082283
+   colorG=0.045186
+   colorB=0.046665
+   colorA=1.0
+   position=0.5
+   colorR=0.168269
+   colorG=0.093059
+   colorB=0.097587
+   colorA=1.0
+   position=0.75
+   colorR=0.205079
+   colorG=0.119538
+   colorB=0.127438
+   colorA=1.0
+   position=1.0
+   colorR=0.250158
+   colorG=0.152926
+   colorB=0.158961
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Claw
  VALTORGB=ColorRamp
    position=0.0
