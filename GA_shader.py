@@ -3,6 +3,36 @@ from math import *
 from .GA_material import MAT_texture_new
 
 
+# - EMISSIVE- ///////////////////////
+
+def DEF_emissiveShader_add(context,size,name ):
+
+    bpy.context.scene.render.engine = 'CYCLES'
+
+    tex = MAT_texture_new(name+"_"+"emissive",size, 'Raw')
+
+    mat = bpy.data.materials.get(name+"_"+"EMISSIVE")
+
+    if  mat is None:
+       mat = bpy.data.materials.new(name+"_"+"EMISSIVE")
+     
+       # Enable 'Use nodes':
+       mat.use_nodes = True
+       nt = mat.node_tree
+       nodes = nt.nodes
+       links = nt.links
+       
+       d_image   = nodes.new("ShaderNodeTexImage")
+       
+       d_image.location = (150,600)
+       
+       d_image.image = tex
+
+    bpy.context.scene.render.engine = 'BLENDER_RENDER'
+
+
+    return True
+
 # - SURFACE NOISE- ///////////////////////
 
 def DEF_surface_add(context):
@@ -276,10 +306,6 @@ def DEF_surface_add(context):
 
 
         return True
-
-
-
-
 
 
 # - GRADIENT- ///////////////////////

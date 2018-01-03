@@ -161,6 +161,7 @@ class PANEL_GameAsset(Panel):
            bcol1_gaa.prop(myscene , 'T_bent') 
            bcol1_gaa.prop(myscene , 'T_gradient') 
            bcol1_gaa.prop(myscene , 'T_opacity')
+           bcol1_gaa.prop(myscene , 'T_emissive')
 
            # Curvature enabled
            if myscene.T_curvature== True:

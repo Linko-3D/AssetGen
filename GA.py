@@ -12,6 +12,7 @@ from .GA_shader import DEF_opacityShader_add
 from .GA_shader import DEF_gradientShader_add
 from .GA_shader import DEF_metallicShader_add
 from .GA_shader import DEF_roughnessShader_add
+from .GA_shader import DEF_emissiveShader_add
 
             
 from .GA_material import DEF_image_save_Curvature          
@@ -152,6 +153,7 @@ class GA_Start(Operator):
         DEF_gradientShader_add(context,size,name)
         DEF_metallicShader_add(context,size,name)
         DEF_roughnessShader_add(context,size,name)
+        DEF_emissiveShader_add(context,size,name)
 
 
 

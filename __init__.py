@@ -295,6 +295,11 @@ class GA_Property(bpy.types.PropertyGroup):
         description = "Bake in white non opaque part and black parts that needs to be transparent. Most game engines can read the opacity directly on the Albedo",
         default = False
     )
+    T_emissive = bpy.props.BoolProperty(
+        name = 'Emissive',
+        description = "Emissive",
+        default = False
+    )	
     T_curvature = bpy.props.BoolProperty(
         name = 'Curvature',
         description = "This effect will composite the normal map to generate a greyscale with convex shapes in white and concave in dark",
