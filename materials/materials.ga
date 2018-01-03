@@ -1746,6 +1746,36 @@ NAME=Dota Strap red
    fac=0.5
 
 
+NAME=Dota Strap red 2
+ VALTORGB=ColorRamp
+   position=0.0
+   colorR=0.038204
+   colorG=0.002125
+   colorB=0.000607
+   colorA=1.0
+   position=0.25
+   colorR=0.097322
+   colorG=0.003343
+   colorB=0.000835
+   colorA=1.0
+   position=0.5
+   colorR=0.15644
+   colorG=0.00456
+   colorB=0.001063
+   colorA=1.0
+   position=0.75
+   colorR=0.215559
+   colorG=0.005778
+   colorB=0.00129
+   colorA=1.0
+   position=1.0
+   colorR=0.274677
+   colorG=0.006995
+   colorB=0.001518
+   colorA=1.0
+   fac=0.5
+
+
 NAME=Dota Teeth
  VALTORGB=ColorRamp
    position=0.0
