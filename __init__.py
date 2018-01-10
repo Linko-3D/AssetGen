@@ -205,7 +205,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
         description = "Will try to remove every intersections of separated meshes. Can bug with smalls meshes or not intersecting enough",
-        default = True
+        default = False
     )
     D_groundAO = bpy.props.BoolProperty(
         name = 'Ground AO',
