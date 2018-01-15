@@ -823,14 +823,24 @@ def DEF_pbrShader_add(context,size,name ):
         d_imagem.image = I_metallic 
         d_imagem.color_space = 'NONE'
 
-        links.new( d_1.inputs[4], d_imagem.outputs['Color'])
+        c_Metalgama = nodes.new('ShaderNodeGamma')
+        c_Metalgama.location = (150 ,900)  
+        c_Metalgama.inputs[1].default_value = 2.2 		
+
+        links.new( d_1.inputs[4], c_Metalgama.outputs['Color'])
+        links.new( c_Metalgama.inputs['Color'], d_imagem.outputs['Color'])
 
         d_imager   = nodes.new("ShaderNodeTexImage")
         d_imager.location = (0,600)
         d_imager.image = I_roughness 
         d_imager.color_space = 'NONE'
 		
-        links.new( d_1.inputs[7], d_imager.outputs['Color'])
+        c_Roughnessegama = nodes.new('ShaderNodeGamma')
+        c_Roughnessegama.location = (150 ,600)  
+        c_Roughnessegama.inputs[1].default_value = 2.2 	
+	
+        links.new( d_1.inputs[7], c_Roughnessegama.outputs['Color'])
+        links.new( c_Roughnessegama.inputs['Color'], d_imager.outputs['Color'])
 
 
 
