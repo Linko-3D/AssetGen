@@ -496,7 +496,7 @@ class GA_Start(Operator):
         #Mask map
         
         if myscene.T_mask == 1:
-            print("\n> Baking: mask map")
+            print("\n> Baking: mask map at 1 sample")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'MASK']
             bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
@@ -516,10 +516,15 @@ class GA_Start(Operator):
         #Normal map
         
         if myscene.T_normal == 1:
-            print("\n> Baking: normal map")
+            
+            bpy.context.scene.cycles.samples = 16
+            
+            print("\n> Baking: normal map at 16 samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'NORMAL']
             bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+            
+            bpy.context.scene.cycles.samples = 1
             
         #Curvature map
         
@@ -533,10 +538,14 @@ class GA_Start(Operator):
         #Bent map
         if myscene.T_bent == 1:
             
-            print("\n> Baking: bent map")
+            bpy.context.scene.cycles.samples = 16
+            
+            print("\n> Baking: bent map at 16 samples")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'BENT']
             bpy.ops.object.bake(type="NORMAL", normal_space ='OBJECT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, normal_r = 'POS_X', normal_g = 'POS_Z', normal_b = 'NEG_Y', use_clear = True)
+
+            bpy.context.scene.cycles.samples = 1
 
         #Ambient Occlusion map
 
@@ -568,7 +577,7 @@ class GA_Start(Operator):
         #Emissive map
         if myscene.T_emissive == 1:
             
-            print("\n> Baking: emissive map")
+            print("\n> Baking: emissive map at 1 sample")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'EMISSIVE']
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
@@ -593,7 +602,7 @@ class GA_Start(Operator):
         #Pointiness map
 
         if myscene.T_pointiness == 1:
-            print("\n> Baking: pointiness map")
+            print("\n> Baking: pointiness map at 1 sample")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'POINTINESS']        
@@ -603,7 +612,7 @@ class GA_Start(Operator):
 
         #Gradient map
         if myscene.T_gradient == 1:
-            print("\n> Baking: gradient map")
+            print("\n> Baking: gradient map at 1 sample")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'GRADIENT']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'GRADIENT']
@@ -612,7 +621,7 @@ class GA_Start(Operator):
 
         #Opacity map
         if myscene.T_opacity == 1:
-            print("\n> Baking: opacity map")
+            print("\n> Baking: opacity map at 1 sample")
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'OPACITY']
             bpy.data.objects['tmpHP'].active_material = bpy.data.materials[name+"_"+'OPACITY']
