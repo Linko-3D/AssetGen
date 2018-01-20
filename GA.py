@@ -31,7 +31,7 @@ class GA_Start(Operator):
     """Will generate your game asset, high poly must be in layer0. Layer1 will be deleted (excepted hidden meshes, to allow you to cast AO from them). Open the terminal to follow the progress"""
 
     bl_idname = "scene.ga_start"
-    bl_label = "Generate Asset"
+    bl_label = "Generate Asset (layer0)"
     bl_options = {'REGISTER', 'UNDO'}
 
     def invoke(self,context, event):
