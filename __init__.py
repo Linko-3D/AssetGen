@@ -149,7 +149,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_uv_angle = bpy.props.FloatProperty(
         name = 'UV angle',
         description = "Define at which angle from the world space a seam must be added. Lower value = more chunks and less perfs, higher = potential overlapping and lose in Texel density.",
-        default = 66,
+        default = 45,
         min = 0,
         max = 89
     )
@@ -205,7 +205,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
         description = "Will try to remove every intersections of separated meshes. Can bug with smalls meshes or not intersecting enough",
-        default = False
+        default = True
     )
     D_groundAO = bpy.props.BoolProperty(
         name = 'Ground AO',
