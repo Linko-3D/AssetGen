@@ -298,7 +298,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_emissive = bpy.props.BoolProperty(
         name = 'Emissive',
         description = "Emissive",
-        default = True
+        default = False
     )	
     T_curvature = bpy.props.BoolProperty(
         name = 'Generate Curvature',
