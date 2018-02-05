@@ -583,7 +583,7 @@ class NtoC(bpy.types.Operator):
        # add image CURVATURE shadow
        #################################
        c_imgCURVshadow = scene.node_tree.nodes.new('CompositorNodeValue')
-       c_imgCURVshadow.location = (-300 ,-500)
+       c_imgCURVshadow.location = (-300 ,-400)
        c_imgCURVshadow.name = "Shadows"
        c_imgCURVshadow.label = "Shadows"
 
