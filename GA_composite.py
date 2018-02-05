@@ -177,15 +177,18 @@ def DEF_NormalToCurvature(context,size,name ):
 def GM_create_curvature_group(q_name,T_ntocrel):
 
 
-
-
    test_group = bpy.data.node_groups.new(q_name, 'CompositorNodeTree')
 
    # create group inputs
    group_inputs = test_group.nodes.new('NodeGroupInput')
    group_inputs.location = (-350,0)
    test_group.inputs.new('NodeSocketColor','Image')
-   test_group.inputs.new('NodeSocketFloat','Value')
+   #test_group.inputs.new('NodeSocketFloat','Value')
+   test_group.inputs.new('NodeSocketFloat','Pixel width')
+   test_group.inputs.new('NodeSocketFloat','Shadows')
+   test_group.inputs[1].default_value = 1
+   test_group.inputs[2].default_value = 1
+
 
    # create group outputs
    group_outputs = test_group.nodes.new('NodeGroupOutput')
@@ -194,23 +197,13 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
 
-   a1 = test_group.nodes.new('CompositorNodeMath')
-   a1.operation = 'DIVIDE'
-   a1.inputs[0].default_value = 1
-   a1.inputs[1].default_value = 2.2
-
-
-   a2 = test_group.nodes.new('CompositorNodeGamma')
-   a2.location = (300 ,200)
-
-   test_group.links.new( a1.outputs['Value'],a2.inputs['Gamma'])
-
-   test_group.links.new( group_inputs.outputs['Image'],a2.inputs['Image'])
-
    a3 = test_group.nodes.new('CompositorNodeSepRGBA')
    a3.location = (500 ,200)
+   a3.name = "a3"
+   a3.label = "a3"
 
-   test_group.links.new( a2.outputs['Image'],a3.inputs['Image'])
+
+   test_group.links.new( group_inputs.outputs['Image'],a3.inputs['Image'])
 
 
    t1 = test_group.nodes.new('CompositorNodeTranslate')
@@ -225,15 +218,37 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    t4 = test_group.nodes.new('CompositorNodeTranslate')
    t4.location = (800 ,-100)
 
+   #t5 = test_group.nodes.new('CompositorNodeTranslate')
+   #t5.location = (800 ,-300)
+
+   #t6 = test_group.nodes.new('CompositorNodeTranslate')
+   #t6.location = (800 ,-500)
+
+
+
 
    test_group.links.new( a3.outputs['R'],t1.inputs['Image'])
    test_group.links.new( a3.outputs['R'],t2.inputs['Image'])
    test_group.links.new( a3.outputs['G'],t3.inputs['Image'])
    test_group.links.new( a3.outputs['G'],t4.inputs['Image'])
 
+   #test_group.links.new( a3.outputs['G'],t5.inputs['Image'])
+
+
+   a02 = test_group.nodes.new('CompositorNodeMixRGB')
+   a02.name = "a02"
+   a02.label = "a02"
+   a02.location = (1300 ,200)
+   a02.blend_type = 'MIX'
+
+
+
+
 
    a4 = test_group.nodes.new('CompositorNodeMixRGB')
    a4.location = (1100 ,500)
+   a4.name = "a4"
+   a4.label = "a4"
    a4.blend_type = 'SUBTRACT'
 
 
@@ -243,6 +258,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
    a5 = test_group.nodes.new('CompositorNodeMath')
    a5.location = (1400 ,500)
+   a5.name = "a5"
+   a5.label = "a5"
    a5.operation = 'ADD'
    a5.inputs[0].default_value = 1
    a5.inputs[1].default_value = 0.5
@@ -251,52 +268,72 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
    a6 = test_group.nodes.new('CompositorNodeMixRGB')
+   a6.name = "a6"
+   a6.label = "a6"
    a6.location = (1100 ,200)
    a6.blend_type = 'SUBTRACT'
 
-   test_group.links.new( t3.outputs['Image'],a6.inputs[1])
-   test_group.links.new( t4.outputs['Image'],a6.inputs[2])
+   test_group.links.new( t3.outputs['Image'],a6.inputs[2])
+   test_group.links.new( t4.outputs['Image'],a6.inputs[1])
 
    a7 = test_group.nodes.new('CompositorNodeMath')
-   a7.location = (1400 ,200)
+   a7.location = (1500 ,200)
+   a7.name = "a7"
+   a7.label = "a7"
    a7.operation = 'ADD'
    a7.inputs[0].default_value = 1
    a7.inputs[1].default_value = 0.5
 
-   test_group.links.new( a6.outputs['Image'],a7.inputs[0])
+   test_group.links.new( a6.outputs['Image'],a02.inputs[2])
+   test_group.links.new( a02.outputs['Image'],a7.inputs[0])
 
 
-   a8 = test_group.nodes.new('CompositorNodeInvert')
-   a8.location = (1600 ,200)
 
-   test_group.links.new( a7.outputs['Value'],a8.inputs['Color'])
+   #a8 = test_group.nodes.new('CompositorNodeInvert')
+   #a8.location = (1600 ,200)
+
+   
 
 
    a9 = test_group.nodes.new('CompositorNodeMixRGB')
    a9.location = (1900 ,300)
+   a9.name = "a9"
+   a9.label = "a9"
    a9.blend_type = 'OVERLAY'
 
 
    test_group.links.new( a5.outputs['Value'],a9.inputs[1])
-   test_group.links.new( a8.outputs['Color'],a9.inputs[2])
-
+   test_group.links.new( a7.outputs['Value'],a9.inputs[2])
 
    a10 = test_group.nodes.new('CompositorNodeGamma')
-   a10.location = (2200 ,300)
+   a10.location = (2600 ,300)
+   a10.name = "a10"
+   a10.label = "a10"
    a10.inputs[1].default_value = 2.2
-
-   test_group.links.new( a9.outputs['Image'],a10.inputs['Image'])
 
 
    a11 = test_group.nodes.new('CompositorNodeBlur')
-   a11.location = (2500 ,300)
+   a11.location = (2200 ,300)
+   a11.name = "a11"
+   a11.label = "a11"
    a11.use_relative = True
-   a11.factor_x = 0.5
-   a11.factor_y = 0.5
+   a11.factor_x = T_ntocrel
+   a11.factor_y = T_ntocrel
+
+   a12 = test_group.nodes.new('CompositorNodeMixRGB')
+   a12.location = (2400 ,300)
+   a12.name = "a12"
+   a12.label = "a12"
+   a12.blend_type = 'MULTIPLY'
 
 
-   test_group.links.new( a10.outputs['Image'],a11.inputs['Image'])
-   test_group.links.new( a11.outputs['Image'],group_outputs.inputs['Image'])
+
+   test_group.links.new( a9.outputs['Image'],a11.inputs['Image'])
+   test_group.links.new( a11.outputs['Image'],a12.inputs[1])
+   test_group.links.new( a12.outputs['Image'],a10.inputs['Image'])
+   test_group.links.new( a10.outputs['Image'],group_outputs.inputs['Image'])
+   test_group.links.new( a3.outputs['B'],a12.inputs[2])
+
 
 
 
@@ -313,9 +350,16 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    b2.inputs[0].default_value = 1
    b2.inputs[1].default_value = -1.0
 
+   test_group.links.new( group_inputs.outputs['Pixel width'],b1.inputs[0])
+   test_group.links.new( group_inputs.outputs['Shadows'],a12.inputs["Fac"])
+
    test_group.links.new( b1.outputs['Value'],b2.inputs[0])
 
    test_group.links.new( b2.outputs['Value'],t1.inputs['X'])
    test_group.links.new( b2.outputs['Value'],t4.inputs['Y'])
    test_group.links.new( b1.outputs['Value'],t2.inputs['X'])
    test_group.links.new( b1.outputs['Value'],t3.inputs['Y'])
+
+   #test_group.links.new( b2.outputs['Value'],t6.inputs['Y'])
+   #test_group.links.new( b1.outputs['Value'],t5.inputs['Y'])
+
