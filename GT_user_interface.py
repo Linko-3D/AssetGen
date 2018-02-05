@@ -996,37 +996,29 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
    # create group outputs
    group_outputs = test_group.nodes.new('NodeGroupOutput')
-   group_outputs.location = (3000,0)
+   group_outputs.location = (2600,0)
    test_group.outputs.new('NodeSocketColor','Image')
 
 
 
    a3 = test_group.nodes.new('CompositorNodeSepRGBA')
-   a3.location = (500 ,200)
-   a3.name = "a3"
-   a3.label = "a3"
+   a3.location = (500 ,0)
 
 
    test_group.links.new( group_inputs.outputs['Image'],a3.inputs['Image'])
 
 
    t1 = test_group.nodes.new('CompositorNodeTranslate')
-   t1.location = (800 ,500)
+   t1.location = (800 ,300)
 
    t2 = test_group.nodes.new('CompositorNodeTranslate')
-   t2.location = (800 ,300)
+   t2.location = (800 ,100)
 
    t3 = test_group.nodes.new('CompositorNodeTranslate')
-   t3.location = (800 ,100)
+   t3.location = (800 ,-300)
 
    t4 = test_group.nodes.new('CompositorNodeTranslate')
    t4.location = (800 ,-100)
-
-   #t5 = test_group.nodes.new('CompositorNodeTranslate')
-   #t5.location = (800 ,-300)
-
-   #t6 = test_group.nodes.new('CompositorNodeTranslate')
-   #t6.location = (800 ,-500)
 
 
 
@@ -1038,19 +1030,8 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
    #test_group.links.new( a3.outputs['G'],t5.inputs['Image'])
 
-
-   a02 = test_group.nodes.new('CompositorNodeMixRGB')
-   a02.name = "a02"
-   a02.label = "a02"
-   a02.location = (1300 ,200)
-   a02.blend_type = 'MIX'
-
-
-
-
-
    a4 = test_group.nodes.new('CompositorNodeMixRGB')
-   a4.location = (1100 ,500)
+   a4.location = (1100 ,300)
    a4.name = "a4"
    a4.label = "a4"
    a4.blend_type = 'SUBTRACT'
@@ -1061,7 +1042,7 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
    a5 = test_group.nodes.new('CompositorNodeMath')
-   a5.location = (1400 ,500)
+   a5.location = (1400 ,300)
    a5.name = "a5"
    a5.label = "a5"
    a5.operation = 'ADD'
@@ -1074,22 +1055,21 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    a6 = test_group.nodes.new('CompositorNodeMixRGB')
    a6.name = "a6"
    a6.label = "a6"
-   a6.location = (1100 ,200)
+   a6.location = (1100 ,-300)
    a6.blend_type = 'SUBTRACT'
 
    test_group.links.new( t3.outputs['Image'],a6.inputs[2])
    test_group.links.new( t4.outputs['Image'],a6.inputs[1])
 
    a7 = test_group.nodes.new('CompositorNodeMath')
-   a7.location = (1500 ,200)
+   a7.location = (1400 ,-300)
    a7.name = "a7"
    a7.label = "a7"
    a7.operation = 'ADD'
    a7.inputs[0].default_value = 1
    a7.inputs[1].default_value = 0.5
 
-   test_group.links.new( a6.outputs['Image'],a02.inputs[2])
-   test_group.links.new( a02.outputs['Image'],a7.inputs[0])
+   test_group.links.new( a6.outputs['Image'],a7.inputs[0])
 
 
 
@@ -1100,7 +1080,7 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
    a9 = test_group.nodes.new('CompositorNodeMixRGB')
-   a9.location = (1900 ,300)
+   a9.location = (1700 ,0)
    a9.name = "a9"
    a9.label = "a9"
    a9.blend_type = 'OVERLAY'
@@ -1110,14 +1090,14 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    test_group.links.new( a7.outputs['Value'],a9.inputs[2])
 
    a10 = test_group.nodes.new('CompositorNodeGamma')
-   a10.location = (2600 ,300)
+   a10.location = (2300 ,0)
    a10.name = "a10"
    a10.label = "a10"
    a10.inputs[1].default_value = 2.2
 
 
    a11 = test_group.nodes.new('CompositorNodeBlur')
-   a11.location = (2200 ,300)
+   a11.location = (2000 ,0)
    a11.name = "a11"
    a11.label = "a11"
    a11.use_relative = True
@@ -1125,7 +1105,7 @@ def GM_create_curvature_group(q_name,T_ntocrel):
    a11.factor_y = T_ntocrel
 
    a12 = test_group.nodes.new('CompositorNodeMixRGB')
-   a12.location = (2400 ,300)
+   a12.location = (2300 ,0)
    a12.name = "a12"
    a12.label = "a12"
    a12.blend_type = 'MULTIPLY'
@@ -1142,14 +1122,14 @@ def GM_create_curvature_group(q_name,T_ntocrel):
 
 
    b1 = test_group.nodes.new('CompositorNodeMath')
-   b1.location = (0 ,500)
+   b1.location = (0 ,300)
    b1.operation = 'DIVIDE' 
    b1.inputs[0].default_value = 1
    b1.inputs[1].default_value = 2.0
 
 
    b2 = test_group.nodes.new('CompositorNodeMath')
-   b2.location = (300 ,500)
+   b2.location = (300 ,300)
    b2.operation = 'MULTIPLY'
    b2.inputs[0].default_value = 1
    b2.inputs[1].default_value = -1.0

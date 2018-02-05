@@ -42,13 +42,13 @@ class PANEL_GameMaterial(Panel):
            q_material_name = "Custom gradient"
 
 
-        # Greyscale options 
+        # Grayscale options 
         ######################################
 
         col = layout.column(align=True)
         box_GS = col.box()
         rowGS = box_GS.row()
-        rowGS.label(text="Greyscale options:")
+        rowGS.label(text="Grayscale options:")
         subrowGS = rowGS.column(align=True)
         subrowGS.prop(scene, 'D_curv')
         subrowGS.prop(scene, 'D_ao')
