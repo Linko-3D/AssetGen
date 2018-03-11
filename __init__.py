@@ -278,7 +278,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_pointiness = bpy.props.BoolProperty(
         name = 'Pointiness',
         description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
-        default = False
+        default = True
     )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
@@ -304,7 +304,7 @@ class GA_Property(bpy.types.PropertyGroup):
         name = 'Generate Curvature',
         description = "This effect will composite the normal map to generate a greyscale with convex shapes in white and concave in dark",
         update=def_curvature_Update,
-        default = True
+        default = False
     )
 
 

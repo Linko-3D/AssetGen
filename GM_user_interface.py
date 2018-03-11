@@ -953,9 +953,9 @@ class GM_generate_textures(bpy.types.Operator):
         # add image curvature
         ##############################
         c_img = scene.node_tree.nodes.new('CompositorNodeImage')
-        c_img.image = bpy.data.images.get(q_activeobj[:-4]+"curvature")
+        c_img.image = bpy.data.images.get(q_activeobj[:-4]+"pointiness")
         c_img.location = (q_nodepos-1000 ,-200)  
-        c_img.label = "Curvature"
+        c_img.label = "Pointiness"
 
 
         # add image AO
