@@ -134,7 +134,7 @@ class GA_Start(Operator):
         
         T_enabled = 0
 
-        GPU_baking = 1
+
         
         lightmap_UVs = 0
 
@@ -184,12 +184,6 @@ class GA_Start(Operator):
             print("LOD2", LOD2, "tris max")
             print("LOD3", LOD3, "tris max")
             print("Texture res:", size[0], "px: UV margin at", uv_margin, "and edge padding at", edge_padding,"px\n")
-
-
-        if GPU_baking == 0:
-           bpy.context.scene.cycles.device = 'CPU'
-        if GPU_baking == 1:
-           bpy.context.scene.cycles.device = 'GPU'
 
 
 
@@ -496,7 +490,8 @@ class GA_Start(Operator):
         #Mask map
         
         if myscene.T_mask == 1:
-            print("\n> Baking: mask map at 1 sample")
+            print("\n> Baking: mask map ")
+            bpy.context.scene.cycles.samples = samples
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'MASK']
             bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
