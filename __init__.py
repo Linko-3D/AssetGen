@@ -205,7 +205,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_create_envelop = bpy.props.BoolProperty(
         name = 'Create envelop',
         description = "Will try to remove every intersections of separated meshes. Can bug with smalls meshes or not intersecting enough",
-        default = True
+        default = False
     )
     D_groundAO = bpy.props.BoolProperty(
         name = 'Ground AO',
@@ -278,12 +278,12 @@ class GA_Property(bpy.types.PropertyGroup):
     T_pointiness = bpy.props.BoolProperty(
         name = 'Pointiness',
         description = "Generates a vertex based curvature map (quality depends on the polycount of the high poly)",
-        default = True
+        default = False
     )
     T_bent = bpy.props.BoolProperty(
         name = 'Bent',
         description = "Bake the orientation of the faces from the world space. It is used to create effects (dust, snow, etc) and fake top lighting in non-PBR games",
-        default = True
+        default = False
     )
     T_gradient = bpy.props.BoolProperty(
         name = 'Gradient',

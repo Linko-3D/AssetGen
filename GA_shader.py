@@ -713,9 +713,10 @@ def DEF_pbrShader_add(context,size,name ):
 
         I_albedo = bpy.data.images.get(name+"_"+"albedo")
 
-
-        A_tex = bpy.data.textures.new(name+"_"+"Albedo", 'IMAGE')
-        A_tex.image = I_albedo
+        I_Mask = bpy.data.images.get(name+"_"+"mask")
+        
+        A_tex = bpy.data.textures.new(name+"_"+"Mask", 'IMAGE')
+        A_tex.image = I_Mask 
 
 
         slot = mat.texture_slots.add()
@@ -771,26 +772,7 @@ def DEF_pbrShader_add(context,size,name ):
 
         slot.blend_type = 'MIX'
 
-        #Blank slot
-        ############
 
-        slot = mat.texture_slots.add()
-
-        #Add Mask
-        ############
-
-        I_Mask = bpy.data.images.get(name+"_"+"mask")
-
-        A_tex = bpy.data.textures.new(name+"_"+"Mask", 'IMAGE')
-        A_tex.image = I_Mask 
-
-        slot = mat.texture_slots.add()
-        slot.texture = A_tex
-        slot.use_map_color_diffuse = True
-
-        slot.blend_type = 'MIX'
-        
-        mat.use_textures[4] = False
 
 
         # CYCLES
