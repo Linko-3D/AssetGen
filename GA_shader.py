@@ -721,7 +721,8 @@ def DEF_pbrShader_add(context,size,name ):
 
         slot = mat.texture_slots.add()
         slot.texture = A_tex
-        slot.use_map_alpha = True    
+        slot.use_map_alpha = True
+        slot.use_map_color_spec = True
     
         slot.blend_type = 'MIX'
 

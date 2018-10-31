@@ -71,7 +71,7 @@ class GA_Property(bpy.types.PropertyGroup):
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
         description="Choose texture resolution X",
-        default='1K'
+        default='512'
     )
     D_textureY = bpy.props.EnumProperty(
         items=[('256', '256', '256  resolution'),
@@ -81,7 +81,7 @@ class GA_Property(bpy.types.PropertyGroup):
                ('4K', '4K', '3k resolution')],
         #update=def_Texture_Update,
         description="Choose texture resolution Y",
-        default='1K'
+        default='512'
     )
 
     D_selected_to_active= bpy.props.BoolProperty(
@@ -156,7 +156,7 @@ class GA_Property(bpy.types.PropertyGroup):
     D_samples = bpy.props.IntProperty(
         name = 'Samples',
         description = "Quality of the ambient occlusion, normal map and bent map. Other textures use 1 sample",
-        default = 32,
+        default = 16,
         min = 0,
         max = 100000
     )
