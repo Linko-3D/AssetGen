@@ -726,35 +726,6 @@ def DEF_pbrShader_add(context,size,name ):
         slot.blend_type = 'MIX'
 
 
-        #Add Curvature
-        ############
-
-        I_Curvature = bpy.data.images.get(name+"_"+"pointiness")
-
-
-        A_tex = bpy.data.textures.new(name+"_"+"Curvature", 'IMAGE')
-        A_tex.image = I_Curvature
-
-
-        #Add Ambient Occlusion
-        ############
-
-        I_ao = bpy.data.images.get(name+"_"+"ambient_occlusion")
-
-
-        A_tex = bpy.data.textures.new(name+"_"+"Ambient_Occlusion", 'IMAGE')
-        A_tex.image = I_ao
-
-
-        slot = mat.texture_slots.add()
-        slot.texture = A_tex
-        slot.use_map_specular = True
-        slot.use_map_color_spec = True
-        slot.use_map_hardness = True
-    
-        slot.blend_type = 'MULTIPLY'
-
-
         #Add Normal
         ############
 

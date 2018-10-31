@@ -490,7 +490,9 @@ class GA_Start(Operator):
         #Mask map
         
         if myscene.T_mask == 1:
-            print("\n> Baking: mask map ")
+    
+            print("\n> Baking: diffuse map at", samples, "samples")
+            
             bpy.context.scene.cycles.samples = samples
 
             bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+'MASK']

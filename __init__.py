@@ -250,7 +250,7 @@ class GA_Property(bpy.types.PropertyGroup):
     T_ao = bpy.props.BoolProperty(
         name = 'Ambient Occlusion',
         description = "Generates shadows on parts close to each others, works on any lighting conditions",
-        default = True
+        default = False
     )
     T_ao_denoising = bpy.props.BoolProperty(
         name = 'Activate denoising',
