@@ -1,6 +1,6 @@
 import  bpy, time, random
 
-from .GA_material import DEF_baseColor_add
+from .GA_material import DEF_material_add
 
 
 class GA_Start(bpy.types.Operator):
@@ -92,14 +92,7 @@ class GA_Start(bpy.types.Operator):
 		if convex_hull and split_convex == 1:
 			remove_inside = 1
 			
-			
-			
-			
-		#Create Material
-		######################################
-		DEF_baseColor_add(context,size,name)			
-			
-			
+
 
 		# EXECUTION
 
@@ -329,8 +322,8 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.select_pattern(pattern="tmpHP")
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpHP"]
 
-		if len(bpy.context.active_object.data.materials) == 0:
-			bpy.data.objects['tmpHP'].active_material = bpy.data.materials["Base Texture"]
+		#if len(bpy.context.active_object.data.materials) == 0:
+		#	bpy.data.objects['tmpHP'].active_material = bpy.data.materials["Base Texture"]
 
 		bpy.ops.object.select_pattern(pattern="tmpLP")
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
@@ -339,6 +332,9 @@ class GA_Start(bpy.types.Operator):
 		## Diffuse bake
 
 		print("\nBaking the diffuse map...")
+		
+		#Create Material
+		DEF_material_add(context,size,name,"basecolor")	
 
 		bpy.context.scene.cycles.samples = samples
 
@@ -348,10 +344,12 @@ class GA_Start(bpy.types.Operator):
 		## Normal map bake
 
 		print("\nBaking the normal map...")
+		#Create Material
+		DEF_material_add(context,size,name,"normal")
 
 		bpy.context.scene.cycles.samples = 4
 
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["normal_bake"]
+		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 		bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing

@@ -2,9 +2,9 @@ import bpy
 
 # //////////////////- Bake Material- ///////////////////////
 
-def DEF_baseColor_add(context,size,name ):
+def DEF_material_add(context,size,name,type ):
 
-    q_name = name+"_"+"basecolor"
+    q_name = name+"_"+type
 
     tex = MAT_texture_new(q_name,size, 'sRGB')
 
