@@ -1,6 +1,7 @@
 import  bpy, time, random
 
 from .GA_material import DEF_material_add
+from .GA_material import DEF_pbrShader_add
 
 
 class GA_Start(bpy.types.Operator):
@@ -353,8 +354,11 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
+		
+		#Create Material
+		DEF_pbrShader_add(context,size,name)	
 
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["PBR"]
+		bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
 
 		# Delete the ground        
 		if ground_AO == 1:

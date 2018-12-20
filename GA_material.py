@@ -32,7 +32,80 @@ def DEF_material_add(context,size,name,type ):
 	
 	
 	
+#//////////////////// - PBR- ///////////////////////
+
+def DEF_pbrShader_add(context,size,name ):
+
+    M_pbr = bpy.data.materials.get(name+"_"+"PBR")
+
+    if  M_pbr is None:
+
+        # Add PBR Material
+        mat = bpy.data.materials.new(name=name+"_"+"PBR")
+		
+        #Add basecolor
+        ###############
+        I_basecolor = bpy.data.images.get(name+"_"+"basecolor")
+
 	
+		#Add normal
+        ###############
+        I_Normal = bpy.data.images.get(name+"_"+"normal")			
+		
+
+        # CYCLES
+        ##################################################
+        bpy.context.scene.render.engine = 'CYCLES'
+
+        # Enable 'Use nodes':
+        mat.use_nodes = True
+        nt = mat.node_tree
+        nodes = nt.nodes
+        links = nt.links
+
+        # clear
+        while(nodes): nodes.remove(nodes[0])
+
+        
+       
+        d_1   = nodes.new("ShaderNodeBsdfPrincipled")
+        d_1.location = (400,200)
+
+
+        d_image_basecolor   = nodes.new("ShaderNodeTexImage")
+        d_image_basecolor.location = (-250,300)
+        d_image_basecolor.image = I_basecolor 
+
+        links.new( d_1.inputs[0], d_image_basecolor.outputs['Color'])
+
+
+        d_image   = nodes.new("ShaderNodeTexImage")
+        d_image.location = (-250,-200)
+        d_image.image = I_Normal 
+        d_image.color_space = 'NONE'
+
+
+        d_2   = nodes.new("ShaderNodeNormalMap")
+        d_2.location = (100,-200)
+
+        links.new( d_2.inputs['Color'], d_image.outputs['Color'])
+
+        links.new( d_1.inputs['Normal'], d_2.outputs['Normal'])
+
+
+        d_5   = nodes.new("ShaderNodeOutputMaterial")
+        d_5.location = (900,400)
+
+        links.new( d_5.inputs['Surface'], d_1.outputs[0])
+        #links.new( d_3.inputs[1], d_4.outputs['BSDF'])
+        #links.new( d_3.inputs[2], d_1.outputs['BSDF'])
+ 
+
+
+        mat.use_nodes = False
+ 
+
+    return True 	
 	
 	
 	
