@@ -12,6 +12,7 @@ bl_info = {
 
 
 from . import GA_user_interface
+from . import GA
 
 
 class GA_Props(bpy.types.PropertyGroup):
@@ -28,7 +29,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose texture resolution X",
-        default='1K'
+        default='512'
    )
    
    ga_textureY : bpy.props.EnumProperty(
@@ -38,26 +39,26 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose texture resolution Y",
-        default='1K'
+        default='512'
    )
    
-   ga_samplecount : bpy.props.IntProperty(name="Sample count", default=8)  
+   ga_samplecount : bpy.props.IntProperty(name="Sample Count", default=8)  
    
    ga_unfoldhalf : bpy.props.BoolProperty(
         name = 'Unfold Half',
-        description = "U...........",
+        description = "Will generate an UV Map for half of the low poly",
         default = True
    )
    
    ga_selectedtoactive : bpy.props.BoolProperty(
-        name = 'Selected to active',
-        description = "U...........",
-        default = True
+        name = 'Selected to Active',
+        description = "You active selection must be your low poly",
+        default = False
    )   
 
    ga_calculateLods : bpy.props.BoolProperty(
         name = 'Calculate LODs',
-        description = "U...........",
+        description = "Your LODs will automatically be calculated: LOD1: 50%; LOD2: 25%, LOD3: 12.5%",
         default = True
    )     
    
@@ -67,7 +68,7 @@ classes = [
     GA_Props,
     GA_user_interface.GA_generatePanel,
     GA_user_interface.GA_advancedPanel,
-		
+    GA.GA_Start,		
 ]
 
 
