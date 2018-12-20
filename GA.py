@@ -1,5 +1,7 @@
 import  bpy, time, random
 
+from .GA_material import DEF_baseColor_add
+
 
 class GA_Start(bpy.types.Operator):
 	"""Will generate your game asset"""
@@ -89,6 +91,15 @@ class GA_Start(bpy.types.Operator):
 
 		if convex_hull and split_convex == 1:
 			remove_inside = 1
+			
+			
+			
+			
+		#Create Material
+		######################################
+		DEF_baseColor_add(context,size,name)			
+			
+			
 
 		# EXECUTION
 
@@ -331,7 +342,7 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.context.scene.cycles.samples = samples
 
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["diffuse_bake"]
+		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 		bpy.ops.object.bake(type='EMIT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		## Normal map bake
