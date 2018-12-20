@@ -39,23 +39,24 @@ def DEF_pbrShader_add(context,size,name ):
     M_pbr = bpy.data.materials.get(name+"_"+"PBR")
 
     if  M_pbr is None:
-
+        bpy.context.scene.render.engine = 'CYCLES'
+		
+		
         # Add PBR Material
         mat = bpy.data.materials.new(name=name+"_"+"PBR")
+		
+		
 		
         #Add basecolor
         ###############
         I_basecolor = bpy.data.images.get(name+"_"+"basecolor")
-
-	
 		#Add normal
         ###############
         I_Normal = bpy.data.images.get(name+"_"+"normal")			
-		
 
         # CYCLES
         ##################################################
-        bpy.context.scene.render.engine = 'CYCLES'
+
 
         # Enable 'Use nodes':
         mat.use_nodes = True
@@ -97,13 +98,6 @@ def DEF_pbrShader_add(context,size,name ):
         d_5.location = (900,400)
 
         links.new( d_5.inputs['Surface'], d_1.outputs[0])
-        #links.new( d_3.inputs[1], d_4.outputs['BSDF'])
-        #links.new( d_3.inputs[2], d_1.outputs['BSDF'])
- 
-
-
-        mat.use_nodes = False
- 
 
     return True 	
 	

@@ -359,7 +359,8 @@ class GA_Start(bpy.types.Operator):
 		DEF_pbrShader_add(context,size,name)	
 
 		bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
-
+ 
+		
 		# Delete the ground        
 		if ground_AO == 1:
 			bpy.ops.object.select_all(action = 'DESELECT')
