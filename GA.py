@@ -69,7 +69,7 @@ class GA_Start(bpy.types.Operator):
 
 
 		name = bpy.context.object.name
-		samples = 8
+		samples = myscene.ga_samplecount
 
 
 
@@ -403,6 +403,11 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
 
 		bpy.ops.object.modifier_remove(modifier="Bevel")
+
+
+        # >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
+
+
 
 		print("\nMesh infos:")
 

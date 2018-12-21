@@ -2,12 +2,12 @@ import bpy
 
 bl_info = {
     "name" : "AssetGen",
-    "author" : "??????????",
+    "author" : "Bekhoucha Danyl aka Linko (dbekhouc@gmail.com)",
     "description" : "",
     "blender" : (2, 80, 0),
     "location" : "",
     "warning" : "",
-    "category" : "Generic"
+    "category" : "Game Tool"
 }
 
 
@@ -52,7 +52,7 @@ class GA_Props(bpy.types.PropertyGroup):
    
    ga_selectedtoactive : bpy.props.BoolProperty(
         name = 'Selected to Active',
-        description = "You active selection must be your low poly",
+        description = "Will use your active selection as the low poly",
         default = False
    )   
 
