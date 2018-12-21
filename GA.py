@@ -5,7 +5,7 @@ from .GA_material import DEF_pbrShader_add
 
 
 class GA_Start(bpy.types.Operator):
-	"""Will generate your game asset, Blender will freeze for few seconds. Follow the process in Window > System Console"""
+	"""Will generate your game asset, Blender will freeze for few seconds. Follow the process in Window > System Console. IMPORTANT: the diffuse map can only be baked from an Emissive shader"""
 
 	bl_idname = "scene.ga_start"
 	bl_label = "Generate Asset"
