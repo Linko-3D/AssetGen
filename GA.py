@@ -100,11 +100,9 @@ class GA_Start(bpy.types.Operator):
 		print("\n- ASSETGEN IS RUNNING -\n")
 		then = time.time() #Start the timer to see how long it takes to execute the script
 
-		# Duplicate and move to new collection
+		# Duplicate
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
-
-		bpy.ops.object.move_to_collection(collection_index=0, is_new=True, new_collection_name= "asset_" + name)
 
 		bpy.ops.object.shade_smooth()
 
