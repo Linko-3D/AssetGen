@@ -124,9 +124,14 @@ class GA_Start(bpy.types.Operator):
     
 			bpy.context.object.data.use_auto_smooth = False
 
-			bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+			bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
 			bpy.context.object.name = "tmpHP"
+			
+			if unfold_half == 1:
+				bpy.ops.object.modifier_add(type='MIRROR')
+				bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
+				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
 			# Generating the low poly
 
@@ -270,9 +275,12 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
 			if unfold_half == 1:
+				bpy.ops.object.select_all(action = 'DESELECT')
+				bpy.ops.object.select_pattern(pattern="tmpLP")
+
 				bpy.ops.object.mode_set(mode = 'EDIT')
 				bpy.ops.mesh.select_all(action = 'SELECT')
-        
+
 				bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(1, 0, 0), clear_inner=True, clear_outer=False, xstart=849, xend=849, ystart=637, yend=473)
 				bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -285,7 +293,7 @@ class GA_Start(bpy.types.Operator):
 				bpy.ops.object.modifier_add(type='MIRROR')
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
-    
+
 			# Fixing the baking distortions
 
 			if convex_hull == 1:
