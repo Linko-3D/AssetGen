@@ -42,7 +42,11 @@ class GA_Props(bpy.types.PropertyGroup):
         default='512'
    )
    
-   ga_samplecount : bpy.props.IntProperty(name="Sample Count", default=8)  
+   ga_samplecount : bpy.props.IntProperty(
+        name="Sample Count", 
+        default=8,
+        min = 1		
+   )  
    
    ga_unfoldhalf : bpy.props.BoolProperty(
         name = 'Unfold Half',
@@ -63,6 +67,66 @@ class GA_Props(bpy.types.PropertyGroup):
    )     
    
    ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=500)     
+   ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0)    
+   ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0)    
+   ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0)       
+   
+   ga_cagesize : bpy.props.FloatProperty(
+        name = 'Cage Size',
+        description = "",
+        default = 0.1,
+        min = 0,
+        max = 1		
+   )       
+   
+   ga_edgepadding : bpy.props.IntProperty(
+        name = 'Edge Padding',
+        description = "",
+        default = 16,
+        min = 0,
+        max = 64		
+   )   
+
+   ga_uvmargin : bpy.props.FloatProperty(
+        name = 'UV Margin',
+        description = "",
+        default = 0.01,
+        min = 0,
+        max = 64		
+   )  
+
+   ga_uvangle : bpy.props.IntProperty(
+        name = 'UV Angle',
+        description = "",
+        default = 45,
+        min = 1,
+        max = 89		
+   )   
+
+   ga_removeinside : bpy.props.BoolProperty(
+        name = 'Remove Inside',
+        description = "",
+        default = False
+   )    
+
+   ga_groundao : bpy.props.BoolProperty(
+        name = 'Ground AO',
+        description = "",
+        default = False
+   )    
+   
+   ga_removeunderground : bpy.props.BoolProperty(
+        name = 'Remove Underground',
+        description = "",
+        default = False
+   )   
+   
+   ga_convexmesh : bpy.props.BoolProperty(
+        name = 'Convex Mesh',
+        description = "",
+        default = False
+   )         
+   
    
 classes = [
     GA_Props,

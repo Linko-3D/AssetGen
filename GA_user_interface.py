@@ -51,9 +51,27 @@ class GA_generatePanel(bpy.types.Panel):
         row.prop(myscene , "ga_calculateLods")
         col_ga.row().separator()		
 		
-        row = col_ga.row()		
-        row.prop(myscene , "ga_LOD0")
-        col_ga.row().separator()		
+
+        col_ga = layout.column(align=True)
+        if myscene.ga_calculateLods == False and myscene.ga_selectedtoactive == False:
+           col_ga.prop(myscene , 'ga_LOD0') 		 
+           col_ga.prop(myscene , 'ga_LOD1') 
+           col_ga.prop(myscene , 'ga_LOD2') 
+           col_ga.prop(myscene , 'ga_LOD3') 
+           col_ga.row().separator()		
+        elif myscene.ga_calculateLods == False and myscene.ga_selectedtoactive == True:
+           col_ga.prop(myscene , 'ga_LOD1') 
+           col_ga.prop(myscene , 'ga_LOD2') 
+           col_ga.prop(myscene , 'ga_LOD3') 
+           col_ga.row().separator()			   
+        elif myscene.ga_calculateLods == True and myscene.ga_selectedtoactive == False:
+           col_ga.prop(myscene , 'ga_LOD0') 		  
+           col_ga.row().separator()		   
+		   
+        bcol_ga.row().separator()
+        bcol_ga.row().separator()
+
+		
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.5
@@ -79,6 +97,31 @@ class GA_advancedPanel(bpy.types.Panel):
         myscene = context.scene.ga_property
   
         col_ga = layout.column(align=True)
-   
+
+        col_ga.prop(myscene , 'ga_cagesize') 
+        col_ga.prop(myscene , 'ga_edgepadding') 
+        col_ga.prop(myscene , 'ga_uvmargin') 
+        col_ga.prop(myscene , 'ga_uvangle')
+        col_ga.row().separator()		
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_removeinside")
+        col_ga.row().separator()	
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_groundao")
+        col_ga.row().separator()
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_removeunderground")
+        col_ga.row().separator()
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_convexmesh")
+        col_ga.row().separator()		
+		
+		
+
+		
  
         col_ga.row().separator()		
