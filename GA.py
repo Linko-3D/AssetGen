@@ -57,15 +57,24 @@ class GA_Start(bpy.types.Operator):
 		
 		
 		LOD0 = myscene.ga_LOD0 
+		LOD1 = myscene.ga_LOD1	
+		LOD2 = myscene.ga_LOD2
+		LOD3 = myscene.ga_LOD3		
+		
 		selected_to_active = myscene.ga_selectedtoactive
 		unfold_half = myscene.ga_unfoldhalf
 		calculate_LODs = myscene.ga_calculateLods		
-		
-		
-		ground_AO = 0
-		convex_hull = 0
-		split_convex = 1
-		remove_inside = 0
+		ground_AO = myscene.ga_groundao		
+		remove_inside = myscene.ga_removeinside
+		uv_angle = myscene.ga_uvangle
+		uv_margin = myscene.ga_uvmargin
+		cage_size = myscene.ga_cagesize
+		edge_padding = myscene.ga_edgepadding		
+		rmv_underground = myscene.ga_removeunderground
+		convex_hull = myscene.ga_convexmesh
+	
+
+		split_convex = 0
 
 
 		name = bpy.context.object.name
@@ -73,17 +82,6 @@ class GA_Start(bpy.types.Operator):
 
 
 
-		LOD1 = 0
-		LOD2 = 0
-		LOD3 = 0
-
-		uv_angle = 45
-		uv_margin = 0.01
-
-		cage_size = 0.1
-		edge_padding = 16
-
-		rmv_underground = 0
 
 		if calculate_LODs == 1:
 			LOD1 = LOD0 / 2

@@ -85,7 +85,7 @@ class GA_advancedPanel(bpy.types.Panel):
     bl_context = "objectmode"  
     bl_label = "Advanced Settings"  
     bl_category = "AssetGen" 
- 
+    bl_options = {'DEFAULT_CLOSED'}   
 
 
     def draw(self, context):
@@ -116,9 +116,55 @@ class GA_advancedPanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_convexmesh")
         col_ga.row().separator()		
+ 
+        col_ga.row().separator()		
 		
 		
+class GA_toolsPanel(bpy.types.Panel):
+    bl_idname = "ga.tools"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_context = "objectmode"  
+    bl_label = "Tools"  
+    bl_category = "AssetGen" 
+    bl_options = {'DEFAULT_CLOSED'}   
+
+
+    def draw(self, context):
+
+        layout = self.layout
+        myscene = context.scene.ga_property
+
+		
+		#-----------------------------------------------------------
+        col_ga = layout.column(align=True)		
+        col_ga.label(text="Effects:", icon='TEXTURE_DATA')		
+		
+        col1_ga = layout.column(align=True)
+        col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_toolsstylized", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolswear", icon="FILE_REFRESH")		
+        layout.row().separator()		
+
+		#-----------------------------------------------------------	
+        col_ga = layout.column(align=True)		
+        col_ga.label(text="Quick Operations:", icon='TEXTURE_DATA')		
+		
+        col1_ga = layout.column(align=True)
+        col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_tooloptimize", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolresumx", icon="FILE_REFRESH")		
+        layout.row().separator()			
+		
+		#-----------------------------------------------------------	
+        col_ga = layout.column(align=True)		
+        col_ga.label(text="Base Mesh:", icon='TEXTURE_DATA')		
+		
+        col1_ga = layout.column(align=True)
+        col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_toolaxe", icon="FILE_REFRESH")	
+        layout.row().separator()			
 
 		
  
-        col_ga.row().separator()		
+        col_ga.row().separator()				

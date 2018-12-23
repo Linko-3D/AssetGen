@@ -12,15 +12,11 @@ bl_info = {
 
 
 from . import GA_user_interface
+from . import GA_tools
 from . import GA
 
 
 class GA_Props(bpy.types.PropertyGroup):
-   # sbsim_targetrig : StringProperty(name="Name of the target rig", default="")  
-   # sbsim_start_frame : IntProperty(name="Simulation Start Frame", default=1)  
-   # sbsim_end_frame : IntProperty(name="Simulation End Frame", default=250)  
-   # sbsim_stiffness : FloatProperty(name="Stiffness", default=0.5)  
-   # sbsim_bonelayer : IntProperty(name="Bone Layer", default=24)  
 
    ga_textureX : bpy.props.EnumProperty(
         items=[('256', '256', '256  resolution'),
@@ -66,10 +62,10 @@ class GA_Props(bpy.types.PropertyGroup):
         default = True
    )     
    
-   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=500)     
-   ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0)    
-   ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0)    
-   ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0)       
+   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=500,min=1)     
+   ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0,min=0)    
+   ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0,min=0)    
+   ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0,min=0)       
    
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
@@ -132,7 +128,13 @@ classes = [
     GA_Props,
     GA_user_interface.GA_generatePanel,
     GA_user_interface.GA_advancedPanel,
-    GA.GA_Start,		
+    GA_user_interface.GA_toolsPanel,	
+    GA.GA_Start,
+    GA_tools.GA_Tools_Stylized,	
+    GA_tools.GA_Tools_Wear,		
+    GA_tools.GA_Tools_Optimize,		
+    GA_tools.GA_Tools_ResumX,		
+    GA_tools.GA_Tools_Axe,	
 ]
 
 
