@@ -18,6 +18,19 @@ from . import GA
 
 class GA_Props(bpy.types.PropertyGroup):
 
+   ga_autoexportglb : bpy.props.BoolProperty(
+        name = 'Auto Export .glb',
+        description = "",
+        default = False
+   )
+   
+   ga_pathglb : bpy.props.StringProperty(
+        name="Destination", 
+        description = "Choose where to save your file",
+        default='',
+        subtype = 'DIR_PATH'
+   )   
+
    ga_textureX : bpy.props.EnumProperty(
         items=[('256', '256', '256  resolution'),
                ('512', '512', '512 resolution'),

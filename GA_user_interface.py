@@ -23,6 +23,15 @@ class GA_generatePanel(bpy.types.Panel):
         myscene = context.scene.ga_property
   
         col_ga = layout.column(align=True)
+		
+        row = col_ga.row()
+        row.prop(myscene , 'ga_autoexportglb', expand=True)
+        col_ga.row().separator()
+
+        if myscene.ga_autoexportglb == True :		
+           row = col_ga.row()
+           row.prop(myscene , 'ga_pathglb', expand=True)
+           col_ga.row().separator()		
    
         #Texture Resolutions
         col_ga.label(text="Resolution X (Width)", icon='TEXTURE_DATA')
@@ -119,7 +128,6 @@ class GA_advancedPanel(bpy.types.Panel):
  
         col_ga.row().separator()		
 		
-		
 class GA_toolsPanel(bpy.types.Panel):
     bl_idname = "ga.tools"
     bl_space_type = "VIEW_3D"
@@ -138,7 +146,7 @@ class GA_toolsPanel(bpy.types.Panel):
 		
 		#-----------------------------------------------------------
         col_ga = layout.column(align=True)		
-        col_ga.label(text="Effects:", icon='TEXTURE_DATA')		
+        col_ga.label(text="Effects:")		
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
@@ -148,7 +156,7 @@ class GA_toolsPanel(bpy.types.Panel):
 
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
-        col_ga.label(text="Quick Operations:", icon='TEXTURE_DATA')		
+        col_ga.label(text="Quick Operations:")		
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
@@ -158,7 +166,7 @@ class GA_toolsPanel(bpy.types.Panel):
 		
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
-        col_ga.label(text="Base Mesh:", icon='TEXTURE_DATA')		
+        col_ga.label(text="Base Meshes:")		
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
