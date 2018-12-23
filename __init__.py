@@ -75,7 +75,7 @@ class GA_Props(bpy.types.PropertyGroup):
         default = True
    )     
    
-   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=500,min=1)     
+   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=1000,min=1)     
    ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0,min=0)    
    ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0,min=0)    
    ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0,min=0)       
