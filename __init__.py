@@ -25,7 +25,7 @@ class GA_Props(bpy.types.PropertyGroup):
    )
    
    ga_pathglb : bpy.props.StringProperty(
-        name="Destination", 
+        name="Path", 
         description = "Choose where to save your file",
         default='',
         subtype = 'DIR_PATH'
@@ -146,7 +146,7 @@ classes = [
     GA_tools.GA_Tools_Stylized,	
     GA_tools.GA_Tools_Wear,		
     GA_tools.GA_Tools_Optimize,		
-    GA_tools.GA_Tools_ResumX,		
+    GA_tools.GA_Tools_ResymX,		
     GA_tools.GA_Tools_Axe,	
 ]
 

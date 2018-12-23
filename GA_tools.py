@@ -76,10 +76,10 @@ class GA_Tools_Optimize(bpy.types.Operator):
 
 		return {'FINISHED'}			
 		
-class GA_Tools_ResumX(bpy.types.Operator):
+class GA_Tools_ResymX(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolresumx"
-	bl_label = "Resum X"
+	bl_idname = "scene.ga_toolresymx"
+	bl_label = "Resym X"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
