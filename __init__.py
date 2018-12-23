@@ -2,7 +2,7 @@ import bpy
 
 bl_info = {
     "name" : "AssetGen",
-    "author" : "Bekhoucha Danyl aka Linko (dbekhouc@gmail.com)",
+    "author" : "Srdan Ignjatovic aka zero025 (kica025@gmail.com) and Bekhoucha Danyl aka Linko (dbekhouc@gmail.com)",
     "description" : "",
     "blender" : (2, 80, 0),
     "location" : "",
