@@ -404,14 +404,9 @@ class GA_Start(bpy.types.Operator):
 		bpy.context.object.name = name + "_LOD0"
 		bpy.context.object.data.name = name + "_LOD0"
 
-		bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
-
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 
-
         # >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
-
-
 
 		print("\nMesh infos:")
 
