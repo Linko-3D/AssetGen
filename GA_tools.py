@@ -41,7 +41,7 @@ class GA_Tools_Wear(bpy.types.Operator):
 
 	def execute(self, context):
         
-		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
 		bpy.ops.object.modifier_add(type='REMESH')
 		bpy.context.object.modifiers["Remesh"].octree_depth = 6
