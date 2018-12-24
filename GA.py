@@ -74,7 +74,7 @@ class GA_Start(bpy.types.Operator):
 		convex_hull = myscene.ga_convexmesh
 	
 
-		split_convex = 1
+		split_convex = 0
 
 
 		name = bpy.context.object.name
