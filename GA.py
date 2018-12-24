@@ -79,6 +79,7 @@ class GA_Start(bpy.types.Operator):
 		#TMPDISABLED
 		ground_AO = 0
 		remove_inside = 0
+		selected_to_active = 0
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
