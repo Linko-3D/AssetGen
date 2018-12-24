@@ -66,7 +66,7 @@ class GA_Props(bpy.types.PropertyGroup):
    
    ga_selectedtoactive : bpy.props.BoolProperty(
         name = 'Selected to Active',
-        description = "Will use your own low poly and UV Map, the active selection must be your low poly",
+        description = "NOT WORKING YET - Will use your own low poly and UV Map, the active selection must be your low poly",
         default = False
    )   
 
@@ -115,13 +115,13 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_removeinside : bpy.props.BoolProperty(
         name = 'Remove Inside',
-        description = "The addon will perform an Union boolean between every meshes that aren't merged (connected vertices), this will remove the geometry inside your model before calculating the polycount and performing an UV Mapping",
+        description = "NOT WORKING YET - The addon will perform an Union boolean between every meshes that aren't merged (connected vertices), this will remove the geometry inside your model before calculating the polycount and performing an UV Mapping",
         default = False
    )    
 
    ga_groundao : bpy.props.BoolProperty(
         name = 'Ground AO',
-        description = "Before the baking, the addon will generate a plane at the height of the grid to generate Ambient Occlusion like if the object were standing on the ground. Use it with every static meshes that lays on the ground",
+        description = "NOT WORKING YET - Before the baking, the addon will generate a plane at the height of the grid to generate Ambient Occlusion like if the object were standing on the ground. Use it with every static meshes that lays on the ground",
         default = False
    )    
    

@@ -76,6 +76,9 @@ class GA_Start(bpy.types.Operator):
 
 		split_convex = 0
 
+		#TMPDISABLED
+		ground_AO = 0
+		remove_inside = 0
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
