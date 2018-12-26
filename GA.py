@@ -73,8 +73,8 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 	
+		bake = 1
 
-		split_convex = 0
 
 		#TMPDISABLED
 		ground_AO = 0
@@ -83,7 +83,7 @@ class GA_Start(bpy.types.Operator):
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
-
+		split_convex = 0
 
 
 
@@ -337,29 +337,29 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.select_pattern(pattern="tmpLP")
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
 
+		if bake == 1:
+			## Diffuse bake
 
-		## Diffuse bake
+			print("\nBaking the diffuse map...")
+			
+			#Create Material
+			DEF_material_add(context,size,name,"basecolor")	
 
-		print("\nBaking the diffuse map...")
-		
-		#Create Material
-		DEF_material_add(context,size,name,"basecolor")	
+			bpy.context.scene.cycles.samples = samples
 
-		bpy.context.scene.cycles.samples = samples
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			bpy.ops.object.bake(type='EMIT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-		bpy.ops.object.bake(type='EMIT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			## Normal map bake
 
-		## Normal map bake
+			print("\nBaking the normal map...")
+			#Create Material
+			DEF_material_add(context,size,name,"normal")
 
-		print("\nBaking the normal map...")
-		#Create Material
-		DEF_material_add(context,size,name,"normal")
+			bpy.context.scene.cycles.samples = 4
 
-		bpy.context.scene.cycles.samples = 4
-
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-		bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
 		
