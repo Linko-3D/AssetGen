@@ -418,7 +418,7 @@ class GA_Start(bpy.types.Operator):
 
 		# Offset the LOD0 to make it visible beside the high poly
 
-		bpy.ops.transform.translate(value=(6, 0, 0), constraint_axis=(True, False, False), constraint_orientation='LOCAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, 6, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		if LOD1 > 0:
 			## LOD1
