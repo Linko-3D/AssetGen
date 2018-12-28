@@ -133,7 +133,7 @@ class GA_Props(bpy.types.PropertyGroup):
    
    ga_convexmesh : bpy.props.BoolProperty(
         name = 'Convex Mesh',
-        description = "Every concave shapes will be delete, this allws to create low poly with very low polycount that surrounds your high poly, this is ideal for mobile games",
+        description = "Every concave shapes will be delete, this allows to create low poly with very low polycount that surround your high poly, this is ideal for mobile games",
         default = False
    )         
    
