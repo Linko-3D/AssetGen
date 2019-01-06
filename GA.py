@@ -72,8 +72,12 @@ class GA_Start(bpy.types.Operator):
 		edge_padding = myscene.ga_edgepadding		
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
+		
+		center_X = 1
+		center_Y = 1
+		center_Z = 0
 	
-		bake = 1
+		bake_textures = 1
 
 
 		#TMPDISABLED
@@ -339,7 +343,7 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.select_pattern(pattern="tmpLP")
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
 
-		if bake == 1:
+		if bake_textures == 1:
 			## Diffuse bake
 
 			print("\nBaking the diffuse map...")
@@ -417,9 +421,26 @@ class GA_Start(bpy.types.Operator):
 		print("\nMesh infos:")
 
 		print("LOD0:", len(bpy.context.active_object.data.polygons), "tris")
+		
+		
+		# Center position
+		
+		if center_X == 1:
+			bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
+			bpy.context.object.location[0] = 0
+
+		if center_Y == 1:
+			bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
+			bpy.context.object.location[1] = 0
+
+		if center_Z == 1:
+			bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
+			bpy.context.object.location[2] = 0
+
+		bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
 
 		# Offset the LOD0 to make it visible beside the high poly
-
+		
 		bpy.ops.transform.translate(value=(0, 6, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		if LOD1 > 0:
