@@ -167,6 +167,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.select_all(action = 'SELECT')
 
 			bpy.ops.mesh.remove_doubles()
+			bpy.ops.mesh.delete_loose()
+
     
 			# Convex Hull
     
