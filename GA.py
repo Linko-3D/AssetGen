@@ -344,9 +344,9 @@ class GA_Start(bpy.types.Operator):
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
 
 		if bake_textures == 1:
-			## Diffuse bake
+			## Base color bake
 
-			print("\nBaking the diffuse map...")
+			print("\nBaking basecolor map...")
 			
 			#Create Material
 			DEF_material_add(context,size,name,"basecolor")	
@@ -354,7 +354,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.scene.cycles.samples = samples
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-			bpy.ops.object.bake(type='EMIT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
 			## Normal map bake
 
