@@ -15,7 +15,7 @@ class GA_Start(bpy.types.Operator):
 
 	def execute(self, context):
 
-        
+
 		myscene = context.scene.ga_property
   
 
@@ -73,8 +73,8 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		
-		center_X = 1
-		center_Y = 1
+		center_X = 0
+		center_Y = 0
 		center_Z = 0
 	
 		bake_textures = 1
@@ -109,8 +109,6 @@ class GA_Start(bpy.types.Operator):
 		# Duplicate
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
-
-		bpy.ops.object.shade_smooth()
 
 		if selected_to_active == 1:
     
@@ -312,8 +310,6 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.mode_set(mode = 'EDIT')
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			bpy.ops.object.mode_set(mode = 'OBJECT')
-    
-			bpy.ops.object.shade_smooth()
 
 		# Add the ground if enabled
 
@@ -351,7 +347,7 @@ class GA_Start(bpy.types.Operator):
 			#Create Material
 			DEF_material_add(context,size,name,"basecolor")	
 
-			bpy.context.scene.cycles.samples = 1
+			bpy.context.scene.cycles.samples = 8
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
@@ -364,7 +360,7 @@ class GA_Start(bpy.types.Operator):
 			#Create Material
 			DEF_material_add(context,size,name,"normal")
 
-			bpy.context.scene.cycles.samples = 4
+			bpy.context.scene.cycles.samples = 8
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
@@ -388,10 +384,22 @@ class GA_Start(bpy.types.Operator):
 			#Create Material
 			#DEF_material_add(context,size,name,"normal")
 
-			#bpy.context.scene.cycles.samples = samples
+			#bpy.context.scene.cycles.samples = 8
 
 			#bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			#bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			## AO map bake
+
+			#print("\nBaking the emit map...")
+			
+			#Create Material
+			#DEF_material_add(context,size,name,"normal")
+
+			#bpy.context.scene.cycles.samples = samples
+
+			#bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			#bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
 		
@@ -526,6 +534,7 @@ class GA_Start(bpy.types.Operator):
 		#todo bpy.context.scene.objects.active = bpy.data.objects[name + "_LOD0"]
 
 		bpy.context.scene.eevee.use_ssr = True
+		bpy.context.scene.eevee.use_gtao = True
 
 		#The lines bellow are here to refresh the SSR in case it was disabled before
 		bpy.context.scene.render.engine = 'BLENDER_EEVEE'

@@ -38,7 +38,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose the texture resolution in Y (width)",
-        default='512'
+        default='1K'
    )
    
    ga_textureY : bpy.props.EnumProperty(
@@ -48,7 +48,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose the texture resolution in Y (height)",
-        default='512'
+        default='1K'
    )
    
    ga_samplecount : bpy.props.IntProperty(
