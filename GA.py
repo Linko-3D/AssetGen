@@ -346,12 +346,12 @@ class GA_Start(bpy.types.Operator):
 		if bake_textures == 1:
 			## Base color bake
 
-			print("\nBaking basecolor map...")
+			print("\nBaking the base color map...")
 			
 			#Create Material
 			DEF_material_add(context,size,name,"basecolor")	
 
-			bpy.context.scene.cycles.samples = samples
+			bpy.context.scene.cycles.samples = 1
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
@@ -360,6 +360,7 @@ class GA_Start(bpy.types.Operator):
 			## Normal map bake
 
 			print("\nBaking the normal map...")
+			
 			#Create Material
 			DEF_material_add(context,size,name,"normal")
 
@@ -367,6 +368,30 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			## AO map bake
+
+			#print("\nBaking the ambient occclusion map...")
+			
+			#Create Material
+			#DEF_material_add(context,size,name,"normal")
+
+			#bpy.context.scene.cycles.samples = samples
+
+			#bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			#bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			## Roughness map bake
+
+			#print("\nBaking the roughness map...")
+			
+			#Create Material
+			#DEF_material_add(context,size,name,"normal")
+
+			#bpy.context.scene.cycles.samples = samples
+
+			#bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			#bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
 		

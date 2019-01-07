@@ -54,7 +54,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_samplecount : bpy.props.IntProperty(
         name="Sample Count",
 		description = "Increasing this value will reduce the noise on your texture for the Ambient Occlusion and SSS, but it will increase the baking time",
-        default=8,
+        default=32,
         min = 1		
    )  
    
