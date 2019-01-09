@@ -20,8 +20,8 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_autoexportglb : bpy.props.BoolProperty(
         name = 'Auto Export .glb',
-        description = "After generating your game asset, the addon will automatically export a .glb. Set the path to the asset folder of your game project",
-        default = False
+        description = "After generating your game asset, the addon will automatically export a .glb (it will contain all your baked textures). Set the path to the asset folder of your game project",
+        default = True
    )
    
    ga_pathglb : bpy.props.StringProperty(
@@ -38,7 +38,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose the texture resolution in Y (width)",
-        default='1K'
+        default='512'
    )
    
    ga_textureY : bpy.props.EnumProperty(
@@ -48,7 +48,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2k resolution'),
                ('4K', '4K', '3k resolution')],
         description="Choose the texture resolution in Y (height)",
-        default='1K'
+        default='512'
    )
    
    ga_samplecount : bpy.props.IntProperty(
@@ -72,7 +72,7 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_calculateLods : bpy.props.BoolProperty(
         name = 'Calculate LODs',
-        description = "Your LODs will automatically be calculated like this: LOD1: 50%; LOD2: 25%, LOD3: 12.5%",
+        description = "Your LODs will automatically be calculated relative to the LOD0 like this: LOD1: 50%; LOD2: 25%, LOD3: 12.5%",
         default = True
    )     
    
