@@ -73,6 +73,8 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		
+		show_result = 1
+		
 		center_X = 0
 		center_Y = 0
 		center_Z = 0
@@ -289,6 +291,11 @@ class GA_Start(bpy.types.Operator):
 
 				bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(1, 0, 0), clear_inner=True, clear_outer=False, xstart=849, xend=849, ystart=637, yend=473)
 				bpy.ops.object.mode_set(mode = 'OBJECT')
+			
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			bpy.ops.mesh.select_all(action = 'SELECT')
+			bpy.ops.mesh.remove_doubles(threshold=0.001)
+			bpy.ops.object.mode_set(mode = 'OBJECT')
 
 			# Unfold UVs
 
@@ -407,8 +414,8 @@ class GA_Start(bpy.types.Operator):
 		DEF_pbrShader_add(context,size,name)	
 
 		bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
- 
-		
+
+
 		# Delete the ground        
 		if ground_AO == 1:
 			bpy.ops.object.select_all(action = 'DESELECT')
