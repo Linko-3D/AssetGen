@@ -10,14 +10,11 @@ class GA_Start(bpy.types.Operator):
 	bl_idname = "scene.ga_start"
 	bl_label = "Generate Asset"
 	bl_options = {'REGISTER', 'UNDO'}
-	
 
 
 	def execute(self, context):
 
-
 		myscene = context.scene.ga_property
-  
 
 		# Click Run Script to convert your selected high poly to a game asset
 		# Your shader must use an Emissive node
@@ -38,7 +35,7 @@ class GA_Start(bpy.types.Operator):
 
 		if myscene.ga_textureX == '4K':
 			size[0] = 4096
-		   
+
 		if myscene.ga_textureY == '256':
 			size[1] = 256
 
@@ -73,7 +70,7 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		
-		show_result = 1
+		keep_result = 1
 		
 		center_X = 0
 		center_Y = 0
@@ -121,7 +118,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin) # Perform smart UV projection
 
 			bpy.ops.object.select_pattern(pattern="tmpHP")
-    
+
 
 		if selected_to_active == 0:
 		
@@ -173,27 +170,26 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.remove_doubles()
 			bpy.ops.mesh.delete_loose()
 
-    
+
 			# Convex Hull
-    
+
 			if convex_hull == 1:
 				if split_convex == 1:
 					bpy.ops.mesh.separate(type='LOOSE')
 					bpy.ops.object.mode_set(mode = 'OBJECT')
 					for obj in bpy.context.selected_objects:
 						bpy.context.scene.objects.active = obj
-                
+
 						bpy.ops.object.mode_set(mode = 'EDIT')
 						bpy.ops.mesh.select_all(action = 'SELECT')
 						bpy.ops.mesh.convex_hull()
 						bpy.ops.object.mode_set(mode = 'OBJECT')
-                
+
 					bpy.ops.object.join()
-				else:       
+				else:
 					bpy.ops.mesh.convex_hull()
-        
-        
-    
+
+
 			bpy.ops.object.mode_set(mode = 'OBJECT')
     
     
@@ -209,8 +205,6 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.modifiers["Decimate"].ratio = LOD0 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
-    
-
 
 			if remove_inside == 1:
 				# Fill holes
@@ -226,15 +220,15 @@ class GA_Start(bpy.types.Operator):
 
 				bpy.ops.mesh.separate(type='LOOSE')
 				bpy.ops.object.mode_set(mode = 'OBJECT')
-            
+
 				i = 0
 
 				for obj in bpy.context.selected_objects:
 					bpy.ontext.scene.objects.active = obj
-            
+
 					i = i + 1
 					bpy.context.object.name = "tmpLP" + str(i)
-            
+
 				print("Info: Union boolean applied on", i, "meshes")
 
 
@@ -255,23 +249,23 @@ class GA_Start(bpy.types.Operator):
 					bpy.ops.mesh.intersect_boolean(operation='UNION')
 					bpy.ops.mesh.select_all(action = 'SELECT')
 					bpy.ops.object.mode_set(mode = 'OBJECT')
-        
+
 				bpy.context.object.name = "tmpLP"
-        
+
 			# Cleaning flat surfaces
-    
+
 			bpy.ops.object.mode_set(mode = 'EDIT')
 			bpy.ops.mesh.select_all(action = 'SELECT')
-    
+
 			bpy.ops.mesh.dissolve_limited()
-    
+
 			bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
 
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 
-    
+
 			# Decimation 2
-    
+
 			bpy.ops.object.modifier_add(type='TRIANGULATE')
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
 
@@ -301,7 +295,7 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
 
-   
+
 			if unfold_half == 1:
 				bpy.ops.object.modifier_add(type='MIRROR')
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
@@ -457,7 +451,7 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 
-        # >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
+		# >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
 
 		print("\nMesh infos:")
 
@@ -535,10 +529,24 @@ class GA_Start(bpy.types.Operator):
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
 
+		if keep_result == 0:
+			bpy.ops.object.select_all(action = 'DESELECT')
+
+			bpy.ops.object.select_pattern(pattern= name + "_LOD0")
+			bpy.ops.object.delete(use_global=False)
+
+			bpy.ops.object.select_pattern(pattern= name + "_LOD1")
+			bpy.ops.object.delete(use_global=False)
+
+			bpy.ops.object.select_pattern(pattern= name + "_LOD2")
+			bpy.ops.object.delete(use_global=False)
+
+			bpy.ops.object.select_pattern(pattern= name + "_LOD3")
+			bpy.ops.object.delete(use_global=False)
 
 		bpy.ops.object.select_all(action = 'DESELECT')
-		bpy.ops.object.select_pattern(pattern= name + "_LOD0")
-		#todo bpy.context.scene.objects.active = bpy.data.objects[name + "_LOD0"]
+		bpy.ops.object.select_pattern(pattern= name)
+		#todo bpy.context.scene.objects.active = bpy.data.objects[name]
 
 		bpy.context.scene.eevee.use_ssr = True
 		bpy.context.scene.eevee.use_gtao = True
