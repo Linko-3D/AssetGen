@@ -18,12 +18,6 @@ from . import GA
 
 class GA_Props(bpy.types.PropertyGroup):
 
-   ga_autoexportglb : bpy.props.BoolProperty(
-        name = 'Auto Export .glb',
-        description = "After generating your game asset, the addon will automatically export a .glb (it will contain all your baked textures). Set the path to the asset folder of your game project",
-        default = True
-   )
-   
    ga_pathglb : bpy.props.StringProperty(
         name="Path", 
         description = "Choose where to save your file",
