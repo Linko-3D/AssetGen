@@ -27,7 +27,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_pathglb : bpy.props.StringProperty(
         name="Path", 
         description = "Choose where to save your file",
-        default='',
+        default='//',
         subtype = 'DIR_PATH'
    )   
 

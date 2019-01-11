@@ -87,6 +87,8 @@ class GA_Start(bpy.types.Operator):
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
 		split_convex = 0
+		
+		path = myscene.ga_pathglb
 
 
 
