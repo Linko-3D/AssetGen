@@ -1,4 +1,4 @@
-import  bpy, time, random
+import  bpy, os ,time, random
 
 from .GA_material import DEF_material_add
 from .GA_material import DEF_pbrShader_add
@@ -75,7 +75,7 @@ class GA_Start(bpy.types.Operator):
 		center_X = 0
 		center_Y = 0
 		center_Z = 0
-	
+
 		bake_textures = 1
 
 
@@ -452,6 +452,10 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
+		bpy.ops.export_scene.gltf(export_selected=True, filepath=os.path.join(os.path.dirname(bpy.data.filepath), name))
+		
+		print("Asset", name, "exported to", os.path.join(os.path.dirname(bpy.data.filepath)))
+
 
 		print("\nMesh infos:")
 
