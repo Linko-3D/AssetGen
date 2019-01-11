@@ -19,8 +19,8 @@ from . import GA
 class GA_Props(bpy.types.PropertyGroup):
 
    ga_pathglb : bpy.props.StringProperty(
-        name="Path", 
-        description = "Choose where to save your file",
+        name=".glb", 
+        description = "The path of the .glb file, your asset will be exported automatically after being generated",
         default='//',
         subtype = 'DIR_PATH'
    )   
