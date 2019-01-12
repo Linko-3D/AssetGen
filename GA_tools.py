@@ -279,6 +279,34 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_Ring(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolring"
+	bl_label = "Ring"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(1.5708, 0, 0), major_segments=4, minor_segments=4, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.transform.resize(value=(0.2, 0.2, 0.2), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].width = 0.01
+		bpy.context.object.modifiers["Bevel"].segments = 2
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.object.shade_smooth()
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		return {'FINISHED'}
+
 class GA_Tools_Axe(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolaxe"
