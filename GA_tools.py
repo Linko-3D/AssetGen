@@ -233,6 +233,52 @@ class GA_Tools_Chain(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_ExtrudedShape(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolextrudedshape"
+	bl_label = "Extruded Shape"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+		bpy.ops.mesh.primitive_plane_add(size=2, view_align=False, enter_editmode=False, location=(0, 0, 0))
+
+		bpy.context.object.name = "motif"
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.merge(type='CENTER')
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.context.object.rotation_euler[0] = 0.00174533
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 4
+
+		bpy.ops.object.modifier_add(type='SKIN')
+		bpy.context.object.modifiers["Skin"].use_smooth_shade = True
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
+		bpy.context.object.modifiers["Bevel"].width = 0.04
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision.001"].levels = 3
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_mode(type="VERT")
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.transform.skin_resize(value=(0.3, 0.3, 0.3), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		return {'FINISHED'}
+
 class GA_Tools_Axe(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolaxe"
