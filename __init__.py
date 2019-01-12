@@ -142,6 +142,7 @@ classes = [
     GA_tools.GA_Tools_Wear,		
 	GA_tools.GA_Tools_Smooth,
 	GA_tools.GA_Tools_Flat,
+	GA_tools.GA_Tools_Dyntopo,
     GA_tools.GA_Tools_Optimize,		
     
     GA_tools.GA_Tools_ResymX,		

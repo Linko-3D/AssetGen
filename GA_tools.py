@@ -83,7 +83,25 @@ class GA_Tools_Flat(bpy.types.Operator):
 		bpy.ops.object.shade_flat()
 
 		return {'FINISHED'}
-		
+
+class GA_Tools_Dyntopo(bpy.types.Operator):
+
+	bl_idname = "scene.ga_tooldyntopo"
+	bl_label = "Dyntopo"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.convert(target='MESH')
+		bpy.ops.object.mode_set(mode = 'SCULPT')
+		bpy.ops.sculpt.dynamic_topology_toggle()
+
+		bpy.context.scene.tool_settings.sculpt.detail_size = 4
+		bpy.context.scene.tool_settings.unified_paint_settings.use_unified_strength = True
+		bpy.context.scene.tool_settings.unified_paint_settings.strength = 1
+
+		return {'FINISHED'}
+
 class GA_Tools_Optimize(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooloptimize"
