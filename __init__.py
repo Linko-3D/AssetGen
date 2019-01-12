@@ -34,21 +34,21 @@ class GA_Props(bpy.types.PropertyGroup):
    )   
 
    ga_textureX : bpy.props.EnumProperty(
-        items=[('256', '256', '256  resolution'),
-               ('512', '512', '512 resolution'),
-               ('1K', '1K', '1k resolution'),
-               ('2K', '2K', '2k resolution'),
-               ('4K', '4K', '3k resolution')],
+        items=[('256', '256', '256 px resolution'),
+               ('512', '512', '512 px resolution'),
+               ('1K', '1K', '1K px resolution'),
+               ('2K', '2K', '2K px resolution'),
+               ('4K', '4K', '4K px resolution')],
         description="Choose the texture resolution in Y (width)",
         default='512'
    )
    
    ga_textureY : bpy.props.EnumProperty(
-        items=[('256', '256', '256  resolution'),
-               ('512', '512', '512 resolution'),
-               ('1K', '1K', '1k resolution'),
-               ('2K', '2K', '2k resolution'),
-               ('4K', '4K', '3k resolution')],
+        items=[('256', '256', '256 px resolution'),
+               ('512', '512', '512 px resolution'),
+               ('1K', '1K', '1K px resolution'),
+               ('2K', '2K', '2K px resolution'),
+               ('4K', '4K', '4K px resolution')],
         description="Choose the texture resolution in Y (height)",
         default='512'
    )
