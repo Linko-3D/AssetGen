@@ -71,6 +71,7 @@ class GA_Props(bpy.types.PropertyGroup):
         description = "NOT WORKING YET - Will use your own low poly and UV Map, the active selection must be your low poly",
         default = False
    )   
+   
 
    ga_calculateLods : bpy.props.BoolProperty(
         name = 'Calculate LODs',
@@ -82,7 +83,14 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0,min=0)    
    ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0,min=0)    
    ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0,min=0)       
-   
+
+   ga_showoutput : bpy.props.BoolProperty(
+        name = 'Show output in Blender',
+        description = "Display your output in Blender",
+        default = False
+   )   
+
+
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
         description = "The amount of temporary extrusion used on your low poly during the baking. A value too low will reveal intersections, a value too high can create new intersections between concave shapes and generate wavy edges. After generating your low poly if the result isn't correct, use the Solidify modifier on the low poly, change the offset to 1 and tweak the thickness by holding shift until it envelops the high poly to find the right value, then generate your asset again",

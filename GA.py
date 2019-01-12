@@ -70,8 +70,7 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		smooth = myscene.ga_smooth
-		
-		show_result = 1
+
 		
 		center_X = 0
 		center_Y = 0
@@ -554,7 +553,7 @@ class GA_Start(bpy.types.Operator):
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
 
-		if show_result == 0:
+		if myscene.ga_showoutput == 0:
 			bpy.ops.object.select_all(action = 'DESELECT')
 
 			bpy.ops.object.select_pattern(pattern= name + "_LOD0")

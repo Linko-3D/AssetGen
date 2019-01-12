@@ -79,7 +79,9 @@ class GA_generatePanel(bpy.types.Panel):
            col_ga.prop(myscene , 'ga_LOD0') 		  
            col_ga.row().separator()		   
 		   
-		
+        row = col_ga.row()		
+        row.prop(myscene , "ga_showoutput")
+        col_ga.row().separator()
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.5
