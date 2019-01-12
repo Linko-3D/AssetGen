@@ -407,7 +407,7 @@ class GA_Start(bpy.types.Operator):
 		# Finalizing
 		
 		#Create Material
-		DEF_pbrShader_add(context,size,name)
+		DEF_pbrShader_add(context,size,name)	
 
 		bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
 
