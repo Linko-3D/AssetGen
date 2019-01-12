@@ -69,6 +69,7 @@ class GA_Start(bpy.types.Operator):
 		edge_padding = myscene.ga_edgepadding		
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
+		smooth = myscene.ga_smooth
 		
 		show_result = 1
 		
@@ -134,6 +135,10 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.join()
     
 			bpy.context.object.data.use_auto_smooth = False
+			
+			if smooth == 1:
+				bpy.ops.object.shade_smooth()
+
 
 			bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
@@ -319,6 +324,9 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.mode_set(mode = 'EDIT')
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			bpy.ops.object.mode_set(mode = 'OBJECT')
+			
+			bpy.ops.object.shade_smooth()
+
 
 		# Add the ground if enabled
 

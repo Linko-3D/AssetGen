@@ -115,6 +115,12 @@ class GA_Props(bpy.types.PropertyGroup):
         max = 89		
    )   
 
+   ga_smooth : bpy.props.BoolProperty(
+        name = 'Smooth Shading',
+        description = "Will apply a smooth shading on your high poly",
+        default = False
+   )    
+
    ga_removeinside : bpy.props.BoolProperty(
         name = 'Remove Inside',
         description = "NOT WORKING YET - The addon will perform an Union boolean between every meshes that aren't merged (connected vertices), this will remove the geometry inside your model before calculating the polycount and performing an UV Mapping",

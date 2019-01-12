@@ -113,6 +113,10 @@ class GA_advancedPanel(bpy.types.Panel):
         col_ga.row().separator()		
 
         row = col_ga.row()		
+        row.prop(myscene , "ga_smooth")
+        col_ga.row().separator()	
+
+        row = col_ga.row()		
         row.prop(myscene , "ga_removeinside")
         col_ga.row().separator()	
 
