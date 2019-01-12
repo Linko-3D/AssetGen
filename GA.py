@@ -70,7 +70,7 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		
-		keep_result = 1
+		show_result = 1
 		
 		center_X = 0
 		center_Y = 0
@@ -353,7 +353,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the base color map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"basecolor")	
+			DEF_material_add(context,size,name,"baseColor")	
 
 
 
@@ -534,7 +534,7 @@ class GA_Start(bpy.types.Operator):
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
 
-		if keep_result == 0:
+		if show_result == 0:
 			bpy.ops.object.select_all(action = 'DESELECT')
 
 			bpy.ops.object.select_pattern(pattern= name + "_LOD0")

@@ -48,7 +48,7 @@ def DEF_pbrShader_add(context,size,name ):
 		
     #Add basecolor
     ###############
-    I_basecolor = bpy.data.images.get(name+"_"+"basecolor")
+    I_basecolor = bpy.data.images.get(name+"_"+"baseColor")
 	#Add normal
     ###############
     I_Normal = bpy.data.images.get(name+"_"+"normal")			
