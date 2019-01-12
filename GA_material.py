@@ -49,6 +49,11 @@ def DEF_pbrShader_add(context,size,name ):
     #Add basecolor
     ###############
     I_basecolor = bpy.data.images.get(name+"_"+"baseColor")
+
+	#Add roughness
+    ###############
+    I_Roughness = bpy.data.images.get(name+"_"+"roughness")	
+
 	#Add normal
     ###############
     I_Normal = bpy.data.images.get(name+"_"+"normal")			
@@ -68,14 +73,18 @@ def DEF_pbrShader_add(context,size,name ):
     d_1.location = (400,200)
 
 
-    d_image_basecolor   = nodes.new("ShaderNodeTexImage")
-    d_image_basecolor.location = (-250,300)
-    d_image_basecolor.image = I_basecolor 
+    d_image_basecolor = nodes.new("ShaderNodeTexImage")
+    d_image_basecolor.location = (-250,350)
+    d_image_basecolor.image = I_basecolor
 
     links.new( d_1.inputs[0], d_image_basecolor.outputs['Color'])
 
+    d_image_roughness = nodes.new("ShaderNodeTexImage")
+    d_image_roughness.location = (-250,50)
+    d_image_roughness.image = I_Roughness
+    d_image_roughness.color_space = 'NONE'
 
-    d_image   = nodes.new("ShaderNodeTexImage")
+    d_image = nodes.new("ShaderNodeTexImage")
     d_image.location = (-250,-200)
     d_image.image = I_Normal 
     d_image.color_space = 'NONE'
