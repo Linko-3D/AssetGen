@@ -383,7 +383,7 @@ class GA_Start(bpy.types.Operator):
 			DEF_material_add(context,size,name,"ambientOcclusion")
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-			bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			#bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 			
 			## Roughness map bake
 
