@@ -150,6 +150,7 @@ classes = [
 	GA_tools.GA_Tools_Chain,
 	GA_tools.GA_Tools_ExtrudedShape,
 	GA_tools.GA_Tools_Ring,
+	GA_tools.GA_Tools_Strap,
 
     GA_tools.GA_Tools_Axe,
     GA_tools.GA_Tools_Sword,

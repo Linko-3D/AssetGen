@@ -174,6 +174,7 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolchain", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolextrudedshape", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolring", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolstrap", icon="FILE_REFRESH")
         layout.row().separator()
 
 		#-----------------------------------------------------------	
