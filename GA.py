@@ -458,7 +458,7 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
 		#bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
 		
-		print("Asset", name, "exported to", os.path.join(os.path.dirname(bpy.data.filepath)))
+		print("Asset", name, "exported to", path)
 
 
 		print("\nMesh infos:")
