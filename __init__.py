@@ -136,18 +136,20 @@ classes = [
     GA_Props,
     GA_user_interface.GA_generatePanel,
     GA_user_interface.GA_advancedPanel,
-    GA_user_interface.GA_toolsPanel,	
+    GA_user_interface.GA_toolsPanel,
     GA.GA_Start,
-    GA_tools.GA_Tools_Stylized,	
-    GA_tools.GA_Tools_Wear,		
+    GA_tools.GA_Tools_Stylized,
+    GA_tools.GA_Tools_Wear,
 	GA_tools.GA_Tools_Smooth,
 	GA_tools.GA_Tools_Flat,
 	GA_tools.GA_Tools_Dyntopo,
-    GA_tools.GA_Tools_Optimize,		
-    
-    GA_tools.GA_Tools_ResymX,		
+    GA_tools.GA_Tools_Optimize,
+    GA_tools.GA_Tools_ResymX,
+
+	GA_tools.GA_Tools_BoltCubic,
+
     GA_tools.GA_Tools_Axe,
-    GA_tools.GA_Tools_Sword,	
+    GA_tools.GA_Tools_Sword,
 ]
 
 

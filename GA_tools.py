@@ -134,7 +134,62 @@ class GA_Tools_ResymX(bpy.types.Operator):
 		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
 		return {'FINISHED'}
+
+
+class GA_Tools_BoltCubic(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolboltcubic"
+	bl_label = "Bolt Cubic"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 1))
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.mesh.merge(type='CENTER')
+
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(0, -1, -1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(0, 1, -1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(0, 1, 1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(0, -1, 1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(1, 7.54979e-008, -1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.edge_face_add()
+		bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.object.modifier_add(type='MIRROR')
+		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.mesh.remove_doubles()
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].width = 0.005
+		bpy.context.object.modifiers["Bevel"].segments = 2
+
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.object.shade_smooth()
+
+		return {'FINISHED'}
 		
+
 class GA_Tools_Axe(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolaxe"
