@@ -20,7 +20,7 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_pathglb : bpy.props.StringProperty(
         name="Path", 
-        description = "Indicate the path to your game asset folder to save the .glb file",
+        description = "Indicate the path to your game asset folder",
         default='//',
         subtype = 'DIR_PATH'
    )   
