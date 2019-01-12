@@ -452,8 +452,10 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 
-		# >>>>>>>>>>>>>>>>> EXPORT THE MESH IN .glb
-		bpy.ops.export_scene.gltf(export_selected=True, filepath=os.path.join(path, name))
+		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
+		
+		#GLB export
+		bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
 		
 		print("Asset", name, "exported to", os.path.join(os.path.dirname(bpy.data.filepath)))
 
