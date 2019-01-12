@@ -25,6 +25,11 @@ class GA_generatePanel(bpy.types.Panel):
         col_ga = layout.column(align=True)
 		
 
+        #Texture Resolutions
+        col_ga.label(text="File Format")
+        row = col_ga.row()
+        row.prop(myscene , 'ga_file', expand=True)
+        col_ga.row().separator()
 
         row = col_ga.row()
         row.prop(myscene , 'ga_pathglb', expand=True)

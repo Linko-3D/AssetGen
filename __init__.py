@@ -18,6 +18,14 @@ from . import GA
 
 class GA_Props(bpy.types.PropertyGroup):
 
+   ga_file : bpy.props.EnumProperty(
+        items=[('glb', 'glb', 'glb file format'),
+               ('glTF', 'glTF', 'glTF file format'),],
+        description="Choose the texture resolution in Y (width)",
+        default='glb'
+   )
+
+
    ga_pathglb : bpy.props.StringProperty(
         name="Path", 
         description = "Indicate the path to your game asset folder",
