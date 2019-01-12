@@ -140,7 +140,10 @@ classes = [
     GA.GA_Start,
     GA_tools.GA_Tools_Stylized,	
     GA_tools.GA_Tools_Wear,		
+	GA_tools.GA_Tools_Smooth,
+	GA_tools.GA_Tools_Flat,
     GA_tools.GA_Tools_Optimize,		
+    
     GA_tools.GA_Tools_ResymX,		
     GA_tools.GA_Tools_Axe,	
 ]

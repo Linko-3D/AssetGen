@@ -58,7 +58,31 @@ class GA_Tools_Wear(bpy.types.Operator):
 		bpy.context.object.modifiers["Subdivision"].levels = 3
 		bpy.context.object.modifiers["Subdivision"].render_levels = 3
 
-		return {'FINISHED'}		
+		return {'FINISHED'}
+		
+class GA_Tools_Smooth(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolsmooth"
+	bl_label = "Smooth"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.shade_smooth()
+
+		return {'FINISHED'}
+		
+class GA_Tools_Flat(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolflat"
+	bl_label = "Flat"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.shade_flat()
+
+		return {'FINISHED'}
 		
 class GA_Tools_Optimize(bpy.types.Operator):
 
@@ -75,7 +99,7 @@ class GA_Tools_Optimize(bpy.types.Operator):
 		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
 		return {'FINISHED'}			
-		
+
 class GA_Tools_ResymX(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolresymx"
@@ -91,7 +115,7 @@ class GA_Tools_ResymX(bpy.types.Operator):
 		bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
 		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
-		return {'FINISHED'}				
+		return {'FINISHED'}
 		
 class GA_Tools_Axe(bpy.types.Operator):
 
