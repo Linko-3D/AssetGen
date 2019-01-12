@@ -87,7 +87,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_showoutput : bpy.props.BoolProperty(
         name = 'Show output in Blender',
         description = "Display your output in Blender",
-        default = False
+        default = True
    )   
 
 
@@ -126,7 +126,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_smooth : bpy.props.BoolProperty(
         name = 'Smooth Shading',
         description = "Will apply a smooth shading on your high poly",
-        default = True
+        default = False
    )    
 
    ga_removeinside : bpy.props.BoolProperty(
