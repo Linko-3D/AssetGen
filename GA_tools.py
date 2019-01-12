@@ -188,7 +188,50 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		bpy.ops.object.shade_smooth()
 
 		return {'FINISHED'}
-		
+
+class GA_Tools_Chain(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolchain"
+	bl_label = "Chain"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+        
+		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(0, 0, 0), major_segments=6, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+
+		bpy.context.object.rotation_euler[0] = 1.5708
+		bpy.context.object.rotation_euler[1] = 0.523599
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.bisect(plane_co=(1, 0, 0), plane_no=(0, 0, 1), use_fill=False, clear_inner=True, clear_outer=False, xstart=1087, xend=1232, ystart=470, yend=472)
+		bpy.ops.mesh.select_all(action='INVERT')
+
+		bpy.ops.transform.translate(value=(0, 0, 0.5), constraint_axis=(False, False, True), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.object.modifier_add(type='MIRROR')
+		bpy.context.object.modifiers["Mirror"].use_axis[0] = False
+		bpy.context.object.modifiers["Mirror"].use_axis[2] = True
+		bpy.context.object.modifiers["Mirror"].use_clip = True
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
+		bpy.context.object.modifiers["Bevel"].width = 0.0025
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+		bpy.ops.object.shade_smooth()
+
+		return {'FINISHED'}
 
 class GA_Tools_Axe(bpy.types.Operator):
 
