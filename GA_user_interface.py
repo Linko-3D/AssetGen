@@ -86,7 +86,7 @@ class GA_generatePanel(bpy.types.Panel):
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.5
         col1_ga.operator("scene.ga_start", icon="FILE_REFRESH")
-        layout.row().separator()
+
 		
 
         col_ga.row().separator()
@@ -160,7 +160,6 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.scale_y = 1.0
         col1_ga.operator("scene.ga_toolsstylized", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolswear", icon="FILE_REFRESH")		
-        layout.row().separator()		
 
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
@@ -173,7 +172,6 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_tooldyntopo", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooloptimize", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolresymx", icon="FILE_REFRESH")		
-        layout.row().separator()			
 
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
@@ -186,7 +184,6 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolextrudedshape", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolring", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolstrap", icon="FILE_REFRESH")
-        layout.row().separator()
 
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
@@ -196,8 +193,3 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.scale_y = 1.0
         col1_ga.operator("scene.ga_toolaxe", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolsword", icon="FILE_REFRESH")
-        layout.row().separator()
-
-		
- 
-        col_ga.row().separator()				
