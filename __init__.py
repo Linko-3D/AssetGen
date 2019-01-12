@@ -146,7 +146,8 @@ classes = [
     GA_tools.GA_Tools_Optimize,		
     
     GA_tools.GA_Tools_ResymX,		
-    GA_tools.GA_Tools_Axe,	
+    GA_tools.GA_Tools_Axe,
+    GA_tools.GA_Tools_Sword,	
 ]
 
 
