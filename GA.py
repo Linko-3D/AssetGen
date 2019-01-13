@@ -203,8 +203,18 @@ class GA_Start(bpy.types.Operator):
 
 
 			bpy.ops.object.mode_set(mode = 'OBJECT')
-    
-    
+
+			# Cleaning flat surfaces
+
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			bpy.ops.mesh.select_all(action = 'SELECT')
+
+			bpy.ops.mesh.dissolve_limited()
+
+			bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+
 			# Decimation 1
     
 			bpy.ops.object.modifier_add(type='TRIANGULATE')
@@ -263,18 +273,6 @@ class GA_Start(bpy.types.Operator):
 					bpy.ops.object.mode_set(mode = 'OBJECT')
 
 				bpy.context.object.name = "tmpLP"
-
-			# Cleaning flat surfaces
-
-			bpy.ops.object.mode_set(mode = 'EDIT')
-			bpy.ops.mesh.select_all(action = 'SELECT')
-
-			bpy.ops.mesh.dissolve_limited()
-
-			bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
-
-			bpy.ops.object.mode_set(mode = 'OBJECT')
-
 
 			# Decimation 2
 
