@@ -126,7 +126,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_smooth : bpy.props.BoolProperty(
         name = 'Smooth Shading',
         description = "Will apply a smooth shading on your high poly",
-        default = False
+        default = True
    )    
 
    ga_removeinside : bpy.props.BoolProperty(
