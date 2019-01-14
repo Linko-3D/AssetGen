@@ -470,6 +470,9 @@ class GA_Start(bpy.types.Operator):
 		if myscene.ga_file == "obj":
 			extension = bpy.context.object.name + ".obj"
 			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
+		if myscene.ga_file == "fbx":
+			extension = bpy.context.object.name + ".fbx"
+			bpy.ops.export_scene.fbx(filepath=os.path.join(path, extension), use_selection=True)
 
 		
 		print("Asset", name, "exported to", path)
