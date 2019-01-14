@@ -15,7 +15,7 @@ class GA_Start(bpy.types.Operator):
 	def execute(self, context):
 
 		#TEMP FORCE CPU
-		#bpy.context.scene.cycles.device = 'CPU'
+		bpy.context.scene.cycles.device = 'CPU'
 
 
 		myscene = context.scene.ga_property
