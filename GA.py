@@ -467,10 +467,9 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
 		if myscene.ga_file == "glTF":
 			bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
-		
-		#OBJ export
-		#extension = bpy.context.object.name + ".obj"
-		#bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
+		if myscene.ga_file == "obj":
+			extension = bpy.context.object.name + ".obj"
+			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
 
 		
 		print("Asset", name, "exported to", path)

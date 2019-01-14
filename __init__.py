@@ -20,7 +20,8 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_file : bpy.props.EnumProperty(
         items=[('glb', 'glb', 'glb file format'),
-               ('glTF', 'glTF', 'glTF file format'),],
+               ('glTF', 'glTF', 'glTF file format'),
+               ('obj', 'obj', 'obj file format'),],
         description="Choose the file format between glb (binary packed) or glTF (unpacked)",
         default='glTF'
    )
