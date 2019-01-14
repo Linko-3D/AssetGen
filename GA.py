@@ -470,9 +470,7 @@ class GA_Start(bpy.types.Operator):
 		if myscene.ga_file == "obj":
 			extension = bpy.context.object.name + ".obj"
 			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
-		if myscene.ga_file == "fbx":
-			extension = bpy.context.object.name + ".fbx"
-			bpy.ops.export_scene.fbx(filepath=os.path.join(path, extension), use_selection=True)
+
 
 		
 		print("Asset", name, "exported to", path)
@@ -499,14 +497,10 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
 
-		# Offset the LOD0 to make it visible beside the high poly
-		
-		bpy.ops.transform.translate(value=(0, 6, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
-
 		if LOD1 > 0:
 			## LOD1
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 6, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
@@ -523,7 +517,7 @@ class GA_Start(bpy.types.Operator):
 		if LOD2 > 0:
 			## LOD2
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 4, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
@@ -540,7 +534,7 @@ class GA_Start(bpy.types.Operator):
 		if LOD3 > 0:
 			## LOD3
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 4, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
@@ -553,6 +547,16 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.data.name = name + "_LOD3"
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
+		
+		bpy.ops.object.select_pattern(pattern=name + "_LOD0")
+		bpy.ops.object.select_pattern(pattern=name + "_LOD1")
+		bpy.ops.object.select_pattern(pattern=name + "_LOD2")
+		bpy.ops.object.select_pattern(pattern=name + "_LOD3")
+		
+		if myscene.ga_file == "fbx":
+			extension = bpy.context.object.name + ".fbx"
+			bpy.ops.export_scene.fbx(filepath=os.path.join(path, extension), use_selection=True)
+
 
 		if myscene.ga_showoutput == 0:
 			bpy.ops.object.select_all(action = 'DESELECT')
