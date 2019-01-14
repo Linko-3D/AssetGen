@@ -556,7 +556,25 @@ class GA_Start(bpy.types.Operator):
 		if myscene.ga_file == "fbx":
 			extension = bpy.context.object.name + ".fbx"
 			bpy.ops.export_scene.fbx(filepath=os.path.join(path, extension), use_selection=True)
-
+		
+		#Offset
+		bpy.ops.object.select_all(action = 'DESELECT')
+		
+		bpy.ops.object.select_pattern(pattern=name + "_LOD0")
+		bpy.ops.transform.translate(value=(0, 5, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.select_all(action = 'DESELECT')
+		
+		bpy.ops.object.select_pattern(pattern=name + "_LOD1")
+		bpy.ops.transform.translate(value=(0, 10, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.select_all(action = 'DESELECT')
+		
+		bpy.ops.object.select_pattern(pattern=name + "_LOD2")
+		bpy.ops.transform.translate(value=(0, 13, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.select_all(action = 'DESELECT')
+		
+		bpy.ops.object.select_pattern(pattern=name + "_LOD3")
+		bpy.ops.transform.translate(value=(0, 16, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.select_all(action = 'DESELECT')
 
 		if myscene.ga_showoutput == 0:
 			bpy.ops.object.select_all(action = 'DESELECT')
