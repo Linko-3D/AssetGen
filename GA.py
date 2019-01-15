@@ -82,10 +82,6 @@ class GA_Start(bpy.types.Operator):
 
 		bake_textures = 1
 
-
-		#TMPDISABLED
-		ground_AO = 0
-
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
 		split_convex = 0
@@ -329,12 +325,19 @@ class GA_Start(bpy.types.Operator):
 		# Add the ground if enabled
 
 		if ground_AO == 1:
-			bpy.ops.mesh.primitive_plane_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
+			bpy.ops.object.select_all(action = 'DESELECT')
+			bpy.ops.object.select_pattern(pattern="tmpHP")
+			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpHP"]
+			
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			
+			bpy.ops.mesh.primitive_plane_add(size=2, view_align=False, enter_editmode=False, location=(0, 0, 0))
 			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
-			bpy.context.object.name = "ground_AO"
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+
 			bpy.ops.object.select_all(action = 'DESELECT')
 			bpy.ops.object.select_pattern(pattern="tmpLP")
-			bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
+			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 
 		# Baking #########################################################################################################################
 
@@ -364,8 +367,6 @@ class GA_Start(bpy.types.Operator):
 			
 			#Create Material
 			DEF_material_add(context,size,name,"baseColor")	
-
-
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
