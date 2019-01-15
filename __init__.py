@@ -134,7 +134,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_removeinside : bpy.props.BoolProperty(
         name = 'Remove Inside',
         description = "NOT WORKING YET - The addon will perform an Union boolean between every meshes that aren't merged (connected vertices), this will remove the geometry inside your model before calculating the polycount and performing an UV Mapping",
-        default = False
+        default = True
    )    
 
    ga_groundao : bpy.props.BoolProperty(

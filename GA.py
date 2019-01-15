@@ -85,8 +85,6 @@ class GA_Start(bpy.types.Operator):
 
 		#TMPDISABLED
 		ground_AO = 0
-		remove_inside = 0
-		selected_to_active = 0
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
@@ -127,8 +125,7 @@ class GA_Start(bpy.types.Operator):
 			print("\n> Info: the low poly has no UV Map, performing a Smart UV Project\n")
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin) # Perform smart UV projection
 
-			bpy.ops.object.select_pattern(pattern="tmpHP")
-
+			bpy.context.object.name = "tmpLP"
 
 		if selected_to_active == 0:
 		
@@ -250,7 +247,7 @@ class GA_Start(bpy.types.Operator):
 				i = 0
 
 				for obj in bpy.context.selected_objects:
-					bpy.ontext.scene.objects.active = obj
+					bpy.context.view_layer.objects.active = obj
 
 					i = i + 1
 					bpy.context.object.name = "tmpLP" + str(i)
@@ -260,7 +257,7 @@ class GA_Start(bpy.types.Operator):
 
 				bpy.ops.object.select_all(action= 'DESELECT')
 				bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
-				bpy.context.scene.objects.active = bpy.data.objects["tmpLP" + str(i)]
+				bpy.context.view_layer.objects.active  = bpy.data .objects["tmpLP" + str(i)]
 
 				bpy.ops.object.mode_set(mode = 'EDIT')
 				bpy.ops.mesh.select_all(action = 'SELECT')
