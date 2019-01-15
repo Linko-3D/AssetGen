@@ -597,7 +597,7 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.select_all(action = 'DESELECT')
 		bpy.ops.object.select_pattern(pattern= name)
-		#todo bpy.context.scene.objects.active = bpy.data.objects[name]
+		bpy.context.view_layer.objects.active  = bpy.data.objects[name]
 
 		bpy.context.scene.eevee.use_ssr = True
 		bpy.context.scene.eevee.use_gtao = True
