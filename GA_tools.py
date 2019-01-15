@@ -8,28 +8,30 @@ class GA_Tools_Stylized(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-        
- 
-		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-		bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
-		bpy.context.object.modifiers["SimpleDeform"].deform_method = 'TAPER'
-		bpy.context.object.modifiers["SimpleDeform"].factor = -0.05
-		bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
 
-		bpy.ops.object.modifier_add(type='BEVEL')
-		bpy.context.object.modifiers["Bevel"].segments = 2
-		bpy.context.object.modifiers["Bevel"].width = 0.025
+			bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
+			bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
+			bpy.context.object.modifiers["SimpleDeform"].deform_method = 'TAPER'
+			bpy.context.object.modifiers["SimpleDeform"].factor = -0.05
+			bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
 
-		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+			bpy.ops.object.modifier_add(type='BEVEL')
+			bpy.context.object.modifiers["Bevel"].segments = 2
+			bpy.context.object.modifiers["Bevel"].width = 0.025
 
-		bpy.ops.object.modifier_add(type='SUBSURF')
-		bpy.context.object.modifiers["Subdivision"].levels = 3
-		bpy.context.object.modifiers["Subdivision"].render_levels = 3
+			bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
 
-		bpy.ops.object.shade_smooth()
+			bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+
+			bpy.ops.object.modifier_add(type='SUBSURF')
+			bpy.context.object.modifiers["Subdivision"].levels = 3
+			bpy.context.object.modifiers["Subdivision"].render_levels = 3
+
+			bpy.ops.object.shade_smooth()
 
 		return {'FINISHED'}
 		
@@ -109,12 +111,15 @@ class GA_Tools_Optimize(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-        
-		bpy.ops.object.convert(target='MESH')
 
-		bpy.ops.object.modifier_add(type='DECIMATE')
-		bpy.context.object.modifiers["Decimate"].ratio = 0.7
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
+			
+			bpy.ops.object.convert(target='MESH')
+
+			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.object.modifiers["Decimate"].ratio = 0.7
+			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
 		return {'FINISHED'}			
 
@@ -125,13 +130,16 @@ class GA_Tools_ResymX(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-        
-		bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
-		bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
 
-		bpy.ops.object.modifier_add(type='MIRROR')
-		bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
+			
+			bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
+			bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+
+			bpy.ops.object.modifier_add(type='MIRROR')
+			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
+			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
 		return {'FINISHED'}
 
