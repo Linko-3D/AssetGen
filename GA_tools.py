@@ -86,6 +86,23 @@ class GA_Tools_Flat(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_Flip(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolflip"
+	bl_label = "Flip"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.flip_normals()
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		return {'FINISHED'}
+
 class GA_Tools_Dyntopo(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooldyntopo"
