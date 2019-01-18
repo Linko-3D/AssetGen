@@ -173,7 +173,7 @@ class GA_Start(bpy.types.Operator):
 
 				bpy.ops.mesh.select_all(action = 'SELECT')
     
-			## Cleaning low poly
+			## Cleaning low poly 1
 
 			bpy.ops.object.mode_set(mode = 'EDIT')
 			bpy.ops.mesh.select_all(action = 'SELECT')
@@ -181,7 +181,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.remove_doubles()
 			bpy.ops.mesh.delete_loose()
 			bpy.ops.mesh.select_all(action = 'SELECT')
-
+			
 			# Convex Hull
 
 			if convex_hull == 1:
@@ -300,6 +300,16 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.remove_doubles(threshold=0.001)
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 
+			## Cleaning low poly 2
+
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			bpy.ops.mesh.select_all(action = 'SELECT')
+
+			bpy.ops.mesh.remove_doubles()
+			bpy.ops.mesh.delete_loose()
+			bpy.ops.mesh.select_all(action = 'SELECT')
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+			
 			# Unfold UVs
 
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)

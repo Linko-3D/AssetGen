@@ -116,7 +116,7 @@ class GA_Props(bpy.types.PropertyGroup):
         description = "The amount of pixels that goes beyond the UV seam. A value too low can reveal the seam, a value too high takes more time to calculate. If you generate a billboard imposter card use a value of 0",
         default = 16,
         min = 0,
-        max = 64		
+        max = 64
    )   
 
    ga_uvmargin : bpy.props.FloatProperty(
