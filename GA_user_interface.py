@@ -49,7 +49,11 @@ class GA_generatePanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_samplecount")
         col_ga.row().separator()	
-		
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_ao")
+        col_ga.row().separator()
+
         row = col_ga.row()		
         row.prop(myscene , "ga_unfoldhalf")
         col_ga.row().separator()

@@ -59,7 +59,13 @@ class GA_Props(bpy.types.PropertyGroup):
         default=8,
         min = 1		
    )  
-   
+
+   ga_ao : bpy.props.BoolProperty(
+        name = 'Bake AO',
+        description = "Will bake the AO map separately ideal for PBR materials. Do not include an AO node in your base color shader",
+        default = False
+   )
+
    ga_unfoldhalf : bpy.props.BoolProperty(
         name = 'Unfold Half',
         description = "Will generate an UV Map for the half right of the low poly to double the quality of the texture",

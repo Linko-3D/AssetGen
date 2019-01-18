@@ -81,6 +81,8 @@ class GA_Start(bpy.types.Operator):
 		center_Z = 0
 
 		bake_textures = 1
+		
+		bake_AO = myscene.ga_ao
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
@@ -383,15 +385,16 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 			
 			## AO map bake
-
-			print("\nBaking the ambient occclusion map...")
 			
-			#Create Material
-			DEF_material_add(context,size,name,"ambientOcclusion")
+			if bake_AO == 1:
+				print("\nBaking the ambient occclusion map...")
+				
+				#Create Material
+				DEF_material_add(context,size,name,"ambientOcclusion")
 
-			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-			#bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
-			
+				bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+				bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+
 			## Roughness map bake
 
 			print("\nBaking the roughness map...")
