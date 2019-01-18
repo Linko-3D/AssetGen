@@ -18,6 +18,7 @@ class GA_Tools_Stylized(bpy.types.Operator):
 			bpy.context.object.modifiers["SimpleDeform"].deform_method = 'TAPER'
 			bpy.context.object.modifiers["SimpleDeform"].factor = -0.05
 			bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
+			bpy.context.object.modifiers["SimpleDeform"].show_viewport = False
 
 			bpy.ops.object.modifier_add(type='BEVEL')
 			bpy.context.object.modifiers["Bevel"].segments = 2

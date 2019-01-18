@@ -32,7 +32,7 @@ class GA_generatePanel(bpy.types.Panel):
         col_ga.row().separator()
 
         row = col_ga.row()
-        row.prop(myscene , 'ga_pathglb', expand=True)
+        row.prop(myscene , 'ga_path', expand=True)
         col_ga.row().separator()		
    
         #Texture Resolutions
