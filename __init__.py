@@ -33,6 +33,12 @@ class GA_Props(bpy.types.PropertyGroup):
         subtype = 'DIR_PATH'
    )   
 
+   ga_baketextures : bpy.props.BoolProperty(
+        name = 'Bake Textures',
+        description = "Will bake your textures. You can disable it if you want to edit the UV map of the generated low poly, then you can use Selected to Active to bake your maps",
+        default = False
+   )
+
    ga_textureX : bpy.props.EnumProperty(
         items=[('256', '256', '256 px resolution'),
                ('512', '512', '512 px resolution'),

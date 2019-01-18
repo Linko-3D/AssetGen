@@ -80,7 +80,7 @@ class GA_Start(bpy.types.Operator):
 		center_Y = 0
 		center_Z = 0
 
-		bake_textures = 1
+		bake_textures = myscene.ga_baketextures
 		
 		bake_AO = myscene.ga_ao
 
@@ -404,26 +404,16 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
-			
-			## AO map bake
-
-			#print("\nBaking the emit map...")
-			
-			#Create Material
-			#DEF_material_add(context,size,name,"normal")
-
-			#bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-			#bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
 		
 		print("")
 		
 		#Create Material
-		DEF_pbrShader_add(context,size,name)
+		if bake_textures == 1:
+			DEF_pbrShader_add(context,size,name)
 
-		bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
-
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
 
 		# Delete the ground        
 		if ground_AO == 1:
@@ -467,15 +457,14 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
-		
-		if myscene.ga_file == "glb":
-			bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
-		if myscene.ga_file == "glTF":
-			bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
-		if myscene.ga_file == "obj":
-			extension = bpy.context.object.name + ".obj"
-			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
-
+		if bake_textures == 1:
+			if myscene.ga_file == "glb":
+				bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
+			if myscene.ga_file == "glTF":
+				bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
+			if myscene.ga_file == "obj":
+				extension = bpy.context.object.name + ".obj"
+				bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
 
 		
 		print("Asset", name, "exported to", path)

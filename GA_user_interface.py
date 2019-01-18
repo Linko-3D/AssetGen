@@ -12,7 +12,7 @@ class GA_generatePanel(bpy.types.Panel):
     bl_context = "objectmode"  
     bl_label = "Game Asset Generator"  
     bl_category = "AssetGen" 
- 
+
 
 
     def draw(self, context):
@@ -23,7 +23,6 @@ class GA_generatePanel(bpy.types.Panel):
         myscene = context.scene.ga_property
   
         col_ga = layout.column(align=True)
-		
 
         #Texture Resolutions
         col_ga.label(text="File Format")
@@ -34,7 +33,11 @@ class GA_generatePanel(bpy.types.Panel):
         row = col_ga.row()
         row.prop(myscene , 'ga_path', expand=True)
         col_ga.row().separator()		
-   
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_baketextures")
+        col_ga.row().separator()
+
         #Texture Resolutions
         col_ga.label(text="Resolution X (Width)", icon='TEXTURE_DATA')
         row = col_ga.row()
