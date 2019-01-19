@@ -154,9 +154,6 @@ class GA_Tools_Union(bpy.types.Operator):
 			bpy.ops.mesh.intersect_boolean(operation='UNION')
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			bpy.ops.object.mode_set(mode = 'OBJECT')
-		
-		bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-
 
 		return {'FINISHED'}
 
