@@ -174,6 +174,7 @@ classes = [
     GA.GA_Start,
     GA_tools.GA_Tools_Stylized,
     GA_tools.GA_Tools_Wear,
+	GA_tools.GA_Tools_Apply,
 	GA_tools.GA_Tools_Smooth,
 	GA_tools.GA_Tools_Flat,
 	GA_tools.GA_Tools_SVerts,

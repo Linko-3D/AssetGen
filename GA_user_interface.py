@@ -174,6 +174,7 @@ class GA_toolsPanel(bpy.types.Panel):
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_toolapply", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolsmooth", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolflat", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolsverts", icon="FILE_REFRESH")

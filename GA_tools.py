@@ -62,7 +62,19 @@ class GA_Tools_Wear(bpy.types.Operator):
 		bpy.context.object.modifiers["Subdivision"].render_levels = 3
 
 		return {'FINISHED'}
-		
+
+class GA_Tools_Apply(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolapply"
+	bl_label = "Apply Meshes"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.convert(target='MESH')
+
+		return {'FINISHED'}
+
 class GA_Tools_Smooth(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolsmooth"
@@ -186,7 +198,7 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 		bpy.ops.object.convert(target='MESH')
 		bpy.ops.object.join()
 
-		bpy.ops.object.mode_set(mode = 'EDIT') 
+		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_all(action = 'DESELECT')
 		bpy.ops.mesh.select_mode(type="EDGE")
 
