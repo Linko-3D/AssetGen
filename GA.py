@@ -310,6 +310,9 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 			
+			bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+
+			
 			# Unfold UVs
 
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
@@ -416,6 +419,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 		# Finalizing
+		
+		bpy.ops.object.modifier_remove(modifier="EdgeSplit")
 		
 		print("")
 		
