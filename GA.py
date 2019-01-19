@@ -250,7 +250,7 @@ class GA_Start(bpy.types.Operator):
 					i = i + 1
 					bpy.context.object.name = "tmpLP" + str(i)
 
-				print("Info: Union boolean applied on", i, "meshes")
+				print("\nInfo: Union boolean applied on", i, "meshes\n")
 
 
 				bpy.ops.object.select_all(action= 'DESELECT')
