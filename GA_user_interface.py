@@ -177,6 +177,7 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolsmooth", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolflat", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolfixnormals", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolunion", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooldyntopo", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooloptimize", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolresymx", icon="FILE_REFRESH")		

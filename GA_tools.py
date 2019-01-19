@@ -104,6 +104,25 @@ class GA_Tools_FixNormals(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_Union(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolunion"
+	bl_label = "Union Boolean"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.convert(target='MESH')
+		bpy.ops.object.join()
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+		
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		return {'FINISHED'}
+
 class GA_Tools_Dyntopo(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooldyntopo"
