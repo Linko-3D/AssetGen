@@ -133,13 +133,13 @@ class GA_Tools_Union(bpy.types.Operator):
 			bpy.context.view_layer.objects.active = obj
 
 			i = i + 1
-			bpy.context.object.name = "tmpLP" + str(i)
+			bpy.context.object.name = "Mesh" + str(i)
 
 		print("Info: Union boolean applied on", i, "meshes")
 
 		bpy.ops.object.select_all(action= 'DESELECT')
-		bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
-		bpy.context.view_layer.objects.active  = bpy.data .objects["tmpLP" + str(i)]
+		bpy.ops.object.select_pattern(pattern="Mesh" + str(i))
+		bpy.context.view_layer.objects.active  = bpy.data .objects["Mesh" + str(i)]
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_all(action = 'SELECT')
@@ -147,13 +147,16 @@ class GA_Tools_Union(bpy.types.Operator):
 
 		while i > 1:
 			i = i - 1
-			bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
+			bpy.ops.object.select_pattern(pattern="Mesh" + str(i))
 			bpy.ops.object.join()
 			bpy.ops.object.mode_set(mode = 'EDIT')
 
 			bpy.ops.mesh.intersect_boolean(operation='UNION')
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.ops.object.modifier_add(type='EDGE_SPLIT')
+
 
 		return {'FINISHED'}
 
