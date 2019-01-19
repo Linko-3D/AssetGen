@@ -98,7 +98,7 @@ class GA_Tools_SVerts(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
-		bpy.ops.mesh.vertices_smooth()
+		bpy.ops.mesh.vertices_smooth(repeat=2)
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		return {'FINISHED'}
