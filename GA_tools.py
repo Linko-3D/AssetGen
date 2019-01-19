@@ -114,46 +114,12 @@ class GA_Tools_Union(bpy.types.Operator):
 
 		bpy.ops.object.convert(target='MESH')
 		bpy.ops.object.join()
-
-		bpy.ops.object.mode_set(mode = 'EDIT') 
-		bpy.ops.mesh.select_all(action = 'DESELECT')
-		bpy.ops.mesh.select_mode(type="EDGE")
-
-		bpy.ops.mesh.select_non_manifold()
-		bpy.ops.mesh.edge_face_add()
-
-		bpy.ops.mesh.select_all(action = 'SELECT')
-
-		bpy.ops.mesh.separate(type='LOOSE')
-		bpy.ops.object.mode_set(mode = 'OBJECT')
-
-		i = 0
-
-		for obj in bpy.context.selected_objects:
-			bpy.context.view_layer.objects.active = obj
-
-			i = i + 1
-			bpy.context.object.name = "tmpLP" + str(i)
-
-		print("Info: Union boolean applied on", i, "meshes")
-
-		bpy.ops.object.select_all(action= 'DESELECT')
-		bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
-		bpy.context.view_layer.objects.active  = bpy.data .objects["tmpLP" + str(i)]
-
 		bpy.ops.object.mode_set(mode = 'EDIT')
+
 		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+		
 		bpy.ops.object.mode_set(mode = 'OBJECT')
-
-		while i > 1:
-			i = i - 1
-			bpy.ops.object.select_pattern(pattern="tmpLP" + str(i))
-			bpy.ops.object.join()
-			bpy.ops.object.mode_set(mode = 'EDIT')
-
-			bpy.ops.mesh.intersect_boolean(operation='UNION')
-			bpy.ops.mesh.select_all(action = 'SELECT')
-			bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		return {'FINISHED'}
 
