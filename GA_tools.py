@@ -123,6 +123,8 @@ class GA_Tools_Union(bpy.types.Operator):
 		bpy.ops.mesh.edge_face_add()
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
+		
+		bpy.ops.mesh.normals_make_consistent(inside=False)
 
 		bpy.ops.mesh.separate(type='LOOSE')
 		bpy.ops.object.mode_set(mode = 'OBJECT')
@@ -167,15 +169,53 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 
 		bpy.ops.object.convert(target='MESH')
 		bpy.ops.object.join()
-		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.object.mode_set(mode = 'EDIT') 
+		bpy.ops.mesh.select_all(action = 'DESELECT')
+		bpy.ops.mesh.select_mode(type="EDGE")
+
+		bpy.ops.mesh.select_non_manifold()
+		bpy.ops.mesh.edge_face_add()
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
+		
 		bpy.ops.mesh.normals_make_consistent(inside=False)
+
+		bpy.ops.mesh.separate(type='LOOSE')
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		i = 0
+
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
+
+			i = i + 1
+			bpy.context.object.name = "Mesh" + str(i)
+
+		print("Info: Union boolean applied on", i, "meshes")
+
+		bpy.ops.object.select_all(action= 'DESELECT')
+		bpy.ops.object.select_pattern(pattern="Mesh" + str(i))
+		bpy.context.view_layer.objects.active  = bpy.data .objects["Mesh" + str(i)]
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		while i > 1:
+			i = i - 1
+			bpy.ops.object.select_pattern(pattern="Mesh" + str(i))
+			bpy.ops.object.join()
+			bpy.ops.object.mode_set(mode = 'EDIT')
+
+			bpy.ops.mesh.intersect_boolean(operation='UNION')
+			bpy.ops.mesh.select_all(action = 'SELECT')
+			bpy.ops.object.mode_set(mode = 'OBJECT')
 		
 		bpy.ops.object.mode_set(mode = 'SCULPT')
 		bpy.ops.sculpt.dynamic_topology_toggle()
 
-		bpy.context.scene.tool_settings.sculpt.detail_size = 5
+		bpy.context.scene.tool_settings.sculpt.detail_size = 6
 		bpy.context.scene.tool_settings.unified_paint_settings.use_unified_strength = True
 		bpy.context.scene.tool_settings.unified_paint_settings.strength = 1
 
