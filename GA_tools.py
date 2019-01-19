@@ -87,10 +87,10 @@ class GA_Tools_Flat(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Flip(bpy.types.Operator):
+class GA_Tools_FixNormals(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolflip"
-	bl_label = "Flip"
+	bl_idname = "scene.ga_toolfixnormals"
+	bl_label = "Fix Normals"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -98,7 +98,7 @@ class GA_Tools_Flip(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
-		bpy.ops.mesh.flip_normals()
+		bpy.ops.mesh.normals_make_consistent(inside=False)
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -113,10 +113,16 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 	def execute(self, context):
 
 		bpy.ops.object.convert(target='MESH')
+		bpy.ops.object.join()
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+		
 		bpy.ops.object.mode_set(mode = 'SCULPT')
 		bpy.ops.sculpt.dynamic_topology_toggle()
 
-		bpy.context.scene.tool_settings.sculpt.detail_size = 4
+		bpy.context.scene.tool_settings.sculpt.detail_size = 5
 		bpy.context.scene.tool_settings.unified_paint_settings.use_unified_strength = True
 		bpy.context.scene.tool_settings.unified_paint_settings.strength = 1
 
