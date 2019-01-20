@@ -101,10 +101,6 @@ class GA_Start(bpy.types.Operator):
 			remove_inside = 1
 			
 
-
-		#TEST
-		
-		print(myscene.ga_file)
 		
 		# EXECUTION
 
@@ -131,7 +127,7 @@ class GA_Start(bpy.types.Operator):
 		
 			bpy.ops.object.convert(target='MESH')
 			bpy.ops.object.join()
-    
+
 			bpy.context.object.data.use_auto_smooth = False
 			
 			if smooth == 1:
@@ -383,6 +379,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
 			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			#bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 			## Normal map bake
 
