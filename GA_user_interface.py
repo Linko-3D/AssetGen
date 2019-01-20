@@ -140,7 +140,11 @@ class GA_advancedPanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_convexmesh")
         col_ga.row().separator()		
- 
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_combined")
+        col_ga.row().separator()		
+
         col_ga.row().separator()		
 		
 class GA_toolsPanel(bpy.types.Panel):

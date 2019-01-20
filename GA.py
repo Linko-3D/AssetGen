@@ -74,6 +74,7 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		convex_hull = myscene.ga_convexmesh
 		smooth = myscene.ga_smooth
+		combined = myscene.ga_combined
 
 		
 		center_X = 0
@@ -378,8 +379,10 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
-			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
-			#bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			if combined == 0:
+				bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			else:
+				bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 
 			## Normal map bake
 

@@ -165,6 +165,12 @@ class GA_Props(bpy.types.PropertyGroup):
         default = False
    )         
    
+   ga_combined : bpy.props.BoolProperty(
+        name = 'Combined',
+        description = "Bake the Base Color in Combined mode, it will contain the lighting informations in the Blender scene",
+        default = False
+   )         
+
    
 classes = [
     GA_Props,
