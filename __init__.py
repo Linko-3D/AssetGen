@@ -45,7 +45,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('1K', '1K', '1K px resolution'),
                ('2K', '2K', '2K px resolution'),
                ('4K', '4K', '4K px resolution')],
-        description="Choose the texture resolution in Y (width)",
+        description="Choose the texture resolution in X (width)",
         default='512'
    )
    
@@ -129,7 +129,7 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_uvangle : bpy.props.IntProperty(
         name = 'UV Angle',
-        description = "The step angle where your UV Map must create an UV Seam. If the value is too low the the UV Map will contain many individual faces, the game engine will need more calculation to display your texture. A value too high could create overlapping and not optimize the texel density (space available) resulting in a low texture quality",
+        description = "The step angle where your UV Map must create an UV Seam. If the value is too low the UV Map will contain many individual faces, the game engine will need more calculations to display your textures. A value too high could create overlapping and not optimize the texel density (space available) resulting in a low texture quality",
         default = 45,
         min = 1,
         max = 89		
@@ -155,13 +155,13 @@ class GA_Props(bpy.types.PropertyGroup):
    
    ga_removeunderground : bpy.props.BoolProperty(
         name = 'Remove Underground',
-        description = "Evertyhing bellow the grid will be removed, this will save triangles that won't be visible bellow your model",
+        description = "Everything bellow the grid will be removed, this will save triangles that won't be visible bellow your model",
         default = False
    )   
    
    ga_convexmesh : bpy.props.BoolProperty(
         name = 'Convex Mesh',
-        description = "Every concave shapes will be delete, this allows to create low poly with very low polycount that surround your high poly, this is ideal for mobile games",
+        description = "Every concave shapes will be deleted, this allows to create low poly with very low polycount that surround your high poly, this is ideal for mobile games",
         default = False
    )         
    
