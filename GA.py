@@ -87,8 +87,7 @@ class GA_Start(bpy.types.Operator):
 
 		name = bpy.context.object.name
 		samples = myscene.ga_samplecount
-		split_convex = 0
-		
+
 		path = bpy.path.abspath(myscene.ga_path)
 
 
@@ -97,10 +96,6 @@ class GA_Start(bpy.types.Operator):
 			LOD1 = LOD0 / 2
 			LOD2 = LOD0 / 4
 			LOD3 = LOD0 / 8
-
-		if convex_hull and split_convex == 1:
-			remove_inside = 1
-			
 
 		
 		# EXECUTION
@@ -182,21 +177,15 @@ class GA_Start(bpy.types.Operator):
 			# Convex Hull
 
 			if convex_hull == 1:
-				if split_convex == 1:
-					bpy.ops.mesh.separate(type='LOOSE')
-					bpy.ops.object.mode_set(mode = 'OBJECT')
-					for obj in bpy.context.selected_objects:
-						bpy.context.scene.objects.active = obj
+				bpy.ops.mesh.separate(type='LOOSE')
+				bpy.ops.object.mode_set(mode = 'OBJECT')
 
-						bpy.ops.object.mode_set(mode = 'EDIT')
-						bpy.ops.mesh.select_all(action = 'SELECT')
-						bpy.ops.mesh.convex_hull()
-						bpy.ops.object.mode_set(mode = 'OBJECT')
+				bpy.ops.object.mode_set(mode = 'EDIT')
+				bpy.ops.mesh.select_all(action = 'SELECT')
+				bpy.ops.mesh.convex_hull()
+				bpy.ops.object.mode_set(mode = 'OBJECT')
 
-					bpy.ops.object.join()
-				else:
-					bpy.ops.mesh.convex_hull()
-
+				bpy.ops.object.join()
 
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 
