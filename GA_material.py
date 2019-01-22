@@ -50,9 +50,13 @@ def DEF_pbrShader_add(context,size,name ):
     ###############
     I_basecolor = bpy.data.images.get(name+"_"+"baseColor")
 
+	#Add metallic
+    ###############
+    I_Metallic = bpy.data.images.get(name+"_"+"metallic")
+
 	#Add roughness
     ###############
-    I_Roughness = bpy.data.images.get(name+"_"+"roughness")	
+    I_Roughness = bpy.data.images.get(name+"_"+"roughness")
 
 	#Add normal
     ###############
@@ -81,6 +85,8 @@ def DEF_pbrShader_add(context,size,name ):
 
     d_image_metallic = nodes.new("ShaderNodeTexImage")
     d_image_metallic.location = (-400,75)
+    d_image_metallic.image = I_Metallic
+    #d_image_roughness.color_space = 'NONE'
 
     d_image_roughness = nodes.new("ShaderNodeTexImage")
     d_image_roughness.location = (-400,-175)
