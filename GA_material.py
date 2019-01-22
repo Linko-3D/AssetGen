@@ -89,7 +89,7 @@ def DEF_pbrShader_add(context,size,name ):
     #d_image_roughness.color_space = 'NONE'
 
     d_image_roughness = nodes.new("ShaderNodeTexImage")
-    d_image_roughness.location = (-400,-175)
+    d_image_roughness.location = (-400,-200)
     d_image_roughness.image = I_Roughness
     #d_image_roughness.color_space = 'NONE'
     links.new( d_1.inputs[7], d_image_roughness.outputs['Color'])
