@@ -196,6 +196,9 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 
 		bpy.ops.object.convert(target='MESH')
 		bpy.ops.object.join()
+		
+		bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
 
 		bpy.ops.object.mode_set(mode = 'SCULPT')
 		bpy.ops.sculpt.dynamic_topology_toggle()
@@ -284,11 +287,11 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
 		bpy.ops.object.modifier_add(type='BEVEL')
-		bpy.context.object.modifiers["Bevel"].width = 0.005
+		bpy.context.object.modifiers["Bevel"].width = 0.01
 		bpy.context.object.modifiers["Bevel"].segments = 2
 
 
@@ -331,12 +334,12 @@ class GA_Tools_Chain(bpy.types.Operator):
 
 		bpy.ops.object.modifier_add(type='BEVEL')
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
-		bpy.context.object.modifiers["Bevel"].width = 0.0025
+		bpy.context.object.modifiers["Bevel"].width = 0.005
 
 		bpy.ops.object.modifier_add(type='SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
-		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
 		bpy.ops.object.shade_smooth()
