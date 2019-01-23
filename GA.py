@@ -86,8 +86,6 @@ class GA_Start(bpy.types.Operator):
 
 		path = bpy.path.abspath(myscene.ga_path)
 
-
-
 		if calculate_LODs == 1:
 			LOD1 = LOD0 / 2
 			LOD2 = LOD0 / 4
@@ -134,6 +132,10 @@ class GA_Start(bpy.types.Operator):
 				bpy.ops.object.modifier_add(type='MIRROR')
 				bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+			
+			if myscene.ga_ontheground == 1:
+				lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
+				bpy.context.object.location.z -= lowest_pt
 
 			# Generating the low poly
 

@@ -104,10 +104,15 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_centerXY : bpy.props.BoolProperty(
         name = 'Center XY',
-        description = "Center your game asset in the X and Y axis before exporting it, this makes it easier to manipulate in the game engine (you can also have a collection of high polys in the Blender scene in different positions)",
+        description = "Center your game asset in the X and Y axis before exporting it, this makes it easier to manipulate it in the game engine (you can also have a collection of high polys in the Blender scene in different positions)",
         default = False
    )    
-   
+
+   ga_ontheground : bpy.props.BoolProperty(
+        name = 'On the Ground',
+        description = "Move your asset on the ground",
+        default = False
+   )    
 
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
