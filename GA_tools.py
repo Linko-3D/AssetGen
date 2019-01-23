@@ -98,6 +98,19 @@ class GA_Tools_Flat(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_OnTheGround(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolontheground"
+	bl_label = "On The Ground"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
+		bpy.context.object.location.z -= lowest_pt
+
+		return {'FINISHED'}
+
 class GA_Tools_SVerts(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolsverts"
