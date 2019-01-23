@@ -162,6 +162,9 @@ class GA_Tools_Union(bpy.types.Operator):
 		bpy.ops.mesh.select_non_manifold()
 		bpy.ops.mesh.edge_face_add()
 		bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+		
+		bpy.ops.mesh.select_loose()
+		bpy.ops.mesh.delete(type='EDGE')
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 		
