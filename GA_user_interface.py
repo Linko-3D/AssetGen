@@ -115,6 +115,10 @@ class GA_advancedPanel(bpy.types.Panel):
   
         col_ga = layout.column(align=True)
 
+        row = col_ga.row()		
+        row.prop(myscene , "ga_centerXY")
+        col_ga.row().separator()	
+
         col_ga.prop(myscene , 'ga_cagesize') 
         col_ga.prop(myscene , 'ga_edgepadding') 
         col_ga.prop(myscene , 'ga_uvmargin') 
