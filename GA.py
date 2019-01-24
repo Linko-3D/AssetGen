@@ -594,13 +594,6 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.select_pattern(pattern= name)
 		bpy.context.view_layer.objects.active  = bpy.data.objects[name]
 
-		bpy.context.scene.eevee.use_ssr = True
-		bpy.context.scene.eevee.use_gtao = True
-
-		#The lines bellow are here to refresh the SSR in case it was disabled before
-		bpy.context.scene.render.engine = 'BLENDER_EEVEE'
-		bpy.context.scene.render.engine = 'CYCLES'
-
 		now = time.time() #Time after it finished
 		print("\nAsset generated in", now-then, "seconds\n\n")
 
