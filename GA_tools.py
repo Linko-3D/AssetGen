@@ -265,6 +265,25 @@ class GA_Tools_ResymX(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_DissolveUnnecessary(bpy.types.Operator):
+
+	bl_idname = "scene.ga_tooldissolveunnecessary"
+	bl_label = "Dissolve Unnecessary"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.dissolve_limited()
+		bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+		bpy.ops.mesh.tris_convert_to_quads()
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		return {'FINISHED'}
+
 
 class GA_Tools_BoltCubic(bpy.types.Operator):
 
