@@ -14,11 +14,6 @@ class GA_Tools_Stylized(bpy.types.Operator):
 
 			bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
-			bpy.ops.object.modifier_add(type='SIMPLE_DEFORM')
-			bpy.context.object.modifiers["SimpleDeform"].deform_method = 'TAPER'
-			bpy.context.object.modifiers["SimpleDeform"].factor = -0.05
-			bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Z'
-
 			bpy.ops.object.modifier_add(type='BEVEL')
 			bpy.context.object.modifiers["Bevel"].segments = 2
 			bpy.context.object.modifiers["Bevel"].width = 0.025
@@ -28,8 +23,8 @@ class GA_Tools_Stylized(bpy.types.Operator):
 			bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 
 			bpy.ops.object.modifier_add(type='SUBSURF')
-			bpy.context.object.modifiers["Subdivision"].levels = 3
-			bpy.context.object.modifiers["Subdivision"].render_levels = 3
+			bpy.context.object.modifiers["Subdivision"].levels = 2
+			bpy.context.object.modifiers["Subdivision"].render_levels = 2
 
 			bpy.ops.object.shade_smooth()
 
