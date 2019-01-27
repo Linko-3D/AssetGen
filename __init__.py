@@ -170,17 +170,7 @@ class GA_Props(bpy.types.PropertyGroup):
         default = False
    )   
    
-   ga_convexmesh : bpy.props.BoolProperty(
-        name = 'Convex Mesh',
-        description = "Every concave shapes will be deleted, this allows to create low poly with very low polycount that surround your high poly, this is ideal for mobile games",
-        default = False
-   )         
-   
-   ga_combined : bpy.props.BoolProperty(
-        name = 'Combined',
-        description = "Bake the Base Color in Combined mode, it will contain the lighting informations in the Blender scene",
-        default = False
-   )         
+
 
    
 classes = [
@@ -192,6 +182,7 @@ classes = [
     GA_tools.GA_Tools_Stylized,
     GA_tools.GA_Tools_Wear,
 	GA_tools.GA_Tools_Apply,
+    GA_tools.GA_Tools_ResymX,
 	GA_tools.GA_Tools_Smooth,
 	GA_tools.GA_Tools_Flat,
 	GA_tools.GA_Tools_OnTheGround,
@@ -200,7 +191,6 @@ classes = [
 	GA_tools.GA_Tools_Union,
 	GA_tools.GA_Tools_Dyntopo,
     GA_tools.GA_Tools_Optimize,
-    GA_tools.GA_Tools_ResymX,
     GA_tools.GA_Tools_DissolveUnnecessary,
 
 	GA_tools.GA_Tools_BoltCubic,

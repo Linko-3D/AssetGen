@@ -72,9 +72,8 @@ class GA_Start(bpy.types.Operator):
 		cage_size = myscene.ga_cagesize
 		edge_padding = myscene.ga_edgepadding		
 		rmv_underground = myscene.ga_removeunderground
-		convex_hull = myscene.ga_convexmesh
 		smooth = myscene.ga_smooth
-		combined = myscene.ga_combined
+
 		
 
 		bake_textures = myscene.ga_baketextures
@@ -172,18 +171,6 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.mesh.delete_loose()
 			bpy.ops.mesh.select_all(action = 'SELECT')
 			
-			# Convex Hull
-
-			if convex_hull == 1:
-				bpy.ops.mesh.separate(type='LOOSE')
-				bpy.ops.object.mode_set(mode = 'OBJECT')
-
-				bpy.ops.object.mode_set(mode = 'EDIT')
-				bpy.ops.mesh.select_all(action = 'SELECT')
-				bpy.ops.mesh.convex_hull()
-				bpy.ops.object.mode_set(mode = 'OBJECT')
-
-				bpy.ops.object.join()
 
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -307,21 +294,6 @@ class GA_Start(bpy.types.Operator):
 				bpy.ops.object.modifier_add(type='MIRROR')
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
-
-			# Fixing the baking distortions
-
-			if convex_hull == 1:
-				bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-				bpy.context.object.modifiers["EdgeSplit"].split_angle = 0.802851
-
-
-			bpy.ops.object.mode_set(mode = 'EDIT')
-			bpy.ops.mesh.select_all(action = 'SELECT')
-			bpy.ops.object.mode_set(mode = 'OBJECT')
-			
-			bpy.ops.object.shade_smooth()
-
-
 		# Add the ground if enabled
 
 		if ground_AO == 1:
@@ -369,11 +341,8 @@ class GA_Start(bpy.types.Operator):
 			DEF_material_add(context,size,name,"baseColor")	
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-			
-			if combined == 0:
-				bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
-			else:
-				bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+
+			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
 			## Normal map bake
 

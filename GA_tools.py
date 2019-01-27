@@ -69,6 +69,26 @@ class GA_Tools_Apply(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_ResymX(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolresymx"
+	bl_label = "Resym X"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
+			
+			bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
+			bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+
+			bpy.ops.object.modifier_add(type='MIRROR')
+			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
+			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+		return {'FINISHED'}
+
 class GA_Tools_Smooth(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolsmooth"
@@ -239,26 +259,6 @@ class GA_Tools_Optimize(bpy.types.Operator):
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
 		return {'FINISHED'}			
-
-class GA_Tools_ResymX(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolresymx"
-	bl_label = "Resym X"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		for obj in bpy.context.selected_objects:
-			bpy.context.view_layer.objects.active = obj
-			
-			bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
-			bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
-
-			bpy.ops.object.modifier_add(type='MIRROR')
-			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
-
-		return {'FINISHED'}
 
 class GA_Tools_DissolveUnnecessary(bpy.types.Operator):
 
