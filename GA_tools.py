@@ -126,21 +126,6 @@ class GA_Tools_OnTheGround(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_SVerts(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolsverts"
-	bl_label = "Smooth Vertices"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		bpy.ops.object.mode_set(mode = 'EDIT')
-
-		bpy.ops.mesh.select_all(action = 'SELECT')
-		bpy.ops.mesh.vertices_smooth(repeat=2)
-		bpy.ops.object.mode_set(mode = 'OBJECT')
-
-		return {'FINISHED'}
 
 class GA_Tools_FixNormals(bpy.types.Operator):
 
@@ -291,6 +276,7 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 1))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.mesh.select_mode(type="VERT")
 		bpy.ops.mesh.merge(type='CENTER')
 
 		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"mirror":False}, TRANSFORM_OT_translate={"value":(0, -1, -1), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
@@ -340,7 +326,6 @@ class GA_Tools_Chain(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-        
 		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(0, 0, 0), major_segments=6, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
 
 		bpy.context.object.rotation_euler[0] = 1.5708
@@ -348,7 +333,7 @@ class GA_Tools_Chain(bpy.types.Operator):
 		bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
-
+		bpy.ops.mesh.select_mode(type="VERT")
 		bpy.ops.mesh.bisect(plane_co=(1, 0, 0), plane_no=(0, 0, 1), use_fill=False, clear_inner=True, clear_outer=False, xstart=1087, xend=1232, ystart=470, yend=472)
 		bpy.ops.mesh.select_all(action='INVERT')
 
@@ -389,6 +374,8 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 		bpy.context.object.name = "motif"
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
+		
+		bpy.ops.mesh.select_mode(type="VERT")
 
 		bpy.ops.mesh.merge(type='CENTER')
 
@@ -414,8 +401,6 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
-
-		bpy.ops.mesh.select_mode(type="VERT")
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 
@@ -743,6 +728,5 @@ class GA_Tools_Sword(bpy.types.Operator):
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
 		bpy.context.object.modifiers["Bevel"].width = 0.015
-
 
 		return {'FINISHED'}
