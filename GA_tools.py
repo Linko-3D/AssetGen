@@ -147,7 +147,7 @@ class GA_Tools_FixNormals(bpy.types.Operator):
 class GA_Tools_Union(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolunion"
-	bl_label = "Union Boolean"
+	bl_label = "Union/Fill/Fix"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -229,7 +229,7 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 class GA_Tools_Optimize(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooloptimize"
-	bl_label = "Optimize"
+	bl_label = "Reduce Polycount"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
