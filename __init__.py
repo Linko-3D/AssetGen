@@ -117,7 +117,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
         description = "The amount of temporary extrusion used on your low poly during the baking. A value too low will reveal intersections, a value too high can create new intersections between concave shapes and generate wavy edges. After generating your low poly if the result isn't correct, use the Solidify modifier on the low poly, change the offset to 1 and tweak the thickness by holding shift until it envelops the high poly to find the right value, then generate your asset again",
-        default = 0.1,
+        default = 0.03,
         min = 0,
         max = 1		
    )       
