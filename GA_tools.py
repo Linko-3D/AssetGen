@@ -319,6 +319,7 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+
 class GA_Tools_Chain(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolchain"
@@ -405,6 +406,93 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 		bpy.ops.mesh.select_all(action = 'SELECT')
 
 		bpy.ops.transform.skin_resize(value=(0.3, 0.3, 0.3), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		return {'FINISHED'}
+
+class GA_Tools_Hair(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolhair"
+	bl_label = "Hair/Fur"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		# Hair Strand
+
+		bpy.ops.curve.primitive_bezier_curve_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
+
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.transform.translate(value=(1, 0, 0), constraint_axis=(True, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.rotate(value=-1.5708, axis=(-1, -2.22045e-16, -4.93038e-32), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.curve.de_select_first()
+		bpy.ops.transform.rotate(value=1.5708, axis=(-0, 1, 1.34359e-07), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.transform.translate(value=(-0.25, 0, -0.2), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.context.object.data.resolution_u = 64
+
+		bpy.context.object.name = "HairStrand"
+
+		# Hair Taper
+
+		bpy.ops.curve.primitive_bezier_curve_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, -0.8, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.curve.de_select_last()
+		bpy.ops.transform.rotate(value=0.610865, axis=(-0, -0, -1), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.transform.translate(value=(0, 0.04, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.curve.de_select_last()
+
+
+		bpy.ops.curve.de_select_first()
+		bpy.ops.transform.rotate(value=0.436332, axis=(-0, -0, -1), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+		bpy.context.object.name = "HairTaper"
+
+		# Hair Bevel
+
+		bpy.ops.curve.primitive_bezier_circle_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.curve.handle_type_set(type='VECTOR')
+		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(1, 0.35, 1), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.curve.handle_type_set(type='AUTOMATIC')
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.transform.translate(value=(0, -1, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.context.object.name = "HairBevel"
+
+		# Import curves
+
+		bpy.ops.object.select_all(action = 'DESELECT')
+		bpy.ops.object.select_pattern(pattern="HairStrand")
+		bpy.context.view_layer.objects.active  = bpy.data.objects["HairStrand"]
+
+		bpy.context.object.data.taper_object = bpy.data.objects["HairTaper"]
+		bpy.context.object.data.bevel_object = bpy.data.objects["HairBevel"]
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
 
 		return {'FINISHED'}
 

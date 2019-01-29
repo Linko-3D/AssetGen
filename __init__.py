@@ -195,6 +195,7 @@ classes = [
 	GA_tools.GA_Tools_BoltCubic,
 	GA_tools.GA_Tools_Chain,
 	GA_tools.GA_Tools_ExtrudedShape,
+	GA_tools.GA_Tools_Hair,
 	GA_tools.GA_Tools_Ring,
 	GA_tools.GA_Tools_Strap,
 
