@@ -444,15 +444,19 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.location[0] = 0
 			bpy.context.object.location[1] = 0
 
+		# Change settings depending on the game engine
+		#bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		#bpy.ops.transform.rotate(value=-1.5708, axis=(-1, -2.22045e-016, -4.93038e-032), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
 		if bake_textures == 1:
+			if myscene.ga_file == "obj":
+				extension = bpy.context.object.name + ".obj"
+				bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
 			if myscene.ga_file == "glb":
 				bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
 			if myscene.ga_file == "glTF":
 				bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
-			if myscene.ga_file == "obj":
-				extension = bpy.context.object.name + ".obj"
-				bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
 
 		
 		print("Asset", name, "exported to", path)
