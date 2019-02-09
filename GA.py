@@ -445,8 +445,11 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.location[1] = 0
 
 		# Change settings depending on the game engine
-		#bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
-		#bpy.ops.transform.rotate(value=-1.5708, axis=(-1, -2.22045e-016, -4.93038e-032), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		
+		if myscene.ga_unreal == 1:
+		
+			bpy.ops.transform.rotate(value=-1.5708, axis=(-1, -2.22045e-016, -4.93038e-032), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
 		if bake_textures == 1:
@@ -460,7 +463,10 @@ class GA_Start(bpy.types.Operator):
 
 		
 		print("Asset", name, "exported to", path)
+		
 
+		bpy.ops.object.rotation_clear(clear_delta=False)
+		bpy.ops.object.scale_clear(clear_delta=False)
 
 		print("\nMesh infos:")
 

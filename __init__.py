@@ -26,6 +26,11 @@ class GA_Props(bpy.types.PropertyGroup):
         default='glb'
    )
 
+   ga_unreal : bpy.props.BoolProperty(
+        name = 'To Unreal Engine',
+        description = "Will fix the scale and orientation to export into Unreal Engine 4",
+        default = False
+   )
 
    ga_path : bpy.props.StringProperty(
         name="Path", 
@@ -150,7 +155,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_smooth : bpy.props.BoolProperty(
         name = 'Smooth Shading',
         description = "Will apply a smooth shading on your high poly",
-        default = True
+        default = False
    )    
 
    ga_removeinside : bpy.props.BoolProperty(

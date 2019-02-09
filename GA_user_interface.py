@@ -30,6 +30,10 @@ class GA_generatePanel(bpy.types.Panel):
         row.prop(myscene , 'ga_file', expand=True)
         col_ga.row().separator()
 
+        row = col_ga.row()		
+        row.prop(myscene , "ga_unreal")
+        col_ga.row().separator()
+
         row = col_ga.row()
         row.prop(myscene , 'ga_path', expand=True)
         col_ga.row().separator()		
