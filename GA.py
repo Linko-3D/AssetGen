@@ -72,7 +72,8 @@ class GA_Start(bpy.types.Operator):
 		cage_size = myscene.ga_cagesize
 		edge_padding = myscene.ga_edgepadding		
 		rmv_underground = myscene.ga_removeunderground
-		smooth = myscene.ga_smooth
+		smoothHP = myscene.ga_smoothHP
+		smoothLP = myscene.ga_smoothLP
 
 		
 
@@ -119,8 +120,11 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.context.object.data.use_auto_smooth = False
 			
-			if smooth == 1:
+			if smoothHP == 1:
 				bpy.ops.object.shade_smooth()
+			else:
+				bpy.ops.object.shade_flat()
+
 
 
 			bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
@@ -290,10 +294,14 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
 
-
 			if unfold_half == 1:
 				bpy.ops.object.modifier_add(type='MIRROR')
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+			if smoothLP == 1:
+				bpy.ops.object.shade_smooth()
+			else:
+				bpy.ops.object.shade_flat()
 
 		# Add the ground if enabled
 

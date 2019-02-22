@@ -119,6 +119,14 @@ class GA_advancedPanel(bpy.types.Panel):
   
         col_ga = layout.column(align=True)
 
+        row = col_ga.row()
+        row.prop(myscene , "ga_smoothHP")
+        col_ga.row().separator()
+
+        row = col_ga.row()
+        row.prop(myscene , "ga_smoothLP")
+        col_ga.row().separator()
+
         row = col_ga.row()		
         row.prop(myscene , "ga_centerXY")
         col_ga.row().separator()
@@ -132,10 +140,6 @@ class GA_advancedPanel(bpy.types.Panel):
         col_ga.prop(myscene , 'ga_uvmargin') 
         col_ga.prop(myscene , 'ga_uvangle')
         col_ga.row().separator()		
-
-        row = col_ga.row()		
-        row.prop(myscene , "ga_smooth")
-        col_ga.row().separator()	
 
         row = col_ga.row()		
         row.prop(myscene , "ga_removeinside")
