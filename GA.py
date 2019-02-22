@@ -142,12 +142,13 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.context.object.name = "tmpLP"
 
-			## Remove every material slots on the low poly
+			## Remove every material slots on the low poly only if the bake_textures mode is enabled
 
-			for ob in bpy.context.selected_editable_objects:
-				ob.active_material_index = 0
-				for i in range(len(ob.material_slots)):
-					bpy.ops.object.material_slot_remove({'object': ob})
+			if bake_textures == 1:
+				for ob in bpy.context.selected_editable_objects:
+					ob.active_material_index = 0
+					for i in range(len(ob.material_slots)):
+						bpy.ops.object.material_slot_remove({'object': ob})
 
 
 			# Remove Underground
@@ -388,15 +389,13 @@ class GA_Start(bpy.types.Operator):
 
 		# Finalizing
 		
-		print("")
-		
 		#Create Material
 		if bake_textures == 1:
 			DEF_pbrShader_add(context,size,name)
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
 
-		# Delete the ground        
+		# Delete the ground
 		if ground_AO == 1:
 			bpy.ops.object.select_all(action = 'DESELECT')
 			bpy.ops.object.select_pattern(pattern="ground_AO")
@@ -454,14 +453,13 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
-		if bake_textures == 1:
-			if myscene.ga_file == "obj":
-				extension = bpy.context.object.name + ".obj"
-				bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
-			if myscene.ga_file == "glb":
-				bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
-			if myscene.ga_file == "glTF":
-				bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
+		if myscene.ga_file == "obj":
+			extension = bpy.context.object.name + ".obj"
+			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
+		if myscene.ga_file == "glb":
+			bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
+		if myscene.ga_file == "glTF":
+			bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
 
 		
 		print("Asset", name, "exported to", path)
@@ -473,8 +471,8 @@ class GA_Start(bpy.types.Operator):
 		print("\nMesh infos:")
 
 		print("LOD0:", len(bpy.context.active_object.data.polygons), "tris")
-		
-		
+
+
 		bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
 
 		if LOD1 > 0:
