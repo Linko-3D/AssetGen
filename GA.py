@@ -91,6 +91,8 @@ class GA_Start(bpy.types.Operator):
 			LOD2 = LOD0 / 4
 			LOD3 = LOD0 / 8
 
+		if bake_textures == 0:
+			smoothLP = 0
 		
 		# EXECUTION
 
