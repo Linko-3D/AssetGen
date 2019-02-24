@@ -93,6 +93,7 @@ class GA_Start(bpy.types.Operator):
 
 		if bake_textures == 0:
 			smoothLP = 0
+			unfold_half = 0
 		
 		# EXECUTION
 
@@ -403,7 +404,7 @@ class GA_Start(bpy.types.Operator):
 		if bake_textures == 1:
 			DEF_pbrShader_add(context,size,name)
 
-			bpy.data.objects['tmpLP'].active_material = bpy.data.materials[name+"_"+"PBR"]
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["M_" + name]
 
 		# Delete the ground
 		if ground_AO == 1:

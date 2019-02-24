@@ -41,7 +41,7 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_baketextures : bpy.props.BoolProperty(
         name = 'Bake Textures',
-        description = "Will bake your textures, will set your low poly to flat shading. This is ideal to send low poly models with flat base colors. You can also use this to generate your low poly, edit the UVs then use Selected to Active.",
+        description = "Will bake your textures, will set your low poly to flat shading and disable Unfold Half. This is ideal to send low poly models with flat base colors. You can also use this to generate your low poly, edit the UVs then use Selected to Active.",
         default = True
    )
 

@@ -36,14 +36,14 @@ def DEF_material_add(context,size,name,type ):
 
 def DEF_pbrShader_add(context,size,name ):
 
-    mat = bpy.data.materials.get(name+"_"+"PBR")
+    mat = bpy.data.materials.get("M_" + name)
     
     bpy.context.scene.render.engine = 'CYCLES'
 	
     if  mat is None:
 			
         # Add PBR Material
-        mat = bpy.data.materials.new(name=name+"_"+"PBR")
+        mat = bpy.data.materials.new(name="M_" + name)
 		
 		
     #Add basecolor
