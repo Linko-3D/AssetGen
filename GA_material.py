@@ -48,19 +48,19 @@ def DEF_pbrShader_add(context,size,name ):
 		
     #Add basecolor
     ###############
-    I_basecolor = bpy.data.images.get(name+"_"+"baseColor")
+    I_basecolor = bpy.data.images.get(name+"_D")
 
 	#Add metallic
     ###############
-    I_Metallic = bpy.data.images.get(name+"_"+"metallic")
+    I_Metallic = bpy.data.images.get(name+"_M")
 
 	#Add roughness
     ###############
-    I_Roughness = bpy.data.images.get(name+"_"+"roughness")
+    I_Roughness = bpy.data.images.get(name+"_R")
 
 	#Add normal
     ###############
-    I_Normal = bpy.data.images.get(name+"_"+"normal")			
+    I_Normal = bpy.data.images.get(name+"_N")			
 
 
     # Enable 'Use nodes':

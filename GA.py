@@ -350,7 +350,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the base color map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"baseColor")	
+			DEF_material_add(context,size,name,"D")	
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 
@@ -361,7 +361,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the normal map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"normal")
+			DEF_material_add(context,size,name,"N")
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="NORMAL", normal_space ='TANGENT', use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
@@ -382,7 +382,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the metallic map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"metallic")
+			DEF_material_add(context,size,name,"M")
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="EMIT", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
@@ -393,7 +393,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the roughness map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"roughness")
+			DEF_material_add(context,size,name,"R")
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
