@@ -102,7 +102,7 @@ class GA_Start(bpy.types.Operator):
 
 		# Duplicate
 
-		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 
 		if selected_to_active == 1:
     
@@ -135,7 +135,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.name = "tmpHP"
 			
 			if unfold_half == 1:
-				bpy.ops.object.modifier_add(type='MIRROR')
+				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 				bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 			
@@ -145,7 +145,7 @@ class GA_Start(bpy.types.Operator):
 
 			# Generating the low poly
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 
 			bpy.context.object.name = "tmpLP"
 
@@ -195,13 +195,13 @@ class GA_Start(bpy.types.Operator):
 
 			# Decimation 1
     
-			bpy.ops.object.modifier_add(type='TRIANGULATE')
+			bpy.context.active_object.modifiers.new("Triangulate", 'TRIANGULATE')
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
 
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
-			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD0 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
@@ -258,12 +258,12 @@ class GA_Start(bpy.types.Operator):
 
 			# Decimation 2
 
-			bpy.ops.object.modifier_add(type='TRIANGULATE')
+			bpy.context.active_object.modifiers.new("Triangulate", 'TRIANGULATE')
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
-			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD0 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
@@ -298,7 +298,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
 
 			if unfold_half == 1:
-				bpy.ops.object.modifier_add(type='MIRROR')
+				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
 
 			if smoothLP == 1:
@@ -316,7 +316,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.mode_set(mode = 'EDIT')
 			
 			bpy.ops.mesh.primitive_plane_add(size=2, view_align=False, enter_editmode=False, location=(0, 0, 0))
-			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 
 			bpy.ops.object.select_all(action = 'DESELECT')
@@ -461,7 +461,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.rotation_euler[0] = 1.5708
 			bpy.context.object.rotation_euler[1] = 1.5708
 
-			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
 		if myscene.ga_file == "obj":
@@ -489,11 +489,11 @@ class GA_Start(bpy.types.Operator):
 		if LOD1 > 0:
 			## LOD1
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
-			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD1 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
@@ -506,11 +506,11 @@ class GA_Start(bpy.types.Operator):
 		if LOD2 > 0:
 			## LOD2
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
-			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD2 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
@@ -523,11 +523,11 @@ class GA_Start(bpy.types.Operator):
 		if LOD3 > 0:
 			## LOD3
 
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "constraint_orientation":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, True, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False})
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
-			bpy.ops.object.modifier_add(type='DECIMATE')
+			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD3 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
@@ -550,19 +550,19 @@ class GA_Start(bpy.types.Operator):
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
 		bpy.ops.object.select_pattern(pattern=name + "_LOD0")
-		bpy.ops.transform.translate(value=(0, 5, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, 5, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
 		bpy.ops.object.select_pattern(pattern=name + "_LOD1")
-		bpy.ops.transform.translate(value=(0, 10, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, 10, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
 		bpy.ops.object.select_pattern(pattern=name + "_LOD2")
-		bpy.ops.transform.translate(value=(0, 13, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, 13, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
 		bpy.ops.object.select_pattern(pattern=name + "_LOD3")
-		bpy.ops.transform.translate(value=(0, 16, 0), constraint_axis=(False, True, False), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.translate(value=(0, 16, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 
 		if myscene.ga_showoutput == 0:
