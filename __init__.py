@@ -195,8 +195,6 @@ classes = [
     GA_tools.GA_Tools_Wear,
 	GA_tools.GA_Tools_Apply,
     GA_tools.GA_Tools_ResymX,
-	GA_tools.GA_Tools_Smooth,
-	GA_tools.GA_Tools_Flat,
 	GA_tools.GA_Tools_OnTheGround,
 	GA_tools.GA_Tools_FixNormals,
 	GA_tools.GA_Tools_Union,

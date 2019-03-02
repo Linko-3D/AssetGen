@@ -33,7 +33,7 @@ class GA_Tools_Stylized(bpy.types.Operator):
 class GA_Tools_Wear(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolswear"
-	bl_label = "Wear"
+	bl_label = "Edge Wear"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -86,30 +86,6 @@ class GA_Tools_ResymX(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
-
-		return {'FINISHED'}
-
-class GA_Tools_Smooth(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolsmooth"
-	bl_label = "Smooth"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		bpy.ops.object.shade_smooth()
-
-		return {'FINISHED'}
-		
-class GA_Tools_Flat(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolflat"
-	bl_label = "Flat"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		bpy.ops.object.shade_flat()
 
 		return {'FINISHED'}
 
