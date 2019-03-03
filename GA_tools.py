@@ -334,6 +334,12 @@ class GA_Tools_Chain(bpy.types.Operator):
 
 		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+		
+		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
 
 		bpy.ops.object.shade_smooth()
 
@@ -404,7 +410,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
 		bpy.ops.transform.translate(value=(1, 0, 0), constraint_axis=(True, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
-		bpy.ops.transform.rotate(value=-1.5708, axis=(-1, -2.22045e-16, -4.93038e-32), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -413,7 +419,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.curve.de_select_first()
-		bpy.ops.transform.rotate(value=1.5708, axis=(-0, 1, 1.34359e-07), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.rotate(value=1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, -0, 0), (0, 1.34359e-07, -1), (-0, 1, 1.34359e-07)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.ops.transform.translate(value=(-0.25, 0, -0.2), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.mode_set(mode = 'OBJECT')
@@ -425,20 +431,20 @@ class GA_Tools_Hair(bpy.types.Operator):
 		# Hair Taper
 
 		bpy.ops.curve.primitive_bezier_curve_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
-		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
-		bpy.ops.transform.translate(value=(0, -0.8, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), orient_type='VIEW', orient_matrix=((-0.410029, -0.911976, 0.0132648), (0.401743, -0.193644, -0.895045), (-0.818828, 0.361665, -0.445779)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.context.object.location[1] = -0.8
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
 		bpy.ops.curve.de_select_last()
-		bpy.ops.transform.rotate(value=0.610865, axis=(-0, -0, -1), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.rotate(value=0.610865, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, -1, 0), (-0, 0, -1)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.ops.transform.translate(value=(0, 0.04, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.curve.de_select_last()
 
 
 		bpy.ops.curve.de_select_first()
-		bpy.ops.transform.rotate(value=0.436332, axis=(-0, -0, -1), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.rotate(value=0.436332, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, -1, -0), (-0, 0, -1)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
@@ -520,6 +526,9 @@ class GA_Tools_Strap(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.curve.handle_type_set(type='ALIGNED')
 		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
 		return {'FINISHED'}
 
