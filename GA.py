@@ -100,7 +100,7 @@ class GA_Start(bpy.types.Operator):
 		print("\n- ASSETGEN IS RUNNING -\n")
 		then = time.time() #Start the timer to see how long it takes to execute the script
 
-		# Duplicate
+		# Duplicate the low poly
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 
@@ -123,16 +123,18 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.context.object.data.use_auto_smooth = False
 			
+			
+			
 			if smoothHP == 1:
 				bpy.ops.object.shade_smooth()
 			else:
 				bpy.ops.object.shade_flat()
 
-
-
 			bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
 			bpy.context.object.name = "tmpHP"
+			
+			bpy.data.objects["tmpHP"].animation_data_clear()
 			
 			if unfold_half == 1:
 				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
@@ -372,7 +374,7 @@ class GA_Start(bpy.types.Operator):
 				print("\nBaking the ambient occclusion map...")
 				
 				#Create Material
-				DEF_material_add(context,size,name,"ambientOcclusion")
+				DEF_material_add(context,size,name,"AO")
 
 				bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 				bpy.ops.object.bake(type="AO", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)

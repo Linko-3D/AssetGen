@@ -708,6 +708,18 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_Shield(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolshield"
+	bl_label = "Shield"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.convert(target='MESH')
+
+		return {'FINISHED'}
+		
 class GA_Tools_Sword(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolsword"

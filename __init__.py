@@ -28,7 +28,7 @@ class GA_Props(bpy.types.PropertyGroup):
 
    ga_unreal : bpy.props.BoolProperty(
         name = 'To Unreal Engine',
-        description = "Will fix the scale and orientation to export into Unreal Engine 4",
+        description = "Will fix the scale and orientation to export to Unreal Engine 4",
         default = False
    )
 
@@ -135,7 +135,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
         description = "The amount of temporary extrusion used on your low poly during the baking. A value too low will reveal intersections, a value too high can create new intersections between concave shapes and generate wavy edges. After generating your low poly if the result isn't correct, use the Solidify modifier on the low poly, change the offset to 1 and tweak the thickness by holding shift until it envelops the high poly to find the right value, then generate your asset again",
-        default = 0.03,
+        default = 0.05,
         min = 0,
         max = 1		
    )       
@@ -210,6 +210,7 @@ classes = [
 	GA_tools.GA_Tools_Strap,
 
     GA_tools.GA_Tools_Axe,
+	GA_tools.GA_Tools_Shield,
     GA_tools.GA_Tools_Sword,
 ]
 
