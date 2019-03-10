@@ -79,7 +79,7 @@ class GA_Props(bpy.types.PropertyGroup):
    )
 
    ga_unfoldhalf : bpy.props.BoolProperty(
-        name = 'Unfold Half',
+        name = 'Unfold Half by Symmetry',
         description = "Will generate an UV Map for the half right of the low poly to double the quality of the texture",
         default = True
    )
