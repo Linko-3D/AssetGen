@@ -428,24 +428,24 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.select_all(action = 'DESELECT')
 
-		bpy.ops.object.select_pattern(pattern= name + "_LOD0")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD0")
 		bpy.ops.object.delete(use_global=False)
 
-		bpy.ops.object.select_pattern(pattern= name + "_LOD1")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD1")
 		bpy.ops.object.delete(use_global=False)
 
-		bpy.ops.object.select_pattern(pattern= name + "_LOD2")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD2")
 		bpy.ops.object.delete(use_global=False)
 
-		bpy.ops.object.select_pattern(pattern= name + "_LOD3")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD3")
 		bpy.ops.object.delete(use_global=False)
 
 		bpy.ops.object.select_pattern(pattern= "tmpLP")
 
 		# Name the game assets
 
-		bpy.context.object.name = name + "_LOD0"
-		bpy.context.object.data.name = name + "_LOD0"
+		bpy.context.object.name = "SM_" + name + "_LOD0"
+		bpy.context.object.data.name = "SM_" + name + "_LOD0"
 
 		bpy.ops.object.modifier_remove(modifier="Bevel")
 		
@@ -500,8 +500,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
-			bpy.context.object.name = name + "_LOD1"
-			bpy.context.object.data.name = name + "_LOD1"
+			bpy.context.object.name = "SM_" + name + "_LOD1"
+			bpy.context.object.data.name = "SM_" + name + "_LOD1"
 
 			print("LOD1:", len(bpy.context.active_object.data.polygons), "tris")
 
@@ -517,8 +517,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
-			bpy.context.object.name = name + "_LOD2"
-			bpy.context.object.data.name = name + "_LOD2"
+			bpy.context.object.name = "SM_" + name + "_LOD2"
+			bpy.context.object.data.name = "SM_" + name + "_LOD2"
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
 
@@ -534,52 +534,56 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
 
-			bpy.context.object.name = name + "_LOD3"
-			bpy.context.object.data.name = name + "_LOD3"
+			bpy.context.object.name = "SM_" + name + "_LOD3"
+			bpy.context.object.data.name = "SM_" + name + "_LOD3"
 
 			print("LOD2:", len(bpy.context.active_object.data.polygons), "tris")
 		
-		bpy.ops.object.select_pattern(pattern=name + "_LOD0")
-		bpy.ops.object.select_pattern(pattern=name + "_LOD1")
-		bpy.ops.object.select_pattern(pattern=name + "_LOD2")
-		bpy.ops.object.select_pattern(pattern=name + "_LOD3")
+		# Select every LODs to export in FBX
+		
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD0")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD1")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD2")
+		bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD3")
 		
 		if myscene.ga_file == "fbx":
 			extension = bpy.context.object.name + ".fbx"
 			bpy.ops.export_scene.fbx(filepath=os.path.join(path, extension), use_selection=True)
 		
-		#Offset
+		# Moving the LODs behing the high poly
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
-		bpy.ops.object.select_pattern(pattern=name + "_LOD0")
+		bpy.ops.object.select_pattern(pattern="SM_" + name + "_LOD0")
 		bpy.ops.transform.translate(value=(0, 5, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
-		bpy.ops.object.select_pattern(pattern=name + "_LOD1")
+		bpy.ops.object.select_pattern(pattern="SM_" + name + "_LOD1")
 		bpy.ops.transform.translate(value=(0, 10, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
-		bpy.ops.object.select_pattern(pattern=name + "_LOD2")
+		bpy.ops.object.select_pattern(pattern="SM_" + name + "_LOD2")
 		bpy.ops.transform.translate(value=(0, 13, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
 		
-		bpy.ops.object.select_pattern(pattern=name + "_LOD3")
+		bpy.ops.object.select_pattern(pattern="SM_" + name + "_LOD3")
 		bpy.ops.transform.translate(value=(0, 16, 0), constraint_axis=(False, True, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.select_all(action = 'DESELECT')
+
+		# If Show Output is set to false, delete the LODs
 
 		if myscene.ga_showoutput == 0:
 			bpy.ops.object.select_all(action = 'DESELECT')
 
-			bpy.ops.object.select_pattern(pattern= name + "_LOD0")
+			bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD0")
 			bpy.ops.object.delete(use_global=False)
 
-			bpy.ops.object.select_pattern(pattern= name + "_LOD1")
+			bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD1")
 			bpy.ops.object.delete(use_global=False)
 
-			bpy.ops.object.select_pattern(pattern= name + "_LOD2")
+			bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD2")
 			bpy.ops.object.delete(use_global=False)
 
-			bpy.ops.object.select_pattern(pattern= name + "_LOD3")
+			bpy.ops.object.select_pattern(pattern= "SM_" + name + "_LOD3")
 			bpy.ops.object.delete(use_global=False)
 
 		bpy.ops.object.select_all(action = 'DESELECT')

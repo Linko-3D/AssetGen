@@ -85,7 +85,7 @@ class GA_Props(bpy.types.PropertyGroup):
    )
    
    ga_selectedtoactive : bpy.props.BoolProperty(
-        name = 'Selected to Active',
+        name = 'Selected to Active (not working yet)',
         description = "Will use your own low poly and UV Map, the active selection must be your low poly",
         default = False
    )   
