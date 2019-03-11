@@ -74,36 +74,36 @@ def DEF_pbrShader_add(context,size,name ):
 
        
     d_1   = nodes.new("ShaderNodeBsdfPrincipled")
-    d_1.location = (400,200)
+    d_1.location = (10,300)
 
 
     d_image_basecolor = nodes.new("ShaderNodeTexImage")
-    d_image_basecolor.location = (-250,350)
+    d_image_basecolor.location = (-350,400)
     d_image_basecolor.image = I_basecolor
 
     links.new( d_1.inputs[0], d_image_basecolor.outputs['Color'])
 
     d_image_metallic = nodes.new("ShaderNodeTexImage")
-    d_image_metallic.location = (-400,75)
+    d_image_metallic.location = (-350,125)
     d_image_metallic.image = I_Metallic
     #d_image_metallic.color_space = 'NONE'
     links.new( d_1.inputs[4], d_image_metallic.outputs['Color'])
 
     d_image_roughness = nodes.new("ShaderNodeTexImage")
-    d_image_roughness.location = (-400,-200)
+    d_image_roughness.location = (-350,-150)
     d_image_roughness.image = I_Roughness
     #d_image_roughness.color_space = 'NONE'
     links.new( d_1.inputs[7], d_image_roughness.outputs['Color'])
 
 
     d_image = nodes.new("ShaderNodeTexImage")
-    d_image.location = (-100,-350)
+    d_image.location = (-80,-350)
     d_image.image = I_Normal 
     d_image.color_space = 'NONE'
 
     
     d_2   = nodes.new("ShaderNodeNormalMap")
-    d_2.location = (200,-350)
+    d_2.location = (190,-350)
 
     links.new( d_2.inputs['Color'], d_image.outputs['Color'])
 
@@ -111,7 +111,7 @@ def DEF_pbrShader_add(context,size,name ):
 
 
     d_5   = nodes.new("ShaderNodeOutputMaterial")
-    d_5.location = (900,400)
+    d_5.location = (300,300)
 
     links.new( d_5.inputs['Surface'], d_1.outputs[0])
 
