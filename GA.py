@@ -467,12 +467,11 @@ class GA_Start(bpy.types.Operator):
 
 		# >>>>>>>>>>>>>>>>> EXPORT THE MESH
 		if myscene.ga_file == "obj":
-			extension = bpy.context.object.name + ".obj"
-			bpy.ops.export_scene.obj(filepath=os.path.join(path, extension), use_selection=True)
+			bpy.ops.export_scene.obj(filepath=os.path.join(path, "SM_" + name + ".obj"), use_selection=True)
 		if myscene.ga_file == "glb":
-			bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, name))
+			bpy.ops.export_scene.gltf(export_format='GLB', export_selected=True, filepath=os.path.join(path, "SM_" + name))
 		if myscene.ga_file == "glTF":
-			bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, name))
+			bpy.ops.export_scene.gltf(export_format='GLTF_SEPARATE', export_selected=True, filepath=os.path.join(path, "SM_" + name))
 
 		
 		print("Asset", name, "exported to", path)
