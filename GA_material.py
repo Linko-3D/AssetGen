@@ -4,7 +4,7 @@ import bpy
 
 def DEF_material_add(context,size,name,type ):
 
-    q_name = name+"_"+type
+    q_name = "T_"+name+"_"+type
 
     tex = MAT_texture_new(q_name,size, 'sRGB')
 
@@ -48,19 +48,19 @@ def DEF_pbrShader_add(context,size,name ):
 		
     #Add basecolor
     ###############
-    I_basecolor = bpy.data.images.get(name+"_D")
+    I_basecolor = bpy.data.images.get("T_"+name+"_D")
 
 	#Add metallic
     ###############
-    I_Metallic = bpy.data.images.get(name+"_M")
+    I_Metallic = bpy.data.images.get("T_"+name+"_M")
 
 	#Add roughness
     ###############
-    I_Roughness = bpy.data.images.get(name+"_R")
+    I_Roughness = bpy.data.images.get("T_"+name+"_R")
 
 	#Add normal
     ###############
-    I_Normal = bpy.data.images.get(name+"_N")			
+    I_Normal = bpy.data.images.get("T_"+name+"_N")			
 
 
     # Enable 'Use nodes':
