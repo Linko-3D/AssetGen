@@ -101,6 +101,8 @@ class GA_Start(bpy.types.Operator):
 		then = time.time() #Start the timer to see how long it takes to execute the script
 
 		# Duplicate the low poly
+		
+		bpy.context.scene.frame_set(1)
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 
@@ -121,9 +123,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.convert(target='MESH')
 			bpy.ops.object.join()
 
-			bpy.context.object.data.use_auto_smooth = False
-			
-			
+			bpy.context.object.data.use_auto_smooth = False			
 			
 			if smoothHP == 1:
 				bpy.ops.object.shade_smooth()
@@ -133,9 +133,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
 
 			bpy.context.object.name = "tmpHP"
-			
-			bpy.data.objects["tmpHP"].animation_data_clear()
-			
+			#bpy.data.objects["tmpHP"].animation_data_clear()
+		
 			if unfold_half == 1:
 				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 				bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
@@ -148,7 +147,6 @@ class GA_Start(bpy.types.Operator):
 			# Generating the low poly
 
 			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
-
 			bpy.context.object.name = "tmpLP"
 
 			## Remove every material slots on the low poly only if the bake_textures mode is enabled
@@ -324,7 +322,12 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.select_all(action = 'DESELECT')
 			bpy.ops.object.select_pattern(pattern="tmpLP")
 			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
-
+		
+		# Clean animation
+		
+		bpy.data.objects["tmpHP"].animation_data_clear()
+		bpy.data.objects["tmpLP"].animation_data_clear()
+		
 		# Baking #########################################################################################################################
 
 		bpy.context.scene.render.engine = 'CYCLES'
