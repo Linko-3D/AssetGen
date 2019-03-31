@@ -323,11 +323,6 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.select_pattern(pattern="tmpLP")
 			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 		
-		# Clean animation
-		
-		bpy.data.objects["tmpHP"].animation_data_clear()
-		bpy.data.objects["tmpLP"].animation_data_clear()
-		
 		# Baking #########################################################################################################################
 
 		bpy.context.scene.render.engine = 'CYCLES'
