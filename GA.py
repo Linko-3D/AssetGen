@@ -100,26 +100,53 @@ class GA_Start(bpy.types.Operator):
 		print("\n- ASSETGEN IS RUNNING -\n")
 		then = time.time() #Start the timer to see how long it takes to execute the script
 
-		# Duplicate the low poly
-		
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 		bpy.context.scene.frame_set(1)
 
-		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
-
 		if selected_to_active == 1:
-    
+			
 			print("\n> Selected to Active mode enabled\n")
+			
+			bpy.context.view_layer.objects.active.name = "tmpLP"
+	
+			# Get the collection of the active object
+			obj_coll = bpy.context.view_layer.objects.active.users_collection[0]
+
+			# Create an empty list
+			high_poly_objects = []
+
+			# Append all mesh objects (of the collection) to the list
+			for ob in obj_coll.objects:   
+				if not "tmpLP" in ob.name and ob.type == 'MESH':
+					high_poly_objects.append(ob)
+
+			# Deselect all objects
+			bpy.ops.object.select_all(action='DESELECT')
+
+			# Select all High-Poly objects to call the join operator
+			for ob in high_poly_objects:
+				ob.select_set(True)
+				bpy.context.view_layer.objects.active = ob
+
+			# Join all objects selected before
+			bpy.ops.object.join()
+			bpy.context.object.name = "tmpHP"
+			
+			bpy.ops.object.select_all(action = 'DESELECT')
+			bpy.ops.object.select_pattern(pattern="tmpLP")
+			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 
 			#Check if the low poly has UVs
 			print("\n> Info: the low poly has no UV Map, performing a Smart UV Project\n")
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin) # Perform smart UV projection
 
-			bpy.context.object.name = "tmpLP"
 
 		if selected_to_active == 0:
 		
 			print("Generating the low poly...")
-		
+			
+			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+
 			bpy.ops.object.convert(target='MESH')
 			bpy.ops.object.join()
 
@@ -324,10 +351,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 		
 		# Baking #########################################################################################################################
-
+		
 		bpy.context.scene.render.engine = 'CYCLES'
-
-
 
 		# Detect if the High Poly has a material, if not assing the Base Texture grayscale
 
@@ -342,7 +367,7 @@ class GA_Start(bpy.types.Operator):
 		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
 
 		if bake_textures == 1:
-		
+
 			bpy.context.scene.cycles.samples = samples
 		
 			## Base color bake
@@ -584,8 +609,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.delete(use_global=False)
 
 		bpy.ops.object.select_all(action = 'DESELECT')
-		bpy.ops.object.select_pattern(pattern= name)
-		bpy.context.view_layer.objects.active  = bpy.data.objects[name]
+		#bpy.ops.object.select_pattern(pattern= name)
+		#bpy.context.view_layer.objects.active  = bpy.data.objects[name]
 
 		now = time.time() #Time after it finished
 		print("\nAsset generated in", now-then, "seconds\n\n")
