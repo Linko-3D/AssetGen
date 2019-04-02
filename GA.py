@@ -100,53 +100,50 @@ class GA_Start(bpy.types.Operator):
 		print("\n- ASSETGEN IS RUNNING -\n")
 		then = time.time() #Start the timer to see how long it takes to execute the script
 
+		
+		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+
 		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 		bpy.context.scene.frame_set(1)
 
 		if selected_to_active == 1:
 			
-			print("\n> Selected to Active mode enabled\n")
-			
-			bpy.context.view_layer.objects.active.name = "tmpLP"
-	
-			# Get the collection of the active object
-			obj_coll = bpy.context.view_layer.objects.active.users_collection[0]
+			if len(bpy.context.selected_objects) > 1:
+				print("Selected to Active mode enabled\n")
+				
+				bpy.context.active_object.name = "tmpLP"
 
-			# Create an empty list
-			high_poly_objects = []
+				obs = []
+				for ob in bpy.context.selected_editable_objects:
+					if ob.type == 'MESH' and ob != bpy.context.active_object:
+						obs.append(ob)
 
-			# Append all mesh objects (of the collection) to the list
-			for ob in obj_coll.objects:   
-				if not "tmpLP" in ob.name and ob.type == 'MESH':
-					high_poly_objects.append(ob)
+				if len(obs) > 0:
+					c = {}
+					c["object"] = c["active_object"] = obs[0]
+					c["selected_objects"] = c["selected_editable_objects"] = obs
+					bpy.ops.object.join(c)
 
-			# Deselect all objects
-			bpy.ops.object.select_all(action='DESELECT')
+					obs[0].name = "tmpHP"
+				
+				bpy.ops.object.select_all(action = 'DESELECT')
+				bpy.ops.object.select_pattern(pattern="tmpLP")
+				bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 
-			# Select all High-Poly objects to call the join operator
-			for ob in high_poly_objects:
-				ob.select_set(True)
-				bpy.context.view_layer.objects.active = ob
-
-			# Join all objects selected before
-			bpy.ops.object.join()
-			bpy.context.object.name = "tmpHP"
-			
-			bpy.ops.object.select_all(action = 'DESELECT')
-			bpy.ops.object.select_pattern(pattern="tmpLP")
-			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
-
-			#Check if the low poly has UVs
-			print("\n> Info: the low poly has no UV Map, performing a Smart UV Project\n")
-			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin) # Perform smart UV projection
+				#Check if the low poly has UVs
+				if not len( bpy.context.object.data.uv_layers ):
+					print("> Info: the low poly has no UV Map, performing a Smart UV Project\n")
+					#bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin) # Perform smart UV projection
+				
+			else:
+				print("Selected to Active mode disabled (two meshes must be selected)\n")
+				selected_to_active = 0
 
 
 		if selected_to_active == 0:
 		
 			print("Generating the low poly...")
 			
-			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
-
 			bpy.ops.object.convert(target='MESH')
 			bpy.ops.object.join()
 
@@ -609,8 +606,8 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.delete(use_global=False)
 
 		bpy.ops.object.select_all(action = 'DESELECT')
-		#bpy.ops.object.select_pattern(pattern= name)
-		#bpy.context.view_layer.objects.active  = bpy.data.objects[name]
+		bpy.ops.object.select_pattern(pattern= name)
+		bpy.context.view_layer.objects.active  = bpy.data.objects[name]
 
 		now = time.time() #Time after it finished
 		print("\nAsset generated in", now-then, "seconds\n\n")
