@@ -17,7 +17,6 @@ class GA_Start(bpy.types.Operator):
 		#TEMP FORCE CPU
 		bpy.context.scene.cycles.device = 'CPU'
 
-
 		myscene = context.scene.ga_property
 
 		# Click Run Script to convert your selected high poly to a game asset
@@ -173,6 +172,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0), "constraint_axis":(False, False, False), "orient_type":'GLOBAL', "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 			bpy.context.object.name = "tmpLP"
 
+			
 			## Remove every material slots on the low poly only if the bake_textures mode is enabled
 
 			if bake_textures == 1:
@@ -182,18 +182,21 @@ class GA_Start(bpy.types.Operator):
 						bpy.ops.object.material_slot_remove({'object': ob})
 
 
-			# Remove Underground
+		# Remove Underground
 
-			if rmv_underground == 1:
-				print("\n> Removing parts of the low poly bellow the grid")
-				bpy.ops.object.mode_set(mode = 'EDIT')
-                
-				bpy.ops.mesh.select_all(action = 'SELECT')
+		if rmv_underground == 1:
+			print("\n> Removing parts of the low poly bellow the grid")
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			
+			bpy.ops.mesh.select_all(action = 'SELECT')
 
-				bpy.ops.mesh.bisect(plane_co=(0.00102639, 0.0334111, 0), plane_no=(0, 0, 0.999663), use_fill=False, clear_inner=True, xstart=295, xend=444, ystart=464, yend=461)
+			bpy.ops.mesh.bisect(plane_co=(0.00102639, 0.0334111, 0), plane_no=(0, 0, 0.999663), use_fill=False, clear_inner=True, xstart=295, xend=444, ystart=464, yend=461)
 
-				bpy.ops.mesh.select_all(action = 'SELECT')
-    
+			bpy.ops.mesh.select_all(action = 'SELECT')
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+
+		if selected_to_active == 0:
 			## Cleaning low poly 1
 
 			bpy.ops.object.mode_set(mode = 'EDIT')
@@ -346,6 +349,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.ops.object.select_all(action = 'DESELECT')
 			bpy.ops.object.select_pattern(pattern="tmpLP")
 			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
+
 		
 		# Baking #########################################################################################################################
 		
