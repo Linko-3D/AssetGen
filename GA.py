@@ -15,7 +15,11 @@ class GA_Start(bpy.types.Operator):
 	def execute(self, context):
 
 		#TEMP FORCE CPU
+
+		#bpy.context.scene.cycles.device = 'GPU'
+
 		bpy.context.scene.cycles.device = 'CPU'
+
 
 		myscene = context.scene.ga_property
 
@@ -73,6 +77,7 @@ class GA_Start(bpy.types.Operator):
 		rmv_underground = myscene.ga_removeunderground
 		smoothHP = myscene.ga_smoothHP
 		smoothLP = myscene.ga_smoothLP
+		imposter = myscene.ga_imposter
 
 		
 
@@ -94,6 +99,16 @@ class GA_Start(bpy.types.Operator):
 			smoothLP = 0
 			unfold_half = 0
 		
+		if selected_to_active == 1:
+			imposter = 0
+		
+		if imposter == 1:
+			selected_to_active = 2
+			edge_padding = 0
+			LOD1 = 0
+			LOD2 = 0
+			LOD3 = 0
+		
 		# EXECUTION
 
 		print("\n- ASSETGEN IS RUNNING -\n")
@@ -107,7 +122,9 @@ class GA_Start(bpy.types.Operator):
 
 		if selected_to_active == 1:
 			
-			if len(bpy.context.selected_objects) > 1:
+
+			if len(bpy.context.selected_objects) > 1: #check how many meshes are selected, if one is selected, selected_to_active mode is disabled
+
 				print("Selected to Active mode enabled\n")
 				
 				bpy.context.active_object.name = "tmpLP"
@@ -348,9 +365,54 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.ops.object.select_all(action = 'DESELECT')
 			bpy.ops.object.select_pattern(pattern="tmpLP")
-			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
+			bpy.context.view_layer.objects.active = bpy.data.objects["tmpLP"]
 
 		
+		if selected_to_active == 2: #imposter cards creation
+		
+			bpy.ops.object.convert(target='MESH')
+			bpy.ops.object.join()
+		
+			bpy.context.active_object.name = "tmpHP"
+			
+			scale = 1.5
+
+			bpy.ops.mesh.primitive_plane_add(view_align=False, enter_editmode=False, location=(0, 0, 0))
+			bpy.ops.object.mode_set(mode = 'EDIT')
+
+			bpy.ops.transform.resize(value=(scale, scale, scale), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.transform.translate(value=(0, 0, 10), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(0, 0, 0), "orient_type":'GLOBAL', "orient_matrix":((0, 0, 0), (0, 0, 0), (0, 0, 0)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, False), "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.transform.translate(value=(10, 0, -10), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.rotate(value=1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, -0, 0), (0, 1.34359e-07, -1), (-0, 1, 1.34359e-07)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(-10, 0, -10), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, False), "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.transform.rotate(value=1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, 1.34359e-07, -1), (-0, 1, 1.34359e-07)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(0, 0, 0), "orient_type":'GLOBAL', "orient_matrix":((0, 0, 0), (0, 0, 0), (0, 0, 0)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, False), "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.transform.translate(value=(-10, -0, 10), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.rotate(value=1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, 1.34359e-07, -1), (-0, 1, 1.34359e-07)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(0, 0, 0), "orient_type":'GLOBAL', "orient_matrix":((0, 0, 0), (0, 0, 0), (0, 0, 0)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, False), "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.transform.translate(value=(10, -10, -0), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, -1, -0), (-0, 0, -1)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(0, 0, 0), "orient_type":'GLOBAL', "orient_matrix":((0, 0, 0), (0, 0, 0), (0, 0, 0)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, False), "mirror":False, "proportional":'DISABLED', "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+			bpy.ops.transform.translate(value=(-0, 20, 0), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+			bpy.ops.transform.rotate(value=3.14159, orient_axis='Z', orient_type='VIEW', orient_matrix=((-1, 0, -0), (0, -1, -0), (-0, 0, -1)), orient_matrix_type='VIEW', mirror=True, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+			bpy.ops.mesh.select_all(action = 'SELECT')
+
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+			
+			bpy.context.active_object.name = "tmpLP"
+
+			bpy.ops.uv.smart_project()
+					
+			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
+
 		# Baking #########################################################################################################################
 		
 		bpy.context.scene.render.engine = 'CYCLES'
@@ -365,7 +427,7 @@ class GA_Start(bpy.types.Operator):
 		#	bpy.data.objects['tmpHP'].active_material = bpy.data.materials["Base Texture"]
 
 		bpy.ops.object.select_pattern(pattern="tmpLP")
-		#todo bpy.context.scene.objects.active = bpy.data.objects["tmpLP"]
+		bpy.context.view_layer.objects.active = bpy.data.objects["tmpLP"]
 
 		if bake_textures == 1:
 
@@ -445,10 +507,25 @@ class GA_Start(bpy.types.Operator):
 
 		bpy.ops.object.delete(use_global=False)
 
-
 		bpy.ops.object.select_pattern(pattern="tmpLP")
+		
+		if selected_to_active == 2: # Merge the imposter cards
+			bpy.ops.object.mode_set(mode = 'EDIT')
+			
+			bpy.ops.mesh.select_all(action = 'SELECT')
 
-		# Clean the LODs with the same names
+			bpy.ops.mesh.separate(type='LOOSE')
+
+			bpy.ops.object.mode_set(mode = 'OBJECT')
+
+			bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')
+			bpy.ops.object.location_clear(clear_delta=False)
+
+			bpy.ops.object.join()
+
+			
+
+		# Remove the previous the LODs with the same names to update the result
 
 		bpy.ops.object.select_all(action = 'DESELECT')
 

@@ -95,13 +95,19 @@ class GA_Props(bpy.types.PropertyGroup):
         name = 'Calculate LODs',
         description = "Your LODs will automatically be calculated relative to the LOD0 like this: LOD1: 50%; LOD2: 25%, LOD3: 12.5%",
         default = True
-   )     
+   )
    
    ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=1000,min=1)     
    ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0,min=0)    
    ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0,min=0)    
    ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0,min=0)       
 
+   ga_imposter : bpy.props.BoolProperty(
+        name = 'Imposter Cards',
+        description = "Displays your high poly on multiple planes. Enable Backface Culling in the viewport to display it.",
+        default = False
+   )   
+   
    ga_showoutput : bpy.props.BoolProperty(
         name = 'Show output in Blender',
         description = "Display your output in Blender",
@@ -142,7 +148,7 @@ class GA_Props(bpy.types.PropertyGroup):
    
    ga_edgepadding : bpy.props.IntProperty(
         name = 'Edge Padding',
-        description = "The amount of pixels that goes beyond the UV seam. A value too low can reveal the seam, a value too high takes more time to calculate. If you generate a billboard imposter card use a value of 0",
+        description = "The amount of pixels that goes beyond the UV seam. A value too low can reveal the seam, a value too high takes more time to calculate",
         default = 16,
         min = 0,
         max = 64

@@ -80,16 +80,24 @@ class GA_generatePanel(bpy.types.Panel):
            col_ga.prop(myscene , 'ga_LOD1') 
            col_ga.prop(myscene , 'ga_LOD2') 
            col_ga.prop(myscene , 'ga_LOD3') 
-           col_ga.row().separator()		
+           col_ga.row().separator()
+           row = col_ga.row()		
+           row.prop(myscene , "ga_imposter")
+           col_ga.row().separator()   
         elif myscene.ga_calculateLods == False and myscene.ga_selectedtoactive == True:
            col_ga.prop(myscene , 'ga_LOD1') 
            col_ga.prop(myscene , 'ga_LOD2') 
            col_ga.prop(myscene , 'ga_LOD3') 
-           col_ga.row().separator()			   
+           col_ga.row().separator()
         elif myscene.ga_calculateLods == True and myscene.ga_selectedtoactive == False:
            col_ga.prop(myscene , 'ga_LOD0') 		  
            col_ga.row().separator()		   
-		   
+           row = col_ga.row()		
+           row.prop(myscene , "ga_imposter")
+           col_ga.row().separator() 
+
+
+		
         row = col_ga.row()		
         row.prop(myscene , "ga_showoutput")
         col_ga.row().separator()
@@ -97,9 +105,6 @@ class GA_generatePanel(bpy.types.Panel):
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.5
         col1_ga.operator("scene.ga_start", icon="FILE_REFRESH")
-
-		
-
         col_ga.row().separator()
 		
 class GA_advancedPanel(bpy.types.Panel):
@@ -152,15 +157,7 @@ class GA_advancedPanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_removeunderground")
         col_ga.row().separator()
-
-        row = col_ga.row()		
-        row.prop(myscene , "ga_convexmesh")
-        col_ga.row().separator()		
-
-        row = col_ga.row()		
-        row.prop(myscene , "ga_combined")
-        col_ga.row().separator()		
-
+		
         col_ga.row().separator()		
 		
 class GA_toolsPanel(bpy.types.Panel):
