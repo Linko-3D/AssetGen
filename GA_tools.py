@@ -364,18 +364,13 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
-		bpy.context.object.rotation_euler[0] = 0.00174533
+		#bpy.context.object.rotation_euler[0] = 0.00174533
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
-		bpy.context.object.modifiers["Subdivision"].levels = 4
+		bpy.context.object.modifiers["Subdivision"].levels = 2
 
 		bpy.context.active_object.modifiers.new("Skin", 'SKIN')
 		bpy.context.object.modifiers["Skin"].use_smooth_shade = True
-
-		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
-		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
-		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
-		bpy.context.object.modifiers["Bevel"].width = 0.04
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision.001"].levels = 3
@@ -387,7 +382,7 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 
-		bpy.ops.transform.skin_resize(value=(0.3, 0.3, 0.3), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.skin_resize(value=(0.25, 0.25, 0.25), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		return {'FINISHED'}
 
