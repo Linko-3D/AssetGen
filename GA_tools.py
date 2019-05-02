@@ -383,6 +383,7 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 		bpy.ops.mesh.select_all(action = 'SELECT')
 
 		bpy.ops.transform.skin_resize(value=(0.25, 0.25, 0.25), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.skin_root_mark()
 
 		return {'FINISHED'}
 
