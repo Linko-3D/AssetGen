@@ -89,20 +89,6 @@ class GA_Tools_ResymX(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_OnTheGround(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolontheground"
-	bl_label = "On The Ground"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
-		bpy.context.object.location.z -= lowest_pt
-
-		return {'FINISHED'}
-
-
 class GA_Tools_FixNormals(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolfixnormals"
@@ -115,6 +101,23 @@ class GA_Tools_FixNormals(bpy.types.Operator):
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 		bpy.ops.mesh.normals_make_consistent(inside=False)
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		return {'FINISHED'}
+
+class GA_Tools_FlipNormals(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolflipnormals"
+	bl_label = "Flip Normals"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.mesh.flip_normals()
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
@@ -240,6 +243,18 @@ class GA_Tools_DissolveUnnecessary(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_OnTheGround(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolontheground"
+	bl_label = "On The Ground"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
+		bpy.context.object.location.z -= lowest_pt
+
+		return {'FINISHED'}
 
 class GA_Tools_BoltCubic(bpy.types.Operator):
 

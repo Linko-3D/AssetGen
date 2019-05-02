@@ -193,13 +193,13 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.scale_y = 1.0
         col1_ga.operator("scene.ga_toolapply", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolresymx", icon="FILE_REFRESH")
-        col1_ga.operator("scene.ga_toolontheground", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolfixnormals", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolflipnormals", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolunion", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooldyntopo", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooloptimize", icon="FILE_REFRESH")
-
         col1_ga.operator("scene.ga_tooldissolveunnecessary", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolontheground", icon="FILE_REFRESH")
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
         col_ga.label(text="Simple Meshes:")		
