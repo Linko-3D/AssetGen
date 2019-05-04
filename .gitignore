@@ -113,5 +113,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-__pycache__/GA.cpython-37.pyc
+
 *.pyc

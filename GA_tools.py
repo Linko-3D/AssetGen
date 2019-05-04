@@ -1,10 +1,10 @@
 import  bpy
 
 
-class GA_Tools_Stylized(bpy.types.Operator):
+class GA_Tools_HighPoly(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolsstylized"
-	bl_label = "Stylized"
+	bl_idname = "scene.ga_toolshighpoly"
+	bl_label = "High Poly Conversion"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):

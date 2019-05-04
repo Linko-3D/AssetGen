@@ -197,7 +197,7 @@ classes = [
     GA_user_interface.GA_advancedPanel,
     GA_user_interface.GA_toolsPanel,
     GA.GA_Start,
-    GA_tools.GA_Tools_Stylized,
+    GA_tools.GA_Tools_HighPoly,
     GA_tools.GA_Tools_Wear,
 	GA_tools.GA_Tools_Apply,
     GA_tools.GA_Tools_ResymX,
