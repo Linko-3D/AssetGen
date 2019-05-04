@@ -14,18 +14,8 @@ class GA_Start(bpy.types.Operator):
 
 	def execute(self, context):
 
-		#TEMP FORCE CPU
-
-		#bpy.context.scene.cycles.device = 'GPU'
-
-		bpy.context.scene.cycles.device = 'CPU'
-
-
 		myscene = context.scene.ga_property
-
-		# Click Run Script to convert your selected high poly to a game asset
-		# Your shader must use an Emissive node
-		
+	
 		size = [1024, 1024]
 
 		if myscene.ga_textureX == '256':
