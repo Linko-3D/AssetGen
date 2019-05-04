@@ -209,6 +209,7 @@ classes = [
     GA_tools.GA_Tools_DissolveUnnecessary,
 	GA_tools.GA_Tools_OnTheGround,
 
+	GA_tools.GA_Tools_BaseMesh,
 	GA_tools.GA_Tools_BoltCubic,
 	GA_tools.GA_Tools_Chain,
 	GA_tools.GA_Tools_ExtrudedShape,

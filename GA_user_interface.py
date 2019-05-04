@@ -96,8 +96,6 @@ class GA_generatePanel(bpy.types.Panel):
            row.prop(myscene , "ga_imposter")
            col_ga.row().separator() 
 
-
-		
         row = col_ga.row()		
         row.prop(myscene , "ga_showoutput")
         col_ga.row().separator()
@@ -206,6 +204,7 @@ class GA_toolsPanel(bpy.types.Panel):
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_toolbasemesh", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolboltcubic", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolchain", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolextrudedshape", icon="FILE_REFRESH")
