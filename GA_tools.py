@@ -1138,6 +1138,8 @@ class GA_Tools_Sword(bpy.types.Operator):
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
 		bpy.context.object.modifiers["Bevel"].width = 0.015
+		
+		bpy.context.object.name = "Crossguard"
 
 		return {'FINISHED'}
 
