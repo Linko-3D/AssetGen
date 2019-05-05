@@ -1016,7 +1016,7 @@ class GA_Tools_Shoulder(bpy.types.Operator):
 		bpy.context.object.modifiers["Bevel"].segments = 2
 		bpy.context.object.modifiers["Bevel"].profile = 1
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
-		bpy.context.object.modifiers["Bevel"].angle_limit = 1.0472
+		bpy.context.object.modifiers["Bevel"].angle_limit = 1.48353
 
 		bpy.ops.object.modifier_add(type='SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 3
