@@ -109,12 +109,30 @@ class GA_Tools_ResymX(bpy.types.Operator):
 		for obj in bpy.context.selected_objects:
 			bpy.context.view_layer.objects.active = obj
 			
-			bpy.ops.object.transform_apply(location=True, rotation=False, scale=False)
-			bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+			bpy.ops.object.transform_apply(location=True, rotation=True, scale=False)
 
 			bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
 			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+		return {'FINISHED'}
+
+class GA_Tools_CutHalf(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolcuthalf"
+	bl_label = "Cut Half"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.mesh.bisect(plane_co=(0, 0, 0), plane_no=(1, 0, 0), clear_inner=True, xstart=746, xend=746, ystart=431, yend=377)
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+		bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		return {'FINISHED'}
 
