@@ -697,10 +697,10 @@ class GA_Tools_Hair(bpy.types.Operator):
 		
 		return {'FINISHED'}
 
-class GA_Tools_Ring(bpy.types.Operator):
+class GA_Tools_Ring1(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolring"
-	bl_label = "Ring"
+	bl_idname = "scene.ga_toolring1"
+	bl_label = "Ring 1"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -725,6 +725,33 @@ class GA_Tools_Ring(bpy.types.Operator):
 		
 		bpy.context.object.name = "Ring"
 
+		return {'FINISHED'}
+
+class GA_Tools_Ring2(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolring2"
+	bl_label = "Ring 2"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(-0.00227314, -0.0087918, -0.013097), rotation=(0, 0, 0), major_segments=12, minor_segments=4, major_radius=1, minor_radius=0.3, abso_major_rad=1.25, abso_minor_rad=0.75)
+
+		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.transform.resize(value=(0.2, 0.2, 0.2), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].width = 0.001
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.object.shade_smooth()
+		
+		bpy.context.object.name = "Ring"
 		return {'FINISHED'}
 
 class GA_Tools_Strap(bpy.types.Operator):

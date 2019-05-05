@@ -219,7 +219,8 @@ classes = [
 	GA_tools.GA_Tools_Crack,
 	GA_tools.GA_Tools_ExtrudedShape,
 	GA_tools.GA_Tools_Hair,
-	GA_tools.GA_Tools_Ring,
+	GA_tools.GA_Tools_Ring1,
+	GA_tools.GA_Tools_Ring2,
 	GA_tools.GA_Tools_Strap,
 
     GA_tools.GA_Tools_Axe,
