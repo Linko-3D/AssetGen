@@ -1027,9 +1027,15 @@ class GA_Tools_Potion(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		bpy.ops.object.modifier_add(type='SCREW')
+		bpy.context.object.modifiers["Screw"].steps = 8
 
-		bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-		bpy.context.object.modifiers["EdgeSplit"].split_angle = 0.785398
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].width = 0.003
+		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
 
 		bpy.ops.object.shade_smooth()
 
