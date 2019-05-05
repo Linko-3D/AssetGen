@@ -216,10 +216,18 @@ class GA_toolsPanel(bpy.types.Panel):
 
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
-        col_ga.label(text="Base Meshes:")		
+        col_ga.label(text="Weapons:")		
 		
         col1_ga = layout.column(align=True)
         col1_ga.scale_y = 1.0
         col1_ga.operator("scene.ga_toolaxe", icon="FILE_REFRESH")
         #col1_ga.operator("scene.ga_toolshield", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolsword", icon="FILE_REFRESH")
+		
+		#-----------------------------------------------------------	
+        col_ga = layout.column(align=True)		
+        col_ga.label(text="Accessories:")		
+		
+        col1_ga = layout.column(align=True)
+        col1_ga.scale_y = 1.0
+        col1_ga.operator("scene.ga_toolpotion", icon="FILE_REFRESH")
