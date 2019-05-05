@@ -310,6 +310,8 @@ class GA_Tools_BaseMesh(bpy.types.Operator):
 		bpy.ops.transform.tosphere(value=1, mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.context.object.name = "Base Mesh"
 
 		return {'FINISHED'}
 
@@ -365,6 +367,8 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
 		bpy.ops.object.shade_smooth()
+		
+		bpy.context.object.name = "Bolt Cubic"
 
 		return {'FINISHED'}
 
@@ -413,8 +417,9 @@ class GA_Tools_Chain1(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-
 		bpy.ops.object.shade_smooth()
+		
+		bpy.context.object.name = "Chain 1"
 
 		return {'FINISHED'}
 
@@ -465,8 +470,9 @@ class GA_Tools_Chain2(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-
 		bpy.ops.object.shade_smooth()
+
+		bpy.context.object.name = "Chain 2"
 
 		return {'FINISHED'}
 
@@ -521,7 +527,7 @@ class GA_Tools_Crack(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		bpy.ops.object.modifier_add(type='EDGE_SPLIT')
-		bpy.context.object.modifiers["EdgeSplit"].split_angle = 0.785398
+		bpy.context.object.modifiers["EdgeSplit"].split_angle = 1.5708
 		
 		bpy.ops.object.modifier_add(type='SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].subdivision_type = 'SIMPLE'
@@ -531,8 +537,13 @@ class GA_Tools_Crack(bpy.types.Operator):
 
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.ops.transform.resize(value=(2, 2, 5), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
 		bpy.ops.object.shade_smooth()
+		
+		bpy.context.object.name = "Crack Boolean"
 
 		return {'FINISHED'}
 
@@ -576,6 +587,8 @@ class GA_Tools_ExtrudedShape(bpy.types.Operator):
 
 		bpy.ops.transform.skin_resize(value=(0.25, 0.25, 0.25), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.skin_root_mark()
+		
+		bpy.context.object.name = "Extruded Shape"
 
 		return {'FINISHED'}
 
@@ -663,7 +676,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 		bpy.context.object.data.bevel_object = bpy.data.objects["HairBevel"]
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
-
+		
 		return {'FINISHED'}
 
 class GA_Tools_Ring(bpy.types.Operator):
@@ -691,6 +704,8 @@ class GA_Tools_Ring(bpy.types.Operator):
 
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.context.object.name = "Ring"
 
 		return {'FINISHED'}
 
@@ -717,6 +732,8 @@ class GA_Tools_Strap(bpy.types.Operator):
 		
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		bpy.context.object.name = "Strap"
 
 		return {'FINISHED'}
 
@@ -886,8 +903,6 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		bpy.ops.object.select_pattern(pattern="AxeEditor")
   
-
-
 		return {'FINISHED'}
 
 class GA_Tools_Shield(bpy.types.Operator):
@@ -1055,8 +1070,7 @@ class GA_Tools_Potion(bpy.types.Operator):
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 		
-		
-
+		bpy.context.object.name = "Potion"
 
 		bpy.ops.object.shade_smooth()
 
