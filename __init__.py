@@ -222,6 +222,7 @@ classes = [
 
     GA_tools.GA_Tools_Axe,
 	GA_tools.GA_Tools_Shield,
+	GA_tools.GA_Tools_Shoulder,
     GA_tools.GA_Tools_Sword,
 	
     GA_tools.GA_Tools_Potion,
