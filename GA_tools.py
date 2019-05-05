@@ -722,6 +722,9 @@ class GA_Tools_Ring2(bpy.types.Operator):
 
 		bpy.ops.object.shade_smooth()
 		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
 		bpy.context.object.name = "Ring"
 		return {'FINISHED'}
 
