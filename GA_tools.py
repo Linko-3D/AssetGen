@@ -529,6 +529,9 @@ class GA_Tools_Crack(bpy.types.Operator):
 		bpy.ops.object.modifier_add(type='SUBSURF')
 		bpy.context.object.modifiers["Subdivision.001"].levels = 2
 
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
 		bpy.ops.object.shade_smooth()
 
 		return {'FINISHED'}
@@ -1028,6 +1031,7 @@ class GA_Tools_Potion(bpy.types.Operator):
 
 		bpy.ops.object.modifier_add(type='SCREW')
 		bpy.context.object.modifiers["Screw"].steps = 8
+		bpy.context.object.modifiers["Screw"].use_merge_vertices = True
 
 		bpy.ops.object.modifier_add(type='BEVEL')
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
@@ -1035,7 +1039,23 @@ class GA_Tools_Potion(bpy.types.Operator):
 		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
 
 		bpy.ops.object.modifier_add(type='SUBSURF')
-		bpy.context.object.modifiers["Subdivision"].levels = 2
+		bpy.context.object.modifiers["Subdivision"].levels = 3
+		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.select_mode(type="VERT")
+							
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.transform.translate(value=(0.0377, 0, 0), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		
+
 
 		bpy.ops.object.shade_smooth()
 
