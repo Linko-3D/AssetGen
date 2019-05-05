@@ -30,35 +30,6 @@ class GA_Tools_HighPoly(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Polish(bpy.types.Operator):
-
-	bl_idname = "scene.ga_toolpolish"
-	bl_label = "Polish"
-	bl_options = {'REGISTER', 'UNDO'}
-
-	def execute(self, context):
-
-		bpy.ops.object.mode_set(mode = 'OBJECT')
-		bpy.ops.object.convert(target='MESH')
-
-		bpy.ops.object.modifier_add(type='DECIMATE')
-		bpy.context.object.modifiers["Decimate"].ratio = 0.03
-		bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-
-		bpy.ops.object.modifier_add(type='BEVEL')
-		bpy.context.object.modifiers["Bevel"].segments = 2
-		bpy.context.object.modifiers["Bevel"].profile = 1
-		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
-
-		bpy.ops.object.modifier_remove(modifier="Subsurf")
-		bpy.ops.object.subdivision_set(level=2)
-
-		bpy.ops.object.convert(target='MESH')
-
-		bpy.ops.object.shade_smooth()
-
-		return {'FINISHED'}
-
 class GA_Tools_Wear(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolswear"

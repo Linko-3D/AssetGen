@@ -198,7 +198,6 @@ classes = [
     GA_user_interface.GA_toolsPanel,
     GA.GA_Start,
     GA_tools.GA_Tools_HighPoly,
-    GA_tools.GA_Tools_Polish,
     GA_tools.GA_Tools_Wear,
 
 	GA_tools.GA_Tools_Apply,
