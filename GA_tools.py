@@ -369,10 +369,10 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		return {'FINISHED'}
 
 
-class GA_Tools_Chain(bpy.types.Operator):
+class GA_Tools_Chain1(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolchain"
-	bl_label = "Chain"
+	bl_idname = "scene.ga_toolchain1"
+	bl_label = "Chain 1"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -388,6 +388,58 @@ class GA_Tools_Chain(bpy.types.Operator):
 		bpy.ops.mesh.select_all(action='INVERT')
 
 		bpy.ops.transform.translate(value=(0, 0, 0.5), constraint_axis=(False, False, True), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
+		bpy.context.object.modifiers["Mirror"].use_axis[0] = False
+		bpy.context.object.modifiers["Mirror"].use_axis[2] = True
+		bpy.context.object.modifiers["Mirror"].use_clip = True
+
+		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
+		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
+		bpy.context.object.modifiers["Bevel"].width = 0.005
+
+		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+		
+		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+
+		bpy.ops.object.shade_smooth()
+
+		return {'FINISHED'}
+
+class GA_Tools_Chain2(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolchain2"
+	bl_label = "Chain 2"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(0, 0, 0), major_segments=4, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+		
+		bpy.context.object.rotation_euler[0] = 1.5708
+		bpy.context.object.rotation_euler[1] = 0.785398
+		
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=False)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.mesh.select_mode(type="VERT")
+
+		bpy.ops.mesh.bisect(plane_co=(1, 0, 0), plane_no=(0, 0, 1), use_fill=False, clear_inner=True, clear_outer=False, xstart=1087, xend=1232, ystart=470, yend=472)
+		bpy.ops.mesh.select_all(action='INVERT')
+
+		bpy.ops.transform.translate(value=(0, 0, 0.5), constraint_axis=(False, False, True), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		
 
 		bpy.ops.mesh.select_all(action = 'SELECT')
 
