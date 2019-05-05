@@ -473,7 +473,7 @@ class GA_Tools_Chain2(bpy.types.Operator):
 class GA_Tools_Crack(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolcrack"
-	bl_label = "Crack"
+	bl_label = "Crack Boolean"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
@@ -522,6 +522,12 @@ class GA_Tools_Crack(bpy.types.Operator):
 
 		bpy.ops.object.modifier_add(type='EDGE_SPLIT')
 		bpy.context.object.modifiers["EdgeSplit"].split_angle = 0.785398
+		
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].subdivision_type = 'SIMPLE'
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision.001"].levels = 2
 
 		bpy.ops.object.shade_smooth()
 
