@@ -1032,6 +1032,7 @@ class GA_Tools_Potion(bpy.types.Operator):
 		bpy.ops.object.modifier_add(type='SCREW')
 		bpy.context.object.modifiers["Screw"].steps = 8
 		bpy.context.object.modifiers["Screw"].use_merge_vertices = True
+		bpy.context.object.modifiers["Screw"].use_normal_flip = True
 
 		bpy.ops.object.modifier_add(type='BEVEL')
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
