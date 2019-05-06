@@ -361,6 +361,52 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_BoltCylinder(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolboltcylinder"
+	bl_label = "Bolt Cylinder"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.mesh.primitive_circle_add(vertices=8, view_align=False, enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.transform.resize(value=(0.04, 0.04, 0.04), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+		bpy.ops.object.mode_set(mode = 'EDIT')                    
+
+		bpy.ops.mesh.edge_face_add()
+		bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"use_normal_flip":False, "mirror":False}, TRANSFORM_OT_translate={"value":(0, 0, 0.0309654), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, True), "mirror":False, "use_proportional_edit":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "use_proportional_connected":False, "use_proportional_projected":False, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.transform.resize(value=(0.73, 0.73, 0.73), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.mesh.quads_convert_to_tris(quad_method='BEAUTY', ngon_method='BEAUTY')
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
+		bpy.context.object.modifiers["Bevel"].width = 0.003
+		bpy.context.object.modifiers["Bevel"].segments = 2
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.ops.object.mode_set(mode = 'EDIT') 
+		bpy.ops.transform.translate(value=(0, 0, 0.0126573), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.ops.object.shade_smooth()
+		
+		bpy.context.object.name = "Bolt Cylinder"
+
+		return {'FINISHED'}
 
 class GA_Tools_Chain1(bpy.types.Operator):
 

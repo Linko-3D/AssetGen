@@ -187,10 +187,7 @@ class GA_Props(bpy.types.PropertyGroup):
         description = "Everything bellow the grid will be removed, this will save triangles that won't be visible bellow your model",
         default = False
    )   
-   
 
-
-   
 classes = [
     GA_Props,
     GA_user_interface.GA_generatePanel,
@@ -213,6 +210,7 @@ classes = [
 
 	GA_tools.GA_Tools_BaseMesh,
 	GA_tools.GA_Tools_BoltCubic,
+	GA_tools.GA_Tools_BoltCylinder,
 	GA_tools.GA_Tools_Chain1,
 	GA_tools.GA_Tools_Chain2,
 	GA_tools.GA_Tools_Crack,
