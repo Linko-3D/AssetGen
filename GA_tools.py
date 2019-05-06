@@ -343,12 +343,12 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
-		bpy.context.object.modifiers["Bevel"].width = 0.01
+		bpy.context.object.modifiers["Bevel"].width = 0.005
 		bpy.context.object.modifiers["Bevel"].segments = 2
 
 
@@ -393,12 +393,12 @@ class GA_Tools_Chain1(bpy.types.Operator):
 
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
-		bpy.context.object.modifiers["Bevel"].width = 0.005
+		bpy.context.object.modifiers["Bevel"].width = 0.001
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
-		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.036, 0.036, 0.036), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 		
 		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
@@ -419,7 +419,7 @@ class GA_Tools_Chain2(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(0, 0, 0), major_segments=4, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(0, 0, 0), major_segments=4, minor_segments=6, major_radius=1, minor_radius=0.45, abso_major_rad=1.25, abso_minor_rad=0.75)
 		
 		bpy.context.object.rotation_euler[0] = 1.5708
 		bpy.context.object.rotation_euler[1] = 0.785398
@@ -446,12 +446,12 @@ class GA_Tools_Chain2(bpy.types.Operator):
 
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
-		bpy.context.object.modifiers["Bevel"].width = 0.005
+		bpy.context.object.modifiers["Bevel"].width = 0.001
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
-		bpy.ops.transform.resize(value=(0.1, 0.1, 0.1), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.036, 0.036, 0.036), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 		
 		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
@@ -677,11 +677,11 @@ class GA_Tools_Ring1(bpy.types.Operator):
 	def execute(self, context):
 
 		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(0, 0, 0), rotation=(1.5708, 0, 0), major_segments=4, minor_segments=4, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
-		bpy.ops.transform.resize(value=(0.2, 0.2, 0.2), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
-		bpy.context.object.modifiers["Bevel"].width = 0.01
+		bpy.context.object.modifiers["Bevel"].width = 0.005
 		bpy.context.object.modifiers["Bevel"].segments = 2
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
@@ -709,7 +709,7 @@ class GA_Tools_Ring2(bpy.types.Operator):
 		bpy.ops.mesh.primitive_torus_add(view_align=False, location=(-0.00227314, -0.0087918, -0.013097), rotation=(0, 0, 0), major_segments=12, minor_segments=4, major_radius=1, minor_radius=0.3, abso_major_rad=1.25, abso_minor_rad=0.75)
 
 		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-		bpy.ops.transform.resize(value=(0.2, 0.2, 0.2), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
