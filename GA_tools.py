@@ -556,10 +556,8 @@ class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
-		#bpy.context.object.rotation_euler[0] = 0.00174533
-
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
-		bpy.context.object.modifiers["Subdivision"].levels = 2
+		bpy.context.object.modifiers["Subdivision"].levels = 4
 
 		bpy.context.active_object.modifiers.new("Skin", 'SKIN')
 		bpy.context.object.modifiers["Skin"].use_smooth_shade = True
