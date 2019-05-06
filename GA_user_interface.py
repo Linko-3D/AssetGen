@@ -210,7 +210,7 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolchain1", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolchain2", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolcrack", icon="FILE_REFRESH")
-        col1_ga.operator("scene.ga_toolextrudedshape", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolextrudedmesh", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolhair", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolring1", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolring2", icon="FILE_REFRESH")

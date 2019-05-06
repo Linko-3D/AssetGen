@@ -537,10 +537,10 @@ class GA_Tools_Crack(bpy.types.Operator):
 		return {'FINISHED'}
 
 
-class GA_Tools_ExtrudedShape(bpy.types.Operator):
+class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolextrudedshape"
-	bl_label = "Extruded Shape"
+	bl_idname = "scene.ga_toolextrudedmesh"
+	bl_label = "Extruded Mesh"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):

@@ -216,7 +216,7 @@ classes = [
 	GA_tools.GA_Tools_Chain1,
 	GA_tools.GA_Tools_Chain2,
 	GA_tools.GA_Tools_Crack,
-	GA_tools.GA_Tools_ExtrudedShape,
+	GA_tools.GA_Tools_ExtrudedMesh,
 	GA_tools.GA_Tools_Hair,
 	GA_tools.GA_Tools_Ring1,
 	GA_tools.GA_Tools_Ring2,
