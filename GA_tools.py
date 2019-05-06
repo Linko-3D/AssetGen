@@ -536,6 +536,26 @@ class GA_Tools_Crack(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_ExtrudedCurve(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolextrudedcurve"
+	bl_label = "Extruded Curve"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.curve.primitive_nurbs_path_add(radius=1, view_align=False, enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_nurbs_path_add(radius=0.5, view_align=False, enter_editmode=False, location=(0.00421777, -0.35954, 1.70905))
+		bpy.context.object.data.bevel_depth = 0.05
+		bpy.context.object.data.bevel_resolution = 6
+		bpy.context.object.data.resolution_u = 20
+		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.context.object.name = "Extruded Curve"
+
+		return {'FINISHED'}
 
 class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 
@@ -575,7 +595,7 @@ class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 		bpy.ops.transform.skin_resize(value=(0.25, 0.25, 0.25), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.skin_root_mark()
 		
-		bpy.context.object.name = "Extruded Shape"
+		bpy.context.object.name = "Extruded Mesh"
 
 		return {'FINISHED'}
 
