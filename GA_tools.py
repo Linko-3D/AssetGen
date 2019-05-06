@@ -995,18 +995,15 @@ class GA_Tools_Axe(bpy.types.Operator):
 		bpy.context.object.modifiers["Solidify"].offset = 0
 		bpy.context.object.modifiers["Solidify"].show_on_cage = True
 
-
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel"].width = 0.015
 		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
 
-
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 		bpy.context.object.modifiers["Bevel.001"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel.001"].width = 0.001
 		bpy.context.object.modifiers["Bevel.001"].angle_limit = 0.698132
-
 
 		bpy.context.active_object.modifiers.new("Triangulate", 'TRIANGULATE')
 
@@ -1015,7 +1012,6 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		bpy.ops.object.shade_smooth()
 		bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')
-
 
 		bpy.context.object.name = "AxeBlade"
 
@@ -1033,7 +1029,54 @@ class GA_Tools_Shield(bpy.types.Operator):
 
 	def execute(self, context):
 
+		bpy.ops.mesh.primitive_circle_add(vertices=16, view_align=False, enter_editmode=False, location=(0, 0, 0))
 
+		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+		bpy.context.object.scale[0] = 0.335
+		bpy.context.object.scale[1] = 0.333
+		bpy.context.object.scale[2] = 0.335
+
+		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"use_normal_flip":False, "mirror":False}, TRANSFORM_OT_translate={"value":(-0, -0.0543865, -0), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, True, False), "mirror":False, "use_proportional_edit":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "use_proportional_connected":False, "use_proportional_projected":False, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.transform.resize(value=(0.864, 0.864, 0.84), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"use_normal_flip":False, "mirror":False}, TRANSFORM_OT_translate={"value":(-0, -0.0348987, -0), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, True, False), "mirror":False, "use_proportional_edit":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "use_proportional_connected":False, "use_proportional_projected":False, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.transform.resize(value=(0.683, 0.68, 0.67), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+		bpy.ops.mesh.extrude_region_move(MESH_OT_extrude_region={"use_normal_flip":False, "mirror":False}, TRANSFORM_OT_translate={"value":(0, -0.0151977, 0), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, True, False), "mirror":False, "use_proportional_edit":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "use_proportional_connected":False, "use_proportional_projected":False, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.ops.transform.resize(value=(0.653, 0.653, 0.635), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+		bpy.ops.mesh.edge_face_add()
+
+		bpy.ops.mesh.inset(thickness=0.1, depth=-.01)
+
+		bpy.ops.mesh.select_all(action = 'SELECT')
+
+		bpy.ops.mesh.normals_make_consistent(inside=False)
+
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+
+		bpy.ops.object.modifier_add(type='SOLIDIFY')
+		bpy.context.object.modifiers["Solidify"].thickness = 0.03
+
+		bpy.ops.object.modifier_add(type='BEVEL')
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].width = 0.003
+		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
+
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+		
+		bpy.ops.object.shade_smooth()
+		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+		
+		bpy.context.object.name = "Shield"
 
 		return {'FINISHED'}
 		
