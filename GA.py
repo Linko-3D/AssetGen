@@ -427,16 +427,7 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.context.scene.cycles.samples = samples
 		
-			## Base color bake
 
-			print("\nBaking the base color map...")
-			
-			#Create Material
-			DEF_material_add(context,size,name,"D")	
-
-			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-
-			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
 			## Normal map bake
 
@@ -479,6 +470,19 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			## Base color bake
+
+			print("\nBaking the diffuse map...")
+			
+			#Create Material
+			DEF_material_add(context,size,name,"D")	
+
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+
+			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			
+			print("\n")
 
 		# Finalizing
 		
