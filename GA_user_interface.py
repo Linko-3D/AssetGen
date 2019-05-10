@@ -129,6 +129,11 @@ class GA_advancedPanel(bpy.types.Panel):
         row = col_ga.row()
         row.prop(myscene , "ga_smoothLP")
         col_ga.row().separator()
+		
+		
+        row = col_ga.row()		
+        row.prop(myscene , "ga_bakelighting")
+        col_ga.row().separator()	
 
         col_ga.prop(myscene , 'ga_cagesize') 
         col_ga.prop(myscene , 'ga_edgepadding') 

@@ -494,8 +494,11 @@ class GA_Start(bpy.types.Operator):
 			DEF_material_add(context,size,name,"D")	
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-
-			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			
+			if myscene.ga_bakelighting == 0:
+				bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			else:
+				bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
 			
 			print("\n")
 
