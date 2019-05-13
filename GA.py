@@ -129,8 +129,23 @@ class GA_Start(bpy.types.Operator):
 					obs[0].name = "tmpHP"
 				
 				bpy.ops.object.select_all(action = 'DESELECT')
+				bpy.ops.object.select_pattern(pattern="tmpHP")
+				bpy.context.view_layer.objects.active  = bpy.data.objects["tmpHP"]
+				
+				if smoothHP == 1:
+					bpy.ops.object.shade_smooth()
+				else:
+					bpy.ops.object.shade_flat()
+				
+				bpy.ops.object.select_all(action = 'DESELECT')
 				bpy.ops.object.select_pattern(pattern="tmpLP")
 				bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
+				
+				if smoothLP == 1:
+					bpy.ops.object.shade_smooth()
+				else:
+					bpy.ops.object.shade_flat()					
+				
 
 				#Check if the low poly has UVs
 				if not len( bpy.context.object.data.uv_layers ):
@@ -427,16 +442,7 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.context.scene.cycles.samples = samples
 		
-			## Base color bake
 
-			print("\nBaking the base color map...")
-			
-			#Create Material
-			DEF_material_add(context,size,name,"D")	
-
-			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
-
-			bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
 
 			## Normal map bake
 
@@ -479,6 +485,22 @@ class GA_Start(bpy.types.Operator):
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			bpy.ops.object.bake(type="ROUGHNESS", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			## Base color bake
+
+			print("\nBaking the diffuse map...")
+			
+			#Create Material
+			DEF_material_add(context,size,name,"D")	
+
+			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
+			
+			if myscene.ga_bakelighting == 0:
+				bpy.ops.object.bake(type="DIFFUSE", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True, pass_filter=set({'COLOR'}))
+			else:
+				bpy.ops.object.bake(type="COMBINED", use_selected_to_active = True, use_cage = False, cage_extrusion = cage_size, margin = edge_padding, use_clear = True)
+			
+			print("\n")
 
 		# Finalizing
 		

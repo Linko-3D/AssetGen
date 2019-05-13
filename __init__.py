@@ -125,16 +125,10 @@ class GA_Props(bpy.types.PropertyGroup):
         description = "Will apply a smooth shading on your low poly",
         default = True
    )
-
-   ga_centerXY : bpy.props.BoolProperty(
-        name = 'Center XY',
-        description = "Center your game asset in the X and Y axis before exporting it, this makes it easier to manipulate it in the game engine (you can also have a collection of high polys in the Blender scene in different positions)",
-        default = False
-   )    
-
-   ga_ontheground : bpy.props.BoolProperty(
-        name = 'On the Ground',
-        description = "Move your asset on the ground",
+   
+   ga_bakelighting : bpy.props.BoolProperty(
+        name = 'Bake Lighting/Shading',
+        description = "The lighting and shading information will be baked, this is useful if you have emissive materials",
         default = False
    )    
 
@@ -168,8 +162,20 @@ class GA_Props(bpy.types.PropertyGroup):
         default = 45,
         min = 1,
         max = 89		
-   )   
+   )
 
+   ga_centerXY : bpy.props.BoolProperty(
+        name = 'Center XY',
+        description = "Center your game asset in the X and Y axis before exporting it, this makes it easier to manipulate it in the game engine (you can also have a collection of high polys in the Blender scene in different positions)",
+        default = False
+   )    
+
+   ga_ontheground : bpy.props.BoolProperty(
+        name = 'On the Ground',
+        description = "Move your asset on the ground",
+        default = False
+   )
+   
    ga_removeinside : bpy.props.BoolProperty(
         name = 'Remove Inside',
         description = "The addon will perform an Union boolean between every meshes that aren't merged (connected vertices), this will remove the geometry inside your model before calculating the polycount and performing an UV Mapping",

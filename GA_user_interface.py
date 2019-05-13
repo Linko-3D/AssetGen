@@ -129,13 +129,10 @@ class GA_advancedPanel(bpy.types.Panel):
         row = col_ga.row()
         row.prop(myscene , "ga_smoothLP")
         col_ga.row().separator()
-
-        row = col_ga.row()		
-        row.prop(myscene , "ga_centerXY")
-        col_ga.row().separator()
+		
 		
         row = col_ga.row()		
-        row.prop(myscene , "ga_ontheground")
+        row.prop(myscene , "ga_bakelighting")
         col_ga.row().separator()	
 
         col_ga.prop(myscene , 'ga_cagesize') 
@@ -154,7 +151,15 @@ class GA_advancedPanel(bpy.types.Panel):
 
         row = col_ga.row()		
         row.prop(myscene , "ga_removeunderground")
+        col_ga.row().separator()		
+
+        row = col_ga.row()		
+        row.prop(myscene , "ga_centerXY")
         col_ga.row().separator()
+		
+        row = col_ga.row()		
+        row.prop(myscene , "ga_ontheground")
+        col_ga.row().separator()	
 		
         col_ga.row().separator()		
 		
