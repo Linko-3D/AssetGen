@@ -857,6 +857,34 @@ class GA_Tools_StrapCircle(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_StrapLine(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolstrapline"
+	bl_label = "Strap Line"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.curve.primitive_nurbs_path_add(radius=1, view_align=False, enter_editmode=False, location=(0.921556, -0.107272, 1))
+		bpy.context.object.data.resolution_u = 64
+		bpy.context.object.data.fill_mode = 'FULL'
+		bpy.context.object.data.extrude = 0.1
+		bpy.context.object.data.bevel_depth = 0.02
+
+		bpy.ops.transform.resize(value=(0.5, 0.5, 0.5), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.curve.handle_type_set(type='ALIGNED')
+		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
+
+		bpy.context.object.name = "Strap"
+
+		return {'FINISHED'}
+
 class GA_Tools_Axe(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolaxe"

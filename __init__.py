@@ -226,6 +226,7 @@ classes = [
 	GA_tools.GA_Tools_RingCircle,
 	GA_tools.GA_Tools_RingSquare,
 	GA_tools.GA_Tools_StrapCircle,
+	GA_tools.GA_Tools_StrapLine,
 
     GA_tools.GA_Tools_Axe,
 	GA_tools.GA_Tools_Shield,
