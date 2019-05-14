@@ -17,6 +17,7 @@ class GA_Tools_HighPoly(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 			bpy.context.object.modifiers["Bevel"].segments = 2
 			bpy.context.object.modifiers["Bevel"].width = 0.005
+			bpy.context.object.modifiers["Bevel"].angle_limit = 0.610865
 
 			bpy.context.object.modifiers["Bevel"].use_clamp_overlap = False
 
