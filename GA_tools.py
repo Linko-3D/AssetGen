@@ -283,7 +283,7 @@ class GA_Tools_BaseMesh(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_cube_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_cube_add(size=2, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.object.subdivision_set(level=2, relative=False)
 		bpy.ops.object.convert(target='MESH')
 
@@ -313,7 +313,7 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_plane_add(align='WORLD', enter_editmode=False, location=(0, 0, 1))
+		bpy.ops.mesh.primitive_plane_add(enter_editmode=False, location=(0, 0, 1))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_mode(type="VERT")
@@ -370,7 +370,7 @@ class GA_Tools_BoltCylinder(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_circle_add(vertices=8, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_circle_add(vertices=8, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.transform.resize(value=(0.04, 0.04, 0.04), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 		bpy.ops.object.mode_set(mode = 'EDIT')                    
@@ -416,7 +416,7 @@ class GA_Tools_ChainCircle(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-		bpy.ops.mesh.primitive_torus_add(align='WORLD', location=(0, 0, 0), rotation=(0, 0, 0), major_segments=6, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.mesh.primitive_torus_add(location=(0, 0, 0), rotation=(0, 0, 0), major_segments=6, minor_segments=6, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
 
 		bpy.context.object.rotation_euler[0] = 1.5708
 		bpy.context.object.rotation_euler[1] = 0.523599
@@ -466,7 +466,7 @@ class GA_Tools_ChainSquare(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-		bpy.ops.mesh.primitive_torus_add(align='WORLD', location=(0, 0, 0), rotation=(0, 0, 0), major_segments=4, minor_segments=6, major_radius=1, minor_radius=0.45, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.mesh.primitive_torus_add(location=(0, 0, 0), rotation=(0, 0, 0), major_segments=4, minor_segments=6, major_radius=1, minor_radius=0.45, abso_major_rad=1.25, abso_minor_rad=0.75)
 		
 		bpy.context.object.rotation_euler[0] = 1.5708
 		bpy.context.object.rotation_euler[1] = 0.785398
@@ -519,7 +519,7 @@ class GA_Tools_Crack(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
@@ -550,7 +550,7 @@ class GA_Tools_Crack(bpy.types.Operator):
 
 		bpy.context.object.name = "tmpPart1"
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
@@ -628,8 +628,8 @@ class GA_Tools_ExtrudedCurve(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.curve.primitive_nurbs_path_add(radius=1, align='WORLD', enter_editmode=False, location=(0, 0, 0))
-		bpy.ops.curve.primitive_nurbs_path_add(radius=0.5, align='WORLD', enter_editmode=False, location=(0.00421777, -0.35954, 1.70905))
+		bpy.ops.curve.primitive_nurbs_path_add(radius=1, enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_nurbs_path_add(radius=0.5, enter_editmode=False, location=(0.00421777, -0.35954, 1.70905))
 		bpy.context.object.data.bevel_depth = 0.05
 		bpy.context.object.data.bevel_resolution = 6
 		bpy.context.object.data.resolution_u = 20
@@ -648,7 +648,7 @@ class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.context.object.name = "motif"
 
@@ -693,7 +693,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 
 		# Hair Strand
 
-		bpy.ops.curve.primitive_bezier_curve_add(radius=1, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_bezier_curve_add(radius=1, enter_editmode=False, location=(0, 0, 0))
 
 
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
@@ -722,7 +722,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 
 		# Hair Taper
 
-		bpy.ops.curve.primitive_bezier_curve_add(radius=1, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_bezier_curve_add(radius=1, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), orient_type='VIEW', orient_matrix=((-0.410029, -0.911976, 0.0132648), (0.401743, -0.193644, -0.895045), (-0.818828, 0.361665, -0.445779)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.context.object.location[1] = -0.8
 
@@ -744,7 +744,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 
 		# Hair Bevel
 
-		bpy.ops.curve.primitive_bezier_circle_add(radius=1, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_bezier_circle_add(radius=1, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.curve.handle_type_set(type='VECTOR')
@@ -778,7 +778,7 @@ class GA_Tools_RingCircle(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_torus_add(align='WORLD', location=(-0.00227314, -0.0087918, -0.013097), rotation=(0, 0, 0), major_segments=12, minor_segments=4, major_radius=1, minor_radius=0.3, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.mesh.primitive_torus_add(location=(-0.00227314, -0.0087918, -0.013097), rotation=(0, 0, 0), major_segments=12, minor_segments=4, major_radius=1, minor_radius=0.3, abso_major_rad=1.25, abso_minor_rad=0.75)
 
 		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
@@ -808,7 +808,7 @@ class GA_Tools_RingSquare(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_torus_add(align='WORLD', location=(0, 0, 0), rotation=(1.5708, 0, 0), major_segments=4, minor_segments=4, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
+		bpy.ops.mesh.primitive_torus_add(location=(0, 0, 0), rotation=(1.5708, 0, 0), major_segments=4, minor_segments=4, major_radius=1, minor_radius=0.4, abso_major_rad=1.25, abso_minor_rad=0.75)
 		bpy.ops.transform.resize(value=(0.05, 0.05, 0.05), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
 
@@ -838,7 +838,7 @@ class GA_Tools_StrapCircle(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.curve.primitive_bezier_circle_add(align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.curve.primitive_bezier_circle_add(enter_editmode=False, location=(0, 0, 0))
 		bpy.context.object.data.resolution_u = 64
 		bpy.context.object.data.fill_mode = 'FULL'
 		bpy.context.object.data.extrude = 0.1
@@ -866,7 +866,7 @@ class GA_Tools_StrapLine(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.curve.primitive_nurbs_path_add(radius=1, align='WORLD', enter_editmode=False, location=(0.921556, -0.107272, 1))
+		bpy.ops.curve.primitive_nurbs_path_add(radius=1, enter_editmode=False, location=(0.921556, -0.107272, 1))
 		bpy.context.object.data.resolution_u = 64
 		bpy.context.object.data.fill_mode = 'FULL'
 		bpy.context.object.data.extrude = 0.1
@@ -896,7 +896,7 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		#Deformer
 
-		bpy.ops.object.add(type='LATTICE', align='WORLD', enter_editmode=False, location=(0, 0, 0.375))
+		bpy.ops.object.add(type='LATTICE', enter_editmode=False, location=(0, 0, 0.375))
 
 		bpy.context.object.data.points_w = 4
 
@@ -908,7 +908,7 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		# Strap
 
-		bpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.transform.resize(value=(0.05, 0.05, 0.04), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
@@ -953,13 +953,13 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		# Main
 
-		bpy.ops.mesh.primitive_cylinder_add(align='WORLD', enter_editmode=False, location=(0, 0, 0.375))
+		bpy.ops.mesh.primitive_cylinder_add(enter_editmode=False, location=(0, 0, 0.375))
 
 		bpy.ops.transform.resize(value=(0.04, 0.04, 0.5), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		bpy.context.object.name = "AxeBase"
 
-		bpy.ops.mesh.primitive_cylinder_add(align='WORLD', enter_editmode=False, location=(0, 0, 0.818853))
+		bpy.ops.mesh.primitive_cylinder_add(enter_editmode=False, location=(0, 0, 0.818853))
 
 		bpy.ops.transform.resize(value=(0.055, 0.055, 0.025), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 
@@ -992,7 +992,7 @@ class GA_Tools_Axe(bpy.types.Operator):
 
 		#AxeBlade
 
-		bpy.ops.mesh.primitive_plane_add(align='WORLD', enter_editmode=False, location=(0, -0.269897, 0.9255))
+		bpy.ops.mesh.primitive_plane_add(enter_editmode=False, location=(0, -0.269897, 0.9255))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		
@@ -1058,7 +1058,7 @@ class GA_Tools_Shield(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_circle_add(vertices=16, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_circle_add(vertices=16, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.transform.rotate(value=-1.5708, orient_axis='Z', orient_type='VIEW', orient_matrix=((-4.93038e-32, -1, -2.22045e-16), (-2.22045e-16, -4.93038e-32, -1), (-1, -2.22045e-16, -4.93038e-32)), orient_matrix_type='VIEW', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 
@@ -1117,7 +1117,7 @@ class GA_Tools_Shoulder(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_mode(type="VERT")
 		bpy.ops.mesh.select_all(action = 'SELECT')
@@ -1143,7 +1143,7 @@ class GA_Tools_Shoulder(bpy.types.Operator):
 
 		bpy.context.object.name = "tmpPart1"
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_mode(type="VERT")
 		bpy.ops.mesh.select_all(action = 'SELECT')
@@ -1165,7 +1165,7 @@ class GA_Tools_Shoulder(bpy.types.Operator):
 
 		bpy.context.object.name = "tmpPart2"
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_mode(type="VERT")
 		bpy.ops.mesh.select_all(action = 'SELECT')
@@ -1228,7 +1228,7 @@ class GA_Tools_Sword(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(3.37511e-06, -1.11759e-08, 0.109301))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(3.37511e-06, -1.11759e-08, 0.109301))
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		
 		bpy.ops.mesh.select_mode(type="VERT")
@@ -1274,7 +1274,7 @@ class GA_Tools_Sword(bpy.types.Operator):
 
 		# Hand
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(3.37511e-06, 2.77613e-08, 0.2723))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(3.37511e-06, 2.77613e-08, 0.2723))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
@@ -1326,7 +1326,7 @@ class GA_Tools_Potion(bpy.types.Operator):
 
 	def execute(self, context):
 
-		bpy.ops.mesh.primitive_plane_add(size=2, align='WORLD', enter_editmode=False, location=(0, 0, 0))
+		bpy.ops.mesh.primitive_plane_add(size=2, enter_editmode=False, location=(0, 0, 0))
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 
