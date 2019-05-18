@@ -212,6 +212,7 @@ classes = [
 	GA_tools.GA_Tools_Dyntopo,
     GA_tools.GA_Tools_Optimize,
     GA_tools.GA_Tools_DissolveUnnecessary,
+    GA_tools.GA_Tools_Polycount,
 	GA_tools.GA_Tools_OnTheGround,
 
 	GA_tools.GA_Tools_BaseMesh,

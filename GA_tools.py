@@ -275,6 +275,21 @@ class GA_Tools_OnTheGround(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_Polycount(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolpolycount"
+	bl_label = "Get polycount"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+        
+		for obj in bpy.context.selected_objects:
+			bpy.context.view_layer.objects.active = obj
+			
+			bpy.context.object.name = str(len(bpy.context.active_object.data.polygons))
+
+		return {'FINISHED'}
+
 class GA_Tools_BaseMesh(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolbasemesh"
