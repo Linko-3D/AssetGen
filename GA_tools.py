@@ -854,17 +854,21 @@ class GA_Tools_StrapCircle(bpy.types.Operator):
 	def execute(self, context):
 
 		bpy.ops.curve.primitive_bezier_circle_add(enter_editmode=False, location=(0, 0, 0))
-		bpy.context.object.data.resolution_u = 64
+		bpy.context.object.data.resolution_u = 3
 		bpy.context.object.data.fill_mode = 'FULL'
-		bpy.context.object.data.extrude = 0.1
-		bpy.context.object.data.bevel_depth = 0.02
-
-		bpy.ops.transform.resize(value=(0.5, 0.5, 0.5), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
-		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+		bpy.context.object.data.extrude = 0.05
+		bpy.context.object.data.bevel_depth = 0.01
+		bpy.context.object.data.bevel_resolution = 1
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
+		bpy.ops.transform.resize(value=(0.25, 0.25, 0.25), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 		bpy.ops.curve.handle_type_set(type='ALIGNED')
 		bpy.ops.object.mode_set(mode = 'OBJECT')
+		
+		bpy.ops.object.modifier_add(type='SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].render_levels = 2
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
 		
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
