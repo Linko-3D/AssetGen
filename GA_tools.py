@@ -305,7 +305,7 @@ class GA_Tools_BaseMesh(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')
 
-		bpy.ops.transform.resize(value=(0.25, 0.25, 0.25), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+		bpy.ops.transform.resize(value=(0.15, 0.15, 0.15), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
