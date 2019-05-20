@@ -217,7 +217,7 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'SCULPT')
 		bpy.ops.sculpt.dynamic_topology_toggle()
 		
-		bpy.context.scene.tool_settings.unified_paint_settings.size = 100
+		bpy.context.scene.tool_settings.unified_paint_settings.size = 80
 		bpy.context.scene.tool_settings.sculpt.detail_size = 6
 		bpy.context.scene.tool_settings.unified_paint_settings.use_unified_strength = True
 		bpy.context.scene.tool_settings.unified_paint_settings.strength = 1
