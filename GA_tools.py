@@ -873,6 +873,63 @@ class GA_Tools_StrapCircle(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_Tools_StrapHandle(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolstraphandle"
+	bl_label = "Strap Handle"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2, enter_editmode=False, location=(0, 0, 0))
+
+		bpy.ops.transform.resize(value=(0.05, 0.05, 0.04), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
+		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+
+		bpy.context.active_object.modifiers.new("SimpleDeform", 'SIMPLE_DEFORM')
+		bpy.context.object.modifiers["SimpleDeform"].deform_method = 'TAPER'
+		bpy.context.object.modifiers["SimpleDeform"].deform_axis = 'Y'
+		bpy.context.object.modifiers["SimpleDeform"].factor = 0.75
+		bpy.context.object.modifiers["SimpleDeform"].lock_x = True
+
+
+		bpy.context.active_object.modifiers.new("SimpleDeform", 'SIMPLE_DEFORM')
+		bpy.context.object.modifiers["SimpleDeform.001"].deform_method = 'TAPER'
+		bpy.context.object.modifiers["SimpleDeform.001"].deform_axis = 'Z'
+		bpy.context.object.modifiers["SimpleDeform.001"].factor = -0.25
+
+		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
+		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
+		bpy.context.object.modifiers["Bevel"].width = 0.015
+		bpy.context.object.modifiers["Bevel"].segments = 2
+
+		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
+		bpy.context.object.modifiers["Subdivision"].levels = 2
+
+		bpy.context.object.name = "tmpStrap"
+
+		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0.07), "constraint_axis":(False, False, True), "orient_type":'GLOBAL', "mirror":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+		bpy.context.object.modifiers["SimpleDeform"].factor = -0.75
+
+		bpy.ops.object.select_pattern(pattern="tmpStrap")
+
+		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0.14), "constraint_axis":(False, False, True), "orient_type":'GLOBAL', "mirror":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
+
+		bpy.ops.object.select_pattern(pattern="tmpStrap.001")
+		bpy.ops.object.select_pattern(pattern="tmpStrap")
+
+		bpy.ops.object.convert(target='MESH')
+		bpy.ops.object.join()
+		bpy.ops.object.shade_smooth()
+
+		bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
+		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')
+
+
+		bpy.context.object.name = "StrapHandle"
+
+		return {'FINISHED'}
+
 class GA_Tools_StrapLine(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolstrapline"
