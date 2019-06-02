@@ -99,7 +99,7 @@ def DEF_pbrShader_add(context,size,name ):
     d_image = nodes.new("ShaderNodeTexImage")
     d_image.location = (-80,-350)
     d_image.image = I_Normal 
-    d_image.color_space = 'NONE'
+    #d_image.color_space = 'NONE'
 
     
     d_2   = nodes.new("ShaderNodeNormalMap")

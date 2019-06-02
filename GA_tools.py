@@ -405,7 +405,7 @@ class GA_Tools_BoltCylinder(bpy.types.Operator):
 		bpy.context.active_object.modifiers.new("Bevel", 'BEVEL')
 		bpy.context.object.modifiers["Bevel"].limit_method = 'ANGLE'
 		bpy.context.object.modifiers["Bevel"].angle_limit = 0.785398
-		bpy.context.object.modifiers["Bevel"].width = 0.003
+		bpy.context.object.modifiers["Bevel"].width = 0.005
 		bpy.context.object.modifiers["Bevel"].segments = 2
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
