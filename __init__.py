@@ -218,7 +218,7 @@ classes = [
 	GA_tools.GA_Tools_BaseMesh,
 	GA_tools.GA_Tools_BoltCubic,
 	GA_tools.GA_Tools_BoltCylinder,
-	GA_tools.GA_Tools_ChainCircle,
+	GA_tools.GA_Tools_ChainHexagon,
 	GA_tools.GA_Tools_ChainSquare,
 	GA_tools.GA_Tools_Crack,
 	GA_tools.GA_Tools_ExtrudedCurve,

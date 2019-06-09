@@ -214,7 +214,7 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolbasemesh", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolboltcubic", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolboltcylinder", icon="FILE_REFRESH")
-        col1_ga.operator("scene.ga_toolchaincircle", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolchainhexagon", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolchainsquare", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolcrack", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolextrudedcurve", icon="FILE_REFRESH")

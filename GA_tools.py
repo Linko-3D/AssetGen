@@ -424,10 +424,10 @@ class GA_Tools_BoltCylinder(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_ChainCircle(bpy.types.Operator):
+class GA_Tools_ChainHexagon(bpy.types.Operator):
 
-	bl_idname = "scene.ga_toolchaincircle"
-	bl_label = "Chain Circle"
+	bl_idname = "scene.ga_toolchainhexagon"
+	bl_label = "Chain Hexagon"
 	bl_options = {'REGISTER', 'UNDO'}
 
 	def execute(self, context):
