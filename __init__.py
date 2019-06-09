@@ -81,7 +81,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_unfoldhalf : bpy.props.BoolProperty(
         name = 'Unfold Half by Symmetry',
         description = "Will generate an UV Map for the half right of the low poly to double the quality of the texture",
-        default = True
+        default = False
    )
    
    ga_selectedtoactive : bpy.props.BoolProperty(
@@ -226,6 +226,7 @@ classes = [
 	GA_tools.GA_Tools_Hair,
 	GA_tools.GA_Tools_RingCircle,
 	GA_tools.GA_Tools_RingSquare,
+	GA_tools.GA_Tools_Rope,
 	GA_tools.GA_Tools_StrapCircle,
 	GA_tools.GA_Tools_StrapHandle,
 	GA_tools.GA_Tools_StrapLine,

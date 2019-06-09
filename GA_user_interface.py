@@ -222,6 +222,7 @@ class GA_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolhair", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolringcircle", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolringsquare", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolrope", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolstrapcircle", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolstraphandle", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolstrapline", icon="FILE_REFRESH")
