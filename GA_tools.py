@@ -468,7 +468,7 @@ class GA_Tools_ChainHexagon(bpy.types.Operator):
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 		
-		bpy.ops.object.modifier_add(type='ARRAY')
+		bpy.context.active_object.modifiers.new("Array", 'ARRAY')
 		bpy.context.object.modifiers["Array"].relative_offset_displace[0] = 0
 		bpy.context.object.modifiers["Array"].relative_offset_displace[2] = -0.75
 		
