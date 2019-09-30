@@ -100,6 +100,7 @@ def DEF_pbrShader_add(context,size,name ):
     d_image.location = (-80,-350)
     d_image.image = I_Normal
     #d_image.image.colorspace_settings.name = 'Linear'
+    d_image.image.colorspace_settings.name = 'Non-Color'
     
     d_2   = nodes.new("ShaderNodeNormalMap")
     d_2.location = (190,-350)
