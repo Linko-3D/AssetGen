@@ -5,8 +5,8 @@ from rna_prop_ui import PropertyPanel
 
 
 
-class GA_generatePanel(bpy.types.Panel):
-    bl_idname = "ga.generate"
+class GA_PT_generatePanel(bpy.types.Panel):
+    bl_idname = "GA_PT_generate"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_context = "objectmode"  
@@ -105,8 +105,8 @@ class GA_generatePanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_start", icon="FILE_REFRESH")
         col_ga.row().separator()
 		
-class GA_advancedPanel(bpy.types.Panel):
-    bl_idname = "ga.advanced"
+class GA_PT_advancedPanel(bpy.types.Panel):
+    bl_idname = "GA_PT_advanced"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_context = "objectmode"  
@@ -163,8 +163,8 @@ class GA_advancedPanel(bpy.types.Panel):
 		
         col_ga.row().separator()		
 		
-class GA_toolsPanel(bpy.types.Panel):
-    bl_idname = "ga.tools"
+class GA_PT_toolsPanel(bpy.types.Panel):
+    bl_idname = "GA_PT_tools"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_context = "objectmode"  

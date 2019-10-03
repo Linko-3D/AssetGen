@@ -1,7 +1,7 @@
 import  bpy
 
 
-class GA_Tools_HighPoly(bpy.types.Operator):
+class GA_PT_Tools_HighPoly(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolshighpoly"
 	bl_label = "High Poly Conversion"
@@ -31,7 +31,7 @@ class GA_Tools_HighPoly(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Wear(bpy.types.Operator):
+class GA_PT_Tools_Wear(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolswear"
 	bl_label = "Edge Wear"
@@ -58,7 +58,7 @@ class GA_Tools_Wear(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Apply(bpy.types.Operator):
+class GA_PT_Tools_Apply(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolapply"
 	bl_label = "Apply Meshes"
@@ -70,7 +70,7 @@ class GA_Tools_Apply(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_ResymX(bpy.types.Operator):
+class GA_PT_Tools_ResymX(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolresymx"
 	bl_label = "Resym X"
@@ -89,7 +89,7 @@ class GA_Tools_ResymX(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_CutHalf(bpy.types.Operator):
+class GA_PT_Tools_CutHalf(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolcuthalf"
 	bl_label = "Cut Half"
@@ -108,7 +108,7 @@ class GA_Tools_CutHalf(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_FixNormals(bpy.types.Operator):
+class GA_PT_Tools_FixNormals(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolfixnormals"
 	bl_label = "Fix Normals"
@@ -125,7 +125,7 @@ class GA_Tools_FixNormals(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_FlipNormals(bpy.types.Operator):
+class GA_PT_Tools_FlipNormals(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolflipnormals"
 	bl_label = "Flip Normals"
@@ -142,7 +142,7 @@ class GA_Tools_FlipNormals(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Union(bpy.types.Operator):
+class GA_PT_Tools_Union(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolunion"
 	bl_label = "Union/Fill/Fix"
@@ -201,7 +201,7 @@ class GA_Tools_Union(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Dyntopo(bpy.types.Operator):
+class GA_PT_Tools_Dyntopo(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooldyntopo"
 	bl_label = "Dyntopo"
@@ -224,7 +224,7 @@ class GA_Tools_Dyntopo(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Optimize(bpy.types.Operator):
+class GA_PT_Tools_Optimize(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooloptimize"
 	bl_label = "Reduce Polycount"
@@ -243,7 +243,7 @@ class GA_Tools_Optimize(bpy.types.Operator):
 
 		return {'FINISHED'}			
 
-class GA_Tools_DissolveUnnecessary(bpy.types.Operator):
+class GA_PT_Tools_DissolveUnnecessary(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooldissolveunnecessary"
 	bl_label = "Dissolve Unnecessary"
@@ -262,7 +262,7 @@ class GA_Tools_DissolveUnnecessary(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_OnTheGround(bpy.types.Operator):
+class GA_PT_Tools_OnTheGround(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolontheground"
 	bl_label = "On The Ground"
@@ -275,7 +275,7 @@ class GA_Tools_OnTheGround(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Polycount(bpy.types.Operator):
+class GA_PT_Tools_Polycount(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolpolycount"
 	bl_label = "Get polycount"
@@ -290,7 +290,7 @@ class GA_Tools_Polycount(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_BaseMesh(bpy.types.Operator):
+class GA_PT_Tools_BaseMesh(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolbasemesh"
 	bl_label = "Base Mesh"
@@ -320,7 +320,7 @@ class GA_Tools_BaseMesh(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_BoltCubic(bpy.types.Operator):
+class GA_PT_Tools_BoltCubic(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolboltcubic"
 	bl_label = "Bolt Cubic"
@@ -377,7 +377,7 @@ class GA_Tools_BoltCubic(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_BoltCylinder(bpy.types.Operator):
+class GA_PT_Tools_BoltCylinder(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolboltcylinder"
 	bl_label = "Bolt Cylinder"
@@ -424,7 +424,7 @@ class GA_Tools_BoltCylinder(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_ChainHexagon(bpy.types.Operator):
+class GA_PT_Tools_ChainHexagon(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolchainhexagon"
 	bl_label = "Chain Hexagon"
@@ -488,7 +488,7 @@ class GA_Tools_ChainHexagon(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_ChainSquare(bpy.types.Operator):
+class GA_PT_Tools_ChainSquare(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolchainsquare"
 	bl_label = "Chain Square"
@@ -541,7 +541,7 @@ class GA_Tools_ChainSquare(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Crack(bpy.types.Operator):
+class GA_PT_Tools_Crack(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolcrack"
 	bl_label = "Crack Boolean"
@@ -649,7 +649,7 @@ class GA_Tools_Crack(bpy.types.Operator):
 		bpy.context.object.name = "Crack Boolean"
 		return {'FINISHED'}
 
-class GA_Tools_ExtrudedCurve(bpy.types.Operator):
+class GA_PT_Tools_ExtrudedCurve(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolextrudedcurve"
 	bl_label = "Extruded Curve"
@@ -670,7 +670,7 @@ class GA_Tools_ExtrudedCurve(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_ExtrudedMesh(bpy.types.Operator):
+class GA_PT_Tools_ExtrudedMesh(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolextrudedmesh"
 	bl_label = "Extruded Mesh"
@@ -712,7 +712,7 @@ class GA_Tools_ExtrudedMesh(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Hair(bpy.types.Operator):
+class GA_PT_Tools_Hair(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolhair"
 	bl_label = "Hair/Fur"
@@ -799,7 +799,7 @@ class GA_Tools_Hair(bpy.types.Operator):
 		
 		return {'FINISHED'}
 
-class GA_Tools_RingCircle(bpy.types.Operator):
+class GA_PT_Tools_RingCircle(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolringcircle"
 	bl_label = "Ring Circle"
@@ -829,7 +829,7 @@ class GA_Tools_RingCircle(bpy.types.Operator):
 		bpy.context.object.name = "Ring"
 		return {'FINISHED'}
 
-class GA_Tools_RingSquare(bpy.types.Operator):
+class GA_PT_Tools_RingSquare(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolringsquare"
 	bl_label = "Ring Square"
@@ -859,7 +859,7 @@ class GA_Tools_RingSquare(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Rope(bpy.types.Operator):
+class GA_PT_Tools_Rope(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolrope"
 	bl_label = "Rope"
@@ -934,7 +934,7 @@ class GA_Tools_Rope(bpy.types.Operator):
 
 		return {'FINISHED'}
 		
-class GA_Tools_StrapCircle(bpy.types.Operator):
+class GA_PT_Tools_StrapCircle(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolstrapcircle"
 	bl_label = "Strap Circle"
@@ -966,7 +966,7 @@ class GA_Tools_StrapCircle(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_StrapHandle(bpy.types.Operator):
+class GA_PT_Tools_StrapHandle(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolstraphandle"
 	bl_label = "Strap Handle"
@@ -1023,7 +1023,7 @@ class GA_Tools_StrapHandle(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_StrapLine(bpy.types.Operator):
+class GA_PT_Tools_StrapLine(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolstrapline"
 	bl_label = "Strap Line"
@@ -1051,7 +1051,7 @@ class GA_Tools_StrapLine(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Axe(bpy.types.Operator):
+class GA_PT_Tools_Axe(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolaxe"
 	bl_label = "Axe"
@@ -1215,7 +1215,7 @@ class GA_Tools_Axe(bpy.types.Operator):
   
 		return {'FINISHED'}
 
-class GA_Tools_Shield(bpy.types.Operator):
+class GA_PT_Tools_Shield(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolshield"
 	bl_label = "Shield"
@@ -1274,7 +1274,7 @@ class GA_Tools_Shield(bpy.types.Operator):
 
 		return {'FINISHED'}
 		
-class GA_Tools_Shoulder(bpy.types.Operator):
+class GA_PT_Tools_Shoulder(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolshoulder"
 	bl_label = "Shoulder Guard"
@@ -1385,7 +1385,7 @@ class GA_Tools_Shoulder(bpy.types.Operator):
 
 		return {'FINISHED'}
 		
-class GA_Tools_Sword(bpy.types.Operator):
+class GA_PT_Tools_Sword(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolsword"
 	bl_label = "Sword"
@@ -1483,7 +1483,7 @@ class GA_Tools_Sword(bpy.types.Operator):
 
 		return {'FINISHED'}
 
-class GA_Tools_Potion(bpy.types.Operator):
+class GA_PT_Tools_Potion(bpy.types.Operator):
 
 	bl_idname = "scene.ga_toolpotion"
 	bl_label = "Potion"
