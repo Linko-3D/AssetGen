@@ -162,9 +162,7 @@ class GA_Start(bpy.types.Operator):
 			print("Generating the low poly...")
 			
 			bpy.ops.object.convert(target='MESH')
-			bpy.ops.object.join()
-
-			bpy.context.object.data.use_auto_smooth = False			
+			bpy.ops.object.join()		
 			
 			if smoothHP == 1:
 				bpy.ops.object.shade_smooth()
