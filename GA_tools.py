@@ -498,7 +498,7 @@ class GA_PT_Tools_ChainHexagon(bpy.types.Operator):
 
 		bpy.ops.object.shade_smooth()
 		
-		bpy.context.object.name = "Chain 1"
+		bpy.context.object.name = "Chain Hexagon"
 
 		return {'FINISHED'}
 
@@ -551,7 +551,7 @@ class GA_PT_Tools_ChainSquare(bpy.types.Operator):
 
 		bpy.ops.object.shade_smooth()
 
-		bpy.context.object.name = "Chain 2"
+		bpy.context.object.name = "Chain Square"
 
 		return {'FINISHED'}
 
@@ -840,7 +840,7 @@ class GA_PT_Tools_RingCircle(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 		
-		bpy.context.object.name = "Ring"
+		bpy.context.object.name = "Ring Circle"
 		return {'FINISHED'}
 
 class GA_PT_Tools_RingSquare(bpy.types.Operator):
@@ -869,7 +869,7 @@ class GA_PT_Tools_RingSquare(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 		
-		bpy.context.object.name = "Ring"
+		bpy.context.object.name = "Ring Square"
 
 		return {'FINISHED'}
 
@@ -976,7 +976,7 @@ class GA_PT_Tools_StrapCircle(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-		bpy.context.object.name = "Strap"
+		bpy.context.object.name = "Strap Circle"
 
 		return {'FINISHED'}
 
@@ -1033,7 +1033,7 @@ class GA_PT_Tools_StrapHandle(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')
 
 
-		bpy.context.object.name = "StrapHandle"
+		bpy.context.object.name = "Strap Handle"
 
 		return {'FINISHED'}
 
@@ -1061,7 +1061,7 @@ class GA_PT_Tools_StrapLine(bpy.types.Operator):
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
 
-		bpy.context.object.name = "Strap"
+		bpy.context.object.name = "Strap Line"
 
 		return {'FINISHED'}
 
@@ -1112,21 +1112,21 @@ class GA_PT_Tools_Axe(bpy.types.Operator):
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
-		bpy.context.object.name = "Strap"
+		bpy.context.object.name = "StrapAxe"
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0.07), "constraint_axis":(False, False, True), "orient_type":'GLOBAL', "mirror":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 		bpy.context.object.modifiers["SimpleDeform"].factor = -0.75
 
-		bpy.ops.object.select_pattern(pattern="Strap")
+		bpy.ops.object.select_pattern(pattern="StrapAxe")
 
 		bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(0, 0, 0.14), "constraint_axis":(False, False, True), "orient_type":'GLOBAL', "mirror":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
 
-		bpy.ops.object.select_pattern(pattern="Strap.001")
-		bpy.ops.object.select_pattern(pattern="Strap")
+		bpy.ops.object.select_pattern(pattern="StrapAxe.001")
+		bpy.ops.object.select_pattern(pattern="StrapAxe")
 
 		bpy.ops.object.convert(target='MESH')
 		bpy.ops.object.join()
-		bpy.context.object.name = "Strap"
+		bpy.context.object.name = "StrapAxe"
 
 		bpy.ops.object.shade_smooth()
 
@@ -1161,7 +1161,7 @@ class GA_PT_Tools_Axe(bpy.types.Operator):
 
 		bpy.ops.object.convert(target='MESH')
 
-		bpy.ops.object.select_pattern(pattern="Strap")
+		bpy.ops.object.select_pattern(pattern="StrapAxe")
 		bpy.ops.object.join()
 		bpy.context.object.name = "AxeBase"
 
@@ -1449,7 +1449,7 @@ class GA_PT_Tools_Sword(bpy.types.Operator):
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
 
-		bpy.context.object.name = "sword_blade"
+		bpy.context.object.name = "Sword Blade"
 
 		# Hand
 
