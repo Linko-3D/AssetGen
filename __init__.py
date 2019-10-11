@@ -17,10 +17,13 @@ import bpy
 bl_info = {
     "name" : "AssetGen",
     "author" : "Srdan Ignjatovic aka zero025 (kica025@gmail.com) and Bekhoucha Danyl aka Linko (dbekhouc@gmail.com)",
-    "description" : "",
+    "version": (1, 0, 0),
     "blender" : (2, 80, 0),
-    "location" : "",
+    "location" : "View3D",
+    "description" : "AssetGen is a free add-on (GPL License) that automates the tasks to get game assets ready for video games from an High Poly model.",
     "warning" : "",
+    "wiki_url": "https://github.com/Linko-3D/AssetGen",
+    "tracker_url": "https://github.com/Linko-3D/AssetGen/issues",
     "category" : "Game Tool"
 }
 
