@@ -122,8 +122,8 @@ def DEF_pbrShader_add(context,size,name ):
     d_3. output_template(0.45)
     d_3.location = (200,-350)
 
-    links.new( d_2.inputs['Color'], d_image.outputs['Color'])
-
+    links.new( d_3.inputs['Color'], d_image.outputs['Color'])
+    links.new( d_2.inputs['Color'], d_3.outputs['Color'])
     links.new( d_1.inputs['Normal'], d_2.outputs['Normal'])
 
 
