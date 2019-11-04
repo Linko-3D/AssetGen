@@ -125,12 +125,14 @@ def DEF_pbrShader_add(context,size,name ):
     math = nodes.new("ShaderNodeMath")
     math.location = (200,-500)
 
-    links.new( gamma.inputs['Color'], d_image.outputs['Color'])
-    links.new( normal.inputs['Color'], gamma.outputs['Color'])
-    links.new( d_1.inputs['Normal'], normal.outputs['Normal'])
+    links.new(d_image.outputs['Color'], gamma.inputs['Color'])
+    
+    links.new(math.outputs['Value'], gamma.inputs['Gamma'])
+    links.new(gamma.outputs['Color'], normal.inputs['Color'])
+    links.new(normal.outputs['Normal'], d_1.inputs['Normal'])
 
 
-    d_5   = nodes.new("ShaderNodeOutputMaterial")
+    d_5 = nodes.new("ShaderNodeOutputMaterial")
     d_5.location = (300,300)
 
     links.new( d_5.inputs['Surface'], d_1.outputs[0])
