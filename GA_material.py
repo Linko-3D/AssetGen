@@ -119,7 +119,6 @@ def DEF_pbrShader_add(context,size,name ):
     normal.location = (400,-350)
     
     gamma = nodes.new("ShaderNodeGamma")
-    gamma. output_template(0.45)
     gamma.location = (200,-350)
     
     math = nodes.new("ShaderNodeMath")
