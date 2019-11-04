@@ -120,9 +120,13 @@ def DEF_pbrShader_add(context,size,name ):
     
     gamma = nodes.new("ShaderNodeGamma")
     gamma.location = (200,-350)
+    gamma.inputs[1].default_value = 2.2
     
     math = nodes.new("ShaderNodeMath")
     math.location = (200,-500)
+    math.operation = 'DIVIDE' 
+    math.inputs[0].default_value = 1
+    math.inputs[1].default_value = 2.2
 
     links.new(d_image.outputs['Color'], gamma.inputs['Color'])
     
