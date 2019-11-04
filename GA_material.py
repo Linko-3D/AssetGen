@@ -115,16 +115,19 @@ def DEF_pbrShader_add(context,size,name ):
     d_image.image = I_Normal
     #d_image.image.colorspace_settings.name = 'Non-Color'
     
-    d_2   = nodes.new("ShaderNodeNormalMap")
-    d_2.location = (400,-350)
+    normal = nodes.new("ShaderNodeNormalMap")
+    normal.location = (400,-350)
     
-    d_3 = nodes.new("ShaderNodeGamma")
-    d_3. output_template(0.45)
-    d_3.location = (200,-350)
+    gamma = nodes.new("ShaderNodeGamma")
+    gamma. output_template(0.45)
+    gamma.location = (200,-350)
+    
+    math = nodes.new("ShaderNodeMath")
+    math.location = (200,-500)
 
-    links.new( d_3.inputs['Color'], d_image.outputs['Color'])
-    links.new( d_2.inputs['Color'], d_3.outputs['Color'])
-    links.new( d_1.inputs['Normal'], d_2.outputs['Normal'])
+    links.new( gamma.inputs['Color'], d_image.outputs['Color'])
+    links.new( normal.inputs['Color'], gamma.outputs['Color'])
+    links.new( d_1.inputs['Normal'], normal.outputs['Normal'])
 
 
     d_5   = nodes.new("ShaderNodeOutputMaterial")
