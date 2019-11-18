@@ -74,6 +74,10 @@ class GA_PT_generatePanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_remesh")
         col_ga.row().separator()
+        
+        row = col_ga.row()		
+        row.prop(myscene , "ga_voxelsize")
+        col_ga.row().separator()
         row = col_ga.row()
         
         row.prop(myscene , "ga_ao")

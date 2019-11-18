@@ -95,6 +95,14 @@ class GA_Props(bpy.types.PropertyGroup):
         default = True
    )
 
+   ga_voxelsize : bpy.props.FloatProperty(
+        name = 'Voxel Size',
+        description = "The amount of temporary extrusion used on your low poly during the baking. A value too low will reveal intersections, a value too high can create new intersections between concave shapes and generate wavy edges. After generating your low poly if the result isn't correct, use the Solidify modifier on the low poly, change the offset to 1 and tweak the thickness by holding shift until it envelops the high poly to find the right value, then generate your asset again",
+        default = 0.005,
+        min = 0.001,
+        max = 10
+   )       
+   
    ga_ao : bpy.props.BoolProperty(
         name = 'Bake AO',
         description = "Will bake the AO map separately ideal for PBR materials. Do not include an AO node in your base color shader",
