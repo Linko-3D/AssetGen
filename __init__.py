@@ -69,7 +69,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2K px resolution'),
                ('4K', '4K', '4K px resolution')],
         description="Choose the texture resolution in X (width)",
-        default='512'
+        default='1K'
    )
    
    ga_textureY : bpy.props.EnumProperty(
@@ -79,7 +79,7 @@ class GA_Props(bpy.types.PropertyGroup):
                ('2K', '2K', '2K px resolution'),
                ('4K', '4K', '4K px resolution')],
         description="Choose the texture resolution in Y (height)",
-        default='512'
+        default='1K'
    )
    
    ga_samplecount : bpy.props.IntProperty(
@@ -88,6 +88,12 @@ class GA_Props(bpy.types.PropertyGroup):
         default=8,
         min = 1		
    )  
+
+   ga_remesh : bpy.props.BoolProperty(
+        name = 'Remesh',
+        description = "Will perform a remesh to merge every meshes and remove every intersections",
+        default = True
+   )
 
    ga_ao : bpy.props.BoolProperty(
         name = 'Bake AO',
@@ -114,7 +120,7 @@ class GA_Props(bpy.types.PropertyGroup):
         default = True
    )
    
-   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=1000,min=1)     
+   ga_LOD0 : bpy.props.IntProperty(name="LOD0 (tris)", default=10000,min=1)     
    ga_LOD1 : bpy.props.IntProperty(name="LOD1 (tris)", default=0,min=0)    
    ga_LOD2 : bpy.props.IntProperty(name="LOD2 (tris)", default=0,min=0)    
    ga_LOD3 : bpy.props.IntProperty(name="LOD3 (tris)", default=0,min=0)       
@@ -152,7 +158,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_cagesize : bpy.props.FloatProperty(
         name = 'Cage Size',
         description = "The amount of temporary extrusion used on your low poly during the baking. A value too low will reveal intersections, a value too high can create new intersections between concave shapes and generate wavy edges. After generating your low poly if the result isn't correct, use the Solidify modifier on the low poly, change the offset to 1 and tweak the thickness by holding shift until it envelops the high poly to find the right value, then generate your asset again",
-        default = 0.05,
+        default = 0.01,
         min = 0,
         max = 1		
    )       
@@ -176,7 +182,7 @@ class GA_Props(bpy.types.PropertyGroup):
    ga_uvangle : bpy.props.IntProperty(
         name = 'UV Angle',
         description = "The step angle where your UV Map must create an UV Seam. If the value is too low the UV Map will contain many individual faces, the game engine will need more calculations to display your textures. A value too high could create overlapping and not optimize the texel density (space available) resulting in a low texture quality",
-        default = 45,
+        default = 66,
         min = 1,
         max = 89		
    )
