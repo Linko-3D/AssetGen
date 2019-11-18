@@ -176,8 +176,8 @@ class GA_Start(bpy.types.Operator):
 			print("Generating the low poly...")
 			
 			bpy.ops.object.convert(target='MESH')
-			bpy.ops.object.join()		
-			
+			bpy.ops.object.join()
+
 			if smoothHP == 1:
 				bpy.ops.object.shade_smooth()
 			else:
@@ -204,7 +204,12 @@ class GA_Start(bpy.types.Operator):
 			
 			bpy.context.object.name = "tmpLP"
 
-			
+			print("Remeshing...")
+			bpy.context.object.data.remesh_voxel_size = 0.01
+			bpy.context.object.data.use_remesh_preserve_volume = True
+			bpy.ops.object.voxel_remesh()
+			print("Remesh complete")
+            
 			## Remove every material slots on the low poly only if the bake_textures mode is enabled
 
 			if bake_textures == 1:
