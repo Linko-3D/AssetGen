@@ -62,7 +62,7 @@ def DEF_pbrShader_add(context,size,name ):
 		
     #Add basecolor
     ###############
-    I_basecolor = bpy.data.images.get("T_"+name+"_D")
+    I_basecolor = bpy.data.images.get("T_"+name+"_A")
 
 	#Add metallic
     ###############

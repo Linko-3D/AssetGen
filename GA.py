@@ -510,7 +510,7 @@ class GA_Start(bpy.types.Operator):
 			print("\nBaking the diffuse map...")
 			
 			#Create Material
-			DEF_material_add(context,size,name,"D")	
+			DEF_material_add(context,size,name,"A")	
 
 			bpy.data.objects['tmpLP'].active_material = bpy.data.materials["Bake"]
 			
