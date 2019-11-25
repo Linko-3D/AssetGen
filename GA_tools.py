@@ -238,6 +238,18 @@ class GA_PT_Tools_Dyntopo(bpy.types.Operator):
 
 		return {'FINISHED'}
 
+class GA_PT_Tools_Subsurf(bpy.types.Operator):
+
+	bl_idname = "scene.ga_toolsubsurf"
+	bl_label = "Subsurf"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+		bpy.ops.object.subdivision_set(level=1, relative=False)
+		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Subdivision")
+
+		return {'FINISHED'}
+
 class GA_PT_Tools_Optimize(bpy.types.Operator):
 
 	bl_idname = "scene.ga_tooloptimize"

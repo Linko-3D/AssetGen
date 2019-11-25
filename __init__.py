@@ -241,6 +241,7 @@ classes = [
 	GA_tools.GA_PT_Tools_FlipNormals,
 	GA_tools.GA_PT_Tools_Union,
 	GA_tools.GA_PT_Tools_Dyntopo,
+	GA_tools.GA_PT_Tools_Subsurf,
     GA_tools.GA_PT_Tools_Optimize,
     GA_tools.GA_PT_Tools_DissolveUnnecessary,
     GA_tools.GA_PT_Tools_Polycount,

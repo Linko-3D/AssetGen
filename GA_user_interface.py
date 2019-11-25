@@ -223,6 +223,7 @@ class GA_PT_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_toolflipnormals", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolunion", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooldyntopo", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_toolsubsurf", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooloptimize", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_tooldissolveunnecessary", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolpolycount", icon="FILE_REFRESH")
