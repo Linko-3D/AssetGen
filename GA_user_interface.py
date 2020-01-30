@@ -170,6 +170,10 @@ class GA_PT_advancedPanel(bpy.types.Panel):
         row = col_ga.row()		
         row.prop(myscene , "ga_groundao")
         col_ga.row().separator()
+        
+        row = col_ga.row()		
+        row.prop(myscene , "ga_unrealtransforms")
+        col_ga.row().separator()
 
         row = col_ga.row()		
         row.prop(myscene , "ga_removeunderground")
@@ -228,6 +232,7 @@ class GA_PT_toolsPanel(bpy.types.Panel):
         col1_ga.operator("scene.ga_tooldissolveunnecessary", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolpolycount", icon="FILE_REFRESH")
         col1_ga.operator("scene.ga_toolontheground", icon="FILE_REFRESH")
+        col1_ga.operator("scene.ga_unrealtransforms", icon="FILE_REFRESH")
 		#-----------------------------------------------------------	
         col_ga = layout.column(align=True)		
         col_ga.label(text="Simple Meshes:")		

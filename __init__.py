@@ -246,6 +246,7 @@ classes = [
     GA_tools.GA_PT_Tools_DissolveUnnecessary,
     GA_tools.GA_PT_Tools_Polycount,
 	GA_tools.GA_PT_Tools_OnTheGround,
+    GA_tools.GA_PT_Tools_UnrealTransforms,
 
 	GA_tools.GA_PT_Tools_BaseMesh,
 	GA_tools.GA_PT_Tools_BoltCubic,

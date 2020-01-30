@@ -232,7 +232,7 @@ class GA_PT_Tools_Dyntopo(bpy.types.Operator):
 		bpy.ops.sculpt.dynamic_topology_toggle()
 		
 		bpy.context.scene.tool_settings.unified_paint_settings.size = 100
-		bpy.context.scene.tool_settings.sculpt.detail_size = 6
+		bpy.context.scene.tool_settings.sculpt.detail_size = 8
 		bpy.context.scene.tool_settings.unified_paint_settings.use_unified_strength = True
 		bpy.context.scene.tool_settings.unified_paint_settings.strength = 1
 
@@ -298,6 +298,21 @@ class GA_PT_Tools_OnTheGround(bpy.types.Operator):
 
 		lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
 		bpy.context.object.location.z -= lowest_pt
+
+		return {'FINISHED'}
+
+class GA_PT_Tools_UnrealTransforms(bpy.types.Operator):
+
+	bl_idname = "scene.ga_unrealtransforms"
+	bl_label = "Unreal Transforms"
+	bl_options = {'REGISTER', 'UNDO'}
+
+	def execute(self, context):
+
+		bpy.context.object.rotation_euler[0] = 1.5708
+		bpy.context.object.rotation_euler[1] = 1.5708
+
+		bpy.ops.transform.resize(value=(100, 100, 100), constraint_axis=(False, False, False), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 
 		return {'FINISHED'}
 
