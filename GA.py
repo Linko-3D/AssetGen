@@ -206,9 +206,9 @@ class GA_Start(bpy.types.Operator):
 			if remesh:
 				print("Remeshing...")
 				bpy.context.object.data.remesh_voxel_size = myscene.ga_voxelsize
-				bpy.context.object.data.use_remesh_fix_poles = False
-				bpy.context.object.data.use_remesh_smooth_normals = True
-				bpy.context.object.data.use_remesh_preserve_volume = False
+				#bpy.context.object.data.use_remesh_fix_poles = False
+				#bpy.context.object.data.use_remesh_smooth_normals = True
+				#bpy.context.object.data.use_remesh_preserve_volume = False
 				bpy.ops.object.voxel_remesh()
 				print("Remesh complete")
 
