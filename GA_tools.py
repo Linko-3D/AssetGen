@@ -99,7 +99,7 @@ class GA_PT_Tools_ResymX(bpy.types.Operator):
 
 			bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 			bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+			bpy.ops.object.modifier_apply(modifier="Mirror")
 
 		return {'FINISHED'}
 
@@ -246,7 +246,7 @@ class GA_PT_Tools_Subsurf(bpy.types.Operator):
 
 	def execute(self, context):
 		bpy.ops.object.subdivision_set(level=1, relative=False)
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Subdivision")
+		bpy.ops.object.modifier_apply(modifier="Subdivision")
 
 		return {'FINISHED'}
 
@@ -265,7 +265,7 @@ class GA_PT_Tools_Optimize(bpy.types.Operator):
 
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = 0.7
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 		return {'FINISHED'}			
 
@@ -388,7 +388,7 @@ class GA_PT_Tools_BoltCubic(bpy.types.Operator):
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 
 		bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+		bpy.ops.object.modifier_apply(modifier="Mirror")
 
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
@@ -493,7 +493,7 @@ class GA_PT_Tools_ChainHexagon(bpy.types.Operator):
 		bpy.context.object.modifiers["Mirror"].use_axis[0] = False
 		bpy.context.object.modifiers["Mirror"].use_axis[2] = True
 		bpy.context.object.modifiers["Mirror"].use_clip = True
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+		bpy.ops.object.modifier_apply(modifier="Mirror")
 		
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={"mode":1}, TRANSFORM_OT_translate={"value":(0, 0, -2.2), "orient_type":'GLOBAL', "orient_matrix":((1, 0, 0), (0, 1, 0), (0, 0, 1)), "orient_matrix_type":'GLOBAL', "constraint_axis":(False, False, True), "mirror":False, "use_proportional_edit":False, "proportional_edit_falloff":'SMOOTH', "proportional_size":1, "use_proportional_connected":False, "use_proportional_projected":False, "snap":False, "snap_target":'CLOSEST', "snap_point":(0, 0, 0), "snap_align":False, "snap_normal":(0, 0, 0), "gpencil_strokes":False, "cursor_transform":False, "texture_space":False, "remove_on_cancel":False, "release_confirm":False, "use_accurate":False})
@@ -571,7 +571,7 @@ class GA_PT_Tools_ChainSquare(bpy.types.Operator):
 		bpy.ops.transform.resize(value=(0.036, 0.036, 0.036), orient_type='GLOBAL', mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
 		
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+		bpy.ops.object.modifier_apply(modifier="Mirror")
 
 		bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
 		bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN')
@@ -663,7 +663,7 @@ class GA_PT_Tools_Crack(bpy.types.Operator):
 
 		bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 		bpy.context.object.modifiers["Mirror"].use_axis[1] = True
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+		bpy.ops.object.modifier_apply(modifier="Mirror")
 
 		bpy.ops.object.mode_set(mode = 'EDIT')
 		bpy.ops.mesh.select_all(action = 'DESELECT')
@@ -679,7 +679,7 @@ class GA_PT_Tools_Crack(bpy.types.Operator):
 
 		bpy.context.active_object.modifiers.new("Subdivision", 'SUBSURF')
 		bpy.context.object.modifiers["Subdivision"].levels = 2
-		bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Subdivision")
+		bpy.ops.object.modifier_apply(modifier="Subdivision")
 		
 		bpy.ops.transform.resize(value=(2, 2, 5), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
 		bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)

@@ -192,7 +192,7 @@ class GA_Start(bpy.types.Operator):
 			if unfold_half == 1:
 				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
 				bpy.context.object.modifiers["Mirror"].use_bisect_axis[0] = True
-				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+				bpy.ops.object.modifier_apply(modifier="Mirror")
 			
 			if myscene.ga_ontheground == 1:
 				lowest_pt = min([(bpy.context.object.matrix_world  @ v.co).z for v in bpy.context.object.data.vertices])
@@ -262,7 +262,7 @@ class GA_Start(bpy.types.Operator):
 			# Decimation 1
     
 			bpy.context.active_object.modifiers.new("Triangulate", 'TRIANGULATE')
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
+			bpy.ops.object.modifier_apply(modifier="Triangulate")
 
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
@@ -270,7 +270,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD0 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 			if remove_inside == 1:
 				# Fill holes
@@ -325,14 +325,14 @@ class GA_Start(bpy.types.Operator):
 			# Decimation 2
 
 			bpy.context.active_object.modifiers.new("Triangulate", 'TRIANGULATE')
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
+			bpy.ops.object.modifier_apply(modifier="Triangulate")
 
 			mesh_polycount = len(bpy.context.active_object.data.polygons)
 
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD0 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 			if unfold_half == 1:
 				bpy.ops.object.select_all(action = 'DESELECT')
@@ -365,7 +365,7 @@ class GA_Start(bpy.types.Operator):
 
 			if unfold_half == 1:
 				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
-				bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Mirror")
+				bpy.ops.object.modifier_apply(modifier="Mirror")
 
 			if smoothLP == 1:
 				bpy.ops.object.shade_smooth()
@@ -633,7 +633,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD1 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 			bpy.context.object.name = "SM_" + name + "_LOD1"
 			bpy.context.object.data.name = "SM_" + name + "_LOD1"
@@ -650,7 +650,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD2 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 			bpy.context.object.name = "SM_" + name + "_LOD2"
 			bpy.context.object.data.name = "SM_" + name + "_LOD2"
@@ -667,7 +667,7 @@ class GA_Start(bpy.types.Operator):
 			bpy.context.active_object.modifiers.new("Decimate", 'DECIMATE')
 			bpy.context.object.modifiers["Decimate"].ratio = LOD3 / mesh_polycount
 			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+			bpy.ops.object.modifier_apply(modifier="Decimate")
 
 			bpy.context.object.name = "SM_" + name + "_LOD3"
 			bpy.context.object.data.name = "SM_" + name + "_LOD3"
