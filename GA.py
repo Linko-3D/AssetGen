@@ -361,7 +361,9 @@ class GA_Start(bpy.types.Operator):
 			
 			# Unfold UVs
 
+			bpy.ops.object.editmode_toggle()
 			bpy.ops.uv.smart_project(angle_limit=uv_angle, island_margin=uv_margin)
+			bpy.ops.object.editmode_toggle()
 
 			if unfold_half == 1:
 				bpy.context.active_object.modifiers.new("Mirror", 'MIRROR')
@@ -437,7 +439,10 @@ class GA_Start(bpy.types.Operator):
 			
 			bpy.context.active_object.name = "tmpLP"
 
+
+			bpy.ops.object.editmode_toggle()
 			bpy.ops.uv.smart_project()
+			bpy.ops.object.editmode_toggle()
 					
 			bpy.context.view_layer.objects.active  = bpy.data.objects["tmpLP"]
 
